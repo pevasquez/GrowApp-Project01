@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FBDCB1981A83EB1800E05053 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1971A83EB1800E05053 /* main.m */; };
+		FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB19A1A83EB1800E05053 /* AppDelegate.m */; };
+		FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB19C1A83EB1800E05053 /* Inkit.xcdatamodeld */; };
+		FBDCB1A11A83EB1800E05053 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1A01A83EB1800E05053 /* ViewController.m */; };
+		FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A21A83EB1800E05053 /* Main.storyboard */; };
+		FBDCB1A61A83EB1800E05053 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A51A83EB1800E05053 /* Images.xcassets */; };
+		FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */; };
+		FBDCB1B51A83EB1800E05053 /* InkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1B41A83EB1800E05053 /* InkitTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FBDCB1AF1A83EB1800E05053 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBDCB18A1A83EB1700E05053 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBDCB1911A83EB1800E05053;
+			remoteInfo = Inkit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FBDCB1921A83EB1800E05053 /* Inkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBDCB1961A83EB1800E05053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBDCB1971A83EB1800E05053 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FBDCB1991A83EB1800E05053 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FBDCB19A1A83EB1800E05053 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FBDCB19D1A83EB1800E05053 /* Inkit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inkit.xcdatamodel; sourceTree = "<group>"; };
+		FBDCB19F1A83EB1800E05053 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FBDCB1A01A83EB1800E05053 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FBDCB1A31A83EB1800E05053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FBDCB1A51A83EB1800E05053 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FBDCB1A81A83EB1800E05053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FBDCB1AE1A83EB1800E05053 /* InkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBDCB1B31A83EB1800E05053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBDCB1B41A83EB1800E05053 /* InkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InkitTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FBDCB18F1A83EB1800E05053 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBDCB1AB1A83EB1800E05053 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FBDCB1891A83EB1700E05053 = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1941A83EB1800E05053 /* Inkit */,
+				FBDCB1B11A83EB1800E05053 /* InkitTests */,
+				FBDCB1931A83EB1800E05053 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FBDCB1931A83EB1800E05053 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1921A83EB1800E05053 /* Inkit.app */,
+				FBDCB1AE1A83EB1800E05053 /* InkitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBDCB1941A83EB1800E05053 /* Inkit */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1991A83EB1800E05053 /* AppDelegate.h */,
+				FBDCB19A1A83EB1800E05053 /* AppDelegate.m */,
+				FBDCB19F1A83EB1800E05053 /* ViewController.h */,
+				FBDCB1A01A83EB1800E05053 /* ViewController.m */,
+				FBDCB1A21A83EB1800E05053 /* Main.storyboard */,
+				FBDCB1A51A83EB1800E05053 /* Images.xcassets */,
+				FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */,
+				FBDCB19C1A83EB1800E05053 /* Inkit.xcdatamodeld */,
+				FBDCB1951A83EB1800E05053 /* Supporting Files */,
+			);
+			path = Inkit;
+			sourceTree = "<group>";
+		};
+		FBDCB1951A83EB1800E05053 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1961A83EB1800E05053 /* Info.plist */,
+				FBDCB1971A83EB1800E05053 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FBDCB1B11A83EB1800E05053 /* InkitTests */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1B41A83EB1800E05053 /* InkitTests.m */,
+				FBDCB1B21A83EB1800E05053 /* Supporting Files */,
+			);
+			path = InkitTests;
+			sourceTree = "<group>";
+		};
+		FBDCB1B21A83EB1800E05053 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1B31A83EB1800E05053 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FBDCB1911A83EB1800E05053 /* Inkit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBDCB1B81A83EB1800E05053 /* Build configuration list for PBXNativeTarget "Inkit" */;
+			buildPhases = (
+				FBDCB18E1A83EB1800E05053 /* Sources */,
+				FBDCB18F1A83EB1800E05053 /* Frameworks */,
+				FBDCB1901A83EB1800E05053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Inkit;
+			productName = Inkit;
+			productReference = FBDCB1921A83EB1800E05053 /* Inkit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBDCB1AD1A83EB1800E05053 /* InkitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBDCB1BB1A83EB1800E05053 /* Build configuration list for PBXNativeTarget "InkitTests" */;
+			buildPhases = (
+				FBDCB1AA1A83EB1800E05053 /* Sources */,
+				FBDCB1AB1A83EB1800E05053 /* Frameworks */,
+				FBDCB1AC1A83EB1800E05053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBDCB1B01A83EB1800E05053 /* PBXTargetDependency */,
+			);
+			name = InkitTests;
+			productName = InkitTests;
+			productReference = FBDCB1AE1A83EB1800E05053 /* InkitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBDCB18A1A83EB1700E05053 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Digbang;
+				TargetAttributes = {
+					FBDCB1911A83EB1800E05053 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					FBDCB1AD1A83EB1800E05053 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = FBDCB1911A83EB1800E05053;
+					};
+				};
+			};
+			buildConfigurationList = FBDCB18D1A83EB1800E05053 /* Build configuration list for PBXProject "Inkit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FBDCB1891A83EB1700E05053;
+			productRefGroup = FBDCB1931A83EB1800E05053 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FBDCB1911A83EB1800E05053 /* Inkit */,
+				FBDCB1AD1A83EB1800E05053 /* InkitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FBDCB1901A83EB1800E05053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
+				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
+				FBDCB1A61A83EB1800E05053 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBDCB1AC1A83EB1800E05053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FBDCB18E1A83EB1800E05053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
+				FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */,
+				FBDCB1A11A83EB1800E05053 /* ViewController.m in Sources */,
+				FBDCB1981A83EB1800E05053 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBDCB1AA1A83EB1800E05053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBDCB1B51A83EB1800E05053 /* InkitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBDCB1B01A83EB1800E05053 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBDCB1911A83EB1800E05053 /* Inkit */;
+			targetProxy = FBDCB1AF1A83EB1800E05053 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FBDCB1A21A83EB1800E05053 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBDCB1A31A83EB1800E05053 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBDCB1A81A83EB1800E05053 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FBDCB1B61A83EB1800E05053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBDCB1B71A83EB1800E05053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBDCB1B91A83EB1800E05053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Inkit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FBDCB1BA1A83EB1800E05053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Inkit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FBDCB1BC1A83EB1800E05053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = InkitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Inkit.app/Inkit";
+			};
+			name = Debug;
+		};
+		FBDCB1BD1A83EB1800E05053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = InkitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Inkit.app/Inkit";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FBDCB18D1A83EB1800E05053 /* Build configuration list for PBXProject "Inkit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBDCB1B61A83EB1800E05053 /* Debug */,
+				FBDCB1B71A83EB1800E05053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBDCB1B81A83EB1800E05053 /* Build configuration list for PBXNativeTarget "Inkit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBDCB1B91A83EB1800E05053 /* Debug */,
+				FBDCB1BA1A83EB1800E05053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FBDCB1BB1A83EB1800E05053 /* Build configuration list for PBXNativeTarget "InkitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBDCB1BC1A83EB1800E05053 /* Debug */,
+				FBDCB1BD1A83EB1800E05053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FBDCB19C1A83EB1800E05053 /* Inkit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FBDCB19D1A83EB1800E05053 /* Inkit.xcdatamodel */,
+			);
+			currentVersion = FBDCB19D1A83EB1800E05053 /* Inkit.xcdatamodel */;
+			path = Inkit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FBDCB18A1A83EB1700E05053 /* Project object */;
+}
