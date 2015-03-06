@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  Inkit
+
+  Created by Cristian Pena on 26/2/15.
+  Copyright (c) 2015 Digbang. All rights reserved.
+*/
+
+// Dashboard Strings
+"Dashboard" = "Dashboard";
+"From\nCamera" = "From\nCamera";
+"From\nAlbum" = "From\nAlbum";
+
+// Create Ink Strings
+"Create Ink" = "Create Ink";
+"Description" = "Description";
+"Select Board" = "Select Board";
+"Select Body Parts" = "Select Body Parts";
+// View Ink Strings
+"View Ink" = "View Ink";
+
+// View Board Strings
+"My Boards" = "My Boards";
+
+// Create Board Strings
+"Create Board" = "Create Board";
+
+// Select Board Strings
+"Select Board" = "Select Board";
+
+// Select Body Part Strings
+"Select Body Parts" = "Select Body Parts";
+
+// Browse Strings
+"Browse" = "Browse";
+
+// Account Strings
+"Account" = "Account";
+
+// Error Strings
+"The photo albums are not available" = "The photo albums are not available";
+"The camera is not available" = "The camera is not available";
+
+"Error" = "Error";
+"Continue" = "Continue";
+"Ok" = "Ok";
+
+"Complete the description and select a board to continue" = "Complete the description and select a board to continue";
+"Complete the title and description to continue" = "Complete the title and description to continue";

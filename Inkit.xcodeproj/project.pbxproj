@@ -1,0 +1,944 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		868A5CA81AA627E7006DD52D /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 868A5CA71AA627E7006DD52D /* DBBoard.m */; };
+		86C2F6271AA79AFB003D58E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86C2F6261AA79AFB003D58E3 /* Images.xcassets */; };
+		FB0138BB1AA8F69E0037D945 /* SelectBodyPartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BA1AA8F69E0037D945 /* SelectBodyPartTableViewController.m */; };
+		FB0138BE1AA9029E0037D945 /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BD1AA9029E0037D945 /* DBBodyPart.m */; };
+		FB0138C11AA9029F0037D945 /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138C01AA9029F0037D945 /* DBInk.m */; };
+		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
+		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
+		FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B85B1AA4C3CC00ED7ECD /* UserService.m */; };
+		FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
+		FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */; };
+		FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384191A892D92004C440A /* ViewInkViewController.m */; };
+		FBB3841E1A89308E004C440A /* InkImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB3841D1A89308E004C440A /* InkImageTableViewCell.m */; };
+		FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384201A8930AD004C440A /* InkDescriptionTableViewCell.m */; };
+		FBB384241A893102004C440A /* InkActionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384231A893102004C440A /* InkActionsTableViewCell.m */; };
+		FBB384271A893128004C440A /* InkCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384261A893128004C440A /* InkCommentTableViewCell.m */; };
+		FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384291A893559004C440A /* ProfileImageView.m */; };
+		FBB384341A894168004C440A /* ViewInkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384331A894168004C440A /* ViewInkTableViewCell.m */; };
+		FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB3843D1A89522B004C440A /* DynamicSizeLabel.m */; };
+		FBB384411A895B1D004C440A /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384401A895B1D004C440A /* CameraViewController.m */; };
+		FBB384471A895E7C004C440A /* CreateInkImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384461A895E7C004C440A /* CreateInkImageTableViewCell.m */; };
+		FBB384541A8A938D004C440A /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384531A8A938D004C440A /* TextFieldTableViewCell.m */; };
+		FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384561A8A9818004C440A /* TextViewTableViewCell.m */; };
+		FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB488541A8BF176009E1789 /* MobileCoreServices.framework */; };
+		FBC432FD1A853BC500EFAA24 /* InkitTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC432FC1A853BC500EFAA24 /* InkitTabBarController.m */; };
+		FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC433001A8540CE00EFAA24 /* DashboardViewController.m */; };
+		FBC433051A85457E00EFAA24 /* InkitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC433041A85457E00EFAA24 /* InkitButton.m */; };
+		FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = FBC433071A85472200EFAA24 /* HelveticaNeue-Roman.otf */; };
+		FBC4330A1A85472200EFAA24 /* PermanentMarker.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBC433081A85472200EFAA24 /* PermanentMarker.ttf */; };
+		FBC4330E1A85502400EFAA24 /* CreateInkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC4330D1A85502400EFAA24 /* CreateInkViewController.m */; };
+		FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */; };
+		FBC433171A855C4E00EFAA24 /* DBInk+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC433161A855C4E00EFAA24 /* DBInk+Management.m */; };
+		FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FBC5170F1A9F37F200110CC9 /* Localizable.strings */; };
+		FBCCAF861A8CE8390052DCB9 /* ViewBoardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF851A8CE8390052DCB9 /* ViewBoardsViewController.m */; };
+		FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF921A8CF2420052DCB9 /* DBBoard+Management.m */; };
+		FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */; };
+		FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */; };
+		FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */; };
+		FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */; };
+		FBD91E261A965F2500B00724 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E251A965F2500B00724 /* DBUser.m */; };
+		FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */; };
+		FBD91E2C1A96795800B00724 /* ViewInksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E2B1A96795800B00724 /* ViewInksViewController.m */; };
+		FBD91E301A9687F800B00724 /* InkCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E2F1A9687F800B00724 /* InkCollectionViewCell.m */; };
+		FBD91E331A9689EE00B00724 /* InkUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E321A9689EE00B00724 /* InkUserTableViewCell.m */; };
+		FBDCB1981A83EB1800E05053 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1971A83EB1800E05053 /* main.m */; };
+		FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB19A1A83EB1800E05053 /* AppDelegate.m */; };
+		FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB19C1A83EB1800E05053 /* Inkit.xcdatamodeld */; };
+		FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A21A83EB1800E05053 /* Main.storyboard */; };
+		FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */; };
+		FBDCB1B51A83EB1800E05053 /* InkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1B41A83EB1800E05053 /* InkitTests.m */; };
+		FBDCB1C01A83ED2C00E05053 /* InkitDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1BF1A83ED2C00E05053 /* InkitDataUtil.m */; };
+		FBDCB1C41A83F06A00E05053 /* InkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1C31A83F06A00E05053 /* InkitService.m */; };
+		FBDCB1C71A83F37D00E05053 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1C61A83F37D00E05053 /* SplashViewController.m */; };
+		FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1CB1A83F48A00E05053 /* InkitTheme.m */; };
+		FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1D31A83F81500E05053 /* DBBodyPart+Management.m */; };
+		FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E01A84095200E05053 /* DBUser+Management.m */; };
+		FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E31A840C2400E05053 /* LogInViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FBDCB1AF1A83EB1800E05053 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBDCB18A1A83EB1700E05053 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBDCB1911A83EB1800E05053;
+			remoteInfo = Inkit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		868A5CA61AA627E7006DD52D /* DBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBoard.h; path = "Data Base/DB Subclasses/DBBoard.h"; sourceTree = "<group>"; };
+		868A5CA71AA627E7006DD52D /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
+		86C2F6261AA79AFB003D58E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FB0138B91AA8F69E0037D945 /* SelectBodyPartTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectBodyPartTableViewController.h; path = "ViewControllers/Create Ink/SelectBodyPartTableViewController.h"; sourceTree = "<group>"; };
+		FB0138BA1AA8F69E0037D945 /* SelectBodyPartTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectBodyPartTableViewController.m; path = "ViewControllers/Create Ink/SelectBodyPartTableViewController.m"; sourceTree = "<group>"; };
+		FB0138BC1AA9029E0037D945 /* DBBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBodyPart.h; path = "Data Base/DB Subclasses/DBBodyPart.h"; sourceTree = "<group>"; };
+		FB0138BD1AA9029E0037D945 /* DBBodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBodyPart.m; path = "Data Base/DB Subclasses/DBBodyPart.m"; sourceTree = "<group>"; };
+		FB0138BF1AA9029F0037D945 /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBInk.h; path = "Data Base/DB Subclasses/DBInk.h"; sourceTree = "<group>"; };
+		FB0138C01AA9029F0037D945 /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBInk.m; path = "Data Base/DB Subclasses/DBInk.m"; sourceTree = "<group>"; };
+		FB0A40001A9D255900294F90 /* WaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterfallLayout.h; path = "ViewControllers/View Inks/WaterfallLayout.h"; sourceTree = "<group>"; };
+		FB0A40011A9D255900294F90 /* WaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterfallLayout.m; path = "ViewControllers/View Inks/WaterfallLayout.m"; sourceTree = "<group>"; };
+		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
+		FB29890A1AA868A0005D7327 /* CropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropView.m; path = Inkit/ViewControllers/Camera/CropView.m; sourceTree = "<group>"; };
+		FB51B85A1AA4C3CC00ED7ECD /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserService.h; path = Utils/UserService.h; sourceTree = "<group>"; };
+		FB51B85B1AA4C3CC00ED7ECD /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserService.m; path = Utils/UserService.m; sourceTree = "<group>"; };
+		FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FB51B85F1AA5C7AE00ED7ECD /* EditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditImageViewController.h; path = Inkit/ViewControllers/Camera/EditImageViewController.h; sourceTree = "<group>"; };
+		FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditImageViewController.m; path = Inkit/ViewControllers/Camera/EditImageViewController.m; sourceTree = "<group>"; };
+		FBB384181A892D92004C440A /* ViewInkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInkViewController.h; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.h"; sourceTree = "<group>"; };
+		FBB384191A892D92004C440A /* ViewInkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInkViewController.m; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.m"; sourceTree = "<group>"; };
+		FBB3841C1A89308E004C440A /* InkImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkImageTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.h"; sourceTree = "<group>"; };
+		FBB3841D1A89308E004C440A /* InkImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkImageTableViewCell.m; path = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.m"; sourceTree = "<group>"; };
+		FBB3841F1A8930AD004C440A /* InkDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkDescriptionTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkDescriptionTableViewCell.h"; sourceTree = "<group>"; };
+		FBB384201A8930AD004C440A /* InkDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkDescriptionTableViewCell.m; path = "Inkit/ViewControllers/View Ink/InkDescriptionTableViewCell.m"; sourceTree = "<group>"; };
+		FBB384221A893102004C440A /* InkActionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkActionsTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkActionsTableViewCell.h"; sourceTree = "<group>"; };
+		FBB384231A893102004C440A /* InkActionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkActionsTableViewCell.m; path = "Inkit/ViewControllers/View Ink/InkActionsTableViewCell.m"; sourceTree = "<group>"; };
+		FBB384251A893128004C440A /* InkCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkCommentTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkCommentTableViewCell.h"; sourceTree = "<group>"; };
+		FBB384261A893128004C440A /* InkCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkCommentTableViewCell.m; path = "Inkit/ViewControllers/View Ink/InkCommentTableViewCell.m"; sourceTree = "<group>"; };
+		FBB384281A893559004C440A /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageView.h; path = "Custom Classes/ProfileImageView.h"; sourceTree = "<group>"; };
+		FBB384291A893559004C440A /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageView.m; path = "Custom Classes/ProfileImageView.m"; sourceTree = "<group>"; };
+		FBB384321A894168004C440A /* ViewInkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInkTableViewCell.h; path = "Inkit/ViewControllers/View Ink/ViewInkTableViewCell.h"; sourceTree = "<group>"; };
+		FBB384331A894168004C440A /* ViewInkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInkTableViewCell.m; path = "Inkit/ViewControllers/View Ink/ViewInkTableViewCell.m"; sourceTree = "<group>"; };
+		FBB3843C1A89522B004C440A /* DynamicSizeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicSizeLabel.h; path = "Custom Classes/DynamicSizeLabel.h"; sourceTree = "<group>"; };
+		FBB3843D1A89522B004C440A /* DynamicSizeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicSizeLabel.m; path = "Custom Classes/DynamicSizeLabel.m"; sourceTree = "<group>"; };
+		FBB3843F1A895B1D004C440A /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = Inkit/ViewControllers/Camera/CameraViewController.h; sourceTree = "<group>"; };
+		FBB384401A895B1D004C440A /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = Inkit/ViewControllers/Camera/CameraViewController.m; sourceTree = "<group>"; };
+		FBB384451A895E7C004C440A /* CreateInkImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateInkImageTableViewCell.h; path = "ViewControllers/Create Ink/CreateInkImageTableViewCell.h"; sourceTree = "<group>"; };
+		FBB384461A895E7C004C440A /* CreateInkImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateInkImageTableViewCell.m; path = "ViewControllers/Create Ink/CreateInkImageTableViewCell.m"; sourceTree = "<group>"; };
+		FBB384521A8A938D004C440A /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldTableViewCell.h; path = "ViewControllers/Custom Classes/TextFieldTableViewCell.h"; sourceTree = "<group>"; };
+		FBB384531A8A938D004C440A /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldTableViewCell.m; path = "ViewControllers/Custom Classes/TextFieldTableViewCell.m"; sourceTree = "<group>"; };
+		FBB384551A8A9818004C440A /* TextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextViewTableViewCell.h; path = "ViewControllers/Custom Classes/TextViewTableViewCell.h"; sourceTree = "<group>"; };
+		FBB384561A8A9818004C440A /* TextViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextViewTableViewCell.m; path = "ViewControllers/Custom Classes/TextViewTableViewCell.m"; sourceTree = "<group>"; };
+		FBB488541A8BF176009E1789 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FBC432FB1A853BC500EFAA24 /* InkitTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitTabBarController.h; path = "ViewControllers/Tab Bar/InkitTabBarController.h"; sourceTree = "<group>"; };
+		FBC432FC1A853BC500EFAA24 /* InkitTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitTabBarController.m; path = "ViewControllers/Tab Bar/InkitTabBarController.m"; sourceTree = "<group>"; };
+		FBC432FF1A8540CE00EFAA24 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardViewController.h; path = ViewControllers/Dashboard/DashboardViewController.h; sourceTree = "<group>"; };
+		FBC433001A8540CE00EFAA24 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardViewController.m; path = ViewControllers/Dashboard/DashboardViewController.m; sourceTree = "<group>"; };
+		FBC433031A85457E00EFAA24 /* InkitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitButton.h; path = "Custom Classes/InkitButton.h"; sourceTree = "<group>"; };
+		FBC433041A85457E00EFAA24 /* InkitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitButton.m; path = "Custom Classes/InkitButton.m"; sourceTree = "<group>"; };
+		FBC433071A85472200EFAA24 /* HelveticaNeue-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeue-Roman.otf"; sourceTree = "<group>"; };
+		FBC433081A85472200EFAA24 /* PermanentMarker.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PermanentMarker.ttf; sourceTree = "<group>"; };
+		FBC4330C1A85502400EFAA24 /* CreateInkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateInkViewController.h; path = "ViewControllers/Create Ink/CreateInkViewController.h"; sourceTree = "<group>"; };
+		FBC4330D1A85502400EFAA24 /* CreateInkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateInkViewController.m; path = "ViewControllers/Create Ink/CreateInkViewController.m"; sourceTree = "<group>"; };
+		FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FBC433151A855C4E00EFAA24 /* DBInk+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBInk+Management.h"; path = "Data Base/DB Categories/DBInk+Management.h"; sourceTree = "<group>"; };
+		FBC433161A855C4E00EFAA24 /* DBInk+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBInk+Management.m"; path = "Data Base/DB Categories/DBInk+Management.m"; sourceTree = "<group>"; };
+		FBC5170F1A9F37F200110CC9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FBCCAF841A8CE8390052DCB9 /* ViewBoardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewBoardsViewController.h; path = "ViewControllers/View Boards/ViewBoardsViewController.h"; sourceTree = "<group>"; };
+		FBCCAF851A8CE8390052DCB9 /* ViewBoardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewBoardsViewController.m; path = "ViewControllers/View Boards/ViewBoardsViewController.m"; sourceTree = "<group>"; };
+		FBCCAF911A8CF2420052DCB9 /* DBBoard+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBBoard+Management.h"; path = "Data Base/DB Categories/DBBoard+Management.h"; sourceTree = "<group>"; };
+		FBCCAF921A8CF2420052DCB9 /* DBBoard+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBBoard+Management.m"; path = "Data Base/DB Categories/DBBoard+Management.m"; sourceTree = "<group>"; };
+		FBCCAF941A8CF5CC0052DCB9 /* CreateBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateBoardViewController.h; path = "ViewControllers/Create Board/CreateBoardViewController.h"; sourceTree = "<group>"; };
+		FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = "ViewControllers/Create Board/CreateBoardViewController.m"; sourceTree = "<group>"; };
+		FBCCAF9A1A8CFE4E0052DCB9 /* EditTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTextViewController.h; path = ViewControllers/General/EditTextViewController.h; sourceTree = "<group>"; };
+		FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTextViewController.m; path = ViewControllers/General/EditTextViewController.m; sourceTree = "<group>"; };
+		FBD91E0E1A960EDA00B00724 /* BoardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardsCollectionView.h; path = "Custom Classes/ViewBoards/BoardsCollectionView.h"; sourceTree = "<group>"; };
+		FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardsCollectionView.m; path = "Custom Classes/ViewBoards/BoardsCollectionView.m"; sourceTree = "<group>"; };
+		FBD91E121A96181600B00724 /* BoardCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardCollectionViewCell.h; path = "Custom Classes/ViewBoards/BoardCollectionViewCell.h"; sourceTree = "<group>"; };
+		FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardCollectionViewCell.m; path = "Custom Classes/ViewBoards/BoardCollectionViewCell.m"; sourceTree = "<group>"; };
+		FBD91E241A965F2500B00724 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
+		FBD91E251A965F2500B00724 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
+		FBD91E271A9668C100B00724 /* SelectBoardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectBoardTableViewController.h; path = "ViewControllers/Create Ink/SelectBoardTableViewController.h"; sourceTree = "<group>"; };
+		FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectBoardTableViewController.m; path = "ViewControllers/Create Ink/SelectBoardTableViewController.m"; sourceTree = "<group>"; };
+		FBD91E2A1A96795800B00724 /* ViewInksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInksViewController.h; path = "ViewControllers/View Inks/ViewInksViewController.h"; sourceTree = "<group>"; };
+		FBD91E2B1A96795800B00724 /* ViewInksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInksViewController.m; path = "ViewControllers/View Inks/ViewInksViewController.m"; sourceTree = "<group>"; };
+		FBD91E2E1A9687F800B00724 /* InkCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkCollectionViewCell.h; path = "ViewControllers/View Inks/InkCollectionViewCell.h"; sourceTree = "<group>"; };
+		FBD91E2F1A9687F800B00724 /* InkCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkCollectionViewCell.m; path = "ViewControllers/View Inks/InkCollectionViewCell.m"; sourceTree = "<group>"; };
+		FBD91E311A9689EE00B00724 /* InkUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkUserTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkUserTableViewCell.h"; sourceTree = "<group>"; };
+		FBD91E321A9689EE00B00724 /* InkUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkUserTableViewCell.m; path = "Inkit/ViewControllers/View Ink/InkUserTableViewCell.m"; sourceTree = "<group>"; };
+		FBDCB1921A83EB1800E05053 /* Inkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBDCB1961A83EB1800E05053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBDCB1971A83EB1800E05053 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FBDCB1991A83EB1800E05053 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FBDCB19A1A83EB1800E05053 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FBDCB19D1A83EB1800E05053 /* Inkit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inkit.xcdatamodel; sourceTree = "<group>"; };
+		FBDCB1A31A83EB1800E05053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FBDCB1A81A83EB1800E05053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FBDCB1AE1A83EB1800E05053 /* InkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBDCB1B31A83EB1800E05053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBDCB1B41A83EB1800E05053 /* InkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InkitTests.m; sourceTree = "<group>"; };
+		FBDCB1BE1A83ED2C00E05053 /* InkitDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitDataUtil.h; path = Utils/InkitDataUtil.h; sourceTree = "<group>"; };
+		FBDCB1BF1A83ED2C00E05053 /* InkitDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitDataUtil.m; path = Utils/InkitDataUtil.m; sourceTree = "<group>"; };
+		FBDCB1C21A83F06A00E05053 /* InkitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitService.h; path = Utils/InkitService.h; sourceTree = "<group>"; };
+		FBDCB1C31A83F06A00E05053 /* InkitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitService.m; path = Utils/InkitService.m; sourceTree = "<group>"; };
+		FBDCB1C51A83F37D00E05053 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashViewController.h; path = ViewControllers/Splash/SplashViewController.h; sourceTree = "<group>"; };
+		FBDCB1C61A83F37D00E05053 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashViewController.m; path = ViewControllers/Splash/SplashViewController.m; sourceTree = "<group>"; };
+		FBDCB1CA1A83F48A00E05053 /* InkitTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitTheme.h; path = Utils/InkitTheme.h; sourceTree = "<group>"; };
+		FBDCB1CB1A83F48A00E05053 /* InkitTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitTheme.m; path = Utils/InkitTheme.m; sourceTree = "<group>"; };
+		FBDCB1D21A83F81500E05053 /* DBBodyPart+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBBodyPart+Management.h"; path = "Data Base/DB Categories/DBBodyPart+Management.h"; sourceTree = "<group>"; };
+		FBDCB1D31A83F81500E05053 /* DBBodyPart+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBBodyPart+Management.m"; path = "Data Base/DB Categories/DBBodyPart+Management.m"; sourceTree = "<group>"; };
+		FBDCB1DF1A84095200E05053 /* DBUser+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBUser+Management.h"; path = "Data Base/DB Categories/DBUser+Management.h"; sourceTree = "<group>"; };
+		FBDCB1E01A84095200E05053 /* DBUser+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBUser+Management.m"; path = "Data Base/DB Categories/DBUser+Management.m"; sourceTree = "<group>"; };
+		FBDCB1E21A840C2400E05053 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ViewControllers/LogIn/LogInViewController.h; sourceTree = "<group>"; };
+		FBDCB1E31A840C2400E05053 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ViewControllers/LogIn/LogInViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FBDCB18F1A83EB1800E05053 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */,
+				FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */,
+				FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBDCB1AB1A83EB1800E05053 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		868A5CA21AA626D6006DD52D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1C21A83F06A00E05053 /* InkitService.h */,
+				FBDCB1C31A83F06A00E05053 /* InkitService.m */,
+				FB51B85A1AA4C3CC00ED7ECD /* UserService.h */,
+				FB51B85B1AA4C3CC00ED7ECD /* UserService.m */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		FBB384171A892D59004C440A /* Create Ink */ = {
+			isa = PBXGroup;
+			children = (
+				FBC4330C1A85502400EFAA24 /* CreateInkViewController.h */,
+				FBC4330D1A85502400EFAA24 /* CreateInkViewController.m */,
+				FBB384451A895E7C004C440A /* CreateInkImageTableViewCell.h */,
+				FBB384461A895E7C004C440A /* CreateInkImageTableViewCell.m */,
+				FBD91E271A9668C100B00724 /* SelectBoardTableViewController.h */,
+				FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */,
+				FB0138B91AA8F69E0037D945 /* SelectBodyPartTableViewController.h */,
+				FB0138BA1AA8F69E0037D945 /* SelectBodyPartTableViewController.m */,
+				FBB384521A8A938D004C440A /* TextFieldTableViewCell.h */,
+				FBB384531A8A938D004C440A /* TextFieldTableViewCell.m */,
+			);
+			name = "Create Ink";
+			sourceTree = "<group>";
+		};
+		FBB3841B1A892D9A004C440A /* View Ink */ = {
+			isa = PBXGroup;
+			children = (
+				FBB384181A892D92004C440A /* ViewInkViewController.h */,
+				FBB384191A892D92004C440A /* ViewInkViewController.m */,
+				FBB3842B1A893946004C440A /* View Ink Table View Cells */,
+			);
+			name = "View Ink";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FBB3842B1A893946004C440A /* View Ink Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBB3841C1A89308E004C440A /* InkImageTableViewCell.h */,
+				FBB3841D1A89308E004C440A /* InkImageTableViewCell.m */,
+				FBB3841F1A8930AD004C440A /* InkDescriptionTableViewCell.h */,
+				FBB384201A8930AD004C440A /* InkDescriptionTableViewCell.m */,
+				FBB384221A893102004C440A /* InkActionsTableViewCell.h */,
+				FBB384231A893102004C440A /* InkActionsTableViewCell.m */,
+				FBB384251A893128004C440A /* InkCommentTableViewCell.h */,
+				FBB384261A893128004C440A /* InkCommentTableViewCell.m */,
+				FBD91E311A9689EE00B00724 /* InkUserTableViewCell.h */,
+				FBD91E321A9689EE00B00724 /* InkUserTableViewCell.m */,
+				FBB384321A894168004C440A /* ViewInkTableViewCell.h */,
+				FBB384331A894168004C440A /* ViewInkTableViewCell.m */,
+			);
+			name = "View Ink Table View Cells";
+			sourceTree = "<group>";
+		};
+		FBB384421A895B21004C440A /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				FBB3843F1A895B1D004C440A /* CameraViewController.h */,
+				FBB384401A895B1D004C440A /* CameraViewController.m */,
+				FB51B85F1AA5C7AE00ED7ECD /* EditImageViewController.h */,
+				FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */,
+				FB2989091AA868A0005D7327 /* CropView.h */,
+				FB29890A1AA868A0005D7327 /* CropView.m */,
+			);
+			name = Camera;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FBC432FE1A853BCD00EFAA24 /* Inkit Tab Bar Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FBC432FB1A853BC500EFAA24 /* InkitTabBarController.h */,
+				FBC432FC1A853BC500EFAA24 /* InkitTabBarController.m */,
+			);
+			name = "Inkit Tab Bar Controller";
+			sourceTree = "<group>";
+		};
+		FBC433021A8540D200EFAA24 /* Dashboard View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FBC432FF1A8540CE00EFAA24 /* DashboardViewController.h */,
+				FBC433001A8540CE00EFAA24 /* DashboardViewController.m */,
+			);
+			name = "Dashboard View Controller";
+			sourceTree = "<group>";
+		};
+		FBC433061A85458500EFAA24 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FBB384551A8A9818004C440A /* TextViewTableViewCell.h */,
+				FBB384561A8A9818004C440A /* TextViewTableViewCell.m */,
+				FBC433031A85457E00EFAA24 /* InkitButton.h */,
+				FBC433041A85457E00EFAA24 /* InkitButton.m */,
+				FBB384281A893559004C440A /* ProfileImageView.h */,
+				FBB384291A893559004C440A /* ProfileImageView.m */,
+				FBB3843C1A89522B004C440A /* DynamicSizeLabel.h */,
+				FBB3843D1A89522B004C440A /* DynamicSizeLabel.m */,
+			);
+			name = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		FBC4330B1A85472E00EFAA24 /* Custom Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FBC433071A85472200EFAA24 /* HelveticaNeue-Roman.otf */,
+				FBC433081A85472200EFAA24 /* PermanentMarker.ttf */,
+			);
+			name = "Custom Fonts";
+			sourceTree = "<group>";
+		};
+		FBC433111A8556B200EFAA24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */,
+				FBB488541A8BF176009E1789 /* MobileCoreServices.framework */,
+				FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBCCAF871A8CE83F0052DCB9 /* View Boards */ = {
+			isa = PBXGroup;
+			children = (
+				FBCCAF841A8CE8390052DCB9 /* ViewBoardsViewController.h */,
+				FBCCAF851A8CE8390052DCB9 /* ViewBoardsViewController.m */,
+				FBD91E111A960EE400B00724 /* View Boards */,
+			);
+			name = "View Boards";
+			sourceTree = "<group>";
+		};
+		FBCCAF971A8CF5D60052DCB9 /* Create Board */ = {
+			isa = PBXGroup;
+			children = (
+				FBCCAF941A8CF5CC0052DCB9 /* CreateBoardViewController.h */,
+				FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */,
+			);
+			name = "Create Board";
+			sourceTree = "<group>";
+		};
+		FBCCAF981A8CF6630052DCB9 /* Inks */ = {
+			isa = PBXGroup;
+			children = (
+				FBC433021A8540D200EFAA24 /* Dashboard View Controller */,
+				FBB384421A895B21004C440A /* Camera */,
+				FBB384171A892D59004C440A /* Create Ink */,
+				FBB3841B1A892D9A004C440A /* View Ink */,
+			);
+			name = Inks;
+			sourceTree = "<group>";
+		};
+		FBCCAF991A8CF69D0052DCB9 /* Boards */ = {
+			isa = PBXGroup;
+			children = (
+				FBCCAF871A8CE83F0052DCB9 /* View Boards */,
+				FBCCAF971A8CF5D60052DCB9 /* Create Board */,
+			);
+			name = Boards;
+			sourceTree = "<group>";
+		};
+		FBCCAF9D1A8CFE540052DCB9 /* General View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FBCCAF9A1A8CFE4E0052DCB9 /* EditTextViewController.h */,
+				FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */,
+			);
+			name = "General View Controllers";
+			sourceTree = "<group>";
+		};
+		FBD91E111A960EE400B00724 /* View Boards */ = {
+			isa = PBXGroup;
+			children = (
+				FBD91E0E1A960EDA00B00724 /* BoardsCollectionView.h */,
+				FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */,
+				FBD91E121A96181600B00724 /* BoardCollectionViewCell.h */,
+				FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */,
+			);
+			name = "View Boards";
+			sourceTree = "<group>";
+		};
+		FBD91E151A96439900B00724 /* Temp Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Temp Images";
+			sourceTree = "<group>";
+		};
+		FBD91E2D1A96795C00B00724 /* View Inks */ = {
+			isa = PBXGroup;
+			children = (
+				FBD91E2A1A96795800B00724 /* ViewInksViewController.h */,
+				FBD91E2B1A96795800B00724 /* ViewInksViewController.m */,
+				FBD91E2E1A9687F800B00724 /* InkCollectionViewCell.h */,
+				FBD91E2F1A9687F800B00724 /* InkCollectionViewCell.m */,
+				FB0A40001A9D255900294F90 /* WaterfallLayout.h */,
+				FB0A40011A9D255900294F90 /* WaterfallLayout.m */,
+			);
+			name = "View Inks";
+			sourceTree = "<group>";
+		};
+		FBDCB1891A83EB1700E05053 = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1941A83EB1800E05053 /* Inkit */,
+				FBDCB1B11A83EB1800E05053 /* InkitTests */,
+				FBDCB1931A83EB1800E05053 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FBDCB1931A83EB1800E05053 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1921A83EB1800E05053 /* Inkit.app */,
+				FBDCB1AE1A83EB1800E05053 /* InkitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBDCB1941A83EB1800E05053 /* Inkit */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1991A83EB1800E05053 /* AppDelegate.h */,
+				FBDCB19A1A83EB1800E05053 /* AppDelegate.m */,
+				FBDCB1A21A83EB1800E05053 /* Main.storyboard */,
+				86C2F6261AA79AFB003D58E3 /* Images.xcassets */,
+				FBDCB1C91A83F38B00E05053 /* ViewControllers */,
+				FBC433061A85458500EFAA24 /* Custom Classes */,
+				FBDCB1C11A83ED3100E05053 /* Utils */,
+				FBDCB1D01A83F7D900E05053 /* Data Base */,
+				FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */,
+				FBDCB1951A83EB1800E05053 /* Supporting Files */,
+			);
+			path = Inkit;
+			sourceTree = "<group>";
+		};
+		FBDCB1951A83EB1800E05053 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FBD91E151A96439900B00724 /* Temp Images */,
+				FBC433111A8556B200EFAA24 /* Frameworks */,
+				FBDCB1961A83EB1800E05053 /* Info.plist */,
+				FBC5170F1A9F37F200110CC9 /* Localizable.strings */,
+				FBDCB1971A83EB1800E05053 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FBDCB1B11A83EB1800E05053 /* InkitTests */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1B41A83EB1800E05053 /* InkitTests.m */,
+				FBDCB1B21A83EB1800E05053 /* Supporting Files */,
+			);
+			path = InkitTests;
+			sourceTree = "<group>";
+		};
+		FBDCB1B21A83EB1800E05053 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1B31A83EB1800E05053 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FBDCB1C11A83ED3100E05053 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1CA1A83F48A00E05053 /* InkitTheme.h */,
+				FBDCB1CB1A83F48A00E05053 /* InkitTheme.m */,
+				868A5CA21AA626D6006DD52D /* Service */,
+				FBDCB1BE1A83ED2C00E05053 /* InkitDataUtil.h */,
+				FBDCB1BF1A83ED2C00E05053 /* InkitDataUtil.m */,
+				FBC4330B1A85472E00EFAA24 /* Custom Fonts */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		FBDCB1C81A83F38100E05053 /* Splash View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1C51A83F37D00E05053 /* SplashViewController.h */,
+				FBDCB1C61A83F37D00E05053 /* SplashViewController.m */,
+			);
+			name = "Splash View Controller";
+			sourceTree = "<group>";
+		};
+		FBDCB1C91A83F38B00E05053 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FBCCAF9D1A8CFE540052DCB9 /* General View Controllers */,
+				FBDCB1C81A83F38100E05053 /* Splash View Controller */,
+				FBDCB1E51A840C2D00E05053 /* LogIn View Controller */,
+				FBC432FE1A853BCD00EFAA24 /* Inkit Tab Bar Controller */,
+				FBCCAF981A8CF6630052DCB9 /* Inks */,
+				FBCCAF991A8CF69D0052DCB9 /* Boards */,
+				FBD91E2D1A96795C00B00724 /* View Inks */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FBDCB1D01A83F7D900E05053 /* Data Base */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB19C1A83EB1800E05053 /* Inkit.xcdatamodeld */,
+				FBDCB1D51A83F81F00E05053 /* DBCategories */,
+				FBDCB1D11A83F7F000E05053 /* DBSubclasses */,
+			);
+			name = "Data Base";
+			sourceTree = "<group>";
+		};
+		FBDCB1D11A83F7F000E05053 /* DBSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				FB0138BF1AA9029F0037D945 /* DBInk.h */,
+				FB0138C01AA9029F0037D945 /* DBInk.m */,
+				FB0138BC1AA9029E0037D945 /* DBBodyPart.h */,
+				FB0138BD1AA9029E0037D945 /* DBBodyPart.m */,
+				868A5CA61AA627E7006DD52D /* DBBoard.h */,
+				868A5CA71AA627E7006DD52D /* DBBoard.m */,
+				FBD91E241A965F2500B00724 /* DBUser.h */,
+				FBD91E251A965F2500B00724 /* DBUser.m */,
+			);
+			name = DBSubclasses;
+			sourceTree = "<group>";
+		};
+		FBDCB1D51A83F81F00E05053 /* DBCategories */ = {
+			isa = PBXGroup;
+			children = (
+				FBC433151A855C4E00EFAA24 /* DBInk+Management.h */,
+				FBC433161A855C4E00EFAA24 /* DBInk+Management.m */,
+				FBCCAF911A8CF2420052DCB9 /* DBBoard+Management.h */,
+				FBCCAF921A8CF2420052DCB9 /* DBBoard+Management.m */,
+				FBDCB1D21A83F81500E05053 /* DBBodyPart+Management.h */,
+				FBDCB1D31A83F81500E05053 /* DBBodyPart+Management.m */,
+				FBDCB1DF1A84095200E05053 /* DBUser+Management.h */,
+				FBDCB1E01A84095200E05053 /* DBUser+Management.m */,
+			);
+			name = DBCategories;
+			sourceTree = "<group>";
+		};
+		FBDCB1E51A840C2D00E05053 /* LogIn View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FBDCB1E21A840C2400E05053 /* LogInViewController.h */,
+				FBDCB1E31A840C2400E05053 /* LogInViewController.m */,
+			);
+			name = "LogIn View Controller";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FBDCB1911A83EB1800E05053 /* Inkit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBDCB1B81A83EB1800E05053 /* Build configuration list for PBXNativeTarget "Inkit" */;
+			buildPhases = (
+				FBDCB18E1A83EB1800E05053 /* Sources */,
+				FBDCB18F1A83EB1800E05053 /* Frameworks */,
+				FBDCB1901A83EB1800E05053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Inkit;
+			productName = Inkit;
+			productReference = FBDCB1921A83EB1800E05053 /* Inkit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBDCB1AD1A83EB1800E05053 /* InkitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBDCB1BB1A83EB1800E05053 /* Build configuration list for PBXNativeTarget "InkitTests" */;
+			buildPhases = (
+				FBDCB1AA1A83EB1800E05053 /* Sources */,
+				FBDCB1AB1A83EB1800E05053 /* Frameworks */,
+				FBDCB1AC1A83EB1800E05053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBDCB1B01A83EB1800E05053 /* PBXTargetDependency */,
+			);
+			name = InkitTests;
+			productName = InkitTests;
+			productReference = FBDCB1AE1A83EB1800E05053 /* InkitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBDCB18A1A83EB1700E05053 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Digbang;
+				TargetAttributes = {
+					FBDCB1911A83EB1800E05053 = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 6QJYJZ3VQE;
+					};
+					FBDCB1AD1A83EB1800E05053 = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 6QJYJZ3VQE;
+						TestTargetID = FBDCB1911A83EB1800E05053;
+					};
+				};
+			};
+			buildConfigurationList = FBDCB18D1A83EB1800E05053 /* Build configuration list for PBXProject "Inkit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FBDCB1891A83EB1700E05053;
+			productRefGroup = FBDCB1931A83EB1800E05053 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FBDCB1911A83EB1800E05053 /* Inkit */,
+				FBDCB1AD1A83EB1800E05053 /* InkitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FBDCB1901A83EB1800E05053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
+				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
+				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
+				86C2F6271AA79AFB003D58E3 /* Images.xcassets in Resources */,
+				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
+				FBC4330A1A85472200EFAA24 /* PermanentMarker.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBDCB1AC1A83EB1800E05053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FBDCB18E1A83EB1800E05053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBC433171A855C4E00EFAA24 /* DBInk+Management.m in Sources */,
+				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
+				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
+				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
+				FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */,
+				FBCCAF861A8CE8390052DCB9 /* ViewBoardsViewController.m in Sources */,
+				FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */,
+				FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */,
+				FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */,
+				FBB3841E1A89308E004C440A /* InkImageTableViewCell.m in Sources */,
+				FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */,
+				FBD91E301A9687F800B00724 /* InkCollectionViewCell.m in Sources */,
+				FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */,
+				FBC432FD1A853BC500EFAA24 /* InkitTabBarController.m in Sources */,
+				FBD91E2C1A96795800B00724 /* ViewInksViewController.m in Sources */,
+				FB0138BE1AA9029E0037D945 /* DBBodyPart.m in Sources */,
+				FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */,
+				FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */,
+				FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */,
+				FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */,
+				FBB384541A8A938D004C440A /* TextFieldTableViewCell.m in Sources */,
+				FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */,
+				868A5CA81AA627E7006DD52D /* DBBoard.m in Sources */,
+				FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */,
+				FBDCB1C41A83F06A00E05053 /* InkitService.m in Sources */,
+				FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */,
+				FBB384271A893128004C440A /* InkCommentTableViewCell.m in Sources */,
+				FBB384471A895E7C004C440A /* CreateInkImageTableViewCell.m in Sources */,
+				FBC4330E1A85502400EFAA24 /* CreateInkViewController.m in Sources */,
+				FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */,
+				FBD91E331A9689EE00B00724 /* InkUserTableViewCell.m in Sources */,
+				FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */,
+				FBB384241A893102004C440A /* InkActionsTableViewCell.m in Sources */,
+				FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */,
+				FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */,
+				FB0138BB1AA8F69E0037D945 /* SelectBodyPartTableViewController.m in Sources */,
+				FB0138C11AA9029F0037D945 /* DBInk.m in Sources */,
+				FBD91E261A965F2500B00724 /* DBUser.m in Sources */,
+				FBC433051A85457E00EFAA24 /* InkitButton.m in Sources */,
+				FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */,
+				FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */,
+				FBDCB1981A83EB1800E05053 /* main.m in Sources */,
+				FBB384341A894168004C440A /* ViewInkTableViewCell.m in Sources */,
+				FBB384411A895B1D004C440A /* CameraViewController.m in Sources */,
+				FBDCB1C01A83ED2C00E05053 /* InkitDataUtil.m in Sources */,
+				FBDCB1C71A83F37D00E05053 /* SplashViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBDCB1AA1A83EB1800E05053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBDCB1B51A83EB1800E05053 /* InkitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBDCB1B01A83EB1800E05053 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBDCB1911A83EB1800E05053 /* Inkit */;
+			targetProxy = FBDCB1AF1A83EB1800E05053 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FBDCB1A21A83EB1800E05053 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBDCB1A31A83EB1800E05053 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBDCB1A81A83EB1800E05053 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FBDCB1B61A83EB1800E05053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "bf3c585b-06e7-47bc-8af0-ab32e18def76";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBDCB1B71A83EB1800E05053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "bf3c585b-06e7-47bc-8af0-ab32e18def76";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBDCB1B91A83EB1800E05053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Inkit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FBDCB1BA1A83EB1800E05053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Inkit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FBDCB1BC1A83EB1800E05053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = InkitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Inkit.app/Inkit";
+			};
+			name = Debug;
+		};
+		FBDCB1BD1A83EB1800E05053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = InkitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Inkit.app/Inkit";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FBDCB18D1A83EB1800E05053 /* Build configuration list for PBXProject "Inkit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBDCB1B61A83EB1800E05053 /* Debug */,
+				FBDCB1B71A83EB1800E05053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBDCB1B81A83EB1800E05053 /* Build configuration list for PBXNativeTarget "Inkit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBDCB1B91A83EB1800E05053 /* Debug */,
+				FBDCB1BA1A83EB1800E05053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBDCB1BB1A83EB1800E05053 /* Build configuration list for PBXNativeTarget "InkitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBDCB1BC1A83EB1800E05053 /* Debug */,
+				FBDCB1BD1A83EB1800E05053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FBDCB19C1A83EB1800E05053 /* Inkit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FBDCB19D1A83EB1800E05053 /* Inkit.xcdatamodel */,
+			);
+			currentVersion = FBDCB19D1A83EB1800E05053 /* Inkit.xcdatamodel */;
+			path = Inkit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FBDCB18A1A83EB1700E05053 /* Project object */;
+}
