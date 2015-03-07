@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "SplashViewController.h"
+#import "LogInViewController.h"
+#import "InkitTabBarController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, SplashViewControllerDelegate,LogInViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -7,16 +7,79 @@
 //
 
 #import "AppDelegate.h"
+#import "InkitDataUtil.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
+#pragma mark - User LogInMethods
+// Show the user the logged-out UI
+- (void)userLoggedOut
+{
+    [self setLogInViewController];
+}
 
+// Show the user the logged-in UI
+- (void)userLoggedIn
+{
+    [self setInitialViewController];
+}
 
+#pragma mark - ViewControllers
+- (void)setLogInViewController
+{
+    LogInViewController* logInViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInViewController"];
+    logInViewController.delegate = self;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = logInViewController;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)setSplashViewController
+{
+    SplashViewController* splashViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SplashViewController"];
+    splashViewController.delegate = self;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = splashViewController;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)setInitialViewController
+{
+    InkitTabBarController* inkitTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InkitTabBarController"];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = inkitTabBarController;
+    [self.window makeKeyAndVisible];
+}
+
+#pragma mark - Splash Screen Delegate Methods
+- (void)splashScreenDidFinishedLoading
+{
+    [self setInitialViewController];
+}
+
+- (void)splashScreenDidFailToLogUser
+{
+    [self setLogInViewController];
+}
+
+#pragma mark - LogIn Delegate Methods
+- (void)logInDidFinishedLoading
+{
+    [self setSplashViewController];
+}
+
+#pragma mark - Application Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // If there's a logged user, silent logIn
+    if ([InkitDataUtil sharedInstance].activeUser) {
+        // log user
+        [self setSplashViewController];
+    } else {
+        [self setLogInViewController];
+    }
     return YES;
 }
 
