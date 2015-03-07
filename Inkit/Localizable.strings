@@ -16,11 +16,8 @@
 "Description" = "Description";
 "Select Board" = "Select Board";
 "Select Body Parts" = "Select Body Parts";
-<<<<<<< HEAD
 "Select Tattoo Types"= "Select Tattoo Types";
 
-=======
->>>>>>> FETCH_HEAD
 // View Ink Strings
 "View Ink" = "View Ink";
 
@@ -33,12 +30,6 @@
 // Select Board Strings
 "Select Board" = "Select Board";
 
-<<<<<<< HEAD
-=======
-// Select Body Part Strings
-"Select Body Parts" = "Select Body Parts";
-
->>>>>>> FETCH_HEAD
 // Browse Strings
 "Browse" = "Browse";
 

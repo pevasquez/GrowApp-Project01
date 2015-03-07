@@ -10,10 +10,7 @@
 #import "InkitDataUtil.h"
 #import "AppDelegate.h"
 #import "DBBodyPart+Management.h"
-<<<<<<< HEAD
 #import "DBTattooType+Management.h"
-=======
->>>>>>> FETCH_HEAD
 #import "DBUser+Management.h"
 
 @implementation InkitService
@@ -67,7 +64,6 @@
     return returnError;
 }
 
-<<<<<<< HEAD
 + (NSError *)getTattooTypesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     NSError* returnError = nil;
@@ -84,8 +80,6 @@
     return returnError;
 }
 
-=======
->>>>>>> FETCH_HEAD
 + (NSError *)postInk:(DBInk *)ink WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     NSError* returnError = nil;

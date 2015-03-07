@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DBInk+Management.h"
 
-@interface SelectBodyPartTableViewController : UITableViewController <UISearchBarDelegate>
+@interface SelectLocalTableViewController : UITableViewController <UISearchBarDelegate>
 @property (strong, nonatomic)DBInk* editingInk;
+@property (strong, nonatomic) NSArray* localsArray;
 @end

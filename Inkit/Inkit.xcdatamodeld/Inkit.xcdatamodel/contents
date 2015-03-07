@@ -18,7 +18,6 @@
         <attribute name="inkImage" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="inBoard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBBoard" inverseName="inks" inverseEntity="DBBoard" syncable="YES"/>
         <relationship name="ofBodyParts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBBodyPart" inverseName="inInks" inverseEntity="DBBodyPart" syncable="YES"/>
-<<<<<<< HEAD
         <relationship name="ofTattooTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBTattooType" inverseName="inInks" inverseEntity="DBTattooType" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="inks" inverseEntity="DBUser" syncable="YES"/>
     </entity>
@@ -26,10 +25,6 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="inInks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="ofTattooTypes" inverseEntity="DBInk" syncable="YES"/>
     </entity>
-=======
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="inks" inverseEntity="DBUser" syncable="YES"/>
-    </entity>
->>>>>>> FETCH_HEAD
     <entity name="DBUser" representedClassName="DBUser" syncable="YES">
         <attribute name="birthday" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,13 +47,8 @@
     <elements>
         <element name="DBBoard" positionX="106" positionY="99" width="128" height="135"/>
         <element name="DBBodyPart" positionX="7" positionY="-54" width="128" height="73"/>
-<<<<<<< HEAD
         <element name="DBInk" positionX="-2" positionY="324" width="128" height="148"/>
         <element name="DBUser" positionX="-180" positionY="0" width="128" height="298"/>
         <element name="DBTattooType" positionX="-27" positionY="108" width="128" height="73"/>
-=======
-        <element name="DBInk" positionX="-2" positionY="324" width="128" height="133"/>
-        <element name="DBUser" positionX="-180" positionY="0" width="128" height="298"/>
->>>>>>> FETCH_HEAD
     </elements>
 </model>

@@ -9,21 +9,14 @@
 #import "CreateInkViewController.h"
 #import "CreateInkImageTableViewCell.h"
 #import "SelectBoardTableViewController.h"
-<<<<<<< HEAD
 #import "SelectLocalTableViewController.h"
-=======
-#import "SelectBodyPartTableViewController.h"
->>>>>>> FETCH_HEAD
 #import "InkDescriptionTableViewCell.h"
 #import "TextViewTableViewCell.h"
 #import "ViewInkViewController.h"
 #import "DBInk+Management.h"
 #import "DBBoard+Management.h"
-<<<<<<< HEAD
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
-=======
->>>>>>> FETCH_HEAD
 #import "AppDelegate.h"
 #import "InkitDataUtil.h"
 #import "InkitTheme.h"
@@ -42,10 +35,7 @@ typedef enum
     kInkBoard,
     //kInkCategory,
     kInkBodyPart,
-<<<<<<< HEAD
     kInkTattooType,
-=======
->>>>>>> FETCH_HEAD
     kCreateInkTotal
 } kCreateInkCells;
 
@@ -74,10 +64,7 @@ typedef enum
         self.activeUser = [InkitDataUtil sharedInstance].activeUser;
     }
     self.editngInk = [DBInk createInManagedObjectContext:self.activeUser.managedObjectContext];
-<<<<<<< HEAD
     self.editngInk.inkImage = self.inkImage;
-=======
->>>>>>> FETCH_HEAD
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,7 +133,6 @@ typedef enum
             }
             break;
         }
-<<<<<<< HEAD
         case kInkTattooType:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
@@ -160,8 +146,6 @@ typedef enum
             break;
         }
 
-=======
->>>>>>> FETCH_HEAD
         default:
             break;
     }
@@ -224,14 +208,9 @@ typedef enum
             break;
         }
         case kInkBodyPart:
-<<<<<<< HEAD
         case kInkTattooType:
         {
             [self performSegueWithIdentifier:@"SelectLocalSegue" sender:indexPath];
-=======
-        {
-            [self performSegueWithIdentifier:@"SelectBodyPartSegue" sender:nil];
->>>>>>> FETCH_HEAD
             break;
         }
         default:
@@ -245,17 +224,10 @@ typedef enum
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-<<<<<<< HEAD
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]]) {
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
         viewInkViewController.ink = (DBInk *)sender;
     } else if ([[segue destinationViewController] isKindOfClass:[EditTextViewController class]]) {
-=======
-    if ([sender isKindOfClass:[DBInk class]]) {
-        ViewInkViewController* viewInkViewController = [segue destinationViewController];
-        viewInkViewController.ink = (DBInk *)sender;
-    } else if ([sender isKindOfClass:[NSIndexPath class]]) {
->>>>>>> FETCH_HEAD
         EditTextViewController* editTextViewController = [segue destinationViewController];
         editTextViewController.delegate = self;
         editTextViewController.textString = self.editngInk.inkDescription;
@@ -263,7 +235,6 @@ typedef enum
         SelectBoardTableViewController* selectBoardTableViewController = [segue destinationViewController];
         selectBoardTableViewController.activeUser = self.activeUser;
         selectBoardTableViewController.delegate = self;
-<<<<<<< HEAD
     } else if ([[segue destinationViewController] isKindOfClass:[SelectLocalTableViewController class]]) {
         SelectLocalTableViewController* selectLocalTableViewController = [segue destinationViewController];
         selectLocalTableViewController.editingInk = self.editngInk;
@@ -276,11 +247,6 @@ typedef enum
             selectLocalTableViewController.title = NSLocalizedString(@"Select Tattoo Types",nil);
         }
         
-=======
-    } else if ([[segue destinationViewController] isKindOfClass:[SelectBodyPartTableViewController class]]) {
-        SelectBodyPartTableViewController* selectBodyPartTableViewController = [segue destinationViewController];
-        selectBodyPartTableViewController.editingInk = self.editngInk;
->>>>>>> FETCH_HEAD
     }
 }
 
@@ -301,11 +267,7 @@ typedef enum
         self.editngInk.inBoard = self.board;
         [self.editngInk postWithTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
     } else {
-<<<<<<< HEAD
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Complete all the missing information", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
-=======
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Complete the description and select a board to continue", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
->>>>>>> FETCH_HEAD
         [alertView show];
     }
     

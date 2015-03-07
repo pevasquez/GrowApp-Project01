@@ -762,11 +762,7 @@
                         <segue destination="bKf-bq-v39" kind="show" identifier="ViewInkSegue" id="NRZ-KG-SSz"/>
                         <segue destination="F2V-C4-aYM" kind="show" identifier="EditTextSegue" id="eTF-QW-UEi"/>
                         <segue destination="Xbn-nZ-uTn" kind="show" identifier="SelectBoardSegue" id="wDB-Uu-oTR"/>
-<<<<<<< HEAD
                         <segue destination="3KV-ST-JBN" kind="show" identifier="SelectLocalSegue" id="8Xx-1A-qrE"/>
-=======
-                        <segue destination="3KV-ST-JBN" kind="show" identifier="SelectBodyPartSegue" id="8Xx-1A-qrE"/>
->>>>>>> FETCH_HEAD
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQL-eS-rNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1059,11 +1055,7 @@
         <!--Select Body Part-->
         <scene sceneID="ZyT-Uc-PDO">
             <objects>
-<<<<<<< HEAD
                 <tableViewController storyboardIdentifier="SelectLocalTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3KV-ST-JBN" customClass="SelectLocalTableViewController" sceneMemberID="viewController">
-=======
-                <tableViewController storyboardIdentifier="SelectBodyPartTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3KV-ST-JBN" customClass="SelectBodyPartTableViewController" sceneMemberID="viewController">
->>>>>>> FETCH_HEAD
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Usp-S7-UAu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1077,11 +1069,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-<<<<<<< HEAD
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocalTableViewCell" textLabel="dpx-j2-KWq" style="IBUITableViewCellStyleDefault" id="Ibl-WT-rkj">
-=======
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BodyPartTableViewCell" textLabel="dpx-j2-KWq" style="IBUITableViewCellStyleDefault" id="Ibl-WT-rkj">
->>>>>>> FETCH_HEAD
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ibl-WT-rkj" id="Bkm-MN-49H">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1103,13 +1091,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Body Part" id="GSp-AB-WDc"/>
                     <connections>
-<<<<<<< HEAD
                         <outlet property="localsSearchBar" destination="sTu-b2-TaO" id="MEu-39-nwp"/>
                         <outlet property="localsTableView" destination="Usp-S7-UAu" id="ORT-Rc-osB"/>
-=======
-                        <outlet property="bodyPartsSearchBar" destination="sTu-b2-TaO" id="ZGN-Gz-KQA"/>
-                        <outlet property="bodyPartsTableView" destination="Usp-S7-UAu" id="UG8-UL-XJk"/>
->>>>>>> FETCH_HEAD
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gak-UD-uII" userLabel="First Responder" sceneMemberID="firstResponder"/>
