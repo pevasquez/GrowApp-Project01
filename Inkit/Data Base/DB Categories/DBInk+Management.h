@@ -14,6 +14,9 @@
 - (UIImage *)getInkImage;
 - (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 - (NSString*)getBodyPartsAsString;
+<<<<<<< HEAD
 - (NSString *)getTattooTypesAsString;
 
+=======
+>>>>>>> FETCH_HEAD
 @end

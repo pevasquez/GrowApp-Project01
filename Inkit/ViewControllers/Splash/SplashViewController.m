@@ -14,7 +14,10 @@
 @interface SplashViewController ()
 @property (nonatomic) BOOL UserLoggedComplete;
 @property (nonatomic) BOOL BodyPartsGetComplete;
+<<<<<<< HEAD
 @property (nonatomic) BOOL TattooTypesGetComplete;
+=======
+>>>>>>> FETCH_HEAD
 @end
 
 @implementation SplashViewController
@@ -24,7 +27,10 @@
     // Do any additional setup after loading the view.
     [InkitService logInUserWithToken:[InkitDataUtil sharedInstance].activeUser.token WithTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError)];
     [InkitService getBodyPartsWithTarget:self completeAction:@selector(getBodyPartsComplete) completeError:@selector(getBodyPartsError)];
+<<<<<<< HEAD
     [InkitService getTattooTypesWithTarget:self completeAction:@selector(getTattooTypesComplete) completeError:@selector(getTattooTypesError)];
+=======
+>>>>>>> FETCH_HEAD
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,7 +40,11 @@
 
 - (void)splashScreenDidFinishedLoading
 {
+<<<<<<< HEAD
     if (self.UserLoggedComplete && self.BodyPartsGetComplete && self.TattooTypesGetComplete) {
+=======
+    if (self.UserLoggedComplete && self.BodyPartsGetComplete) {
+>>>>>>> FETCH_HEAD
         [self.delegate splashScreenDidFinishedLoading];
     }
 }
@@ -51,6 +61,7 @@
     
 }
 
+<<<<<<< HEAD
 - (void)getTattooTypesComplete
 {
     self.TattooTypesGetComplete = YES;
@@ -62,6 +73,8 @@
     
 }
 
+=======
+>>>>>>> FETCH_HEAD
 - (void)logInUserComplete
 {
     self.UserLoggedComplete = YES;

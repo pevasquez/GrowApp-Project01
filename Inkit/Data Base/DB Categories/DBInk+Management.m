@@ -9,8 +9,11 @@
 #import "DBInk+Management.h"
 #import "InkitService.h"
 #import "DBBodyPart+Management.h"
+<<<<<<< HEAD
 #import "DBTattooType+Management.h"
 
+=======
+>>>>>>> FETCH_HEAD
 
 #define kDBInk     @"DBInk"
 
@@ -50,6 +53,7 @@
     }
     return bodyParts;
 }
+<<<<<<< HEAD
 
 - (NSString *)getTattooTypesAsString
 {
@@ -60,9 +64,14 @@
     return tattooTypes;
 }
 
+=======
+>>>>>>> FETCH_HEAD
 - (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     [InkitService postInk:self WithTarget:target completeAction:completeAction completeError:completeError];
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> FETCH_HEAD
 @end
