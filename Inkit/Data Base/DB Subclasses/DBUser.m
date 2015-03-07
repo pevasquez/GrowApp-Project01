@@ -2,12 +2,13 @@
 //  DBUser.m
 //  Inkit
 //
-//  Created by Cristian Pena on 19/2/15.
+//  Created by Cristian Pena on 7/3/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import "DBUser.h"
 #import "DBBoard.h"
+#import "DBComment.h"
 #import "DBInk.h"
 
 
@@ -30,5 +31,6 @@
 @dynamic verified;
 @dynamic boards;
 @dynamic inks;
+@dynamic comments;
 
 @end

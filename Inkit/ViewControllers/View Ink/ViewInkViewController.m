@@ -14,6 +14,8 @@
 #import "InkActionsTableViewCell.h"
 #import "InkCommentTableViewCell.h"
 #import "ViewInkTableViewCell.h"
+#import "CommentsViewController.h"
+#import "InkitDataUtil.h"
 #import "InkitTheme.h"
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
@@ -26,7 +28,7 @@ typedef enum
     kInkImage,
     kInkDescription,
     kInkActions,
-//    kInkComment,
+    kInkComment,
     kInkTotalCells
 } kViewInkCells;
 
@@ -53,6 +55,12 @@ typedef enum
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 #pragma mark UITableView Data Source
@@ -102,11 +110,11 @@ typedef enum
             return kInkActionsCellHeight;
             break;
         }
-//        case kInkComment:
-//        {
-//            return kInkCommentCellHeight;
-//            break;
-//        }
+        case kInkComment:
+        {
+            return kInkCommentCellHeight;
+            break;
+        }
         default:
             return 0;
             break;
@@ -115,9 +123,21 @@ typedef enum
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    if (indexPath.row == kInkComment) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == kInkComment) {
+        [self performSegueWithIdentifier:@"CommentsSegue" sender:nil];
+    }
+}
+
+#pragma mark - Helper Methods
 - (NSString *)getInkCellIdentifierForIndexPath:(NSIndexPath *)indexPath
 {
     NSString* cellIdentifier = nil;
@@ -137,11 +157,11 @@ typedef enum
             cellIdentifier = InkActionsTableViewCellIdentifier;
             break;
         }
-//        case kInkComment:
-//        {
-//            cellIdentifier = InkCommentTableViewCellIdentifier;
-//            break;
-//        }
+        case kInkComment:
+        {
+            cellIdentifier = InkCommentTableViewCellIdentifier;
+            break;
+        }
         default:
             break;
     }
@@ -161,6 +181,21 @@ typedef enum
     [tabBarController selectDashboard];
     [self.navigationController popToRootViewControllerAnimated:YES];
 
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue destinationViewController] isKindOfClass:[CommentsViewController class]]) {
+        CommentsViewController* commentsViewController = [segue destinationViewController];
+        commentsViewController.ink = self.ink;
+    }
+}
+
+#pragma mark - Edit Text Delegate
+- (void)didFinishEnteringText:(NSString *)text
+{
+    [self.ink addCommentWithText:text forUser:[InkitDataUtil sharedInstance].activeUser];
+    [self.tableView reloadData];
 }
 
 @end

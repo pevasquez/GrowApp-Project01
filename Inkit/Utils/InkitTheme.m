@@ -44,4 +44,14 @@
 {
     return [UIColor grayColor];
 }
+
++ (UIFont *)getFontForUserName
+{
+    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
+}
+
++ (UIFont *)getFontForComments
+{
+    return [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0f];
+}
 @end

@@ -77,6 +77,8 @@
 - (void)addInkToBoard:(DBInk *)ink
 {
     [self addInksObject:ink];
+    
+    [self saveManagedObjectContext];
 }
 
 - (void)addInksToBoard:(NSArray *)inksArray
@@ -84,6 +86,7 @@
     for (DBInk* ink in inksArray) {
         [self addInkToBoard:ink];
     }
+    [self saveManagedObjectContext];
 }
 
 - (DBInk *)createInkWithImage:(UIImage *)image AndDescription:(NSString *)description
@@ -99,6 +102,7 @@
 - (void)removeInkFromBoard:(DBInk *)ink
 {
     [self removeInksObject:ink];
+    [self saveManagedObjectContext];
 }
 
 - (void)removeInksFromBoard:(NSArray *)inksArray
@@ -106,6 +110,14 @@
     for (DBInk* ink in inksArray) {
         [self removeInkFromBoard:ink];
     }
+    [self saveManagedObjectContext];
+}
+
+- (void)saveManagedObjectContext
+{
+    // Save context
+    NSError* error = nil;
+    [self.managedObjectContext save:&error];
 }
 
 @end

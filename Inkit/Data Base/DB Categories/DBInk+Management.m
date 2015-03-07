@@ -10,7 +10,7 @@
 #import "InkitService.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
-
+#import "DBComment+Management.h"
 
 #define kDBInk     @"DBInk"
 
@@ -20,6 +20,9 @@
 {
     DBInk* ink = [NSEntityDescription insertNewObjectForEntityForName:kDBInk inManagedObjectContext:managedObjectContext];
     ink.inkDescription = @"";
+    // Save context
+    NSError* error = nil;
+    [managedObjectContext save:&error];
     return ink;
 }
 
@@ -63,6 +66,24 @@
 - (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     [InkitService postInk:self WithTarget:target completeAction:completeAction completeError:completeError];
+    [self saveManagedObjectContext];
 }
 
+- (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user
+{
+    DBComment* comment = [DBComment createCommentWithText:text inManagedObjectContext:self.managedObjectContext];
+    comment.ofUser = self.user;
+    [self addHasCommentsObject:comment];
+
+    // Save context
+    NSError* error = nil;
+    [self.managedObjectContext save:&error];
+}
+
+- (void)saveManagedObjectContext
+{
+    // Save context
+    NSError* error = nil;
+    [self.managedObjectContext save:&error];
+}
 @end

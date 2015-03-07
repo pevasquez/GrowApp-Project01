@@ -24,8 +24,9 @@
 + (DBUser *)createMockUserInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     DBUser* user = [NSEntityDescription insertNewObjectForEntityForName:kDBUser inManagedObjectContext:managedObjectContext];
-    user.name = @"Cristian";
+    user.firstName = @"Cristian";
     user.lastName = @"Pena";
+    user.name = @"Cristian Pena";
     user.birthday = @"30/08/1984";
     user.userImage = [UIImage imageNamed:@"Cristian con clase.jpg"];
     

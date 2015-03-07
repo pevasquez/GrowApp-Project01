@@ -114,4 +114,14 @@
     return returnError;
 }
 
++ (NSError *)postComment:(DBComment*)comment withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    NSError* returnError = nil;
+    
+    // Call complete Action
+    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+    
+    return returnError;
+}
+
 @end

@@ -8,12 +8,19 @@
 
 #import "DBInk.h"
 #import <UIKit/UIKit.h>
+
 @interface DBInk (Management)
 + (DBInk *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBInk *)createWithImage:(UIImage *)image AndDescription:(NSString *)inkDescription InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
 - (UIImage *)getInkImage;
+
 - (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
 - (NSString*)getBodyPartsAsString;
 - (NSString *)getTattooTypesAsString;
+
+// Comment Actions
+- (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user;
 
 @end

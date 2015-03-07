@@ -16,4 +16,8 @@
 + (void)setUpNavigationBarForViewController:(UIViewController *)viewController;
 + (UIColor *)getColorForText;
 + (UIColor *)getColorForPlaceHolderText;
+
+// Comments
++ (UIFont *)getFontForUserName;
++ (UIFont *)getFontForComments;
 @end
