@@ -200,9 +200,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dYZ-OK-NSg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="dYZ-OK-NSg">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InkDescriptionTableViewCell" rowHeight="70" id="Hh4-gU-qbt" customClass="InkDescriptionTableViewCell">
                                         <rect key="frame" x="0.0" y="265" width="600" height="70"/>
@@ -616,10 +616,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="XDx-HT-QyJ" secondAttribute="trailing" constant="-16" id="y40-aE-led"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Board Title" id="xRd-HY-noA"/>
+                    <navigationItem key="navigationItem" title="Board Title" id="xRd-HY-noA">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="bhc-qe-UY4">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="Rt5-cs-ThI" id="F7X-jA-L5B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="bhc-qe-UY4" id="VqK-7m-lDZ"/>
                         <outlet property="inksCollectionView" destination="XDx-HT-QyJ" id="3op-hl-w9g"/>
                         <segue destination="bKf-bq-v39" kind="show" identifier="ViewInkSegue" id="A8U-Jd-plz"/>
+                        <segue destination="dRu-wH-jaH" kind="show" identifier="EditBoardSegue" id="lQ1-q0-po4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Adi-GT-Ey9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -672,7 +680,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MFu-He-4gD" id="ZJM-R5-DT2">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OEX-dZ-9fp">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OEX-dZ-9fp">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="285.5"/>
                                                 </imageView>
                                             </subviews>
@@ -789,7 +797,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gWt-B8-DPb" id="Kfd-Ow-I6h">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YqE-by-7xo" userLabel="Ink Image View">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YqE-by-7xo" userLabel="Ink Image View">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="325"/>
                                         </imageView>
                                     </subviews>
@@ -938,6 +946,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="View Ink" id="bEd-cj-MbU">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="2wc-gl-Sdi">
+                            <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="doneButtonPressed:" destination="bKf-bq-v39" id="LGs-wF-A1K"/>
                             </connections>
@@ -1364,7 +1373,7 @@
                                     <action selector="continueButtonPressed:" destination="GPq-Xs-E6E" eventType="touchUpInside" id="uIj-V0-9XV"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKy-7t-t8e"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKy-7t-t8e"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S9l-gS-xbz">
                                 <rect key="frame" x="0.0" y="58" width="600" height="542"/>
                                 <subviews>
@@ -1677,9 +1686,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="z9d-nC-j9p"/>
-        <segue reference="NRZ-KG-SSz"/>
         <segue reference="eTF-QW-UEi"/>
-        <segue reference="jnN-Q2-2iU"/>
+        <segue reference="NRZ-KG-SSz"/>
+        <segue reference="lQ1-q0-po4"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

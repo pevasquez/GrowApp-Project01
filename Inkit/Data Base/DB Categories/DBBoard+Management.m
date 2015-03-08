@@ -113,6 +113,11 @@
     [self saveManagedObjectContext];
 }
 
+- (void)deleteBoard
+{
+    [self.managedObjectContext deleteObject:self];
+    [self saveManagedObjectContext];
+}
 - (void)saveManagedObjectContext
 {
     // Save context

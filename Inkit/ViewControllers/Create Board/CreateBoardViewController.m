@@ -27,7 +27,7 @@ typedef enum
 static NSString * const CreateBoardTableViewCellIdentifier = @"CreateBoardTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
 
-@interface CreateBoardViewController ()
+@interface CreateBoardViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *createBoardTableView;
 @property (strong, nonatomic) NSMutableArray* stringsArray;
 @property (strong, nonatomic) NSIndexPath* selectedIndexPath;
@@ -39,7 +39,6 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = NSLocalizedString(@"Create Board",nil);
     if (!self.managedObjectContext) {
         // Get ManagedObjectContext from AppDelegate
         self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
@@ -48,7 +47,13 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         self.activeUser = [InkitDataUtil sharedInstance].activeUser;
     }
     
-    self.stringsArray = [[NSMutableArray alloc] initWithObjects:@"",@"",nil];
+    if (self.board) {
+        self.title = NSLocalizedString(@"Edit Board",nil);
+        self.stringsArray = [[NSMutableArray alloc] initWithObjects:self.board.boardTitle,self.board.boardDescription, nil];
+    } else {
+        self.title = NSLocalizedString(@"Create Board",nil);
+        self.stringsArray = [[NSMutableArray alloc] initWithObjects:@"",@"",nil];
+    }
     self.createBoardTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -58,33 +63,52 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 }
 
 #pragma mark - TableView Data Source Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (self.isEditing) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return kCreateBoardTotal;
+    if (section == 0) {
+        return kCreateBoardTotal;
+    } else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CreateBoardTableViewCellIdentifier];
-    if (![self.stringsArray[indexPath.row] isEqualToString:@""]) {
-        cell.textLabel.textColor = [InkitTheme getColorForText];
-        cell.textLabel.text = self.stringsArray[indexPath.row];
+
+    if (indexPath.section == 0) {
+        if (![self.stringsArray[indexPath.row] isEqualToString:@""]) {
+            cell.textLabel.textColor = [InkitTheme getColorForText];
+            cell.textLabel.text = self.stringsArray[indexPath.row];
+        } else {
+            cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+            switch (indexPath.row) {
+                case kBoardTitle:
+                {
+                    cell.textLabel.text = @"Title";
+                    break;
+                }
+                case kBoardDescription:
+                {
+                    cell.textLabel.text = @"Description";
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
     } else {
         cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-        switch (indexPath.row) {
-            case kBoardTitle:
-            {
-                cell.textLabel.text = @"Title";
-                break;
-            }
-            case kBoardDescription:
-            {
-                cell.textLabel.text = @"Description";
-                break;
-            }
-            default:
-                break;
-        }
+        cell.textLabel.text = @"Delete";
     }
     return cell;
 }
@@ -117,15 +141,20 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedIndexPath = indexPath;
-    switch (indexPath.row) {
-        case kBoardDescription:
-        case kBoardTitle:
-        {
-            [self performSegueWithIdentifier:@"EditTextSegue" sender:indexPath];
-            break;
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case kBoardDescription:
+            case kBoardTitle:
+            {
+                [self performSegueWithIdentifier:@"EditTextSegue" sender:indexPath];
+                break;
+            }
+            default:
+                break;
         }
-        default:
-            break;
+    } else {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to delete this board", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Delete", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
+        [alertView show];
     }
 }
 
@@ -145,13 +174,19 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 #pragma mark - Action Methods
 - (IBAction)doneButtonPressed:(UIBarButtonItem *)sender
 {
-    if (![self.stringsArray[kBoardTitle] isEqualToString:@""] &&
-        ![self.stringsArray[kBoardDescription] isEqualToString:@""]) {
-        [self.activeUser createBoardWithTitle:self.stringsArray[kBoardTitle] AndDescription:self.stringsArray[kBoardDescription]];
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
+    if ([self.stringsArray[kBoardTitle] isEqualToString:@""] ||
+        [self.stringsArray[kBoardDescription] isEqualToString:@""]) {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Complete the title and description to continue", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
         [alertView show];
+    } else {
+        if (!self.isEditing) {
+            DBBoard * board = [self.activeUser createBoardWithTitle:self.stringsArray[kBoardTitle] AndDescription:self.stringsArray[kBoardDescription]];
+            [self.delegate boardCreated:board];
+        } else {
+            self.board.boardTitle = self.stringsArray[kBoardTitle];
+            self.board.boardDescription = self.stringsArray[kBoardDescription];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -165,6 +200,15 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 {
     self.stringsArray[self.selectedIndexPath.row] = text;
     [self.createBoardTableView reloadData];
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self.board deleteBoard];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 @end

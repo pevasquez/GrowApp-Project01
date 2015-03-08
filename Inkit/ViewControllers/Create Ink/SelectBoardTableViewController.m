@@ -78,13 +78,28 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
     
 }
 
+#pragma mark - Create Board Delegate
+- (void)boardCreated:(DBBoard *)board;
+{
+    [self.delegate boardSelected:board];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - Action Methods
 - (IBAction)createBoardButtonPressed:(UIBarButtonItem *)sender
 {
     [self performSegueWithIdentifier:@"CreateBoardSegue" sender:nil];
 }
 
-#pragma mark - Appearence Methods
+#pragma mark - Navigation Methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([[segue destinationViewController] isKindOfClass:[CreateBoardViewController class]]) {
+        CreateBoardViewController* createBoardViewController = [segue destinationViewController];
+        createBoardViewController.delegate = self;
+    }
+}
 - (void)customizeNavigationBar
 {
     [InkitTheme setUpNavigationBarForViewController:self];

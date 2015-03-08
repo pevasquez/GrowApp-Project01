@@ -22,4 +22,5 @@
 - (DBInk *)createInkWithImage:(UIImage *)image AndDescription:(NSString *)description;
 - (void)removeInkFromBoard:(DBInk *)ink;
 - (void)removeInksFromBoard:(NSArray *)inksArray;
+- (void)deleteBoard;
 @end

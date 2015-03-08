@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DBUser+Management.h"
+#import "CreateBoardViewController.h"
 
 @protocol SelectBoardDelegate <NSObject>
 - (void)boardSelected:(DBBoard *)board;
 @end
 
-@interface SelectBoardTableViewController : UITableViewController
+@interface SelectBoardTableViewController : UITableViewController <CreateBoardDelegate>
 @property (strong, nonatomic) DBUser *activeUser;
 @property (weak, nonatomic) id <SelectBoardDelegate> delegate;
 @end

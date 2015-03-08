@@ -8,6 +8,7 @@
 
 #import "ViewInksViewController.h"
 #import "ViewInkViewController.h"
+#import "CreateBoardViewController.h"
 #import "InkCollectionViewCell.h"
 #import "WaterfallLayout.h"
 
@@ -15,6 +16,9 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 @interface ViewInksViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *inksCollectionView;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (nonatomic) BOOL isEditing;
 @end
 
 @implementation ViewInksViewController
@@ -30,6 +34,13 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.board) {
+        self.title = self.board.boardTitle;
+    }
+}
 #pragma mark - CollectionView Data Source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -62,7 +73,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     double imageHeight = imageWidth*aspectRatio;
     double height = imageHeight + 50 + 38;
     
-    CGSize cellSize = CGSizeMake(width, height);
+    //CGSize cellSize = CGSizeMake(width, height);
 
     return CGSizeMake(width, 360);
 }
@@ -80,8 +91,16 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
         NSIndexPath* indexPath = (NSIndexPath *)sender;
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
         viewInkViewController.ink = self.inksArray[indexPath.row];;
+    } else if ([[segue destinationViewController] isKindOfClass:[CreateBoardViewController class]]) {
+        CreateBoardViewController* createBoardViewController = [segue destinationViewController];
+        createBoardViewController.board = self.board;
+        createBoardViewController.isEditing = YES;
     }
 }
 
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:@"EditBoardSegue" sender:nil];
+}
 
 @end
