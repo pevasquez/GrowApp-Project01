@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [InkitService logInUserWithToken:[InkitDataUtil sharedInstance].activeUser.token WithTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError)];
+    //[InkitService logInUserWithToken:[InkitDataUtil sharedInstance].activeUser.token WithTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError)];
     [InkitService getBodyPartsWithTarget:self completeAction:@selector(getBodyPartsComplete) completeError:@selector(getBodyPartsError)];
     [InkitService getTattooTypesWithTarget:self completeAction:@selector(getTattooTypesComplete) completeError:@selector(getTattooTypesError)];
 }
@@ -34,7 +34,7 @@
 
 - (void)splashScreenDidFinishedLoading
 {
-    if (self.UserLoggedComplete && self.BodyPartsGetComplete && self.TattooTypesGetComplete) {
+    if (self.BodyPartsGetComplete && self.TattooTypesGetComplete) {
         [self.delegate splashScreenDidFinishedLoading];
     }
 }

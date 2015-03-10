@@ -181,6 +181,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
     } else {
         if (!self.isEditing) {
             DBBoard * board = [self.activeUser createBoardWithTitle:self.stringsArray[kBoardTitle] AndDescription:self.stringsArray[kBoardDescription]];
+            [board postWithTarget:self completeAction:@selector(boardCreateComplete) completeError:@selector(boardCreateError)];
             [self.delegate boardCreated:board];
         } else {
             self.board.boardTitle = self.stringsArray[kBoardTitle];
@@ -188,6 +189,14 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         }
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)boardCreateComplete
+{
+}
+
+- (void)boardCreateError
+{
 }
 
 - (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender

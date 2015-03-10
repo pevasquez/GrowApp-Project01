@@ -9,6 +9,9 @@
 #import "InkitService.h"
 #import "InkitDataUtil.h"
 #import "AppDelegate.h"
+#import "UserService.h"
+#import "InkService.h"
+#import "BoardService.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
 #import "DBUser+Management.h"
@@ -16,7 +19,7 @@
 @implementation InkitService
 + (NSError *)logInUsername:(NSString *)username AndPassword:(NSString *)password WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
-    NSError* returnError = nil;
+//    NSError* returnError = nil;
     
     // Get ManagedObjectContext from AppDelegate
     NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
@@ -25,10 +28,7 @@
     
     [InkitDataUtil sharedInstance].activeUser = user;
     
-    // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-    
-    return returnError;
+    return [UserService logInUser:user AndPassword:@"cristian" WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)logInUserWithToken:(NSString *)token WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -84,7 +84,7 @@
 {
     NSError* returnError = nil;
 
-    // Create Ink in DB
+    //return [InkService createInk:ink forUser:ink.user inBoard:ink.inBoard withTarget:target completeAction:completeAction completeError:completeError];
 
     // Call complete Action
     [target performSelectorOnMainThread:completeAction withObject:ink waitUntilDone:NO];
@@ -94,14 +94,16 @@
 
 + (NSError *)postBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    NSError* returnError = nil;
+//    NSError* returnError = nil;
     
     // Create Ink in DB
     
     // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
+//    [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
     
-    return returnError;
+//    return returnError;
+    
+    return [BoardService createBoard:board withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

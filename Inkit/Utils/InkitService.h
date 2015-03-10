@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DBInk+Management.h"
+#import "DBUser+Management.h"
 
 @class DBUser, DBBoard;
 @interface InkitService : NSObject

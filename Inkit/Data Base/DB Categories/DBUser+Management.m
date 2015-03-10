@@ -28,6 +28,7 @@
     user.lastName = @"Pena";
     user.name = @"Cristian Pena";
     user.birthday = @"30/08/1984";
+    user.email = @"cpena@digbang.com";
     user.userImage = [UIImage imageNamed:@"Cristian con clase.jpg"];
     
     // Save context
@@ -40,13 +41,17 @@
 - (DBBoard *)createBoardWithTitle:(NSString *)title AndDescription:(NSString *)description
 {
     DBBoard* board = [DBBoard createWithTitle:title AndDescription:description InManagedObjectContext:self.managedObjectContext];
-    //board.user = self;
-    //[self addBoardsObject:board];
+    board.user = self;
     // Save context
     NSError* error = nil;
     [self.managedObjectContext save:&error];
     
     return board;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"First Name:%@\nToken:%@",self.firstName,self.token];
 }
 
 - (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -67,6 +72,17 @@
     NSArray* descriptors = [NSArray arrayWithObject:valueDescriptor];
     NSArray* sortedArray = [boardsArray sortedArrayUsingDescriptors:descriptors];
     return sortedArray;
+}
+
+static NSString *const kItemsKey = @"boards";
+- (void)addBoardsObject:(DBBoard *)value
+{
+    NSMutableSet* tempSet = [NSMutableSet setWithSet:self.boards];
+    NSSet* newObject = [NSSet setWithObject:value];
+    [self willChangeValueForKey:kItemsKey withSetMutation:NSKeyValueUnionSetMutation usingObjects:newObject];
+    [tempSet addObject:value];
+    self.boards = tempSet;
+    [self didChangeValueForKey:kItemsKey withSetMutation:NSKeyValueUnionSetMutation usingObjects:newObject];
 }
 
 @end
