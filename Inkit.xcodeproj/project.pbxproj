@@ -10,6 +10,12 @@
 		86C2F6271AA79AFB003D58E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86C2F6261AA79AFB003D58E3 /* Images.xcassets */; };
 		86C2F62A1AAA4E5A003D58E3 /* DBTattooType.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F6291AAA4E5A003D58E3 /* DBTattooType.m */; };
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
+		86E1ADA11AB0CA240004294F /* 3dTattoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9B1AB0CA240004294F /* 3dTattoo.png */; };
+		86E1ADA21AB0CA240004294F /* blackSailsTattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9C1AB0CA240004294F /* blackSailsTattoo.jpg */; };
+		86E1ADA31AB0CA240004294F /* flowerTattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9D1AB0CA240004294F /* flowerTattoo.jpg */; };
+		86E1ADA41AB0CA240004294F /* machinetatto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9E1AB0CA240004294F /* machinetatto.jpg */; };
+		86E1ADA51AB0CA240004294F /* samuraiTattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9F1AB0CA240004294F /* samuraiTattoo.jpg */; };
+		86E1ADA61AB0CA240004294F /* threeredpoppiestattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1ADA01AB0CA240004294F /* threeredpoppiestattoo.jpg */; };
 		FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */; };
 		FB0138BE1AA9029E0037D945 /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BD1AA9029E0037D945 /* DBBodyPart.m */; };
 		FB0711871AAF0318004EBBD1 /* InkService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711861AAF0318004EBBD1 /* InkService.m */; };
@@ -93,6 +99,12 @@
 		86C2F6291AAA4E5A003D58E3 /* DBTattooType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBTattooType.m; path = "Data Base/DB Subclasses/DBTattooType.m"; sourceTree = "<group>"; };
 		86C2F62E1AAA4E9F003D58E3 /* DBTattooType+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBTattooType+Management.h"; path = "Data Base/DB Categories/DBTattooType+Management.h"; sourceTree = "<group>"; };
 		86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBTattooType+Management.m"; path = "Data Base/DB Categories/DBTattooType+Management.m"; sourceTree = "<group>"; };
+		86E1AD9B1AB0CA240004294F /* 3dTattoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3dTattoo.png; sourceTree = "<group>"; };
+		86E1AD9C1AB0CA240004294F /* blackSailsTattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackSailsTattoo.jpg; sourceTree = "<group>"; };
+		86E1AD9D1AB0CA240004294F /* flowerTattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flowerTattoo.jpg; sourceTree = "<group>"; };
+		86E1AD9E1AB0CA240004294F /* machinetatto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = machinetatto.jpg; sourceTree = "<group>"; };
+		86E1AD9F1AB0CA240004294F /* samuraiTattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = samuraiTattoo.jpg; sourceTree = "<group>"; };
+		86E1ADA01AB0CA240004294F /* threeredpoppiestattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = threeredpoppiestattoo.jpg; sourceTree = "<group>"; };
 		FB0138B91AA8F69E0037D945 /* SelectLocalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectLocalTableViewController.h; path = "ViewControllers/Create Ink/SelectLocalTableViewController.h"; sourceTree = "<group>"; };
 		FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectLocalTableViewController.m; path = "ViewControllers/Create Ink/SelectLocalTableViewController.m"; sourceTree = "<group>"; };
 		FB0138BC1AA9029E0037D945 /* DBBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBodyPart.h; path = "Data Base/DB Subclasses/DBBodyPart.h"; sourceTree = "<group>"; };
@@ -467,6 +479,12 @@
 		FBD91E151A96439900B00724 /* Temp Images */ = {
 			isa = PBXGroup;
 			children = (
+				86E1AD9B1AB0CA240004294F /* 3dTattoo.png */,
+				86E1AD9C1AB0CA240004294F /* blackSailsTattoo.jpg */,
+				86E1AD9D1AB0CA240004294F /* flowerTattoo.jpg */,
+				86E1AD9E1AB0CA240004294F /* machinetatto.jpg */,
+				86E1AD9F1AB0CA240004294F /* samuraiTattoo.jpg */,
+				86E1ADA01AB0CA240004294F /* threeredpoppiestattoo.jpg */,
 				FBB696E01AABA68F0071D96B /* Cristian con clase.jpg */,
 			);
 			name = "Temp Images";
@@ -723,11 +741,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
+				86E1ADA31AB0CA240004294F /* flowerTattoo.jpg in Resources */,
+				86E1ADA11AB0CA240004294F /* 3dTattoo.png in Resources */,
+				86E1ADA41AB0CA240004294F /* machinetatto.jpg in Resources */,
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
+				86E1ADA61AB0CA240004294F /* threeredpoppiestattoo.jpg in Resources */,
 				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
 				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
 				86C2F6271AA79AFB003D58E3 /* Images.xcassets in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
+				86E1ADA51AB0CA240004294F /* samuraiTattoo.jpg in Resources */,
+				86E1ADA21AB0CA240004294F /* blackSailsTattoo.jpg in Resources */,
 				FBC4330A1A85472200EFAA24 /* PermanentMarker.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

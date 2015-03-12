@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1212,11 +1212,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Browse" image="Browse" id="w2x-2M-N6d"/>
+                    <navigationItem key="navigationItem" id="Bml-A7-bNc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fsM-Qs-Fa5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="3859"/>
+            <point key="canvasLocation" x="1746" y="3859"/>
         </scene>
         <!--CameraViewController-->
         <scene sceneID="1mW-5p-eSs">
@@ -1545,7 +1545,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKl-WX-bJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1744" y="3859"/>
+            <point key="canvasLocation" x="2556" y="3859"/>
         </scene>
         <!--AccountViewController-->
         <scene sceneID="lvS-NC-ee5">
@@ -1577,10 +1577,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Vrc-lX-Af6" kind="relationship" relationship="viewControllers" id="D6c-Nb-qZ1"/>
                         <segue destination="XRh-Qx-3f2" kind="relationship" relationship="viewControllers" id="n7v-nR-2ca"/>
                         <segue destination="lzB-Xw-O2P" kind="relationship" relationship="viewControllers" id="npo-fu-AMw"/>
-                        <segue destination="QRn-ZG-7OE" kind="relationship" relationship="viewControllers" id="iXX-wj-gHT"/>
-                        <segue destination="1Wm-X3-uXy" kind="relationship" relationship="viewControllers" id="eXE-gO-Fdy"/>
                         <segue destination="p1L-EI-LuS" kind="relationship" relationship="viewControllers" id="B6h-fp-3w1"/>
                     </connections>
                 </tabBarController>
@@ -1606,11 +1605,11 @@
             </objects>
             <point key="canvasLocation" x="934" y="400"/>
         </scene>
-        <!--Dashboard-->
+        <!--Ink-->
         <scene sceneID="E0E-gR-bhr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XRh-Qx-3f2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="DashBoard" id="bX0-Wi-M5q"/>
+                    <tabBarItem key="tabBarItem" title="Ink" image="Ink" id="bX0-Wi-M5q"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kEf-SK-5y3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1663,6 +1662,25 @@
             </objects>
             <point key="canvasLocation" x="932" y="3094"/>
         </scene>
+        <!--Browse-->
+        <scene sceneID="UGv-ok-78e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vrc-lX-Af6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Browse" image="Browse" id="w2x-2M-N6d"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="65d-nD-vrr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1Wm-X3-uXy" kind="relationship" relationship="rootViewController" id="N7C-S4-mIk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f2a-Rm-Szy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934" y="3859"/>
+        </scene>
     </scenes>
     <resources>
         <image name="APP_home_02" width="240" height="85"/>
@@ -1672,7 +1690,6 @@
         <image name="Browse" width="25" height="25"/>
         <image name="Camera" width="25" height="25"/>
         <image name="Crop" width="25" height="25"/>
-        <image name="DashBoard" width="25" height="25"/>
         <image name="Flash" width="25" height="25"/>
         <image name="Ink" width="25" height="25"/>
         <image name="Inkit Logo" width="192" height="55"/>
@@ -1685,10 +1702,10 @@
         <image name="ViewInks-ReInk" width="7" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="lQ1-q0-po4"/>
+        <segue reference="NRZ-KG-SSz"/>
         <segue reference="z9d-nC-j9p"/>
         <segue reference="eTF-QW-UEi"/>
-        <segue reference="NRZ-KG-SSz"/>
-        <segue reference="lQ1-q0-po4"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

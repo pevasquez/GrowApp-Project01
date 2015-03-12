@@ -14,10 +14,9 @@
 @end
 
 typedef enum {
-    kDashboard,
-    kBoards,
-    kInk,
     kBrowse,
+    kInk,
+    kBoards,
     kAccount
 } kTabBarItems;
 
@@ -27,9 +26,7 @@ typedef enum {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.tintColor = [InkitTheme getTintColor];
-    self.selectedIndex = kDashboard;
-    UITabBarItem* dashboard = [[self.tabBar items] objectAtIndex:kDashboard];
-    [dashboard setTitle:NSLocalizedString(@"Dashboard", nil)];
+    self.selectedIndex = kBrowse;
     UITabBarItem* boards = [[self.tabBar items] objectAtIndex:kBoards];
     [boards setTitle:NSLocalizedString(@"My Boards", nil)];
     UITabBarItem* ink = [[self.tabBar items] objectAtIndex:kInk];
@@ -57,7 +54,7 @@ typedef enum {
 
 - (void)selectDashboard
 {
-    self.selectedIndex = kDashboard;
+    self.selectedIndex = kBrowse;
 }
 /*
 #pragma mark - Navigation

@@ -86,4 +86,25 @@
     NSError* error = nil;
     [self.managedObjectContext save:&error];
 }
+
++ (void)createMockInks:(NSManagedObjectContext *)managedObjectContext
+{
+    UIImage *image1 = [UIImage imageNamed:@"3dTattoo.png"];
+    [DBInk createWithImage: image1 AndDescription:@"Tattoo 3d en la pierna" InManagedObjectContext:managedObjectContext];
+    
+    UIImage *image2 = [UIImage imageNamed:@"blackSailsTattoo.jpg"];
+    [DBInk createWithImage: image2 AndDescription:@"pantorrilla" InManagedObjectContext:managedObjectContext];
+    
+    UIImage *image3 = [UIImage imageNamed:@"flowerTattoo.jpg"];
+    [DBInk createWithImage: image3 AndDescription:@"hombro con tribal" InManagedObjectContext:managedObjectContext];
+    
+    UIImage *image4 = [UIImage imageNamed:@"machinetatto.jpg"];
+    [DBInk createWithImage: image4 AndDescription:@"tattoo en la espalda" InManagedObjectContext:managedObjectContext];
+    
+    UIImage *image5 = [UIImage imageNamed:@"samuraiTattoo.jpg"];
+    [DBInk createWithImage: image5 AndDescription:@"samurai en escala de grises" InManagedObjectContext:managedObjectContext];
+    
+    UIImage *image6 = [UIImage imageNamed:@"threeredpoppiestattoo.jpg"];
+    [DBInk createWithImage: image6 AndDescription:@"espalda" InManagedObjectContext:managedObjectContext];
+}
 @end

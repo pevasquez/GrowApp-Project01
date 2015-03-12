@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "InkitDataUtil.h"
+#import "DBInk+Management.h"
 
 @interface AppDelegate ()
 
@@ -73,6 +74,8 @@
 
 #pragma mark - Application Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // create mock data
+    [DBInk createMockInks:self.managedObjectContext];
     // If there's a logged user, silent logIn
     if ([InkitDataUtil sharedInstance].activeUser) {
         // log user
