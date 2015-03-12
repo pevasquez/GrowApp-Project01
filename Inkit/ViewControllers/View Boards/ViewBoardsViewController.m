@@ -21,9 +21,10 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 @interface ViewBoardsViewController()
 @property (strong, nonatomic) NSArray *boardsArray;
 @property (weak, nonatomic) IBOutlet BoardsCollectionView *boardsCollectionView;
-@property (weak, nonatomic) IBOutlet UILabel *createFirstBoardLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
+
 @implementation ViewBoardsViewController
 
 #pragma mark - Lifecycle Methods
@@ -51,7 +52,19 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 #pragma mark - CollectionView Data Source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    if ([self.boardsArray count]) {
+        self.boardsCollectionView.backgroundView = nil;
+        return 1;
+    } else {// Display a message when the table is empty
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        messageLabel.text = @"Create your first Board";
+        messageLabel.textColor = [InkitTheme getBaseColor];
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
+        [messageLabel sizeToFit];
+        self.boardsCollectionView.backgroundView = messageLabel;
+        return 0;
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -83,22 +96,20 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 #pragma mark - Get Data Methods
 - (void)getMyBoards
 {
+    [self showActivityIndicator];
     [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction) completeError:@selector(getBoardsCompleteError)];
 }
 
 - (void)getBoardsCompleteAction
 {
+    [self hideActitivyIndicator];
     self.boardsArray = [self.activeUser getBoards];
-    if ([self.boardsArray count]) {
-        self.createFirstBoardLabel.hidden = YES;
-    } else {
-        self.createFirstBoardLabel.hidden = NO;
-    }
     [self.boardsCollectionView reloadData];
 }
 
 - (void)getBoardsCompleteError
 {
+    [self hideActitivyIndicator];
 
 }
 
@@ -125,4 +136,18 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
+
+#pragma mark - Actitivy Indicator Methods
+- (void) showActivityIndicator
+{
+    self.activityIndicatorView.hidden = NO;
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void) hideActitivyIndicator
+{
+    self.activityIndicatorView.hidden = YES;
+    [self.activityIndicatorView stopAnimating];
+}
+
 @end

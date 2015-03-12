@@ -74,8 +74,7 @@
 
 #pragma mark - Application Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // create mock data
-    [DBInk createMockInks:self.managedObjectContext];
+    
     // If there's a logged user, silent logIn
     if ([InkitDataUtil sharedInstance].activeUser) {
         // log user
@@ -178,6 +177,9 @@
     }
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    // create mock data
+    [DBInk createMockInks:_managedObjectContext];
+    
     return _managedObjectContext;
 }
 

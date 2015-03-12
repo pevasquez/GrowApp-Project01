@@ -7,7 +7,8 @@
 //
 
 #import "DashboardViewController.h"
-#import "CreateInkViewController.h"
+//#import "CreateInkViewController.h"
+#import "EditImageViewController.h"
 #import "InkitButton.h"
 
 @interface DashboardViewController () {
@@ -66,10 +67,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue destinationViewController] isKindOfClass:[CreateInkViewController class]]) {
-        CreateInkViewController* createViewController = [segue destinationViewController];
-        createViewController.inkImage = self.inkImage;
+    if ([[segue destinationViewController] isKindOfClass:[EditImageViewController class]]) {
+        EditImageViewController* editImageViewController = [segue destinationViewController];
+        editImageViewController.imageToEdit = self.inkImage;
     }
+//    if ([[segue destinationViewController] isKindOfClass:[CreateInkViewController class]]) {
+//        CreateInkViewController* createViewController = [segue destinationViewController];
+//        createViewController.inkImage = self.inkImage;
+//    }
 }
 
 #pragma mark - Image Browser Methods
@@ -141,7 +146,7 @@
     }
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    [self performSegueWithIdentifier:@"CreateInkSegue" sender:nil];
+    [self performSegueWithIdentifier:@"EditImageSegue" sender:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

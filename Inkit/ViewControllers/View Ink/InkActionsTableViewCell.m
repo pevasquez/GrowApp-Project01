@@ -24,7 +24,7 @@
 {
     DBUser* user = ink.user;
     if (user.userImage) {
-        self.userImageView.image = user.userImage;
+        self.userImageView.image = [UIImage imageWithData:user.userImage];
     }
     self.userNameLabel.text = user.name;
     self.cellHeight = self.bounds.size.height;

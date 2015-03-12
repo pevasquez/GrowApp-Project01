@@ -12,7 +12,7 @@
 @implementation CommentBarView
 - (id)init {
     CGRect screen = [[UIScreen mainScreen] bounds];
-    CGRect frame = CGRectMake(0,0, CGRectGetWidth(screen), 40);
+    CGRect frame = CGRectMake(0,0, CGRectGetWidth(screen), 49);
     self = [self initWithFrame:frame];
     return self;
 }

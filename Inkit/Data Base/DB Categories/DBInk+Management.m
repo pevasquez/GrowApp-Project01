@@ -20,6 +20,7 @@
 {
     DBInk* ink = [NSEntityDescription insertNewObjectForEntityForName:kDBInk inManagedObjectContext:managedObjectContext];
     ink.inkDescription = @"";
+    
     // Save context
     NSError* error = nil;
     [managedObjectContext save:&error];
@@ -29,7 +30,7 @@
 + (DBInk *)createWithImage:(UIImage *)image AndDescription:(NSString *)description InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     DBInk* ink = [DBInk createInManagedObjectContext:managedObjectContext];
-    ink.inkImage = image;
+    ink.inkImage = UIImagePNGRepresentation(image);
     ink.inkDescription = description;
     
     // Save context
@@ -41,7 +42,7 @@
 
 - (UIImage *)getInkImage
 {
-    UIImage* inkImage = self.inkImage;
+    UIImage* inkImage = [UIImage imageWithData:self.inkImage];
     return inkImage;
 }
 
@@ -72,7 +73,7 @@
 - (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user
 {
     DBComment* comment = [DBComment createCommentWithText:text inManagedObjectContext:self.managedObjectContext];
-    comment.ofUser = self.user;
+    comment.ofUser = user;
     [self addHasCommentsObject:comment];
 
     // Save context
@@ -89,22 +90,41 @@
 
 + (void)createMockInks:(NSManagedObjectContext *)managedObjectContext
 {
-    UIImage *image1 = [UIImage imageNamed:@"3dTattoo.png"];
-    [DBInk createWithImage: image1 AndDescription:@"Tattoo 3d en la pierna" InManagedObjectContext:managedObjectContext];
+    UIImage *image1 = [UIImage imageNamed:@"3dTattoo"];    
+    [DBInk createWithImage:image1 AndDescription:@"Tattoo 3D en la pierna" InManagedObjectContext:managedObjectContext];
+
+    UIImage *image2 = [UIImage imageNamed:@"blackSailsTattoo"];
+    [DBInk createWithImage:image2 AndDescription:@"tattoo en pantorrilla" InManagedObjectContext:managedObjectContext];
+
+    UIImage *image3 = [UIImage imageNamed:@"flowerTattoo"];
+    [DBInk createWithImage:image3 AndDescription:@"tattoo en hombro, tribal" InManagedObjectContext:managedObjectContext];
     
-    UIImage *image2 = [UIImage imageNamed:@"blackSailsTattoo.jpg"];
-    [DBInk createWithImage: image2 AndDescription:@"pantorrilla" InManagedObjectContext:managedObjectContext];
-    
-    UIImage *image3 = [UIImage imageNamed:@"flowerTattoo.jpg"];
-    [DBInk createWithImage: image3 AndDescription:@"hombro con tribal" InManagedObjectContext:managedObjectContext];
-    
-    UIImage *image4 = [UIImage imageNamed:@"machinetatto.jpg"];
-    [DBInk createWithImage: image4 AndDescription:@"tattoo en la espalda" InManagedObjectContext:managedObjectContext];
-    
-    UIImage *image5 = [UIImage imageNamed:@"samuraiTattoo.jpg"];
-    [DBInk createWithImage: image5 AndDescription:@"samurai en escala de grises" InManagedObjectContext:managedObjectContext];
-    
-    UIImage *image6 = [UIImage imageNamed:@"threeredpoppiestattoo.jpg"];
-    [DBInk createWithImage: image6 AndDescription:@"espalda" InManagedObjectContext:managedObjectContext];
+    UIImage *image4 = [UIImage imageNamed:@"machinetatto"];
+    [DBInk createWithImage:image4 AndDescription:@"tattoo gigante en la espalda" InManagedObjectContext:managedObjectContext];
+
+    UIImage *image5 = [UIImage imageNamed:@"samuraiTattoo"];
+    [DBInk createWithImage:image5 AndDescription:@"tattoo samurai" InManagedObjectContext:managedObjectContext];
+
+    UIImage *image6 = [UIImage imageNamed:@"threeredpoppiestattoo"];
+    [DBInk createWithImage:image6 AndDescription:@"Tattoo en el pie" InManagedObjectContext:managedObjectContext];
 }
+
++ (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBInk];
+    
+    NSError *error;
+    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
+    NSMutableArray* inks = [[NSMutableArray alloc] init];
+    
+    if ([matches count]&&!error) {
+        for (DBInk* ink in matches) {
+            [inks addObject:ink];
+        }
+        return inks;
+    } else {
+        return nil;
+    }
+}
+
 @end

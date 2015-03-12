@@ -64,7 +64,7 @@ typedef enum
         self.activeUser = [InkitDataUtil sharedInstance].activeUser;
     }
     self.editngInk = [DBInk createInManagedObjectContext:self.activeUser.managedObjectContext];
-    self.editngInk.inkImage = self.inkImage;
+    self.editngInk.inkImage = UIImagePNGRepresentation(self.inkImage);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -274,7 +274,8 @@ typedef enum
 }
 - (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"All data will be lost", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Accept", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
+    [alertView show];
 }
 
 - (void)postInkCompleteAction:(DBInk *)ink
@@ -313,6 +314,14 @@ typedef enum
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
     self.createInkTableView.frame= self.view.frame;
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - EditTextViewController Delegate

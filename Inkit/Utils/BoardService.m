@@ -54,9 +54,9 @@
              NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
@@ -123,9 +123,9 @@
              NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:

@@ -58,12 +58,12 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             NSError *error = nil;
+             //NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
@@ -205,12 +205,12 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             NSError *error = nil;
+             //NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
@@ -284,12 +284,12 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             NSError *error = nil;
+             //NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
@@ -355,12 +355,12 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             NSError *error = nil;
+             //NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:

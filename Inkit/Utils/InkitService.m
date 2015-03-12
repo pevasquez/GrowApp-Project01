@@ -19,7 +19,7 @@
 @implementation InkitService
 + (NSError *)logInUsername:(NSString *)username AndPassword:(NSString *)password WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
-//    NSError* returnError = nil;
+    NSError* returnError = nil;
     
     // Get ManagedObjectContext from AppDelegate
     NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
@@ -27,8 +27,10 @@
     DBUser* user = [DBUser createMockUserInManagedObjectContext:managedObjectContext];
     
     [InkitDataUtil sharedInstance].activeUser = user;
-    
-    return [UserService logInUser:user AndPassword:@"cristian" WithTarget:target completeAction:completeAction completeError:completeError];
+    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+
+    return returnError;
+//    return [UserService logInUser:user AndPassword:@"cristian" WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)logInUserWithToken:(NSString *)token WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -94,16 +96,16 @@
 
 + (NSError *)postBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-//    NSError* returnError = nil;
+    NSError* returnError = nil;
     
-    // Create Ink in DB
+//     Create Ink in DB
+//    
+//     Call complete Action
+    [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
     
-    // Call complete Action
-//    [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
+    return returnError;
     
-//    return returnError;
-    
-    return [BoardService createBoard:board withTarget:target completeAction:completeAction completeError:completeError];
+    //return [BoardService createBoard:board withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

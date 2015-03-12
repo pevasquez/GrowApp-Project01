@@ -20,6 +20,6 @@
 - (void)configureForInk:(DBInk *)ink
 {
     self.userNameLabel.text = ink.user.name;
-    self.userImageView.image = ink.user.userImage;
+    self.userImageView.image = [UIImage imageWithData:ink.user.userImage];
 }
 @end

@@ -29,6 +29,7 @@
 - (UIView *)inputAccessoryView {
     if(!_inputAccessoryView) {
         CommentBarView* commentBarView = [[CommentBarView alloc] init];
+        self.commentsTextField = commentBarView.textField;
         commentBarView.delegate = self;
         _inputAccessoryView = commentBarView;
     }

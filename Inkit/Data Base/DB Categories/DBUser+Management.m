@@ -29,7 +29,7 @@
     user.name = @"Cristian Pena";
     user.birthday = @"30/08/1984";
     user.email = @"cpena@digbang.com";
-    user.userImage = [UIImage imageNamed:@"Cristian con clase.jpg"];
+    user.userImage = UIImageJPEGRepresentation([UIImage imageNamed:@"Cristian con clase.jpg"],0.9);
     
     // Save context
     NSError* error = nil;
@@ -65,24 +65,12 @@
 
 - (NSArray *)getBoards
 {
-#warning hay un error acá
-    //NSArray* boardsArray = [self.boards allObjects];
-    NSArray* boardsArray = [DBBoard getBoardsInManagedObjectContext:self.managedObjectContext];
+    NSArray* boardsArray = self.boards.array;
+    //NSArray* boardsArray = [DBBoard getBoardsInManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:kBoardTitle ascending:YES];
     NSArray* descriptors = [NSArray arrayWithObject:valueDescriptor];
     NSArray* sortedArray = [boardsArray sortedArrayUsingDescriptors:descriptors];
     return sortedArray;
-}
-
-static NSString *const kItemsKey = @"boards";
-- (void)addBoardsObject:(DBBoard *)value
-{
-    NSMutableSet* tempSet = [NSMutableSet setWithSet:self.boards];
-    NSSet* newObject = [NSSet setWithObject:value];
-    [self willChangeValueForKey:kItemsKey withSetMutation:NSKeyValueUnionSetMutation usingObjects:newObject];
-    [tempSet addObject:value];
-    self.boards = tempSet;
-    [self didChangeValueForKey:kItemsKey withSetMutation:NSKeyValueUnionSetMutation usingObjects:newObject];
 }
 
 @end

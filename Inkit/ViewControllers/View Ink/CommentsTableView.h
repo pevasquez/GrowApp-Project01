@@ -20,5 +20,6 @@
 @interface CommentsTableView : UITableView <CommentBarViewDelegate>
 
 @property (weak, nonatomic) id<CommentsTableViewDelegate> commentsDelegate;
+@property (strong, nonatomic) UITextField* commentsTextField;
 
 @end

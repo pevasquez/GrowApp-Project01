@@ -7,26 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		86C2F6271AA79AFB003D58E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86C2F6261AA79AFB003D58E3 /* Images.xcassets */; };
 		86C2F62A1AAA4E5A003D58E3 /* DBTattooType.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F6291AAA4E5A003D58E3 /* DBTattooType.m */; };
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
-		86E1ADA11AB0CA240004294F /* 3dTattoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9B1AB0CA240004294F /* 3dTattoo.png */; };
-		86E1ADA21AB0CA240004294F /* blackSailsTattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9C1AB0CA240004294F /* blackSailsTattoo.jpg */; };
-		86E1ADA31AB0CA240004294F /* flowerTattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9D1AB0CA240004294F /* flowerTattoo.jpg */; };
-		86E1ADA41AB0CA240004294F /* machinetatto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9E1AB0CA240004294F /* machinetatto.jpg */; };
-		86E1ADA51AB0CA240004294F /* samuraiTattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1AD9F1AB0CA240004294F /* samuraiTattoo.jpg */; };
-		86E1ADA61AB0CA240004294F /* threeredpoppiestattoo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86E1ADA01AB0CA240004294F /* threeredpoppiestattoo.jpg */; };
 		FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */; };
 		FB0138BE1AA9029E0037D945 /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BD1AA9029E0037D945 /* DBBodyPart.m */; };
 		FB0711871AAF0318004EBBD1 /* InkService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711861AAF0318004EBBD1 /* InkService.m */; };
 		FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
 		FB0711941AAF139A004EBBD1 /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711931AAF139A004EBBD1 /* DBBoard.m */; };
-		FB07119A1AAF13EA004EBBD1 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711991AAF13EA004EBBD1 /* DBUser.m */; };
 		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
 		FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B85B1AA4C3CC00ED7ECD /* UserService.m */; };
 		FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
 		FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */; };
+		FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */; };
 		FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384191A892D92004C440A /* ViewInkViewController.m */; };
 		FBB3841E1A89308E004C440A /* InkImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB3841D1A89308E004C440A /* InkImageTableViewCell.m */; };
 		FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384201A8930AD004C440A /* InkDescriptionTableViewCell.m */; };
@@ -41,7 +34,6 @@
 		FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384561A8A9818004C440A /* TextViewTableViewCell.m */; };
 		FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB488541A8BF176009E1789 /* MobileCoreServices.framework */; };
 		FBB696C71AAB7EF30071D96B /* DBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696C61AAB7EF30071D96B /* DBComment.m */; };
-		FBB696CA1AAB7F590071D96B /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696C91AAB7F590071D96B /* DBInk.m */; };
 		FBB696D01AAB841C0071D96B /* DBComment+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696CF1AAB841C0071D96B /* DBComment+Management.m */; };
 		FBB696D31AAB86D90071D96B /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696D21AAB86D90071D96B /* CommentsViewController.m */; };
 		FBB696D61AAB88840071D96B /* CommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696D51AAB88840071D96B /* CommentsTableViewCell.m */; };
@@ -49,6 +41,9 @@
 		FBB696DC1AAB94C40071D96B /* CommentBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696DB1AAB94C40071D96B /* CommentBarView.m */; };
 		FBB696DF1AAB9D4F0071D96B /* UserNameLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696DE1AAB9D4F0071D96B /* UserNameLabel.m */; };
 		FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FBB696E01AABA68F0071D96B /* Cristian con clase.jpg */; };
+		FBBC57381AB2249F00FF2219 /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBC57371AB2249F00FF2219 /* DBInk.m */; };
+		FBBC573B1AB224A000FF2219 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBC573A1AB224A000FF2219 /* DBUser.m */; };
+		FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBBC573C1AB2300200FF2219 /* Images.xcassets */; };
 		FBC432FD1A853BC500EFAA24 /* InkitTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC432FC1A853BC500EFAA24 /* InkitTabBarController.m */; };
 		FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC433001A8540CE00EFAA24 /* DashboardViewController.m */; };
 		FBC433051A85457E00EFAA24 /* InkitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC433041A85457E00EFAA24 /* InkitButton.m */; };
@@ -94,17 +89,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		86C2F6261AA79AFB003D58E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		86C2F6281AAA4E5A003D58E3 /* DBTattooType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBTattooType.h; path = "Data Base/DB Subclasses/DBTattooType.h"; sourceTree = "<group>"; };
 		86C2F6291AAA4E5A003D58E3 /* DBTattooType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBTattooType.m; path = "Data Base/DB Subclasses/DBTattooType.m"; sourceTree = "<group>"; };
 		86C2F62E1AAA4E9F003D58E3 /* DBTattooType+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBTattooType+Management.h"; path = "Data Base/DB Categories/DBTattooType+Management.h"; sourceTree = "<group>"; };
 		86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBTattooType+Management.m"; path = "Data Base/DB Categories/DBTattooType+Management.m"; sourceTree = "<group>"; };
-		86E1AD9B1AB0CA240004294F /* 3dTattoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3dTattoo.png; sourceTree = "<group>"; };
-		86E1AD9C1AB0CA240004294F /* blackSailsTattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackSailsTattoo.jpg; sourceTree = "<group>"; };
-		86E1AD9D1AB0CA240004294F /* flowerTattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flowerTattoo.jpg; sourceTree = "<group>"; };
-		86E1AD9E1AB0CA240004294F /* machinetatto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = machinetatto.jpg; sourceTree = "<group>"; };
-		86E1AD9F1AB0CA240004294F /* samuraiTattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = samuraiTattoo.jpg; sourceTree = "<group>"; };
-		86E1ADA01AB0CA240004294F /* threeredpoppiestattoo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = threeredpoppiestattoo.jpg; sourceTree = "<group>"; };
 		FB0138B91AA8F69E0037D945 /* SelectLocalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectLocalTableViewController.h; path = "ViewControllers/Create Ink/SelectLocalTableViewController.h"; sourceTree = "<group>"; };
 		FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectLocalTableViewController.m; path = "ViewControllers/Create Ink/SelectLocalTableViewController.m"; sourceTree = "<group>"; };
 		FB0138BC1AA9029E0037D945 /* DBBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBodyPart.h; path = "Data Base/DB Subclasses/DBBodyPart.h"; sourceTree = "<group>"; };
@@ -116,8 +104,6 @@
 		FB07118A1AAF077C004EBBD1 /* BoardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardService.m; path = Utils/BoardService.m; sourceTree = "<group>"; };
 		FB0711921AAF139A004EBBD1 /* DBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBoard.h; path = "Data Base/DB Subclasses/DBBoard.h"; sourceTree = "<group>"; };
 		FB0711931AAF139A004EBBD1 /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
-		FB0711981AAF13EA004EBBD1 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
-		FB0711991AAF13EA004EBBD1 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
 		FB0A40001A9D255900294F90 /* WaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterfallLayout.h; path = "ViewControllers/View Inks/WaterfallLayout.h"; sourceTree = "<group>"; };
 		FB0A40011A9D255900294F90 /* WaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterfallLayout.m; path = "ViewControllers/View Inks/WaterfallLayout.m"; sourceTree = "<group>"; };
 		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
@@ -127,6 +113,8 @@
 		FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FB51B85F1AA5C7AE00ED7ECD /* EditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditImageViewController.h; path = Inkit/ViewControllers/Camera/EditImageViewController.h; sourceTree = "<group>"; };
 		FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditImageViewController.m; path = Inkit/ViewControllers/Camera/EditImageViewController.m; sourceTree = "<group>"; };
+		FB76CAAE1AB114E400B68BAD /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowseViewController.h; path = ViewControllers/Browse/BrowseViewController.h; sourceTree = "<group>"; };
+		FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = ViewControllers/Browse/BrowseViewController.m; sourceTree = "<group>"; };
 		FBB384181A892D92004C440A /* ViewInkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInkViewController.h; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.h"; sourceTree = "<group>"; };
 		FBB384191A892D92004C440A /* ViewInkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInkViewController.m; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.m"; sourceTree = "<group>"; };
 		FBB3841C1A89308E004C440A /* InkImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkImageTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.h"; sourceTree = "<group>"; };
@@ -154,8 +142,6 @@
 		FBB488541A8BF176009E1789 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		FBB696C51AAB7EF30071D96B /* DBComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBComment.h; path = "Data Base/DB Subclasses/DBComment.h"; sourceTree = "<group>"; };
 		FBB696C61AAB7EF30071D96B /* DBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBComment.m; path = "Data Base/DB Subclasses/DBComment.m"; sourceTree = "<group>"; };
-		FBB696C81AAB7F590071D96B /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBInk.h; path = "Data Base/DB Subclasses/DBInk.h"; sourceTree = "<group>"; };
-		FBB696C91AAB7F590071D96B /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBInk.m; path = "Data Base/DB Subclasses/DBInk.m"; sourceTree = "<group>"; };
 		FBB696CE1AAB841C0071D96B /* DBComment+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBComment+Management.h"; path = "Data Base/DB Categories/DBComment+Management.h"; sourceTree = "<group>"; };
 		FBB696CF1AAB841C0071D96B /* DBComment+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBComment+Management.m"; path = "Data Base/DB Categories/DBComment+Management.m"; sourceTree = "<group>"; };
 		FBB696D11AAB86D90071D96B /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsViewController.h; path = "Inkit/ViewControllers/View Ink/CommentsViewController.h"; sourceTree = "<group>"; };
@@ -169,6 +155,11 @@
 		FBB696DD1AAB9D4F0071D96B /* UserNameLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNameLabel.h; path = "Custom Classes/UserNameLabel.h"; sourceTree = "<group>"; };
 		FBB696DE1AAB9D4F0071D96B /* UserNameLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNameLabel.m; path = "Custom Classes/UserNameLabel.m"; sourceTree = "<group>"; };
 		FBB696E01AABA68F0071D96B /* Cristian con clase.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Cristian con clase.jpg"; sourceTree = "<group>"; };
+		FBBC57361AB2249F00FF2219 /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBInk.h; sourceTree = "<group>"; };
+		FBBC57371AB2249F00FF2219 /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBInk.m; sourceTree = "<group>"; };
+		FBBC57391AB224A000FF2219 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUser.h; sourceTree = "<group>"; };
+		FBBC573A1AB224A000FF2219 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUser.m; sourceTree = "<group>"; };
+		FBBC573C1AB2300200FF2219 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FBC432FB1A853BC500EFAA24 /* InkitTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitTabBarController.h; path = "ViewControllers/Tab Bar/InkitTabBarController.h"; sourceTree = "<group>"; };
 		FBC432FC1A853BC500EFAA24 /* InkitTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitTabBarController.m; path = "ViewControllers/Tab Bar/InkitTabBarController.m"; sourceTree = "<group>"; };
 		FBC432FF1A8540CE00EFAA24 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardViewController.h; path = ViewControllers/Dashboard/DashboardViewController.h; sourceTree = "<group>"; };
@@ -266,6 +257,15 @@
 				FB0711881AAF037F004EBBD1 /* InkitServiceConstants.h */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		FB76CAB11AB114E900B68BAD /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				FB76CAAE1AB114E400B68BAD /* BrowseViewController.h */,
+				FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */,
+			);
+			name = Browse;
 			sourceTree = "<group>";
 		};
 		FBB384171A892D59004C440A /* Create Ink */ = {
@@ -479,12 +479,6 @@
 		FBD91E151A96439900B00724 /* Temp Images */ = {
 			isa = PBXGroup;
 			children = (
-				86E1AD9B1AB0CA240004294F /* 3dTattoo.png */,
-				86E1AD9C1AB0CA240004294F /* blackSailsTattoo.jpg */,
-				86E1AD9D1AB0CA240004294F /* flowerTattoo.jpg */,
-				86E1AD9E1AB0CA240004294F /* machinetatto.jpg */,
-				86E1AD9F1AB0CA240004294F /* samuraiTattoo.jpg */,
-				86E1ADA01AB0CA240004294F /* threeredpoppiestattoo.jpg */,
 				FBB696E01AABA68F0071D96B /* Cristian con clase.jpg */,
 			);
 			name = "Temp Images";
@@ -527,7 +521,7 @@
 				FBDCB1991A83EB1800E05053 /* AppDelegate.h */,
 				FBDCB19A1A83EB1800E05053 /* AppDelegate.m */,
 				FBDCB1A21A83EB1800E05053 /* Main.storyboard */,
-				86C2F6261AA79AFB003D58E3 /* Images.xcassets */,
+				FBBC573C1AB2300200FF2219 /* Images.xcassets */,
 				FBDCB1C91A83F38B00E05053 /* ViewControllers */,
 				FBC433061A85458500EFAA24 /* Custom Classes */,
 				FBDCB1C11A83ED3100E05053 /* Utils */,
@@ -594,6 +588,7 @@
 				FBDCB1C81A83F38100E05053 /* Splash View Controller */,
 				FBDCB1E51A840C2D00E05053 /* LogIn View Controller */,
 				FBC432FE1A853BCD00EFAA24 /* Inkit Tab Bar Controller */,
+				FB76CAB11AB114E900B68BAD /* Browse */,
 				FBCCAF981A8CF6630052DCB9 /* Inks */,
 				FBCCAF991A8CF69D0052DCB9 /* Boards */,
 				FBD91E2D1A96795C00B00724 /* View Inks */,
@@ -614,12 +609,12 @@
 		FBDCB1D11A83F7F000E05053 /* DBSubclasses */ = {
 			isa = PBXGroup;
 			children = (
-				FB0711981AAF13EA004EBBD1 /* DBUser.h */,
-				FB0711991AAF13EA004EBBD1 /* DBUser.m */,
+				FBBC57391AB224A000FF2219 /* DBUser.h */,
+				FBBC573A1AB224A000FF2219 /* DBUser.m */,
+				FBBC57361AB2249F00FF2219 /* DBInk.h */,
+				FBBC57371AB2249F00FF2219 /* DBInk.m */,
 				FB0711921AAF139A004EBBD1 /* DBBoard.h */,
 				FB0711931AAF139A004EBBD1 /* DBBoard.m */,
-				FBB696C81AAB7F590071D96B /* DBInk.h */,
-				FBB696C91AAB7F590071D96B /* DBInk.m */,
 				FBB696C51AAB7EF30071D96B /* DBComment.h */,
 				FBB696C61AAB7EF30071D96B /* DBComment.m */,
 				86C2F6281AAA4E5A003D58E3 /* DBTattooType.h */,
@@ -741,17 +736,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
-				86E1ADA31AB0CA240004294F /* flowerTattoo.jpg in Resources */,
-				86E1ADA11AB0CA240004294F /* 3dTattoo.png in Resources */,
-				86E1ADA41AB0CA240004294F /* machinetatto.jpg in Resources */,
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
-				86E1ADA61AB0CA240004294F /* threeredpoppiestattoo.jpg in Resources */,
+				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
 				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
-				86C2F6271AA79AFB003D58E3 /* Images.xcassets in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
-				86E1ADA51AB0CA240004294F /* samuraiTattoo.jpg in Resources */,
-				86E1ADA21AB0CA240004294F /* blackSailsTattoo.jpg in Resources */,
 				FBC4330A1A85472200EFAA24 /* PermanentMarker.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,8 +763,10 @@
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
 				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
+				FBBC573B1AB224A000FF2219 /* DBUser.m in Sources */,
 				FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */,
 				FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */,
+				FBBC57381AB2249F00FF2219 /* DBInk.m in Sources */,
 				FBCCAF861A8CE8390052DCB9 /* ViewBoardsViewController.m in Sources */,
 				FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */,
 				FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */,
@@ -798,12 +789,12 @@
 				FBB384541A8A938D004C440A /* TextFieldTableViewCell.m in Sources */,
 				FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */,
 				FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */,
-				FB07119A1AAF13EA004EBBD1 /* DBUser.m in Sources */,
 				FBDCB1C41A83F06A00E05053 /* InkitService.m in Sources */,
 				FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */,
 				FBB384271A893128004C440A /* InkCommentTableViewCell.m in Sources */,
 				FBB384471A895E7C004C440A /* CreateInkImageTableViewCell.m in Sources */,
 				FBC4330E1A85502400EFAA24 /* CreateInkViewController.m in Sources */,
+				FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */,
 				FB0711871AAF0318004EBBD1 /* InkService.m in Sources */,
 				FBB696D31AAB86D90071D96B /* CommentsViewController.m in Sources */,
 				FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */,
@@ -821,7 +812,6 @@
 				FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */,
 				FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */,
 				FBB696D91AAB945D0071D96B /* CommentsTableView.m in Sources */,
-				FBB696CA1AAB7F590071D96B /* DBInk.m in Sources */,
 				FBDCB1981A83EB1800E05053 /* main.m in Sources */,
 				FBB384341A894168004C440A /* ViewInkTableViewCell.m in Sources */,
 				FBB384411A895B1D004C440A /* CameraViewController.m in Sources */,

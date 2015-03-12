@@ -9,12 +9,15 @@
 #import "CommentsViewController.h"
 #import "CommentsTableViewCell.h"
 #import "CommentsTableView.h"
+#import "DBUser+Management.h"
+#import "InkitDataUtil.h"
 
 static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCell";
 
 @interface CommentsViewController ()
 @property (weak, nonatomic) IBOutlet CommentsTableView *commentsTableView;
 @property (strong, nonatomic) NSArray* commentsArray;
+@property (strong, nonatomic) DBUser* activeUser;
 @end
 @implementation CommentsViewController
 - (void)viewDidLoad
@@ -24,12 +27,14 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
     [self updateCommentsTableView];
     self.commentsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.commentsTableView becomeFirstResponder];
+    self.activeUser = [InkitDataUtil sharedInstance].activeUser;
 }
 
 #pragma mark - TableView Data Source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if ([self.commentsArray count]) {
+        self.commentsTableView.backgroundView = nil;
         return 1;
     } else {
         // Display a message when the table is empty
@@ -83,10 +88,14 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 #pragma mark - CommentsTableViewDelegate
 - (void)commentsTableView:(CommentsTableView *)commentsTableView didEnterNewComment:(NSString *)comment
 {
-    [self.ink addCommentWithText:comment forUser:self.ink.user];
+    [self.ink addCommentWithText:comment forUser:self.activeUser];
     [self updateCommentsTableView];
+    [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:0.5];
 }
-
+- (void)dismissViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)updateCommentsTableView
 {
     self.commentsArray = self.ink.hasComments.allObjects;
