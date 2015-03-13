@@ -2,7 +2,7 @@
 //  DBUser.h
 //  Inkit
 //
-//  Created by Cristian Pena on 10/3/15.
+//  Created by Cristian Pena on 12/3/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -26,12 +26,12 @@
 @property (nonatomic, retain) NSNumber * token;
 @property (nonatomic, retain) NSString * updatedTime;
 @property (nonatomic, retain) NSString * userID;
-@property (nonatomic, retain) id userImage;
+@property (nonatomic, retain) NSData * userImage;
 @property (nonatomic, retain) NSNumber * verified;
 @property (nonatomic, retain) NSOrderedSet *boards;
 @property (nonatomic, retain) NSSet *comments;
-@property (nonatomic, retain) NSSet *inks;
 @property (nonatomic, retain) NSOrderedSet *hasBoards;
+@property (nonatomic, retain) NSSet *inks;
 @end
 
 @interface DBUser (CoreDataGeneratedAccessors)
@@ -51,11 +51,6 @@
 - (void)addComments:(NSSet *)values;
 - (void)removeComments:(NSSet *)values;
 
-- (void)addInksObject:(DBInk *)value;
-- (void)removeInksObject:(DBInk *)value;
-- (void)addInks:(NSSet *)values;
-- (void)removeInks:(NSSet *)values;
-
 - (void)insertObject:(DBBoard *)value inHasBoardsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromHasBoardsAtIndex:(NSUInteger)idx;
 - (void)insertHasBoards:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
@@ -66,4 +61,9 @@
 - (void)removeHasBoardsObject:(DBBoard *)value;
 - (void)addHasBoards:(NSOrderedSet *)values;
 - (void)removeHasBoards:(NSOrderedSet *)values;
+- (void)addInksObject:(DBInk *)value;
+- (void)removeInksObject:(DBInk *)value;
+- (void)addInks:(NSSet *)values;
+- (void)removeInks:(NSSet *)values;
+
 @end

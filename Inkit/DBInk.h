@@ -2,7 +2,7 @@
 //  DBInk.h
 //  Inkit
 //
-//  Created by Cristian Pena on 7/3/15.
+//  Created by Cristian Pena on 12/3/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -15,15 +15,20 @@
 
 @property (nonatomic, retain) NSString * inkDescription;
 @property (nonatomic, retain) NSNumber * inkID;
-@property (nonatomic, retain) id inkImage;
+@property (nonatomic, retain) NSData * inkImage;
+@property (nonatomic, retain) NSSet *hasComments;
 @property (nonatomic, retain) DBBoard *inBoard;
 @property (nonatomic, retain) NSSet *ofBodyParts;
 @property (nonatomic, retain) NSSet *ofTattooTypes;
 @property (nonatomic, retain) DBUser *user;
-@property (nonatomic, retain) NSSet *hasComments;
 @end
 
 @interface DBInk (CoreDataGeneratedAccessors)
+
+- (void)addHasCommentsObject:(DBComment *)value;
+- (void)removeHasCommentsObject:(DBComment *)value;
+- (void)addHasComments:(NSSet *)values;
+- (void)removeHasComments:(NSSet *)values;
 
 - (void)addOfBodyPartsObject:(DBBodyPart *)value;
 - (void)removeOfBodyPartsObject:(DBBodyPart *)value;
@@ -34,10 +39,5 @@
 - (void)removeOfTattooTypesObject:(DBTattooType *)value;
 - (void)addOfTattooTypes:(NSSet *)values;
 - (void)removeOfTattooTypes:(NSSet *)values;
-
-- (void)addHasCommentsObject:(DBComment *)value;
-- (void)removeHasCommentsObject:(DBComment *)value;
-- (void)addHasComments:(NSSet *)values;
-- (void)removeHasComments:(NSSet *)values;
 
 @end
