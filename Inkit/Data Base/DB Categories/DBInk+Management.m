@@ -102,9 +102,6 @@
     UIImage *image4 = [UIImage imageNamed:@"machinetatto"];
     [DBInk createWithImage:image4 AndDescription:@"tattoo gigante en la espalda" InManagedObjectContext:managedObjectContext];
 
-    UIImage *image5 = [UIImage imageNamed:@"samuraiTattoo"];
-    [DBInk createWithImage:image5 AndDescription:@"tattoo samurai" InManagedObjectContext:managedObjectContext];
-
     UIImage *image6 = [UIImage imageNamed:@"threeredpoppiestattoo"];
     [DBInk createWithImage:image6 AndDescription:@"Tattoo en el pie" InManagedObjectContext:managedObjectContext];
 }
