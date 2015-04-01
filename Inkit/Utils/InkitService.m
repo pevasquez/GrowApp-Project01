@@ -15,23 +15,29 @@
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
 #import "DBUser+Management.h"
+#import "InkitServiceConstants.h"
+
 
 @implementation InkitService
-+ (NSError *)logInUsername:(NSString *)username AndPassword:(NSString *)password WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
++ (NSError *)logInUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [UserService logInUser:user withTarget:target completeAction:completeAction completeError:completeError];
+}
+
++ (NSError *)logInUser:(DBUser *)user WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     NSError* returnError = nil;
-    
-    // Get ManagedObjectContext from AppDelegate
-    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-    
-    DBUser* user = [DBUser createMockUserInManagedObjectContext:managedObjectContext];
-    
-    [InkitDataUtil sharedInstance].activeUser = user;
-    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
 
     return returnError;
-//    return [UserService logInUser:user AndPassword:@"cristian" WithTarget:target completeAction:completeAction completeError:completeError];
 }
+
+
++ (NSError *)registerUser:(DBUser *)user WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [UserService registerUser:user withTarget:target completeAction:completeAction completeError:completeError];
+}
+
 
 + (NSError *)logInUserWithToken:(NSString *)token WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
@@ -48,6 +54,11 @@
     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
     
     return returnError;
+}
+
++ (NSError *) logOutUser:(DBUser *)user WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [UserService logOutUser:user withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)getBodyPartsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -126,6 +137,175 @@
     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
     
     return returnError;
+}
+
++ (NSError *)getArtistsForSearchTerm:(NSString* )searchString WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    // Create returnError
+    NSError* returnError = nil;
+    
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceUsers,kWebServiceArtist,kWebServiceSearch];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a POST request
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    // get user
+    DBUser* activeUser = [InkitDataUtil sharedInstance].activeUser;
+    
+    // Convert your data and set your request's HTTPBody property
+    NSDictionary* jsonDataDictionary = @{@"token" : activeUser.token,
+                                         @"term" : searchString,
+                                         };
+    
+    NSError *error = nil;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    
+    [request setHTTPBody: jsonData];
+    
+    // Create Asynchronous Request URLConnection
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+     {
+         if (!connectionError)
+         {
+             // Cast Response
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             NSError *error = nil;
+             
+             // Parse JSON Response
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                options:NSJSONReadingMutableContainers
+                                                                                  error:&error];
+             // Check Response's StatusCode
+             switch (httpResponse.statusCode) {
+                 case kHTTPResponseCodeOK:
+                 {
+                     // Acá va a ir el código para el caso de éxito
+                     if ([responseDictionary objectForKey:@"data"]) {
+                         for (NSDictionary* artistDictionary in responseDictionary[@"data"]) {
+                             // [DBArtist fromJson(artistDictionary)]
+
+                         }
+                         [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     } else {
+                         [target performSelectorOnMainThread:completeError withObject:nil waitUntilDone:NO];
+                     }
+                     break;
+                 }
+                 default:
+                 {
+                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     break;
+                 }
+             }
+         } else {
+             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+         }
+         
+     }];
+    
+    return returnError;
+}
+
++ (NSError *)getShopsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+
+
+        // Create returnError
+        NSError* returnError = nil;
+        
+        // Create String URL
+        NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceUsers,kWebServiceProfileAccesToken];
+        
+        // Create URL
+        NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+        
+        // Create and configure URLRequest
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:120.0];
+        
+        [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+        
+        // Specify that it will be a POST request
+        [request setHTTPMethod:@"POST"];
+        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        
+        // Convert your data and set your request's HTTPBody property
+        NSDictionary* jsonDataDictionary = @{@"access_token" : @"3",
+                                             @"user_id" : @"",
+                                             @"accept" : @""
+                                             };
+        
+        NSError *error = nil;
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
+        
+        [request setHTTPBody: jsonData];
+        
+        // Create Asynchronous Request URLConnection
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+         {
+             if (!connectionError)
+             {
+                 // Cast Response
+                 NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                 NSError *error = nil;
+                 
+                 // Parse JSON Response
+                 NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingMutableContainers
+                                                                                      error:&error];
+                 // Check Response's StatusCode
+                 switch (httpResponse.statusCode) {
+                     case kHTTPResponseCodeOK:
+                     {
+                         // Acá va a ir el código para el caso de éxito
+                         if ([responseDictionary objectForKey:@"data"]) {
+                             for (NSDictionary* shopDictionary in responseDictionary[@"data"]) {
+                                 // [DBShop fromJson(shopDictionary)]
+                             }
+                             [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                         } else {
+                             [target performSelectorOnMainThread:completeError withObject:nil waitUntilDone:NO];
+                         }
+                         break;
+                     }
+                     default:
+                     {
+                         NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                         [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                         break;
+                     }
+                 }
+             } else {
+                 [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+             }
+             
+         }];
+        
+        return returnError;
+    }
+
++ (NSError *)getDashboardInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [InkService getDashboardInksWithTarget:target completeAction:completeAction completeError:completeError];
 }
 
 @end

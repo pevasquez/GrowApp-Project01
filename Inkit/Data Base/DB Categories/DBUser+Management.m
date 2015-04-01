@@ -8,13 +8,75 @@
 
 #import "DBUser+Management.h"
 #import "DBBoard+Management.h"
+#import "DBImage+Management.h"
 #import "InkitService.h"
 #import "InkitDataUtil.h"
+#import "DataManager.h"
 
 #define kDBUser     @"DBUser"
 #define kBoardTitle @"boardTitle"
 
 @implementation DBUser (Management)
++ (DBUser *)createNewUser
+{
+    DBUser* user = [DBUser createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    user.firstName = @"";
+    user.lastName = @"";
+    user.email = @"";
+    user.password = @"";
+    
+    return user;
+}
+
++ (DBUser *)fromJson:(NSDictionary *)userData
+{
+    DBUser* user = [DBUser createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    
+    if ([userData objectForKey:@"id"]) {
+        user.userID = userData[@"id"];
+    }
+    if ([userData objectForKey:@"profile_pic"]) {
+        user.profilePic = [DBImage fromURL:userData[@"profile_pic"]];
+    }
+    if ([userData objectForKey:@"profile_pic_thumbnail"]) {
+        user.profilePicThumbnail = [DBImage fromURL:userData[@"profile_pic_thumbnail"]];
+    }
+    if ([userData objectForKey:@"first_name"]) {
+        user.firstName = userData[@"first_name"];
+    }
+    if ([userData objectForKey:@"last_name"]) {
+        user.lastName = userData[@"last_name"];
+    }
+    if ([userData objectForKey:@"full_name"]) {
+        user.fullName = userData[@"full_name"];
+    }
+    if ([userData objectForKey:@"profile_url"]) {
+        user.profileURL = userData[@"profile_url"];
+    }
+//    if ([userData objectForKey:@"created_at"]) {
+//        user.createdAt = userData[@"created_at"];
+//    }
+//    if ([userData objectForKey:@"updated_at"]) {
+//        user.updatedAt = userData[@"updated_at"];
+//    }
+    return user;
+}
+
+/*"user": {
+    "data": {
+        "type": "User",
+        "id": 9,
+        "profile_pic": "http://inkit.digbang.com/assets/frontend/img/user_default.png",
+        "profile_pic_thumbnail": "http://inkit.digbang.com/assets/frontend/img/user_default_thumbnail.png",
+        "first_name": "Dario",
+        "last_name": "Govergun",
+        "full_name": "Dario Govergun",
+        "profile_url": "dgovergun",
+        "created_at": 1424797742,
+        "updated_at": 1425322833
+    }
+},*/
+
 + (DBUser *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     DBUser* user = [NSEntityDescription insertNewObjectForEntityForName:kDBUser inManagedObjectContext:managedObjectContext];
@@ -49,10 +111,10 @@
     return board;
 }
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"First Name:%@\nToken:%@",self.firstName,self.token];
-}
+//- (NSString *)description
+//{
+//    return [NSString stringWithFormat:@"First Name:%@\nToken:%@",self.firstName,self.token];
+//}
 
 - (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {

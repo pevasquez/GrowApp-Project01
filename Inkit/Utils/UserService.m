@@ -11,11 +11,12 @@
 #import "DBUser+Management.h"
 #import "DBInk+Management.h"
 #import "InkitServiceConstants.h"
+#import "InkitDataUtil.h"
 
 
 @implementation UserService
 
-+ (NSError *)registerUser:(DBUser *)user andPassword:(NSString *)password withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)registerUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
@@ -38,12 +39,15 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"first_name" : user.firstName,
+    NSMutableDictionary* jsonDataDictionary = [@{@"first_name" : user.firstName,
                                          @"last_name": user.lastName,
                                          @"email": user.email,
-                                         @"password" : password,
-                                         @"*gender" : user.gender
-                                         };
+                                         @"password" : user.password,
+                                         } mutableCopy];
+    
+    if (user.gender) {
+        jsonDataDictionary[@"gender"] = user.gender;
+    }
     
     NSError *error = nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
@@ -58,25 +62,34 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             //NSError *error = nil;
+             NSError *error = nil;
              
              // Parse JSON Response
-//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                options:NSJSONReadingMutableContainers
+                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
                      // Acá va a ir el código para el caso de éxito
-                     
+                     [InkitDataUtil sharedInstance].activeUser = user;
+                     user.token = responseDictionary[@"access_token"];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     break;
+                 }
+                 case kTTPResponseCodeCreateUserFailed:
+                 {
+                     NSDictionary* errorsDictionary = responseDictionary[@"errors"];
+                     NSString* errorsString = [NSString stringWithFormat:@"%@", errorsDictionary];
+                     [target performSelectorOnMainThread:completeError withObject:errorsString  waitUntilDone:NO];
                      break;
                  }
                  default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     NSString* stringError = [NSString stringWithFormat:@"%@",statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:stringError waitUntilDone:NO];
                      break;
                  }
              }
@@ -90,7 +103,7 @@
 }
 
 
-+ (NSError *)logInUser:(DBUser *)user AndPassword:(NSString *)password WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)logInUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
@@ -114,7 +127,7 @@
     
     // Convert your data and set your request's HTTPBody property
     NSDictionary* jsonDataDictionary = @{@"email" : user.email,
-                                         @"password" : password,
+                                         @"password" : user.password,
                                          };
     
     NSError *error = nil;
@@ -141,6 +154,7 @@
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
+                     [InkitDataUtil sharedInstance].activeUser = user;
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:@"access_token"]) {
                          user.token = [responseDictionary objectForKey:@"access_token"];
@@ -152,8 +166,13 @@
                  }
                  default:
                  {
-                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     [InkitDataUtil sharedInstance].activeUser = nil;
+                     if ([responseDictionary objectForKey:@"message"]) {
+                         [target performSelectorOnMainThread:completeError withObject:[responseDictionary objectForKey:@"message"] waitUntilDone:NO];
+                     } else {
+                         NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                         [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     }
                      break;
                  }
              }
@@ -166,7 +185,7 @@
     return returnError;
 }
 
-+ (NSError *)logOutUser:(DBUser *)user AndPassword:(NSString *)password withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)logOutUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
@@ -189,7 +208,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : @"3",
+    NSDictionary* jsonDataDictionary = @{@"access_token" : user.token,
                                          };
     
     NSError *error = nil;

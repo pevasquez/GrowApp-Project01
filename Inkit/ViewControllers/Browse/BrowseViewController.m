@@ -12,6 +12,7 @@
 #import "ViewInkViewController.h"
 #import "AppDelegate.h"
 #import "InkitTheme.h"
+#import "InkitService.h"
 
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";
 
@@ -34,13 +35,24 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
         // Get ManagedObjectContext from AppDelegate
         self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
     }
+    [InkitService getDashboardInksWithTarget:self completeAction:@selector(getInksComplete) completeError:@selector(getInksError:)];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)getInksComplete
+{
     self.inksArray = [DBInk getAllInksInManagedObjectContext:self.managedObjectContext];
+    [self.browseCollectionView reloadData];
+}
+
+- (void)getInksError:(NSString *)errorString
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {

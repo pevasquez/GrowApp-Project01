@@ -24,6 +24,12 @@
 #define kWebServiceInks                 @"inks"
 #define kWebServiceGetBoards            @"boards?"
 #define kWebServiceGetInk               @"search?access_token=3&keywords="
+#define kWebServiceArtist               @"/artist"
+#define kWebServiceSearch               @"/search"
+#define kWebServiceProfileAccesToken    @"profile?access_token=3&user_id=2"
+#define kWebServiceDashboardAccesToken  @"/dashboard?access_token="
+
+
 
 // Respuestas de los WS
 #define kHTTPResponseCodeOK                 200
@@ -31,5 +37,7 @@
 #define kTTPResponseCodeBadCredentials      400
 #define kTTPResponseCodeUnauthorized        401
 
+// Ink JSON Constants
+#define kInkDescription                 @"description"
 
 #endif

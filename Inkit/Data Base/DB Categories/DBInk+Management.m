@@ -7,14 +7,24 @@
 //
 
 #import "DBInk+Management.h"
+#import "DataManager.h"
 #import "InkitService.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
 #import "DBComment+Management.h"
+#import "DBArtist+Management.h"
+#import "DBImage+Management.h"
+#import "DBShop+Management.h"
+#import "DataManager.h"
+#import "InkitServiceConstants.h"
 
 #define kDBInk     @"DBInk"
 
 @implementation DBInk (Management)
++ (DBInk *)createNewInk
+{
+    return [DBInk createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+}
 
 + (DBInk *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
@@ -30,7 +40,7 @@
 + (DBInk *)createWithImage:(UIImage *)image AndDescription:(NSString *)description InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     DBInk* ink = [DBInk createInManagedObjectContext:managedObjectContext];
-    ink.inkImage = UIImagePNGRepresentation(image);
+    ink.image = [DBImage fromUIImage:image];
     ink.inkDescription = description;
     
     // Save context
@@ -42,7 +52,7 @@
 
 - (UIImage *)getInkImage
 {
-    UIImage* inkImage = [UIImage imageWithData:self.inkImage];
+    UIImage* inkImage = [UIImage imageWithData:self.image.imageData];
     return inkImage;
 }
 
@@ -124,4 +134,36 @@
     }
 }
 
++ (DBInk *)fromJson:(NSDictionary *)inkData
+{
+    DBInk* ink = [DBInk createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    if ([inkData objectForKey:@"id"]) {
+        ink.inkID = inkData[@"id"];
+    }
+    if ([inkData objectForKey:kInkDescription]) {
+        ink.inkDescription = inkData[kInkDescription];
+    }
+    if ([inkData objectForKey:@"image_path"]) {
+        ink.image = [DBImage fromURL:inkData[@"image_path"]];
+    }
+    if ([inkData objectForKey:@"user"]) {
+        ink.user = [DBUser fromJson:inkData[@"user"]];
+    }
+//    if ([inkData objectForKey:@"created_at"]) {
+//        ink.createdAt = inkData[@"created_at"];
+//    }
+//    if ([inkData objectForKey:@"updated_at"]) {
+//        ink.updatedAt = inkData[@"updated_at"];
+//    }
+    if ([inkData objectForKey:@"likes_count"]) {
+        ink.likesCount = inkData[@"lkes_count"];
+    }
+    if ([inkData objectForKey:@"reinks_count"]) {
+        ink.reInksCount = inkData[@"reinks_count"];
+    }
+//    if ([inkData objectForKey:@"extra_data"]) {
+//        ink.extraData = inkData[@"extra_data"];
+//    }
+    return ink;
+}
 @end

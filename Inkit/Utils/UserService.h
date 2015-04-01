@@ -10,5 +10,12 @@
 #import "DBUser+Management.h"
 
 @interface UserService : NSObject
-+ (NSError *)logInUser:(DBUser *)user AndPassword:(NSString *)password WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
++ (NSError *)logInUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
++ (NSError *)registerUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
++ (NSError *)logOutUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
+
 @end

@@ -8,6 +8,9 @@
 
 #import "DBBoard+Management.h"
 #import "InkitService.h"
+#import "DataManager.h"
+#import "InkitServiceConstants.h"
+
 
 #define kDBBoard     @"DBBoard"
 #define kBoardTitle     @"boardTitle"
@@ -125,4 +128,17 @@
     [self.managedObjectContext save:&error];
 }
 
+
++ (DBBoard *)fromJson:(NSDictionary *)boardData
+{
+    DBBoard* board = [DBBoard createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    
+    if ([boardData objectForKey:@"id"]) {
+        board.boardID = boardData[@"id"];
+    }
+    if ([boardData objectForKey:@"name"]) {
+        board.boardTitle = boardData[@"name"];
+    }
+    return board;
+}
 @end

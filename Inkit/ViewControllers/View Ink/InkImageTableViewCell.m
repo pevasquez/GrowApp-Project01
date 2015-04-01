@@ -7,6 +7,7 @@
 //
 
 #import "InkImageTableViewCell.h"
+#import "DBImage+Management.h"
 
 @interface InkImageTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *inkImageView;
@@ -17,7 +18,7 @@
 - (void)configureForInk:(DBInk *)ink
 {
     UIImage* inkImage = [ink getInkImage];
-    self.inkImageView.image = inkImage;
+    [ink.image setInImageView:self.inkImageView];
     self.inkImageView.clipsToBounds = YES;
     self.cellHeight = [self getInkImageHeightForImage:inkImage];
 }
@@ -27,7 +28,7 @@
     CGSize inkImageSize = inkImage.size;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     double newInkImageHeight = inkImageSize.height * screenSize.width / inkImageSize.width;
-    return newInkImageHeight;
+    return MAX(newInkImageHeight, 50);
 }
 
 @end

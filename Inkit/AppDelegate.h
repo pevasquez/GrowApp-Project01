@@ -22,7 +22,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
+- (void)userLoggedOut;
 
 @end
 

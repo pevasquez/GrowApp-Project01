@@ -17,9 +17,11 @@
 #import "DBBoard+Management.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
+#import "DBImage+Management.h"
 #import "AppDelegate.h"
 #import "InkitDataUtil.h"
 #import "InkitTheme.h"
+#import "InkitService.h"
 
 static NSString * const CreateInkImageTableViewCellIdentifier = @"CreateInkImageTableViewCell";
 static NSString * const CreateInkTableViewCellIdentifier = @"CreateInkInkTableViewCell";
@@ -36,7 +38,9 @@ typedef enum
     //kInkCategory,
     kInkBodyPart,
     kInkTattooType,
-    kCreateInkTotal
+    kInkArtist,
+    kInkShop,
+    kCreateInkTotal,
 } kCreateInkCells;
 
 @interface CreateInkViewController () <SelectBoardDelegate>
@@ -63,8 +67,9 @@ typedef enum
     if (!self.activeUser) {
         self.activeUser = [InkitDataUtil sharedInstance].activeUser;
     }
-    self.editngInk = [DBInk createInManagedObjectContext:self.activeUser.managedObjectContext];
-    self.editngInk.inkImage = UIImagePNGRepresentation(self.inkImage);
+    self.editngInk = [DBInk createNewInk];
+    DBImage* image = [DBImage fromUIImage:self.inkImage];
+    image.ink = self.editngInk;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,12 +150,40 @@ typedef enum
             }
             break;
         }
+        case kInkArtist:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+            if (self.editngInk.ofArtist) {
+                cell.textLabel.text = [self.editngInk getArtistAsString];
+                cell.textLabel.textColor = [InkitTheme getColorForText];
+            } else {
+                cell.textLabel.text = NSLocalizedString(@"Select Artist", nil);
+                cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+            }
+            break;
+        }
+
+        case kInkShop:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+            if (self.editngInk.ofShop) {
+                cell.textLabel.text = [self.editngInk getArtistAsString];
+                cell.textLabel.textColor = [InkitTheme getColorForText];
+            } else {
+                cell.textLabel.text = NSLocalizedString(@"Select Shop", nil);
+                cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+            }
+            break;
+        }
+
 
         default:
             break;
     }
     return cell;
 }
+
+
 
 #pragma mark - TableView Delegte Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -262,7 +295,7 @@ typedef enum
 }
 - (IBAction)createInkButtonPressed:(UIBarButtonItem *)sender
 {
-    if (self.editngInk.inkImage && self.editngInk.inkDescription && self.board) {
+    if (self.editngInk.image && self.editngInk.inkDescription && self.board) {
         self.editngInk.user = [InkitDataUtil sharedInstance].activeUser;
         self.editngInk.inBoard = self.board;
         [self.editngInk postWithTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];

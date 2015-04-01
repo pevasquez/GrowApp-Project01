@@ -9,6 +9,7 @@
 #import "BoardCollectionViewCell.h"
 #import "DBInk+Management.h"
 #import "InkitTheme.h"
+#import "DBImage+Management.h"
 
 @interface BoardCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *boardTitleLabel;
@@ -36,15 +37,15 @@
     self.boardTitleLabel.text = board.boardTitle;
     NSArray* inks = board.inks.allObjects;
     
-    if ([inks count]) self.mainImageView.image = [inks[0] getInkImage];
+    if ([inks count]) [((DBInk *)inks[0]).image setInImageView:self.mainImageView];
     else self.mainImageView.image = nil;
-    if ([inks count] > 1) self.firstThumbnailImageView.image = [inks[1] getInkImage];
+    if ([inks count] > 1) [((DBInk *)inks[1]).image setInImageView:self.firstThumbnailImageView];
     else self.firstThumbnailImageView.image = nil;
-    if ([inks count] > 2) self.secondThumbnailImageView.image = [inks[2] getInkImage];
+    if ([inks count] > 2)  [((DBInk *)inks[2]).image setInImageView:self.secondThumbnailImageView];
     else self.secondThumbnailImageView.image = nil;
-    if ([inks count] > 3) self.thirdThumbnailImageView.image = [inks[3] getInkImage];
+    if ([inks count] > 3)  [((DBInk *)inks[3]).image setInImageView:self.thirdThumbnailImageView];
     else self.thirdThumbnailImageView.image = nil;
-    if ([inks count] > 4) self.fourthThumbnailImageView.image = [inks[4] getInkImage];
+    if ([inks count] > 4)  [((DBInk *)inks[4]).image setInImageView:self.fourthThumbnailImageView];
     else self.fourthThumbnailImageView.image = nil;
 }
 

@@ -2,25 +2,32 @@
 //  DBInk.h
 //  Inkit
 //
-//  Created by Cristian Pena on 12/3/15.
+//  Created by María Verónica  Sonzini on 1/4/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DBBoard, DBBodyPart, DBComment, DBTattooType, DBUser;
+@class DBArtist, DBBoard, DBBodyPart, DBComment, DBImage, DBShop, DBTattooType, DBUser;
 
 @interface DBInk : NSManagedObject
 
 @property (nonatomic, retain) NSString * inkDescription;
 @property (nonatomic, retain) NSNumber * inkID;
-@property (nonatomic, retain) NSData * inkImage;
+@property (nonatomic, retain) NSNumber * likesCount;
+@property (nonatomic, retain) NSNumber * reInksCount;
+@property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSDate * updatedAt;
+@property (nonatomic, retain) NSNumber * extraData;
 @property (nonatomic, retain) NSSet *hasComments;
 @property (nonatomic, retain) DBBoard *inBoard;
+@property (nonatomic, retain) DBArtist *ofArtist;
 @property (nonatomic, retain) NSSet *ofBodyParts;
+@property (nonatomic, retain) DBShop *ofShop;
 @property (nonatomic, retain) NSSet *ofTattooTypes;
 @property (nonatomic, retain) DBUser *user;
+@property (nonatomic, retain) DBImage *image;
 @end
 
 @interface DBInk (CoreDataGeneratedAccessors)

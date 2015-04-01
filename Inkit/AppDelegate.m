@@ -33,8 +33,9 @@
 {
     LogInViewController* logInViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInViewController"];
     logInViewController.delegate = self;
+    UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:logInViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = logInViewController;
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
 }
 
@@ -178,7 +179,7 @@
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     // create mock data
-    [DBInk createMockInks:_managedObjectContext];
+    //[DBInk createMockInks:_managedObjectContext];
     
     return _managedObjectContext;
 }

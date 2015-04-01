@@ -2,14 +2,14 @@
 //  DBUser.h
 //  Inkit
 //
-//  Created by Cristian Pena on 12/3/15.
+//  Created by María Verónica  Sonzini on 1/4/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DBBoard, DBComment, DBInk;
+@class DBBoard, DBComment, DBImage, DBInk, DBShop;
 
 @interface DBUser : NSManagedObject
 
@@ -22,16 +22,24 @@
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * locale;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSNumber * token;
 @property (nonatomic, retain) NSString * updatedTime;
 @property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSData * userImage;
 @property (nonatomic, retain) NSNumber * verified;
+@property (nonatomic, retain) NSData * profileURL;
+@property (nonatomic, retain) NSString * fullName;
+@property (nonatomic, retain) NSDate * updatedAt;
+@property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSOrderedSet *boards;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSOrderedSet *hasBoards;
 @property (nonatomic, retain) NSSet *inks;
+@property (nonatomic, retain) DBShop *shop;
+@property (nonatomic, retain) DBImage *profilePic;
+@property (nonatomic, retain) DBImage *profilePicThumbnail;
 @end
 
 @interface DBUser (CoreDataGeneratedAccessors)

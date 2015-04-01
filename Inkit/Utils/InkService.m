@@ -8,6 +8,7 @@
 
 #import "InkService.h"
 #import "InkitServiceConstants.h"
+#import "InkitDataUtil.h"
 
 @implementation InkService
 
@@ -70,6 +71,71 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      
+                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     break;
+                 }
+                 default:
+                 {
+                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     break;
+                 }
+             }
+         } else {
+             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+         }
+         
+     }];
+    
+    return returnError;
+}
+
++ (NSError *)getDashboardInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    // Create returnError
+    NSError* returnError = nil;
+    
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceInks,kWebServiceDashboardAccesToken,[InkitDataUtil sharedInstance].activeUser.token];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a GET request
+    [request setHTTPMethod:@"GET"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // Create Asynchronous Request URLConnection
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+     {
+         if (!connectionError)
+         {
+             // Cast Response
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             NSError *error = nil;
+             
+             // Parse JSON Response
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                options:NSJSONReadingMutableContainers
+                                                                                  error:&error];
+             // Check Response's StatusCode
+             switch (httpResponse.statusCode) {
+                 case kHTTPResponseCodeOK:
+                 {
+                     NSDictionary* dataDictionary = responseDictionary[@"data"];
+                     // Acá va a ir el código para el caso de éxito
+                     for (NSDictionary* inkDictionary in dataDictionary) {
+                         [DBInk fromJson:inkDictionary];
+                     }
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
