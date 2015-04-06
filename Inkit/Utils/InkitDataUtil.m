@@ -8,9 +8,9 @@
 
 #import "InkitDataUtil.h"
 #import "AppDelegate.h"
+#import "DBUser+Management.h"
 
 #define kActiveUser         @"kActiveUser"
-@class DBUser;
 @implementation InkitDataUtil
 + (id)sharedInstance
 {
@@ -35,29 +35,74 @@
 - (void)obtainCurrentUser
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSURL* activeUserIDURL = [userDefaults objectForKey:kActiveUser];
-    if (activeUserIDURL) {
-        AppDelegate* appDelegate = ((AppDelegate*)([[UIApplication sharedApplication] delegate]));
-        NSPersistentStoreCoordinator *persistentStoreCoordinator = appDelegate.persistentStoreCoordinator;
-        NSManagedObjectContext* managedObjectContext = appDelegate.managedObjectContext;
-        NSManagedObjectID *moID = [persistentStoreCoordinator managedObjectIDForURIRepresentation:activeUserIDURL];
-        self.activeUser = (DBUser *)[managedObjectContext objectWithID:moID];
+    NSData* userData = [userDefaults objectForKey:kActiveUser];
+    if (userData) {
+        NSURL* activeUserIDURL = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+        if (activeUserIDURL) {
+            AppDelegate* appDelegate = ((AppDelegate*)([[UIApplication sharedApplication] delegate]));
+            NSPersistentStoreCoordinator *persistentStoreCoordinator = appDelegate.persistentStoreCoordinator;
+            NSManagedObjectContext* managedObjectContext = appDelegate.managedObjectContext;
+            NSManagedObjectID *objectID = [persistentStoreCoordinator managedObjectIDForURIRepresentation:activeUserIDURL];
+            if (!objectID) {
+                return;
+            }
+            NSManagedObject* objectForID = [managedObjectContext objectWithID:objectID];
+            if (![objectForID isFault]) {
+                DBUser* user = (DBUser *)[managedObjectContext objectWithID:objectID];
+                self.activeUser = user;
+            }
+            
+            NSFetchRequest* request = [[NSFetchRequest alloc] init];
+            [request setEntity:[objectID entity]];
+            
+            NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForEvaluatedObject]
+                                                                        rightExpression:[NSExpression expressionForConstantValue:objectForID]
+                                                                               modifier:NSDirectPredicateModifier
+                                                                                   type:NSEqualToPredicateOperatorType
+                                                                                options:0];
+            
+            [request setPredicate:predicate];
+            
+            NSArray *results = [managedObjectContext executeFetchRequest:request error:nil];
+            if ([results count] > 0 )
+            {
+                DBUser* user = (DBUser *)[managedObjectContext objectWithID:objectID];
+                self.activeUser = user;
+            }
+        }
     }
 }
 
-- (void)setActiveUser:(DBUser *)__activeUser
+@synthesize activeUser;
+
+- (void)setActiveUser:(DBUser *)user
 {
-    _activeUser = __activeUser;
+    activeUser = user;
+    
+    AppDelegate* appDelegate = ((AppDelegate*)([[UIApplication sharedApplication] delegate]));
+    NSManagedObjectContext* managedObjectContext = appDelegate.managedObjectContext;
+
+    NSError* error = nil;
+    [managedObjectContext save:&error];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (_activeUser) {
-        //NSURL *activeUserIDURL = [[_activeUser objectID] URIRepresentation];
-        //[userDefaults setObject:activeUserIDURL forKey:kActiveUser];
+    if (activeUser) {
+        NSURL *activeUserIDURL = [[activeUser objectID] URIRepresentation];
+        NSData *activeUserData = [NSKeyedArchiver archivedDataWithRootObject:activeUserIDURL];
+        [userDefaults setObject:activeUserData forKey:kActiveUser];
     } else {
         [userDefaults removeObjectForKey:kActiveUser];
     }
     
     [userDefaults synchronize];
+}
+
+- (DBUser *)activeUser
+{
+    if (!activeUser) {
+        [self obtainCurrentUser];
+    }
+    return activeUser;
 }
 
 @end

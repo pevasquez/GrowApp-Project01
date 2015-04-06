@@ -11,7 +11,7 @@
 #import "InkitTheme.h"
 #import "InkitService.h"
 
-@interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate>
+@interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *eMailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextfield;
@@ -20,19 +20,24 @@
 @property (strong, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *userType;
 @property (strong, nonatomic) DBUser *user;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
 
 @implementation RegisterViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self hideActivityIndicator];
+}
 - (IBAction)userTypeTextFieldClicked:(id)sender
 {
     //[self performSegueWithIdentifier:@"UserType" sender:nil];
 }
 
-- (IBAction)registerButtonPressed:(id)sender {
-
+- (void)registerUser {
     if ([self verifyTextFields]) {
         // Continue registration process
         self.user = [DBUser createNewUser];
@@ -40,9 +45,14 @@
         self.user.password = self.passwordTextfield.text;
         self.user.firstName = self.firstNameTextField.text;
         self.user.lastName = self.lastNameTextField.text;
-        
+        [self showActivityIndicator];
         [InkitService registerUser:self.user WithTarget:self completeAction:@selector(registerUserComplete) completeError:@selector(registerUserError:)];
     }
+}
+
+- (IBAction)registerButtonPressed:(id)sender {
+
+    [self registerUser];
 }
 
 - (void)registerNewUser {
@@ -57,6 +67,7 @@
 }
 
 - (void)registerUserError:(NSString *)errorMessage {
+    [self hideActivityIndicator];
     // TODO: mostrar errores en caso de mail ya tomado, etc.
     UIAlertView *alert= [[UIAlertView alloc]initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
@@ -65,6 +76,7 @@
 
 
 - (void)registerUserComplete {
+    [self hideActivityIndicator];
     [self.delegate registrationCompleteForUser:self.user];
 
 }
@@ -136,10 +148,52 @@
     }
 }
 
+#pragma mark - Activity Indicator Methods
+- (void) showActivityIndicator
+{
+    self.eMailTextField.userInteractionEnabled = NO;
+    self.passwordTextfield.userInteractionEnabled = NO;
+    self.confirmPasswordTextField.userInteractionEnabled = NO;
+    self.firstNameTextField.userInteractionEnabled = NO;
+    self.lastNameTextField.userInteractionEnabled = NO;
+    self.userType.userInteractionEnabled = NO;
+    self.activityIndicatorView.hidden = NO;
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void) hideActivityIndicator
+{
+    self.eMailTextField.userInteractionEnabled = YES;
+    self.passwordTextfield.userInteractionEnabled = YES;
+    self.confirmPasswordTextField.userInteractionEnabled = YES;
+    self.firstNameTextField.userInteractionEnabled = YES;
+    self.lastNameTextField.userInteractionEnabled = YES;
+    self.userType.userInteractionEnabled = YES;
+    self.activityIndicatorView.hidden = YES;
+
+    [self.activityIndicatorView stopAnimating];
+}
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar
 {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.firstNameTextField) {
+        [self.lastNameTextField becomeFirstResponder];
+    }else if (textField == self.lastNameTextField){
+        [self.eMailTextField becomeFirstResponder];
+    }else if (textField == self.eMailTextField){
+        [self.passwordTextfield becomeFirstResponder];
+    }else if (textField == self.passwordTextfield){
+        [self.confirmPasswordTextField becomeFirstResponder];
+    }else if (textField == self.confirmPasswordTextField){
+        [self.userType becomeFirstResponder];
+    }else if (textField == self.userType){
+        [self registerUser];
+    }
+    return NO;
+}
 @end

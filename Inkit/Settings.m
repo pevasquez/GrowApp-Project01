@@ -13,6 +13,7 @@
 
 @interface Settings () <UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -29,6 +30,7 @@ static NSString *cellIdentifier;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self hideActivityIndicator];
     
     self.data = @[@"Log Out",
                   @"Etc",
@@ -38,8 +40,9 @@ static NSString *cellIdentifier;
     
     cellIdentifier = @"rowCell";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
-    
+
     [self customizeTableView];
+    
 }
 
 
@@ -72,82 +75,54 @@ static NSString *cellIdentifier;
 - (void)customizeTableView
 {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+
 }
+
 
 - (void)logOutUserComplete
 {
     AppDelegate* appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appDelegate userLoggedOut];
+    [self hideActivityIndicator];
 }
 
-- (void)logOutUserError
+- (void)logOutUserError:(NSString *)errorMessage
 {
-    
+    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [self hideActivityIndicator];
+
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.delegate didSelectSettings:self.data[indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
     
+    
     if (indexPath.row == 0)
     {
-        [InkitService logOutUser:[InkitDataUtil sharedInstance].activeUser WithTarget:self completeAction:@selector(logOutUserComplete) completeError:@selector(logOutUserError)];
+        [self showActivityIndicator];
+        [InkitService logOutUser:[InkitDataUtil sharedInstance].activeUser WithTarget:self completeAction:@selector(logOutUserComplete) completeError:@selector(logOutUserError:)];
     }
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+#pragma mark - Activity Indicator Methods
+- (void) showActivityIndicator
+{
+    self.activityIndicatorView.hidden = NO;
     
-    // Configure the cell...
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void) hideActivityIndicator
+{
+    self.activityIndicatorView.hidden = YES;
     
-    return cell;
+    [self.activityIndicatorView stopAnimating];
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

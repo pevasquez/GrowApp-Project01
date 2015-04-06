@@ -102,7 +102,7 @@ typedef enum
             // of the cell's contentView and the bottom of the table view cell.
             height += 1;
             
-            return height;
+            return MAX(height,10);
             break;
         }
         case kInkActions:

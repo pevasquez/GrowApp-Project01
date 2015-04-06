@@ -10,6 +10,7 @@
 #import "CreateInkImageTableViewCell.h"
 #import "SelectBoardTableViewController.h"
 #import "SelectLocalTableViewController.h"
+#import "SelectRemoteTableViewController.h"
 #import "InkDescriptionTableViewCell.h"
 #import "TextViewTableViewCell.h"
 #import "ViewInkViewController.h"
@@ -183,7 +184,47 @@ typedef enum
     return cell;
 }
 
-
+- (BOOL)verifyCells
+{
+    if([self.editngInk.inkDescription isEqualToString:@""]) {
+        
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    } else if ([self.editngInk.inkDescription isEqualToString:@""]) {
+        
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    } else if (!self.board) {
+        
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Board" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }else if ([self.editngInk.ofBodyParts count]) {
+        
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Body Part" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }else if ([self.editngInk.ofTattooTypes count]) {
+        
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Tattoo Type" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }else if (self.editngInk.ofArtist) {
+        
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Artist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    }else if (self.editngInk.ofShop) {
+        
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Shop" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return NO;
+    
+    }
+    return YES;
+}
 
 #pragma mark - TableView Delegte Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -246,6 +287,12 @@ typedef enum
             [self performSegueWithIdentifier:@"SelectLocalSegue" sender:indexPath];
             break;
         }
+        case kInkArtist:
+        case kInkShop:
+        {
+            [self performSegueWithIdentifier:@"SelectRemoteSegue" sender:indexPath];
+            break;
+        }
         default:
             break;
     }
@@ -279,7 +326,15 @@ typedef enum
             selectLocalTableViewController.localsArray = [DBTattooType getTattooTypeSortedInManagedObjectContext:self.activeUser.managedObjectContext];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Tattoo Types",nil);
         }
-        
+    } else if ([[segue destinationViewController] isKindOfClass:[SelectRemoteTableViewController class]]) {
+        SelectRemoteTableViewController* selectRemoteTableViewController = [segue destinationViewController];
+        selectRemoteTableViewController.editingInk = self.editngInk;
+        NSIndexPath* indexPath = (NSIndexPath* )sender;
+        if (indexPath.row == kInkArtist) {
+            selectRemoteTableViewController.title = NSLocalizedString(@"Select Artist",nil);
+        } else if (indexPath.row == kInkShop) {
+            selectRemoteTableViewController.title = NSLocalizedString(@"Select Shop",nil);
+        }
     }
 }
 
@@ -295,16 +350,21 @@ typedef enum
 }
 - (IBAction)createInkButtonPressed:(UIBarButtonItem *)sender
 {
-    if (self.editngInk.image && self.editngInk.inkDescription && self.board) {
-        self.editngInk.user = [InkitDataUtil sharedInstance].activeUser;
+    if ([self verifyCells]) {
         self.editngInk.inBoard = self.board;
         [self.editngInk postWithTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
-    } else {
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Complete all the missing information", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
-        [alertView show];
     }
-    
+//        if (self.editngInk.image && self.editngInk.inkDescription && self.board) {
+//        self.editngInk.user = [InkitDataUtil sharedInstance].activeUser;
+//            } else {
+//        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Complete all the missing information", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//    
 }
+
+
+
 - (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
 {
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"All data will be lost", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Accept", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];

@@ -23,6 +23,6 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)userLoggedOut;
-
+- (void)setLogInViewController;
 @end
 

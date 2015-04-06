@@ -2,7 +2,7 @@
 //  DBArtist.h
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 30/3/15.
+//  Created by María Verónica  Sonzini on 2/4/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -13,21 +13,22 @@
 
 @interface DBArtist : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * lastName;
-@property (nonatomic, retain) NSSet *inShop;
-@property (nonatomic, retain) NSSet *hasInks;
-@property (nonatomic, retain) NSSet *hasTattooType;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSSet *hasBoards;
 @property (nonatomic, retain) DBBodyPart *hasBodyParts;
+@property (nonatomic, retain) NSSet *hasInks;
+@property (nonatomic, retain) NSSet *hasTattooType;
+@property (nonatomic, retain) NSSet *inShop;
 @end
 
 @interface DBArtist (CoreDataGeneratedAccessors)
 
-- (void)addInShopObject:(DBShop *)value;
-- (void)removeInShopObject:(DBShop *)value;
-- (void)addInShop:(NSSet *)values;
-- (void)removeInShop:(NSSet *)values;
+- (void)addHasBoardsObject:(DBBoard *)value;
+- (void)removeHasBoardsObject:(DBBoard *)value;
+- (void)addHasBoards:(NSSet *)values;
+- (void)removeHasBoards:(NSSet *)values;
 
 - (void)addHasInksObject:(DBInk *)value;
 - (void)removeHasInksObject:(DBInk *)value;
@@ -39,9 +40,9 @@
 - (void)addHasTattooType:(NSSet *)values;
 - (void)removeHasTattooType:(NSSet *)values;
 
-- (void)addHasBoardsObject:(DBBoard *)value;
-- (void)removeHasBoardsObject:(DBBoard *)value;
-- (void)addHasBoards:(NSSet *)values;
-- (void)removeHasBoards:(NSSet *)values;
+- (void)addInShopObject:(DBShop *)value;
+- (void)removeInShopObject:(DBShop *)value;
+- (void)addInShop:(NSSet *)values;
+- (void)removeInShop:(NSSet *)values;
 
 @end

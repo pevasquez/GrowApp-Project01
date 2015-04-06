@@ -12,7 +12,8 @@
 #import "DBBoard+Management.h"
 
 @interface InkService : NSObject
-+ (NSError *) createInk:(DBInk *)ink forUser:(DBUser *)user inBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (NSError *)createInk:(DBInk *)ink forUser:(DBUser *)user inBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)getDashboardInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (NSError *)getArtistsForSearchString:(NSString *)searchString withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
 @end

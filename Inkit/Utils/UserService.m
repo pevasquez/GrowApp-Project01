@@ -158,6 +158,7 @@
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:@"access_token"]) {
                          user.token = [responseDictionary objectForKey:@"access_token"];
+                         [InkitDataUtil sharedInstance].activeUser = user;
                          [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      } else {
                          [target performSelectorOnMainThread:completeError withObject:nil waitUntilDone:NO];
@@ -205,15 +206,11 @@
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+
     
-    // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : user.token,
-                                         };
-    
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    NSString *encodedDictionary = [NSString stringWithFormat:@"access_token=%@",user.token];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
     
     // Create Asynchronous Request URLConnection
     [NSURLConnection sendAsynchronousRequest:request
@@ -224,25 +221,21 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             //NSError *error = nil;
              
-             // Parse JSON Response
-//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
-                 case kHTTPResponseCodeOK:
+                 case 204:
                  {
                      // Acá va a ir el código para el caso de éxito
-                     
+                     [InkitDataUtil sharedInstance].activeUser = nil;
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
                  default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:errorString waitUntilDone:NO];
                      break;
                  }
              }

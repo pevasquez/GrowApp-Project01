@@ -28,7 +28,11 @@
     CGSize inkImageSize = inkImage.size;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     double newInkImageHeight = inkImageSize.height * screenSize.width / inkImageSize.width;
-    return MAX(newInkImageHeight, 50);
+    if (newInkImageHeight != newInkImageHeight) {
+        return 300;
+    } else {
+    return newInkImageHeight;
+    }
 }
 
 @end
