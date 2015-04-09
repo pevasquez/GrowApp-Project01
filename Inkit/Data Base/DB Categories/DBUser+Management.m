@@ -32,50 +32,114 @@
 {
     DBUser* user = [DBUser createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
     
-    if ([userData objectForKey:@"id"]) {
-        user.userID = userData[@"id"];
-    }
-    if ([userData objectForKey:@"profile_pic"]) {
-        user.profilePic = [DBImage fromURL:userData[@"profile_pic"]];
-    }
-    if ([userData objectForKey:@"profile_pic_thumbnail"]) {
-        user.profilePicThumbnail = [DBImage fromURL:userData[@"profile_pic_thumbnail"]];
-    }
-    if ([userData objectForKey:@"first_name"]) {
-        user.firstName = userData[@"first_name"];
-    }
-    if ([userData objectForKey:@"last_name"]) {
-        user.lastName = userData[@"last_name"];
-    }
-    if ([userData objectForKey:@"full_name"]) {
-        user.fullName = userData[@"full_name"];
-    }
-    if ([userData objectForKey:@"profile_url"]) {
-        user.profileURL = userData[@"profile_url"];
-    }
-//    if ([userData objectForKey:@"created_at"]) {
-//        user.createdAt = userData[@"created_at"];
-//    }
-//    if ([userData objectForKey:@"updated_at"]) {
-//        user.updatedAt = userData[@"updated_at"];
-//    }
+    [user updateWithJson:userData];
     return user;
 }
 
-/*"user": {
-    "data": {
-        "type": "User",
-        "id": 9,
-        "profile_pic": "http://inkit.digbang.com/assets/frontend/img/user_default.png",
-        "profile_pic_thumbnail": "http://inkit.digbang.com/assets/frontend/img/user_default_thumbnail.png",
-        "first_name": "Dario",
-        "last_name": "Govergun",
-        "full_name": "Dario Govergun",
-        "profile_url": "dgovergun",
-        "created_at": 1424797742,
-        "updated_at": 1425322833
+- (void)updateWithJson:(NSDictionary *)jsonDictionary
+{
+    if ([jsonDictionary objectForKey:@"styles"]) {
+        self.styles = jsonDictionary[@"styles"];
     }
-},*/
+    
+    if ([jsonDictionary objectForKey:@"id"]) {
+        self.userID = jsonDictionary[@"id"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"type"]) {
+        self.type = jsonDictionary[@"type"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"country"]) {
+        self.country = jsonDictionary[@"country"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"gender"]) {
+        self.gender = jsonDictionary[@"gender"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"city"]) {
+        self.city = jsonDictionary[@"city"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"email"]) {
+        self.email = jsonDictionary[@"email"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"profile_pic"]) {
+        self.profilePic = [DBImage fromURL:jsonDictionary[@"profile_pic"]];
+    }
+    if ([jsonDictionary objectForKey:@"profile_pic_thumbnail"]) {
+        self.profilePicThumbnail = [DBImage fromURL:jsonDictionary[@"profile_pic_thumbnail"]];
+    }
+    
+    if ([jsonDictionary objectForKey:@"first_name"]) {
+        self.firstName = jsonDictionary[@"first_name"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"last_name"]) {
+        self.lastName = jsonDictionary[@"last_name"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"full_name"]) {
+        self.fullName = jsonDictionary[@"full_name"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"name"]) {
+        self.fullName = jsonDictionary[@"name"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"profile_url"]) {
+        self.profileURL = jsonDictionary[@"profile_url"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"created_at"]) {
+        self.createdAt = jsonDictionary[@"created_at"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"updated_at"]) {
+        self.updatedAt = jsonDictionary[@"updated_at"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"default_language"]) {
+        self.defaultLanguage = jsonDictionary[@"default_language"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"artist_shop_data"]) {
+        self.artistShopData = jsonDictionary[@"artist_shop_data"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"inks_liked_counts"]) {
+        self.inksLikedCount = jsonDictionary[@"inks_liked_counts"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"followers_count"]) {
+        self.followersCount = jsonDictionary[@"followers_count"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"boards_count"]) {
+        self.boardsCount = jsonDictionary[@"boards_count"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"social_networks"]) {
+        self.socialNetworks = jsonDictionary[@"social_networks"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"artists"]) {
+        self.artists = jsonDictionary[@"artists"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"shops"]) {
+        self.shops = jsonDictionary[@"shops"];
+    }
+    
+    if ([jsonDictionary objectForKey:@"tattoo_types"]) {
+        self.tattooTypes = jsonDictionary[@"tattoo_types"];
+    }
+    
+    
+}
+
 
 + (DBUser *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
@@ -96,7 +160,7 @@
     // Save context
     NSError* error = nil;
     [managedObjectContext save:&error];
-
+    
     return user;
 }
 

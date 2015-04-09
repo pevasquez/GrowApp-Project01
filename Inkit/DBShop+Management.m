@@ -7,6 +7,8 @@
 //
 
 #import "DBShop+Management.h"
+#import "DBUser+Management.h"
+#import "DataManager.h"
 
 @implementation DBShop (Management)
 
@@ -27,6 +29,19 @@
     shop.name = name;
     return shop;
 }
+
++ (DBShop *)fromJson:(NSDictionary *)jsonDictionary
+{
+    DBShop* shop = [DBShop createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    [shop updateWithJson:jsonDictionary];
+    return shop;
+}
+
+- (void)updateWithJson:(NSDictionary *)jsonDictionary
+{
+    [super updateWithJson:jsonDictionary];
+}
+
 
 + (NSArray *)getShopSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {

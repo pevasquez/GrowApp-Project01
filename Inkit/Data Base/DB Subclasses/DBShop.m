@@ -2,7 +2,7 @@
 //  DBShop.m
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 30/3/15.
+//  Created by María Verónica  Sonzini on 8/4/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -17,12 +17,14 @@
 
 @implementation DBShop
 
-@dynamic name;
+@dynamic shopID;
+@dynamic eMail;
+@dynamic defaultLaguage;
 @dynamic hasArtists;
-@dynamic hasTattooType;
-@dynamic hasComments;
 @dynamic hasBodyParts;
-@dynamic hasUser;
+@dynamic hasComments;
 @dynamic hasInks;
+@dynamic hasTattooType;
+@dynamic hasUser;
 
 @end

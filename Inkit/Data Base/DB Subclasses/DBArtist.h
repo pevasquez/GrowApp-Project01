@@ -2,21 +2,19 @@
 //  DBArtist.h
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 2/4/15.
+//  Created by María Verónica  Sonzini on 8/4/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "DBUser.h"
 
-@class DBBoard, DBBodyPart, DBInk, DBShop, DBTattooType;
+@class DBBodyPart, DBInk, DBShop, DBTattooType;
 
-@interface DBArtist : NSManagedObject
+@interface DBArtist : DBUser
 
-@property (nonatomic, retain) NSString * lastName;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * id;
-@property (nonatomic, retain) NSSet *hasBoards;
+@property (nonatomic, retain) NSNumber * artistId;
 @property (nonatomic, retain) DBBodyPart *hasBodyParts;
 @property (nonatomic, retain) NSSet *hasInks;
 @property (nonatomic, retain) NSSet *hasTattooType;
@@ -24,11 +22,6 @@
 @end
 
 @interface DBArtist (CoreDataGeneratedAccessors)
-
-- (void)addHasBoardsObject:(DBBoard *)value;
-- (void)removeHasBoardsObject:(DBBoard *)value;
-- (void)addHasBoards:(NSSet *)values;
-- (void)removeHasBoards:(NSSet *)values;
 
 - (void)addHasInksObject:(DBInk *)value;
 - (void)removeHasInksObject:(DBInk *)value;

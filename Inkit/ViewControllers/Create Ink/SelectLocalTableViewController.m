@@ -11,8 +11,6 @@
 #import "DBTattooType+Management.h"
 #import "InkitTheme.h"
 
-static NSString * const LocalTableViewCellIdentifier = @"LocalTableViewCell";
-
 @interface SelectLocalTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *localsTableView;
 @property (strong, nonatomic) NSMutableArray* filteredLocalsArray;

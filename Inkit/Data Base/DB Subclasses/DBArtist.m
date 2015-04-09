@@ -2,12 +2,11 @@
 //  DBArtist.m
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 2/4/15.
+//  Created by María Verónica  Sonzini on 8/4/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import "DBArtist.h"
-#import "DBBoard.h"
 #import "DBBodyPart.h"
 #import "DBInk.h"
 #import "DBShop.h"
@@ -16,10 +15,7 @@
 
 @implementation DBArtist
 
-@dynamic lastName;
-@dynamic name;
-@dynamic id;
-@dynamic hasBoards;
+@dynamic artistId;
 @dynamic hasBodyParts;
 @dynamic hasInks;
 @dynamic hasTattooType;

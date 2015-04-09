@@ -60,7 +60,7 @@
 {
     NSString* bodyParts = @"";
     for (DBBodyPart* bodyPart in self.ofBodyParts) {
-        bodyParts = [bodyParts stringByAppendingString:[NSString stringWithFormat:@"%@, ",bodyPart.name]];
+        bodyParts = [bodyParts stringByAppendingString:[NSString stringWithFormat:@"%@ ",bodyPart.name]];
     }
     return bodyParts;
 }
@@ -69,7 +69,7 @@
 {
     NSString* tattooTypes = @"";
     for (DBTattooType* tattooType in self.ofTattooTypes) {
-        tattooTypes = [tattooTypes stringByAppendingString:[NSString stringWithFormat:@"%@, ",tattooType.name]];
+        tattooTypes = [tattooTypes stringByAppendingString:[NSString stringWithFormat:@"%@ ",tattooType.name]];
     }
     return tattooTypes;
 }

@@ -25,7 +25,9 @@
 #define kWebServiceGetBoards            @"boards?"
 #define kWebServiceGetInk               @"search?access_token=3&keywords="
 #define kWebServiceArtist               @"/artist"
+#define kWebServiceArtist2              @"artist/"
 #define kWebServiceSearch               @"/search"
+#define kWebServiceSearch2              @"search"
 #define kWebServiceProfileAccesToken    @"profile?access_token=3&user_id=2"
 #define kWebServiceDashboardAccesToken  @"/dashboard?access_token="
 

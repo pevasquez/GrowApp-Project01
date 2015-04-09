@@ -9,11 +9,15 @@
 #import "SelectRemoteTableViewController.h"
 #import "DBArtist+Management.h"
 #import "InkitService.h"
+#import "InkService.h"
+#import "DBShop+Management.h"
+#import "InkitTheme.h"
 
-@interface SelectRemoteTableViewController ()
 
-@property (strong, nonatomic) IBOutlet UISearchBar *UIsearchBar;
-@property (strong, nonatomic) IBOutlet UITableView *UItableViewCell;
+@interface SelectRemoteTableViewController ()<UISearchBarDelegate>
+
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UITableView *remoteTableViewCell;
 @property (strong, nonatomic) NSArray *tableData;
 
 @end
@@ -22,8 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [InkitService getArtistsForSearchString:@"Artist" withTarget:self completeAction:@selector(getArtistComplete:) completeError:@selector(getArtistError:)];
+    [self searchForSearchString:@""];
 }
 
 - (void)getArtistError:(NSString *)stringError
@@ -58,18 +61,12 @@
 }
 
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectRemoteCell"];
     
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
     DBArtist* artist = [self.tableData objectAtIndex:indexPath.row];
-    cell.textLabel.text = artist.name;
+    cell.textLabel.text = artist.fullName;
     
     return cell;
 }
@@ -81,5 +78,15 @@
     [alert show];
 }
 
+- (void)searchForSearchString:(NSString *)string
+{
+    [InkitService getArtistsForSearchString:string withTarget:self completeAction:@selector(getArtistComplete:) completeError:@selector(getArtistError:)];
+}
+
+#pragma mark - Search Bar Methods
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self searchForSearchString:searchText];
+}
 
 @end

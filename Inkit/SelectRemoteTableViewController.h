@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBInk+Management.h"
+#import "DBInk+Management.h" 
+
 
 @interface SelectRemoteTableViewController : UITableViewController
 
 @property (nonatomic) int cellCount;
 @property (strong, nonatomic)DBInk* editingInk;
+@property (strong, nonatomic) NSArray* remoteArray;
+
+
 @end

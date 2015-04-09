@@ -14,6 +14,8 @@
 @interface DBUser (Management)
 + (DBUser *)createNewUser;
 + (DBUser *)fromJson:(NSDictionary *)userData;
+- (void)updateWithJson:(NSDictionary *)jsonDictionary;
+
 + (DBUser *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBUser *)createMockUserInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (DBBoard *)createBoardWithTitle:(NSString *)title AndDescription:(NSString *)description;

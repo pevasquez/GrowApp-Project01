@@ -8,6 +8,7 @@
 
 #import "DBArtist+Management.h"
 #import "DataManager.h"
+#import "DBUser+Management.h"
 
 @implementation DBArtist (Management)
 
@@ -31,15 +32,15 @@
 + (DBArtist *)fromJson:(NSDictionary *)jsonDictionary
 {
     DBArtist* artist = [DBArtist createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
-    
-    if ([jsonDictionary objectForKey:@"id"]) {
-        artist.id = jsonDictionary[@"id"];
-}
-    if ([jsonDictionary objectForKey:@"name"]) {
-        artist.name = jsonDictionary[@"name"];
-    }
+    [artist updateWithJson:jsonDictionary];
     return artist;
 }
+
+- (void)updateWithJson:(NSDictionary *)jsonDictionary
+{
+    [super updateWithJson:jsonDictionary];
+}
+
 
 + (NSArray *)getArtistSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {

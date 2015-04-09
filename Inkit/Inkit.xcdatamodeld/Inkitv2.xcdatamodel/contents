@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1514" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="DBArtist" representedClassName="DBArtist" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hasBoards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBBoard" inverseName="inArtist" inverseEntity="DBBoard" syncable="YES"/>
+    <entity name="DBArtist" representedClassName="DBArtist" parentEntity="DBUser" syncable="YES">
+        <attribute name="artistId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="hasBodyParts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBBodyPart" inverseName="inArtist" inverseEntity="DBBodyPart" syncable="YES"/>
         <relationship name="hasInks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="ofArtist" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="hasTattooType" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBTattooType" inverseName="inArtist" inverseEntity="DBTattooType" syncable="YES"/>
@@ -15,9 +12,9 @@
         <attribute name="boardDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="boardID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="boardTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="inArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBArtist" inverseName="hasBoards" inverseEntity="DBArtist" syncable="YES"/>
+        <relationship name="inArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBArtist" syncable="YES"/>
         <relationship name="inks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="inBoard" inverseEntity="DBInk" syncable="YES"/>
-        <relationship name="ofUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="hasBoards" inverseEntity="DBUser" syncable="YES"/>
+        <relationship name="ofUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="boards" inverseEntity="DBUser" syncable="YES"/>
     </entity>
     <entity name="DBBodyPart" representedClassName="DBBodyPart" syncable="YES">
@@ -34,7 +31,7 @@
         <relationship name="ofUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="comments" inverseEntity="DBUser" syncable="YES"/>
     </entity>
     <entity name="DBImage" representedClassName="DBImage" syncable="YES">
-        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="image" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="userPic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="profilePic" inverseEntity="DBUser" syncable="YES"/>
@@ -57,8 +54,10 @@
         <relationship name="ofTattooTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBTattooType" inverseName="inInks" inverseEntity="DBTattooType" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="inks" inverseEntity="DBUser" syncable="YES"/>
     </entity>
-    <entity name="DBShop" representedClassName="DBShop" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="DBShop" representedClassName="DBShop" parentEntity="DBUser" syncable="YES">
+        <attribute name="defaultLaguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eMail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shopID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="hasArtists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBArtist" inverseName="inShop" inverseEntity="DBArtist" syncable="YES"/>
         <relationship name="hasBodyParts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBBodyPart" inverseName="inShop" inverseEntity="DBBodyPart" syncable="YES"/>
         <relationship name="hasComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBComment" inverseName="ofShop" inverseEntity="DBComment" syncable="YES"/>
@@ -73,43 +72,56 @@
         <relationship name="inShop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBShop" inverseName="hasTattooType" inverseEntity="DBShop" syncable="YES"/>
     </entity>
     <entity name="DBUser" representedClassName="DBUser" syncable="YES">
+        <attribute name="artists" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artistShopData" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="boardsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="defaultLanguage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followersCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inksLikedCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileURL" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="shops" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="socialNetworks" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="styles" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tattooTypes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="updatedTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="verified" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="boards" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DBBoard" inverseName="user" inverseEntity="DBBoard" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBComment" inverseName="ofUser" inverseEntity="DBComment" syncable="YES"/>
-        <relationship name="hasBoards" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DBBoard" inverseName="ofUser" inverseEntity="DBBoard" syncable="YES"/>
+        <relationship name="hasBoards" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DBBoard" syncable="YES"/>
         <relationship name="inks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="user" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="profilePic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" inverseName="userPic" inverseEntity="DBImage" syncable="YES"/>
         <relationship name="profilePicThumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" inverseName="userPicThumbnail" inverseEntity="DBImage" syncable="YES"/>
         <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBShop" inverseName="hasUser" inverseEntity="DBShop" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DBArtist" positionX="-29" positionY="575" width="128" height="165"/>
-        <element name="DBBoard" positionX="268" positionY="266" width="128" height="165"/>
-        <element name="DBBodyPart" positionX="-27" positionY="179" width="128" height="103"/>
-        <element name="DBComment" positionX="151" positionY="165" width="128" height="118"/>
-        <element name="DBImage" positionX="27" positionY="153" width="128" height="118"/>
+        <element name="DBArtist" positionX="-99" positionY="692" width="128" height="118"/>
+        <element name="DBBoard" positionX="403" positionY="180" width="128" height="163"/>
+        <element name="DBBodyPart" positionX="-288" positionY="144" width="128" height="103"/>
+        <element name="DBComment" positionX="196" positionY="108" width="128" height="118"/>
+        <element name="DBImage" positionX="27" positionY="90" width="128" height="120"/>
         <element name="DBInk" positionX="-11" positionY="360" width="128" height="268"/>
-        <element name="DBShop" positionX="277" positionY="563" width="128" height="148"/>
+        <element name="DBShop" positionX="277" positionY="563" width="128" height="178"/>
         <element name="DBTattooType" positionX="243" positionY="437" width="128" height="103"/>
-        <element name="DBUser" positionX="-180" positionY="0" width="128" height="448"/>
+        <element name="DBUser" positionX="-684" positionY="0" width="128" height="643"/>
     </elements>
 </model>
