@@ -15,6 +15,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 static NSString * const InkActionsTableViewCellIdentifier = @"InkActionsTableViewCell";
 static NSString * const InkUserTableViewCellIdentifier = @"InkUserTableViewCell";
 
+
 typedef enum
 {
     kInkImage,

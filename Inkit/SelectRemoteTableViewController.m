@@ -83,10 +83,10 @@
     [InkitService getArtistsForSearchString:string withTarget:self completeAction:@selector(getArtistComplete:) completeError:@selector(getArtistError:)];
 }
 
-#pragma mark - Search Bar Methods
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    [self searchForSearchString:searchText];
-}
+//#pragma mark - Search Bar Methods
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+//{
+//    [self searchForSearchString:searchText];
+//}
 
 @end

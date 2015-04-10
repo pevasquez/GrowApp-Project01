@@ -9,22 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Inkit/ViewControllers/View Ink/ViewInkViewController.m"
-            timestampString = "450046919.2432"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.m"
             timestampString = "450046998.452996"
             startingColumnNumber = "9223372036854775807"
@@ -54,16 +38,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Inkit/ViewControllers/View Ink/ViewInkViewController.m"
-            timestampString = "450047102.77144"
+            filePath = "Inkit/ViewControllers/Create Ink/CreateInkViewController.m"
+            timestampString = "450316825.527983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "-doneButtonPressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

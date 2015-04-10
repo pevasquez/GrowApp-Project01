@@ -11,12 +11,12 @@
 		8647F6F91AD5BD8500BD93E7 /* DBArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8647F6F81AD5BD8500BD93E7 /* DBArtist.m */; };
 		8647F6FC1AD5BD8600BD93E7 /* DBShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8647F6FB1AD5BD8600BD93E7 /* DBShop.m */; };
 		8647F6FF1AD5BD8600BD93E7 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8647F6FE1AD5BD8600BD93E7 /* DBUser.m */; };
+		86AC1E601AD74B97004BD1D1 /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AC1E5F1AD74B97004BD1D1 /* DBImage.m */; };
 		86C2F62A1AAA4E5A003D58E3 /* DBTattooType.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F6291AAA4E5A003D58E3 /* DBTattooType.m */; };
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
 		86C411C71ACC84AF00463622 /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411C61ACC84AF00463622 /* DBBoard.m */; };
 		86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411CC1ACC85DC00463622 /* DBImage+Management.m */; };
 		86C411E81ACC934600463622 /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411E71ACC934600463622 /* DBInk.m */; };
-		86C411EB1ACC934700463622 /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411EA1ACC934700463622 /* DBImage.m */; };
 		86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */; };
 		86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98E81AC32E3200A39C28 /* UserTypeViewController.m */; };
 		86DC98F81AC4955700A39C28 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98F71AC4955700A39C28 /* DataManager.m */; };
@@ -108,6 +108,8 @@
 		8647F6FB1AD5BD8600BD93E7 /* DBShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBShop.m; path = "Data Base/DB Subclasses/DBShop.m"; sourceTree = "<group>"; };
 		8647F6FD1AD5BD8600BD93E7 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
 		8647F6FE1AD5BD8600BD93E7 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
+		86AC1E5E1AD74B97004BD1D1 /* DBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBImage.h; path = "Data Base/DB Subclasses/DBImage.h"; sourceTree = "<group>"; };
+		86AC1E5F1AD74B97004BD1D1 /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
 		86C2F6281AAA4E5A003D58E3 /* DBTattooType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBTattooType.h; path = "Data Base/DB Subclasses/DBTattooType.h"; sourceTree = "<group>"; };
 		86C2F6291AAA4E5A003D58E3 /* DBTattooType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBTattooType.m; path = "Data Base/DB Subclasses/DBTattooType.m"; sourceTree = "<group>"; };
 		86C2F62E1AAA4E9F003D58E3 /* DBTattooType+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBTattooType+Management.h"; path = "Data Base/DB Categories/DBTattooType+Management.h"; sourceTree = "<group>"; };
@@ -118,8 +120,6 @@
 		86C411CC1ACC85DC00463622 /* DBImage+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBImage+Management.m"; path = "Data Base/DB Categories/DBImage+Management.m"; sourceTree = "<group>"; };
 		86C411E61ACC934600463622 /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBInk.h; path = "Data Base/DB Subclasses/DBInk.h"; sourceTree = "<group>"; };
 		86C411E71ACC934600463622 /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBInk.m; path = "Data Base/DB Subclasses/DBInk.m"; sourceTree = "<group>"; };
-		86C411E91ACC934700463622 /* DBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBImage.h; path = "Data Base/DB Subclasses/DBImage.h"; sourceTree = "<group>"; };
-		86C411EA1ACC934700463622 /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
 		86DC98DC1AC2E21B00A39C28 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		86DC98E71AC32E3200A39C28 /* UserTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeViewController.h; sourceTree = "<group>"; };
@@ -676,14 +676,14 @@
 		FBDCB1D11A83F7F000E05053 /* DBSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				86AC1E5E1AD74B97004BD1D1 /* DBImage.h */,
+				86AC1E5F1AD74B97004BD1D1 /* DBImage.m */,
 				8647F6FD1AD5BD8600BD93E7 /* DBUser.h */,
 				8647F6FE1AD5BD8600BD93E7 /* DBUser.m */,
 				8647F6FA1AD5BD8600BD93E7 /* DBShop.h */,
 				8647F6FB1AD5BD8600BD93E7 /* DBShop.m */,
 				8647F6F71AD5BD8500BD93E7 /* DBArtist.h */,
 				8647F6F81AD5BD8500BD93E7 /* DBArtist.m */,
-				86C411E91ACC934700463622 /* DBImage.h */,
-				86C411EA1ACC934700463622 /* DBImage.m */,
 				86C411E61ACC934600463622 /* DBInk.h */,
 				86C411E71ACC934600463622 /* DBInk.m */,
 				86C411C51ACC84AF00463622 /* DBBoard.h */,
@@ -843,7 +843,6 @@
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
 				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
-				86C411EB1ACC934700463622 /* DBImage.m in Sources */,
 				FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */,
 				FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */,
 				FBCCAF861A8CE8390052DCB9 /* ViewBoardsViewController.m in Sources */,
@@ -899,6 +898,7 @@
 				86DC99101AC9E40100A39C28 /* DBShop+Management.m in Sources */,
 				FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */,
 				FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */,
+				86AC1E601AD74B97004BD1D1 /* DBImage.m in Sources */,
 				86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */,
 				FBB696D91AAB945D0071D96B /* CommentsTableView.m in Sources */,
 				FBDCB1981A83EB1800E05053 /* main.m in Sources */,

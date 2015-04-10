@@ -14,6 +14,7 @@
 
 //+ (DBInk *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBInk *)createWithImage:(UIImage *)image AndDescription:(NSString *)inkDescription InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (DBInk *)inkWithInk:(DBInk *)ink;
 + (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 - (UIImage *)getInkImage;

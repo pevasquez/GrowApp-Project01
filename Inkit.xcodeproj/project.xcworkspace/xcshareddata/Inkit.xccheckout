@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>18A95193-5CB2-4A78-BF3E-47F3655A23DB</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Inkit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>588CA0978B77E7B02014950B889F35826C0A77B5</key>
 		<string>https://github.com/penacristian/GrowApp-Project01.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Inkit.xcodeproj/project.xcworkspace</string>
+	<string>Inkit.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>588CA0978B77E7B02014950B889F35826C0A77B5</key>

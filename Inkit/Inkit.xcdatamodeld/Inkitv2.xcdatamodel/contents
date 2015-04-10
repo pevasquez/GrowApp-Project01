@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1514" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DBArtist" representedClassName="DBArtist" parentEntity="DBUser" syncable="YES">
         <attribute name="artistId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="hasBodyParts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBBodyPart" inverseName="inArtist" inverseEntity="DBBodyPart" syncable="YES"/>
@@ -33,7 +33,7 @@
     <entity name="DBImage" representedClassName="DBImage" syncable="YES">
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="ink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="image" inverseEntity="DBInk" syncable="YES"/>
+        <relationship name="ink" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="image" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="userPic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="profilePic" inverseEntity="DBUser" syncable="YES"/>
         <relationship name="userPicThumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="profilePicThumbnail" inverseEntity="DBUser" syncable="YES"/>
     </entity>

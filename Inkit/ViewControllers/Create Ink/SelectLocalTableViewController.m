@@ -38,32 +38,32 @@
 {
     [self hideSearchBar];
 }
-
-#pragma mark - TableView Data Source
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LocalTableViewCellIdentifier];
-    
-    NSManagedObject* local = self.filteredLocalsArray[indexPath.row];
-    if ([local isKindOfClass:[DBBodyPart class]]) {
-        DBBodyPart* bodyPart = self.filteredLocalsArray[indexPath.row];
-        cell.textLabel.text = bodyPart.name;
-        if ([self.editingInk.ofBodyParts containsObject:bodyPart]) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    } else if ([local isKindOfClass:[DBTattooType class]]) {
-        DBTattooType* tattooType = self.filteredLocalsArray[indexPath.row];
-        cell.textLabel.text = tattooType.name;
-        if ([self.editingInk.ofTattooTypes containsObject:tattooType]) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }
-    return cell;
-}
+//
+//#pragma mark - TableView Data Source
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LocalTableViewCellIdentifier];
+//    
+//    NSManagedObject* local = self.filteredLocalsArray[indexPath.row];
+//    if ([local isKindOfClass:[DBBodyPart class]]) {
+//        DBBodyPart* bodyPart = self.filteredLocalsArray[indexPath.row];
+//        cell.textLabel.text = bodyPart.name;
+//        if ([self.editingInk.ofBodyParts containsObject:bodyPart]) {
+//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//        } else {
+//            cell.accessoryType = UITableViewCellAccessoryNone;
+//        }
+//    } else if ([local isKindOfClass:[DBTattooType class]]) {
+//        DBTattooType* tattooType = self.filteredLocalsArray[indexPath.row];
+//        cell.textLabel.text = tattooType.name;
+//        if ([self.editingInk.ofTattooTypes containsObject:tattooType]) {
+//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//        } else {
+//            cell.accessoryType = UITableViewCellAccessoryNone;
+//        }
+//    }
+//    return cell;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

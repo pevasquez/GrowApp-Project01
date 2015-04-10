@@ -18,14 +18,18 @@
 #import "InkitDataUtil.h"
 #import "InkitTheme.h"
 
+
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
 static NSString * const InkActionsTableViewCellIdentifier = @"InkActionsTableViewCell";
 static NSString * const InkCommentTableViewCellIdentifier = @"InkCommentTableViewCell";
+static NSString * const InkRemoteTableViewCellIdentifier = @"RemoteIdentifier";
+
 
 typedef enum
 {
     kInkImage,
+    kInkRemote,
     kInkDescription,
     kInkActions,
     kInkComment,
@@ -38,6 +42,7 @@ typedef enum
 @interface ViewInkViewController()
 @property (strong, nonatomic) IBOutlet UITableView *inkTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
 @end
 
@@ -55,6 +60,7 @@ typedef enum
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -72,9 +78,17 @@ typedef enum
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
+    if([cellIdentifier isEqualToString:InkRemoteTableViewCellIdentifier])
+    {
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        cell.textLabel.text = @"prueba";
+        return cell;
+        
+    } else {
     ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     [cell configureForInk:self.ink];
     return cell;
+    }
 }
 
 #pragma mark - UITableView Delegate
@@ -116,7 +130,7 @@ typedef enum
             break;
         }
         default:
-            return 0;
+            return 44;
             break;
     }
 }
@@ -162,6 +176,10 @@ typedef enum
             cellIdentifier = InkCommentTableViewCellIdentifier;
             break;
         }
+        case kInkRemote:
+        {
+            cellIdentifier = InkRemoteTableViewCellIdentifier;
+        }
         default:
             break;
     }
@@ -188,7 +206,16 @@ typedef enum
     if ([[segue destinationViewController] isKindOfClass:[CommentsViewController class]]) {
         CommentsViewController* commentsViewController = [segue destinationViewController];
         commentsViewController.ink = self.ink;
+    } else if ([[segue destinationViewController] isKindOfClass:[CreateInkViewController class]]) {
+        CreateInkViewController* createInkViewController = [segue destinationViewController];
+        createInkViewController.editing = true;
+        createInkViewController.editingInk = self.ink;
     }
+}
+
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
 }
 
 #pragma mark - Edit Text Delegate

@@ -10,8 +10,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import "EditTextViewController.h"
 #import "DBUser+Management.h"
+#import "DBInk+Management.h"
+
 
 @interface CreateInkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate, EditTextViewDelegate>
 @property (strong, nonatomic) UIImage* inkImage;
 @property (strong, nonatomic) DBUser* activeUser;
+@property (strong, nonatomic) DBInk* editingInk;
+
 @end

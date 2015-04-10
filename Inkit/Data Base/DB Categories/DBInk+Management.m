@@ -26,6 +26,26 @@
     return [DBInk createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
 }
 
++ (DBInk *)inkWithInk:(DBInk *)ink
+{
+    DBInk* newInk = [DBInk createNewInk];
+    newInk.inkID = ink.inkID;
+    newInk.likesCount = ink.likesCount;
+    newInk.createdAt = ink.createdAt;
+    newInk.extraData = ink.extraData;
+    newInk.inkDescription = ink.inkDescription;
+    newInk.reInksCount = ink.reInksCount;
+    newInk.updatedAt = ink.updatedAt;
+    newInk.image = ink.image;
+    newInk.ofArtist = ink.ofArtist;
+    [newInk addOfBodyParts:ink.ofBodyParts];
+    [newInk addOfTattooTypes:ink.ofTattooTypes];
+    newInk.ofShop = ink.ofShop;
+    newInk.inBoard = ink.inBoard;
+    newInk.user = ink.user;
+    return newInk;
+}
+
 + (DBInk *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     DBInk* ink = [NSEntityDescription insertNewObjectForEntityForName:kDBInk inManagedObjectContext:managedObjectContext];
@@ -166,4 +186,23 @@
 //    }
     return ink;
 }
+
+- (void)updateWithInk:(DBInk *)ink
+{
+    self.inkID = ink.inkID;
+    self.likesCount = ink.likesCount;
+    self.createdAt = ink.createdAt;
+    self.extraData = ink.extraData;
+    self.inkDescription = ink.inkDescription;
+    self.reInksCount = ink.reInksCount;
+    self.updatedAt = ink.updatedAt;
+    self.image = ink.image;
+    self.ofArtist = ink.ofArtist;
+    [self addOfBodyParts:ink.ofBodyParts];
+    [self addOfTattooTypes:ink.ofTattooTypes];
+    self.ofShop = ink.ofShop;
+    self.inBoard = ink.inBoard;
+    self.user = ink.user;
+}
+
 @end

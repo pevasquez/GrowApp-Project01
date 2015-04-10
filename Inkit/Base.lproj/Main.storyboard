@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -501,7 +501,7 @@
                                                                         <color key="textColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="37" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvV-e0-r1w">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvV-e0-r1w">
                                                                         <rect key="frame" x="71" y="12" width="16" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -796,7 +796,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gWt-B8-DPb" id="Kfd-Ow-I6h">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YqE-by-7xo" userLabel="Ink Image View">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YqE-by-7xo" userLabel="Ink Image View">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="325"/>
                                         </imageView>
                                     </subviews>
@@ -915,6 +915,13 @@
                                     <outlet property="userNameLabel" destination="Y7G-Ft-77V" id="9bN-3C-e4C"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RemoteIdentifier" rowHeight="44" id="ny5-Gc-PD6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ny5-Gc-PD6" id="QjA-Jc-JKL">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InkCommentTableViewCell" rowHeight="44" id="oa8-6w-P6Q" customClass="InkCommentTableViewCell">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -944,6 +951,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="View Ink" id="bEd-cj-MbU">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="E2O-po-1QP">
+                            <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="editButtonPressed:" destination="bKf-bq-v39" id="fne-OS-BxA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="2wc-gl-Sdi">
                             <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -953,8 +966,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="2wc-gl-Sdi" id="4ix-wH-Y1X"/>
+                        <outlet property="editButton" destination="E2O-po-1QP" id="65L-bc-NSq"/>
                         <outlet property="inkTableView" destination="jJb-t2-G6w" id="onU-ei-Xxu"/>
                         <segue destination="KRU-dQ-DkV" kind="show" identifier="CommentsSegue" id="JAD-ku-BOa"/>
+                        <segue destination="PlN-6M-hAE" kind="show" identifier="EditInkSegue" id="Fnv-MH-wXq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Np-oQ-uze" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1363,7 +1378,7 @@
                                                                         <color key="textColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="37" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xuo-Zi-EZe">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="37" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xuo-Zi-EZe">
                                                                         <rect key="frame" x="71" y="12" width="16" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" red="0.57254901960000004" green="0.57254901960000004" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2363,10 +2378,11 @@
         <image name="ViewInks-ReInk" width="7" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Nl-hs-tvc"/>
-        <segue reference="qdy-Zm-66Q"/>
-        <segue reference="NRZ-KG-SSz"/>
         <segue reference="eTF-QW-UEi"/>
+        <segue reference="Fnv-MH-wXq"/>
+        <segue reference="NRZ-KG-SSz"/>
+        <segue reference="qdy-Zm-66Q"/>
+        <segue reference="0Nl-hs-tvc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
