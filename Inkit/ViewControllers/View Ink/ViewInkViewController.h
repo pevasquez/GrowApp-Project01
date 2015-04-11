@@ -10,6 +10,7 @@
 #import "DBInk+Management.h"
 #import "EditTextViewController.h"
 
+
 @interface ViewInkViewController : UITableViewController <EditTextViewDelegate>
 @property (strong, nonatomic) DBInk* ink;
 @end

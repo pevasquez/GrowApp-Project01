@@ -864,6 +864,10 @@
                                             <state key="normal" image="ViewInk-ReInk">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="reInkButtonPressed:" destination="bKf-bq-v39" eventType="touchUpInside" id="lGv-jg-Bvp"/>
+                                                <segue destination="PlN-6M-hAE" kind="show" id="lWk-4J-Dt5"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuB-pL-clo">
                                             <rect key="frame" x="516" y="13" width="34" height="34"/>
@@ -874,6 +878,9 @@
                                             <state key="normal" image="ViewInk-Share">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="shareButtonPressed:" destination="bKf-bq-v39" eventType="touchUpInside" id="erN-d2-Msq"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwP-Vx-Gsu">
                                             <rect key="frame" x="474" y="13" width="34" height="34"/>
@@ -884,6 +891,9 @@
                                             <state key="normal" image="ViewInk-Like">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="likeButtonPressed:" destination="bKf-bq-v39" eventType="touchUpInside" id="cOB-1g-qYD"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -951,12 +961,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="View Ink" id="bEd-cj-MbU">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="E2O-po-1QP">
-                            <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="editButtonPressed:" destination="bKf-bq-v39" id="fne-OS-BxA"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="2wc-gl-Sdi">
                             <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -966,13 +970,19 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="2wc-gl-Sdi" id="4ix-wH-Y1X"/>
-                        <outlet property="editButton" destination="E2O-po-1QP" id="65L-bc-NSq"/>
+                        <outlet property="editButton" destination="yaX-Ai-Hms" id="JSh-if-yGM"/>
                         <outlet property="inkTableView" destination="jJb-t2-G6w" id="onU-ei-Xxu"/>
                         <segue destination="KRU-dQ-DkV" kind="show" identifier="CommentsSegue" id="JAD-ku-BOa"/>
                         <segue destination="PlN-6M-hAE" kind="show" identifier="EditInkSegue" id="Fnv-MH-wXq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Np-oQ-uze" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem systemItem="edit" id="yaX-Ai-Hms">
+                    <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="editButtonPressed:" destination="bKf-bq-v39" id="1LT-D2-C5r"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="3107" y="2418"/>
         </scene>
@@ -2378,11 +2388,11 @@
         <image name="ViewInks-ReInk" width="7" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eTF-QW-UEi"/>
-        <segue reference="Fnv-MH-wXq"/>
-        <segue reference="NRZ-KG-SSz"/>
+        <segue reference="lQ1-q0-po4"/>
         <segue reference="qdy-Zm-66Q"/>
-        <segue reference="0Nl-hs-tvc"/>
+        <segue reference="eTF-QW-UEi"/>
+        <segue reference="lWk-4J-Dt5"/>
+        <segue reference="NRZ-KG-SSz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

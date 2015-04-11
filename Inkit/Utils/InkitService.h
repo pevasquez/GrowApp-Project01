@@ -34,5 +34,6 @@
 
 + (NSError *)getArtistsForSearchString:(NSString *)searchString withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)getShopsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (NSError *)likeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
 @end

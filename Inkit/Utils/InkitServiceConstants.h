@@ -30,6 +30,7 @@
 #define kWebServiceSearch2              @"search"
 #define kWebServiceProfileAccesToken    @"profile?access_token=3&user_id=2"
 #define kWebServiceDashboardAccesToken  @"/dashboard?access_token="
+#define kWebServiceLike                 @"/like"
 
 
 

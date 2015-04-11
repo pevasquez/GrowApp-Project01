@@ -229,4 +229,8 @@
     return [InkService getArtistsForSearchString:searchString withTarget:target completeAction:completeAction completeError:completeError];
 }
 
++ (NSError *)likeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [InkService likeInk:ink withTarget:target completeAction:completeAction completeError:completeError];
+}
 @end

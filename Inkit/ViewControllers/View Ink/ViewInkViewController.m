@@ -17,6 +17,8 @@
 #import "CommentsViewController.h"
 #import "InkitDataUtil.h"
 #import "InkitTheme.h"
+#import "DBImage+Management.h"
+#import "inkitService.h"
 
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
@@ -40,10 +42,10 @@ typedef enum
 #define kInkCommentCellHeight   44
 
 @interface ViewInkViewController()
-@property (strong, nonatomic) IBOutlet UITableView *inkTableView;
+@property (weak, nonatomic) IBOutlet UITableView *inkTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
-
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (strong, nonatomic) InkActionsTableViewCell* actionsCell;
 @end
 
 @implementation ViewInkViewController
@@ -60,7 +62,9 @@ typedef enum
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }
-    
+    //if (self.ink.user == [InkitDataUtil sharedInstance].activeUser) {
+//        self.navigationItem.rightBarButtonItem = self.editButton;
+    //}
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,10 +88,16 @@ typedef enum
         cell.textLabel.text = @"prueba";
         return cell;
         
+    } else if ([cellIdentifier isEqualToString:InkActionsTableViewCellIdentifier]) {
+        InkActionsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkActionsTableViewCellIdentifier];
+       // cell.delegate = self;
+        self.actionsCell = cell;
+        [cell configureForInk:self.ink];
+        return cell;
     } else {
-    ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    [cell configureForInk:self.ink];
-    return cell;
+        ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        [cell configureForInk:self.ink];
+        return cell;
     }
 }
 
@@ -224,5 +234,55 @@ typedef enum
     [self.ink addCommentWithText:text forUser:[InkitDataUtil sharedInstance].activeUser];
     [self.tableView reloadData];
 }
+
+#pragma mark - Ink Actions Delegate
+- (IBAction)likeButtonPressed:(id)sender
+{
+    [InkitService likeInk:self.ink withTarget:self completeAction:@selector(likeInkComplete) completeError:@selector(likeInkError:)];
+}
+
+- (void)likeInkComplete
+{
+    [self.actionsCell setLike:true];
+}
+
+- (void)likeInkError: (NSString*)error
+{
+    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+}
+
+//- (IBAction)reInkButtonPressed:(id)sender
+//{
+//    
+//}
+//- (void)reInkComplete
+//{
+//    [self performSegueWithIdentifier: @"CreateInkSegue" sender:ink];
+//
+//}
+//- (void)reInkError
+//{
+//    
+//}
+
+- (IBAction)shareButtonPressed:(id)sender
+{
+    NSString *message = [NSString stringWithFormat:@"Check out the new Ink %@ I've posted",self.ink.inkDescription];
+    
+    UIImage *image = [self.ink.image getImage];
+    
+    NSArray *shareItems = nil;
+    if (image) {
+       shareItems = @[message, image];
+    } else {
+        shareItems = @[message];
+    }
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:shareItems
+                                                                             applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+}
+    
 
 @end

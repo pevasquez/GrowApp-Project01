@@ -9,6 +9,7 @@
 #import "InkActionsTableViewCell.h"
 #import "ProfileImageView.h"
 #import "DBUser+Management.h"
+#import "InkitTheme.h"
 
 @interface InkActionsTableViewCell()
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;
@@ -28,5 +29,14 @@
     }
     self.userNameLabel.text = user.name;
     self.cellHeight = self.bounds.size.height;
+}
+
+- (void)setLike:(BOOL)selected
+{
+    if (selected) {
+        UIImage* iconImage = [[UIImage imageNamed:@"ViewInks-Like"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self.likeButton setImage:iconImage forState:UIControlStateNormal];
+        self.likeButton.tintColor = [InkitTheme getTintColor];
+    }
 }
 @end
