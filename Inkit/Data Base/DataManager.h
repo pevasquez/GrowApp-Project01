@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "DBUser+Management.h"
 
 @interface DataManager : NSObject
 + (DataManager*)sharedInstance;
 + (void)saveContext;
 @property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
+@property (strong, nonatomic) DBUser* activeUser;
 
 + (void)loadBodyPartsFromJson:(NSDictionary *)jsonDictionary;
 + (void)loadTattooTypesFromJson:(NSDictionary *)jsonDictionary;
+
 @end

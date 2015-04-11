@@ -11,7 +11,7 @@
 #import "InkDescriptionTableViewCell.h"
 #import "DBBoard+Management.h"
 #import "AppDelegate.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "InkitTheme.h"
 
 typedef enum
@@ -44,7 +44,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
     }
     if (!self.activeUser) {
-        self.activeUser = [InkitDataUtil sharedInstance].activeUser;
+        self.activeUser = [DataManager sharedInstance].activeUser;
     }
     
     if (self.board) {

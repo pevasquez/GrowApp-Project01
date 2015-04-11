@@ -15,7 +15,7 @@
 #import "InkCommentTableViewCell.h"
 #import "ViewInkTableViewCell.h"
 #import "CommentsViewController.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "InkitTheme.h"
 #import "DBImage+Management.h"
 #import "inkitService.h"
@@ -62,7 +62,7 @@ typedef enum
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }
-    //if (self.ink.user == [InkitDataUtil sharedInstance].activeUser) {
+    //if (self.ink.user == [DataManager sharedInstance].activeUser) {
 //        self.navigationItem.rightBarButtonItem = self.editButton;
     //}
 }
@@ -216,9 +216,13 @@ typedef enum
     if ([[segue destinationViewController] isKindOfClass:[CommentsViewController class]]) {
         CommentsViewController* commentsViewController = [segue destinationViewController];
         commentsViewController.ink = self.ink;
-    } else if ([[segue destinationViewController] isKindOfClass:[CreateInkViewController class]]) {
+    } else if ([segue.identifier isEqualToString:@"EditInkSegue"]) {
         CreateInkViewController* createInkViewController = [segue destinationViewController];
-        createInkViewController.editing = true;
+        createInkViewController.isEditingInk = true;
+        createInkViewController.editingInk = self.ink;
+    } else if ([segue.identifier isEqualToString:@"ReInkSegue"]) {
+        CreateInkViewController* createInkViewController = [segue destinationViewController];
+        createInkViewController.isReInking = true;
         createInkViewController.editingInk = self.ink;
     }
 }
@@ -231,7 +235,7 @@ typedef enum
 #pragma mark - Edit Text Delegate
 - (void)didFinishEnteringText:(NSString *)text
 {
-    [self.ink addCommentWithText:text forUser:[InkitDataUtil sharedInstance].activeUser];
+    [self.ink addCommentWithText:text forUser:[DataManager sharedInstance].activeUser];
     [self.tableView reloadData];
 }
 
@@ -252,10 +256,10 @@ typedef enum
     [alert show];
 }
 
-//- (IBAction)reInkButtonPressed:(id)sender
-//{
-//    
-//}
+- (IBAction)reInkButtonPressed:(id)sender
+{
+    [self performSegueWithIdentifier:@"ReInkSegue" sender:nil];
+}
 //- (void)reInkComplete
 //{
 //    [self performSegueWithIdentifier: @"CreateInkSegue" sender:ink];

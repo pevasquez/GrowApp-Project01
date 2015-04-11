@@ -7,7 +7,7 @@
 //
 
 #import "SplashViewController.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "InkitService.h"
 #import "DBUser.h"
 
@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //[InkitService logInUserWithToken:[InkitDataUtil sharedInstance].activeUser.token WithTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError)];
+    //[InkitService logInUserWithToken:[DataManager sharedInstance].activeUser.token WithTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError)];
     [InkitService getBodyPartsWithTarget:self completeAction:@selector(getBodyPartsComplete) completeError:@selector(getBodyPartsError)];
     [InkitService getTattooTypesWithTarget:self completeAction:@selector(getTattooTypesComplete) completeError:@selector(getTattooTypesError)];
 }

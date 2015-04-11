@@ -15,7 +15,6 @@
 #define kActiveUser         @"kActiveUser"
 
 @interface DataManager()
-@property (strong, nonatomic) DBUser* activeUser;
 @property (strong, nonatomic) NSNumber* tattooStylesLastVersion;
 @property (strong, nonatomic) NSNumber* tattooTypesLastVersion;
 @property (strong, nonatomic) NSNumber* bodyPartsLastVersion;
@@ -59,6 +58,7 @@
         if ([jsonDictionary[@"meta"] objectForKey:@"last_version"]) {
            // NSNumber* lastVersion = [NSNumber numberWithLong:[jsonDictionary[@"last_version"] longValue]];
             //if (lastVersion>=self.bodyPartsLastVersion) {
+                // remove body parts
                 for (NSDictionary* bodyPartDictionary in jsonDictionary[@"data"]) {
                     [DBBodyPart fromJson:bodyPartDictionary];
                 }
@@ -78,6 +78,7 @@
         if ([jsonDictionary[@"meta"] objectForKey:@"last_version"]) {
 //            NSNumber* lastVersion = [NSNumber numberWithInteger:[(NSString *)jsonDictionary[@"last_version"] integerValue]] ;
 //            if (lastVersion>=self.bodyPartsLastVersion) {
+                // remove tattoo types
                 for (NSDictionary* tattooTypeDictionary in jsonDictionary[@"data"]) {
                     [DBTattooType fromJson:tattooTypeDictionary];
                 }

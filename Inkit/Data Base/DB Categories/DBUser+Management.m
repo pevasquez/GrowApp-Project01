@@ -10,7 +10,6 @@
 #import "DBBoard+Management.h"
 #import "DBImage+Management.h"
 #import "InkitService.h"
-#import "InkitDataUtil.h"
 #import "DataManager.h"
 
 #define kDBUser     @"DBUser"

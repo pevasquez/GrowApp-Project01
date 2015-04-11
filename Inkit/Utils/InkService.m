@@ -8,7 +8,7 @@
 
 #import "InkService.h"
 #import "InkitServiceConstants.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "DBArtist+Management.h"
 @implementation InkService
 
@@ -59,12 +59,12 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             NSError *error = nil;
+             //NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
@@ -96,7 +96,7 @@
     NSError* returnError = nil;
     
     // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceInks,kWebServiceDashboardAccesToken,[InkitDataUtil sharedInstance].activeUser.token];
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceInks,kWebServiceDashboardAccesToken,[DataManager sharedInstance].activeUser.token];
     
     // Create URL
     NSURL *registerUserURL = [NSURL URLWithString:stringURL];
@@ -177,7 +177,7 @@
     [request setHTTPMethod:@"POST"];
     
     // get user
-    DBUser* activeUser = [InkitDataUtil sharedInstance].activeUser;
+    DBUser* activeUser = [DataManager sharedInstance].activeUser;
     
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
@@ -251,7 +251,7 @@
     [request setHTTPMethod:@"POST"];
     
     // get user
-    DBUser* activeUser = [InkitDataUtil sharedInstance].activeUser;
+    DBUser* activeUser = [DataManager sharedInstance].activeUser;
     
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     

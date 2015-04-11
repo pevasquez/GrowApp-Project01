@@ -17,7 +17,7 @@
 @interface SelectRemoteTableViewController ()<UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) IBOutlet UITableView *remoteTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableView *remoteTableView;
 @property (strong, nonatomic) NSArray *tableData;
 
 @end

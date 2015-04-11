@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-IB_DESIGNABLE
+//IB_DESIGNABLE
 
 @interface InkitButton : UIButton
 @property (strong, nonatomic) UIImage* iconImage;

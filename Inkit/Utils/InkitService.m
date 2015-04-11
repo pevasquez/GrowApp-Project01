@@ -7,7 +7,7 @@
 //
 
 #import "InkitService.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "AppDelegate.h"
 #import "UserService.h"
 #import "InkService.h"
@@ -49,7 +49,7 @@
     
     DBUser* user = [DBUser createMockUserInManagedObjectContext:managedObjectContext];
     
-    [InkitDataUtil sharedInstance].activeUser = user;
+    [DataManager sharedInstance].activeUser = user;
     
     // Call complete Action
     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];

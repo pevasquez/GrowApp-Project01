@@ -20,7 +20,7 @@
 #import "DBTattooType+Management.h"
 #import "DBImage+Management.h"
 #import "AppDelegate.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "InkitTheme.h"
 #import "InkitService.h"
 
@@ -65,13 +65,22 @@ typedef enum
     [self registerForKeyboardNotifications];
     self.inkImageView.image = self.inkImage;
     if (!self.activeUser) {
-        self.activeUser = [InkitDataUtil sharedInstance].activeUser;
+        self.activeUser = [DataManager sharedInstance].activeUser;
     }
-    if (!self.editingInk) {
-        self.ink = [DBInk createNewInk];
-        DBImage* image = [DBImage fromUIImage:self.inkImage];
-        [image addInkObject:self.ink];
-        self.title = NSLocalizedString(@"Create Ink",nil);
+    
+    if (self.isEditingInk) {
+        self.ink = [DBInk inkWithInk:self.editingInk];
+        self.title = NSLocalizedString(@"Edit Ink",nil);
+        UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil)
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(createInkButtonPressed:)];
+        
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:editButton];
+    } else if (self.isReInking) {
+        self.ink = [DBInk inkWithInk:self.editingInk];
+        self.ink.inkID = @0;
+        self.title = NSLocalizedString(@"ReInk",nil);
         UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Create", nil)
                                                                        style:UIBarButtonItemStylePlain
                                                                       target:self
@@ -79,9 +88,11 @@ typedef enum
         
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:editButton];
     } else {
-        self.ink = [DBInk inkWithInk:self.editingInk];
-        self.title = NSLocalizedString(@"Edit Ink",nil);
-        UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil)
+        self.ink = [DBInk createNewInk];
+        DBImage* image = [DBImage fromUIImage:self.inkImage];
+        [image addInkObject:self.ink];
+        self.title = NSLocalizedString(@"Create Ink",nil);
+        UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Create", nil)
                                                                        style:UIBarButtonItemStylePlain
                                                                       target:self
                                                                       action:@selector(createInkButtonPressed:)];
@@ -371,7 +382,13 @@ typedef enum
 - (IBAction)createInkButtonPressed:(UIBarButtonItem *)sender
 {
     if ([self verifyCells]) {
+        if (self.isReInking) {
+            
+        } else if (self.isEditingInk) {
+            
+        } else {
         [self.ink postWithTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
+        }
     }
 }
 

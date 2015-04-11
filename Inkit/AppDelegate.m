@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "DBInk+Management.h"
 
 @interface AppDelegate ()
@@ -77,7 +77,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // If there's a logged user, silent logIn
-    if ([InkitDataUtil sharedInstance].activeUser) {
+    if ([DataManager sharedInstance].activeUser) {
         // log user
         [self setSplashViewController];
     } else {

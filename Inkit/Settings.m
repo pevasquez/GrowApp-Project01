@@ -8,7 +8,7 @@
 
 #import "Settings.h"
 #import "InkitService.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 #import "AppDelegate.h"
 
 @interface Settings () <UITableViewDataSource, UITableViewDelegate>
@@ -105,7 +105,7 @@ static NSString *cellIdentifier;
     if (indexPath.row == 0)
     {
         [self showActivityIndicator];
-        [InkitService logOutUser:[InkitDataUtil sharedInstance].activeUser WithTarget:self completeAction:@selector(logOutUserComplete) completeError:@selector(logOutUserError:)];
+        [InkitService logOutUser:[DataManager sharedInstance].activeUser WithTarget:self completeAction:@selector(logOutUserComplete) completeError:@selector(logOutUserError:)];
     }
 }
 

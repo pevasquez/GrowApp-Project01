@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 #import "DBBoard+Management.h"
 #import "InkitTheme.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 
 static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionViewCell";
 
@@ -37,7 +37,7 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
         self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
     }
     if (!self.activeUser) {
-        self.activeUser = [InkitDataUtil sharedInstance].activeUser;
+        self.activeUser = [DataManager sharedInstance].activeUser;
     }
     
     [self customizeNavigationBar];

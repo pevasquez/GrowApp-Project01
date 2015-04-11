@@ -10,7 +10,7 @@
 #import "CommentsTableViewCell.h"
 #import "CommentsTableView.h"
 #import "DBUser+Management.h"
-#import "InkitDataUtil.h"
+#import "DataManager.h"
 
 static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCell";
 
@@ -27,7 +27,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
     [self updateCommentsTableView];
     self.commentsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.commentsTableView becomeFirstResponder];
-    self.activeUser = [InkitDataUtil sharedInstance].activeUser;
+    self.activeUser = [DataManager sharedInstance].activeUser;
 }
 
 #pragma mark - TableView Data Source

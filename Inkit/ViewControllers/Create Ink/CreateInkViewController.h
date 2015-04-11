@@ -17,5 +17,6 @@
 @property (strong, nonatomic) UIImage* inkImage;
 @property (strong, nonatomic) DBUser* activeUser;
 @property (strong, nonatomic) DBInk* editingInk;
-
+@property (nonatomic) BOOL isEditingInk;
+@property (nonatomic) BOOL isReInking;
 @end
