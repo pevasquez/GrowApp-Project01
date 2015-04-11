@@ -174,7 +174,7 @@ typedef enum
         {
             cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
             if (self.ink.ofArtist) {
-                cell.textLabel.text = [self.ink getArtistAsString];
+                cell.textLabel.text = [self.ink getArtistsAsString];
                 cell.textLabel.textColor = [InkitTheme getColorForText];
             } else {
                 cell.textLabel.text = NSLocalizedString(@"Select Artist", nil);
@@ -187,7 +187,7 @@ typedef enum
         {
             cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
             if (self.ink.ofShop) {
-                cell.textLabel.text = [self.ink getArtistAsString];
+               // cell.textLabel.text = [self.ink getArtistsAsString];
                 cell.textLabel.textColor = [InkitTheme getColorForText];
             } else {
                 cell.textLabel.text = NSLocalizedString(@"Select Shop", nil);

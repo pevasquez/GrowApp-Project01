@@ -10,16 +10,20 @@
 #import <UIKit/UIKit.h>
 
 @interface DBBoard (Management)
-+ (DBBoard *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (DBBoard *)createWithTitle:(NSString *)title AndDescription:(NSString *)boardDescription InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (DBBoard *)createNewBoard;
++ (DBBoard *)createWithTitle:(NSString *)title AndDescription:(NSString *)boardDescription;
+
 + (NSArray *)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;;
 
 - (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+- (void)updateWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+- (void)deleteWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
+- (void)updateWithJson:(NSDictionary *)jsonDictionary;
 - (NSArray *)getInksFromBoard;
 - (void)addInkToBoard:(DBInk *)ink;
 - (void)addInksToBoard:(NSArray *)inksArray;
-- (DBInk *)createInkWithImage:(UIImage *)image AndDescription:(NSString *)description;
 - (void)removeInkFromBoard:(DBInk *)ink;
 - (void)removeInksFromBoard:(NSArray *)inksArray;
 - (void)deleteBoard;

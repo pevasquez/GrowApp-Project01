@@ -13,6 +13,8 @@
 + (DBTattooType *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBTattooType *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
++ (DBTattooType *)fromJson:(NSDictionary *)tattooTypeDictionary;
+
 // Get Body Parts
 + (NSArray *)getTattooTypeSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 @end

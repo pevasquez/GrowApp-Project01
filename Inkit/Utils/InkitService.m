@@ -12,6 +12,7 @@
 #import "UserService.h"
 #import "InkService.h"
 #import "BoardService.h"
+#import "CommonService.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
 #import "DBUser+Management.h"
@@ -63,34 +64,36 @@
 
 + (NSError *)getBodyPartsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    NSError* returnError = nil;
-    
-    // Get ManagedObjectContext from AppDelegate
-    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-    
-    // Creat Mock Body Parts
-    [DBBodyPart createMockBodyPartsInManagedObjectContext:managedObjectContext];
-    
-    // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-    
-    return returnError;
+    return [CommonService getBodyPartsWithTarget:target completeAction:completeAction completeError:completeError];
+//    NSError* returnError = nil;
+//    
+//    // Get ManagedObjectContext from AppDelegate
+//    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
+//    
+//    // Creat Mock Body Parts
+//    [DBBodyPart createMockBodyPartsInManagedObjectContext:managedObjectContext];
+//    
+//    // Call complete Action
+//    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+//    
+//    return returnError;
 }
 
 + (NSError *)getTattooTypesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    NSError* returnError = nil;
-    
-    // Get ManagedObjectContext from AppDelegate
-    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-    
-    // Creat Mock Body Parts
-    [DBTattooType createMockTattooTypesInManagedObjectContext:managedObjectContext];
-    
-    // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-    
-    return returnError;
+    return [CommonService getTattooTypesWithTarget:target completeAction:completeAction completeError:completeError];
+//    NSError* returnError = nil;
+//    
+//    // Get ManagedObjectContext from AppDelegate
+//    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
+//    
+//    // Creat Mock Body Parts
+//    [DBTattooType createMockTattooTypesInManagedObjectContext:managedObjectContext];
+//    
+//    // Call complete Action
+//    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+//    
+//    return returnError;
 }
 
 + (NSError *)postInk:(DBInk *)ink WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -107,16 +110,17 @@
 
 + (NSError *)postBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    NSError* returnError = nil;
-    
-//     Create Ink in DB
-//    
-//     Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
-    
-    return returnError;
-    
-    //return [BoardService createBoard:board withTarget:target completeAction:completeAction completeError:completeError];
+    return [BoardService postBoard:board WithTarget:target completeAction:completeAction completeError:completeError];
+}
+
++ (NSError *)updateBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [BoardService updateBoard:board WithTarget:target completeAction:completeAction completeError:completeError];
+}
+
++ (NSError *)deleteBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [BoardService deleteBoard:board WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

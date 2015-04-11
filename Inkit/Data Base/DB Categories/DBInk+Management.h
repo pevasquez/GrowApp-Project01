@@ -11,8 +11,6 @@
 
 @interface DBInk (Management)
 + (DBInk *)createNewInk;
-
-//+ (DBInk *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBInk *)createWithImage:(UIImage *)image AndDescription:(NSString *)inkDescription InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBInk *)inkWithInk:(DBInk *)ink;
 + (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
@@ -23,13 +21,11 @@
 
 - (NSString*)getBodyPartsAsString;
 - (NSString *)getTattooTypesAsString;
-- (NSString *)getArtistAsString;
+- (NSString *)getArtistsAsString;
 
 + (DBInk *)fromJson:(NSDictionary *)inkData;
 
 // Comment Actions
 - (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user;
-
-+ (void)createMockInks:(NSManagedObjectContext *)managedObjectContext;
 
 @end

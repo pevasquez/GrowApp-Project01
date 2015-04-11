@@ -7,14 +7,23 @@
 //
 
 #import "DBComment+Management.h"
+#import "DataManager.h"
 
 #define kDBComment     @"DBComment"
 
 @implementation DBComment (Management)
-+ (DBComment *)createCommentWithText:(NSString*)text inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (DBComment *)createCommentWithText:(NSString *)text
+{
+    DBComment* comment = [DBComment createCommentInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    comment.text = text;
+    [DataManager saveContext];
+    return comment;
+}
+
++ (DBComment *)createCommentInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     DBComment* comment = [NSEntityDescription insertNewObjectForEntityForName:kDBComment inManagedObjectContext:managedObjectContext];
-    comment.text = text;
+    [DataManager saveContext];
     return comment;
 }
 

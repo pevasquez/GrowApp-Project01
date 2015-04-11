@@ -11,5 +11,9 @@
 
 @interface DataManager : NSObject
 + (DataManager*)sharedInstance;
++ (void)saveContext;
 @property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
+
++ (void)loadBodyPartsFromJson:(NSDictionary *)jsonDictionary;
++ (void)loadTattooTypesFromJson:(NSDictionary *)jsonDictionary;
 @end

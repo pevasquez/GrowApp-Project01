@@ -224,7 +224,7 @@
              
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
-                 case 204:
+                 case kHTTPResponseCodeOKNoResponse:
                  {
                      // Acá va a ir el código para el caso de éxito
                      [InkitDataUtil sharedInstance].activeUser = nil;

@@ -7,11 +7,32 @@
 //
 
 #import "DBBodyPart+Management.h"
+#import "DataManager.h"
 
 #define kDBBodyPart     @"DBBodyPart"
 #define kDBBodyPartName @"name"
 
 @implementation DBBodyPart (Management)
+
++ (DBBodyPart *)fromJson:(NSDictionary *)bodyPartDictionary
+{
+    DBBodyPart* bodyPart = [DBBodyPart createNewBodyPart];
+    if ([bodyPartDictionary objectForKey:@"id"] && ([bodyPartDictionary objectForKey:@"id"] != [NSNull null])) {
+        bodyPart.bodyPartId = [bodyPartDictionary objectForKey:@"id"];
+    }
+    if ([bodyPartDictionary objectForKey:@"name"] && ([bodyPartDictionary objectForKey:@"name"] != [NSNull null])) {
+        bodyPart.name = [bodyPartDictionary objectForKey:@"name"];
+    }
+    return bodyPart;
+}
+
++ (DBBodyPart *)createNewBodyPart
+{
+    DBBodyPart* bodyPart = [DBBodyPart createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    bodyPart.bodyPartId = @0;
+    bodyPart.name = @"";
+    return bodyPart;
+}
 
 + (DBBodyPart *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {

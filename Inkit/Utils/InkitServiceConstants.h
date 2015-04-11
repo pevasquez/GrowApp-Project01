@@ -14,6 +14,8 @@
 #define kWebServiceAuthorization        @"auth/"
 #define kWebServiceBoards               @"boards/"
 #define kWebServiceCreate               @"create"
+#define kWebServiceEdit                 @"edit"
+#define kWebServiceDelete               @"delete"
 #define kWebServiceTermsAndConditions   @"terms-and-conditions"
 #define kWebServiceRegister             @"register/"
 #define kWebServiceUser                 @"user"
@@ -31,11 +33,15 @@
 #define kWebServiceProfileAccesToken    @"profile?access_token=3&user_id=2"
 #define kWebServiceDashboardAccesToken  @"/dashboard?access_token="
 #define kWebServiceLike                 @"/like"
-
+#define kWebServiceStatics              @"statics/"
+#define kWebServiceBodyParts            @"body-parts"
+#define kWebServiceTattooTypes          @"tattoo-types"
+#define kWebServiceTattooStyles         @"tattoo-styles"
 
 
 // Respuestas de los WS
 #define kHTTPResponseCodeOK                 200
+#define kHTTPResponseCodeOKNoResponse       204
 #define kTTPResponseCodeCreateUserFailed    422
 #define kTTPResponseCodeBadCredentials      400
 #define kTTPResponseCodeUnauthorized        401

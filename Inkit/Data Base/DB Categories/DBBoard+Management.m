@@ -16,22 +16,25 @@
 #define kBoardTitle     @"boardTitle"
 
 @implementation DBBoard (Management)
++ (DBBoard *)createNewBoard
+{
+    return [DBBoard createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+}
+
+
 + (DBBoard *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     DBBoard* board = [NSEntityDescription insertNewObjectForEntityForName:kDBBoard inManagedObjectContext:managedObjectContext];
     return board;
 }
 
-+ (DBBoard *)createWithTitle:(NSString *)boardTitle AndDescription:(NSString *)boardDescription InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (DBBoard *)createWithTitle:(NSString *)boardTitle AndDescription:(NSString *)boardDescription
 {
-    DBBoard* board = [DBBoard createInManagedObjectContext:managedObjectContext];
+    DBBoard* board = [DBBoard createNewBoard];
     board.boardDescription = boardDescription;
     board.boardTitle = boardTitle;
     
-    // Save context
-    NSError* error = nil;
-    [managedObjectContext save:&error];
-    
+    [DataManager saveContext];
     return board;
 }
 
@@ -68,6 +71,17 @@
     [InkitService postBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
+- (void)updateWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    [InkitService updateBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
+}
+
+- (void)deleteWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    [InkitService deleteBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
+}
+
+
 - (NSArray *)getInksFromBoard
 {
     NSArray* inksArray = [self.inks allObjects];
@@ -90,16 +104,6 @@
         [self addInkToBoard:ink];
     }
     [self saveManagedObjectContext];
-}
-
-- (DBInk *)createInkWithImage:(UIImage *)image AndDescription:(NSString *)description
-{
-    DBInk* ink = [DBInk createWithImage:image AndDescription:description InManagedObjectContext:self.managedObjectContext];
-    [self addInksObject:ink];
-    // Save context
-    NSError* error = nil;
-    [self.managedObjectContext save:&error];
-    return ink;
 }
 
 - (void)removeInkFromBoard:(DBInk *)ink
@@ -132,13 +136,19 @@
 + (DBBoard *)fromJson:(NSDictionary *)boardData
 {
     DBBoard* board = [DBBoard createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    [board updateWithJson:boardData];
     
-    if ([boardData objectForKey:@"id"]) {
-        board.boardID = boardData[@"id"];
-    }
-    if ([boardData objectForKey:@"name"]) {
-        board.boardTitle = boardData[@"name"];
-    }
     return board;
+}
+
+- (void)updateWithJson:(NSDictionary *)jsonDictionary
+{
+    if ([jsonDictionary objectForKey:@"id"]) {
+        self.boardID = jsonDictionary[@"id"];
+    }
+    if ([jsonDictionary objectForKey:@"name"]) {
+        self.boardTitle = jsonDictionary[@"name"];
+    }
+
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "DBTattooType+Management.h"
-
+#import "DataManager.h"
 @implementation DBTattooType (Management)
 
 
@@ -15,6 +15,26 @@
 
 #define KDBTattooType @"DBTattooType"
 #define kDBTattooTypeName @"name"
+
++ (DBTattooType *)fromJson:(NSDictionary *)tattooTypeDictionary
+{
+    DBTattooType* tattooType = [DBTattooType createNewBodyPart];
+    if ([tattooTypeDictionary objectForKey:@"id"] && ([tattooTypeDictionary objectForKey:@"id"] != [NSNull null])) {
+        tattooType.tattooTypeId = [tattooTypeDictionary objectForKey:@"id"];
+    }
+    if ([tattooTypeDictionary objectForKey:@"name"] && ([tattooTypeDictionary objectForKey:@"name"] != [NSNull null])) {
+        tattooType.name = [tattooTypeDictionary objectForKey:@"name"];
+    }
+    return tattooType;
+}
+
++ (DBTattooType *)createNewBodyPart
+{
+    DBTattooType* tattooType = [DBTattooType createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    tattooType.tattooTypeId = @0;
+    tattooType.name = @"";
+    return tattooType;
+}
 
 + (DBTattooType *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {

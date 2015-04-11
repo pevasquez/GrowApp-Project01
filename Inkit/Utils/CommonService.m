@@ -1,22 +1,23 @@
 //
-//  BoardService.m
+//  CommonService.m
 //  Inkit
 //
-//  Created by Cristian Pena on 10/3/15.
+//  Created by Cristian Pena on 4/11/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
-#import "BoardService.h"
+#import "CommonService.h"
 #import "InkitServiceConstants.h"
+#import "DataManager.h"
 
-@implementation BoardService
-+ (NSError *)createBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
+@implementation CommonService
++ (NSError *)getBodyPartsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{    
     // Create returnError
     NSError* returnError = nil;
     
     // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceBoards,kWebServiceCreate];
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceStatics,kWebServiceBodyParts];
     
     // Create URL
     NSURL *registerUserURL = [NSURL URLWithString:stringURL];
@@ -29,18 +30,7 @@
     [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
     
     // Specify that it will be a POST request
-    [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : board.user.token,
-                                         @"name":board.boardTitle,
-                                         @"description":board.boardDescription
-                                         };
-    
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    [request setHTTPMethod:@"GET"];
     
     // Create Asynchronous Request URLConnection
     [NSURLConnection sendAsynchronousRequest:request
@@ -54,22 +44,30 @@
              NSError *error = nil;
              
              // Parse JSON Response
-//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                options:NSJSONReadingMutableContainers
+                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
                      // Acá va a ir el código para el caso de éxito
-                     
+                     [DataManager loadBodyPartsFromJson:responseDictionary];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     break;
+                 }
+                 case kTTPResponseCodeCreateUserFailed:
+                 {
+                     NSDictionary* errorsDictionary = responseDictionary[@"errors"];
+                     NSString* errorsString = [NSString stringWithFormat:@"%@", errorsDictionary];
+                     [target performSelectorOnMainThread:completeError withObject:errorsString  waitUntilDone:NO];
                      break;
                  }
                  default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     NSString* stringError = [NSString stringWithFormat:@"%@",statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:stringError waitUntilDone:NO];
                      break;
                  }
              }
@@ -82,13 +80,21 @@
     return returnError;
 }
 
-+ (NSError *)getBoard:(DBBoard *)board forUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)getTattooStylesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    NSError* returnError = nil;
+
+    return returnError;
+
+}
+
++ (NSError *)getTattooTypesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
     
     // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@access_token=3&user_id=%@",kWebServiceBase,kWebServiceGetBoards,user.userID];
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceStatics,kWebServiceTattooTypes];
     
     // Create URL
     NSURL *registerUserURL = [NSURL URLWithString:stringURL];
@@ -101,15 +107,7 @@
     [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
     
     // Specify that it will be a POST request
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : user.token
-                                         };
-    
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    [request setHTTPMethod:@"GET"];
     
     // Create Asynchronous Request URLConnection
     [NSURLConnection sendAsynchronousRequest:request
@@ -123,22 +121,30 @@
              NSError *error = nil;
              
              // Parse JSON Response
-//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                options:NSJSONReadingMutableContainers
+                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
                      // Acá va a ir el código para el caso de éxito
-                     
+                     [DataManager loadTattooTypesFromJson:responseDictionary];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     break;
+                 }
+                 case kTTPResponseCodeCreateUserFailed:
+                 {
+                     NSDictionary* errorsDictionary = responseDictionary[@"errors"];
+                     NSString* errorsString = [NSString stringWithFormat:@"%@", errorsDictionary];
+                     [target performSelectorOnMainThread:completeError withObject:errorsString  waitUntilDone:NO];
                      break;
                  }
                  default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     NSString* stringError = [NSString stringWithFormat:@"%@",statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:stringError waitUntilDone:NO];
                      break;
                  }
              }

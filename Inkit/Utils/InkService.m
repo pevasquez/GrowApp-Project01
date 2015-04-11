@@ -276,7 +276,7 @@
 //                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
-                 case 204:
+                 case kHTTPResponseCodeOKNoResponse:
                  {
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;

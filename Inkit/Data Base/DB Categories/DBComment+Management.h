@@ -9,5 +9,6 @@
 #import "DBComment.h"
 
 @interface DBComment (Management)
-+ (DBComment *)createCommentWithText:(NSString*)text inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (DBComment *)createCommentWithText:(NSString*)text;
++ (DBComment *)createCommentInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 @end

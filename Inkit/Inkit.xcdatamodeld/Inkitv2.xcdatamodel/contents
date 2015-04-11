@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DBArtist" representedClassName="DBArtist" parentEntity="DBUser" syncable="YES">
         <attribute name="artistId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="hasBodyParts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBBodyPart" inverseName="inArtist" inverseEntity="DBBodyPart" syncable="YES"/>
@@ -18,6 +18,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="boards" inverseEntity="DBUser" syncable="YES"/>
     </entity>
     <entity name="DBBodyPart" representedClassName="DBBodyPart" syncable="YES">
+        <attribute name="bodyPartId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="inArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBArtist" inverseName="hasBodyParts" inverseEntity="DBArtist" syncable="YES"/>
         <relationship name="inInks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="ofBodyParts" inverseEntity="DBInk" syncable="YES"/>
@@ -67,6 +68,7 @@
     </entity>
     <entity name="DBTattooType" representedClassName="DBTattooType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tattooTypeId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="inArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBArtist" inverseName="hasTattooType" inverseEntity="DBArtist" syncable="YES"/>
         <relationship name="inInks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="ofTattooTypes" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="inShop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBShop" inverseName="hasTattooType" inverseEntity="DBShop" syncable="YES"/>
@@ -116,12 +118,12 @@
     <elements>
         <element name="DBArtist" positionX="-99" positionY="692" width="128" height="118"/>
         <element name="DBBoard" positionX="403" positionY="180" width="128" height="163"/>
-        <element name="DBBodyPart" positionX="-288" positionY="144" width="128" height="103"/>
+        <element name="DBBodyPart" positionX="-288" positionY="144" width="128" height="120"/>
         <element name="DBComment" positionX="196" positionY="108" width="128" height="118"/>
         <element name="DBImage" positionX="27" positionY="90" width="128" height="120"/>
         <element name="DBInk" positionX="-11" positionY="360" width="128" height="268"/>
         <element name="DBShop" positionX="277" positionY="563" width="128" height="178"/>
-        <element name="DBTattooType" positionX="243" positionY="437" width="128" height="103"/>
+        <element name="DBTattooType" positionX="243" positionY="437" width="128" height="120"/>
         <element name="DBUser" positionX="-684" positionY="0" width="128" height="643"/>
     </elements>
 </model>
