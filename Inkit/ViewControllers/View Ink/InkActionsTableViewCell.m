@@ -29,14 +29,16 @@
     }
     self.userNameLabel.text = user.name;
     self.cellHeight = self.bounds.size.height;
+    [self setLike:NO];
 }
 
 - (void)setLike:(BOOL)selected
 {
     if (selected) {
-        UIImage* iconImage = [[UIImage imageNamed:@"ViewInks-Like"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [self.likeButton setImage:iconImage forState:UIControlStateNormal];
         self.likeButton.tintColor = [InkitTheme getTintColor];
+    } else {
+        self.likeButton.tintColor = [InkitTheme getBaseColor];
+
     }
 }
 @end

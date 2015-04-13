@@ -19,6 +19,8 @@
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
 #import "DBImage+Management.h"
+#import "DBArtist+Management.h"
+
 #import "AppDelegate.h"
 #import "DataManager.h"
 #import "InkitTheme.h"
@@ -202,7 +204,7 @@ typedef enum
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
                 if (self.ink.artist) {
-                    cell.textLabel.text = [self.ink getArtistsAsString];
+                    cell.textLabel.text = self.ink.artist.fullName;
                     cell.textLabel.textColor = [InkitTheme getColorForText];
                 } else {
                     cell.textLabel.text = NSLocalizedString(@"Select Artist", nil);
@@ -243,38 +245,34 @@ typedef enum
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    } else if ([self.ink.inkDescription isEqualToString:@""]) {
-        
-        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return NO;
     } else if (!self.ink.board) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Board" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    }else if ([self.ink.bodyParts count]) {
-        
-        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Body Part" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return NO;
-    }else if ([self.ink.tattooTypes count]) {
-        
-        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Tattoo Type" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return NO;
-    }else if (self.ink.artist) {
-        
-        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Artist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return NO;
-    }else if (self.ink.shop) {
-        
-        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Shop" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return NO;
-    
     }
+//    else if ([self.ink.bodyParts count]) {
+//        
+//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Body Part" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alert show];
+//        return NO;
+//    } else if ([self.ink.tattooTypes count]) {
+//        
+//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Tattoo Type" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alert show];
+//        return NO;
+//    }else if (self.ink.artist) {
+//        
+//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Artist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alert show];
+//        return NO;
+//    }else if (self.ink.shop) {
+//        
+//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Shop" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alert show];
+//        return NO;
+//    
+//    }
     return YES;
 }
 
@@ -414,9 +412,9 @@ typedef enum
 {
     if ([self verifyCells]) {
         if (self.isReInking) {
-            
+            [self postInkCompleteAction:self.ink];
         } else if (self.isEditingInk) {
-            
+            [self postInkCompleteAction:self.ink];
         } else {
         [self.ink postWithTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
         }
@@ -498,6 +496,19 @@ typedef enum
     self.ink.inkDescription = text;
     [self.createInkTableView reloadData];
 }
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//    if(textField == self.description) {
+//        NSUInteger newLength = [textField.text length] + [string length] - range.length;
+//        return (newLength > 25) = YES;
+//    }
+//    else if(textField == self.title)
+//    {
+//        NSUInteger newLength = [textField.text length] + [string length] - range.length;
+//        return (newLength > 25) = YES;
+//
+//    }
+//}
 
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar

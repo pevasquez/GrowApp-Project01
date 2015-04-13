@@ -518,6 +518,7 @@
 		FBCCAF871A8CE83F0052DCB9 /* View Boards */ = {
 			isa = PBXGroup;
 			children = (
+				FB4A23C51AD963BF002EE49B /* Extensions */,
 				FBCCAF841A8CE8390052DCB9 /* ViewBoardsViewController.h */,
 				FBCCAF851A8CE8390052DCB9 /* ViewBoardsViewController.m */,
 				FBD91E111A960EE400B00724 /* View Boards */,
@@ -664,7 +665,6 @@
 		FBDCB1C11A83ED3100E05053 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FB4A23C51AD963BF002EE49B /* Extensions */,
 				868A5CA21AA626D6006DD52D /* Service */,
 				FBB696E31AABA7890071D96B /* Theme */,
 				FBB696E41AABA7920071D96B /* Data Util */,

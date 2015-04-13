@@ -159,6 +159,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to delete this board", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Delete", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
         [alertView show];
     }
+    
 }
 
 #pragma mark - Navigation
@@ -206,6 +207,11 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)deleteBoardComplete
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)boardServiceError:(NSString *)errorString
 {
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:errorString message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
@@ -228,8 +234,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [self.board deleteBoard];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.board deleteWithTarget:self completeAction:@selector(deleteBoardComplete) completeError:@selector(boardServiceError:)];
     }
 }
 

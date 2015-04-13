@@ -17,6 +17,8 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *users;
 @property (nonatomic, retain) NSSet *inks;
+@property (nonatomic, retain) NSString *shops;
+
 @end
 
 @interface DBBodyPart (CoreDataGeneratedAccessors)

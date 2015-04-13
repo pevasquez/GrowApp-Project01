@@ -196,8 +196,8 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : board.user.token,
-                                         @"board_id": board.boardID,
+    NSDictionary* jsonDataDictionary = @{@"access_token" : [NSString stringWithFormat:@"%@",board.user.token],
+                                         @"board_id": [NSString stringWithFormat:@"%@",board.boardID],
                                          };
     NSString *encodedDictionary = [jsonDataDictionary serializeParams];
     
@@ -212,18 +212,19 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             NSError *error = nil;
-             
-             // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSError *error = nil;
+//             
+//             // Parse JSON Response
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOKNoResponse:
                  {
                      // Acá va a ir el código para el caso de éxito
-                    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     [board deleteBoard];
+                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
                 default:

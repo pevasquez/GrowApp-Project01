@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *remoteTableView;
-@property (strong, nonatomic) NSArray *tableData;
+@property (strong, nonatomic) NSArray* filteredRemotesArray;
 
 @end
 
@@ -37,7 +37,7 @@
 
 - (void)getArtistComplete:(NSArray *)artistsArray
 {
-    self.tableData = artistsArray;
+    self.filteredRemotesArray = artistsArray;
     [self.tableView reloadData];
 }
 
@@ -45,6 +45,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSManagedObject* remote = self.filteredRemotesArray[indexPath.row];
+    
+    if ([remote isKindOfClass:[DBArtist class]]) {
+        DBArtist* artist = (DBArtist *)remote;
+        if ([self.editingInk.artist isEqual:artist]) {
+            self.editingInk.artist = nil;
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else {
+            self.editingInk.artist = artist;
+            [tableView reloadData];
+        }
+    } else if ([remote isKindOfClass:[DBShop class]]) {
+        DBShop* shop = (DBShop *)remote;
+        if ([self.editingInk.shop isEqual:shop]) {
+            self.editingInk.shop = nil;
+        } else {
+            self.editingInk.shop = shop;
+        }
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -57,7 +83,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.tableData count];
+    return [self.filteredRemotesArray count];
 }
 
 
@@ -65,9 +91,13 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectRemoteCell"];
     
-    DBArtist* artist = [self.tableData objectAtIndex:indexPath.row];
+    DBArtist* artist = [self.filteredRemotesArray objectAtIndex:indexPath.row];
     cell.textLabel.text = artist.fullName;
-    
+    if (self.editingInk.artist == artist) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 

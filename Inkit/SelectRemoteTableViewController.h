@@ -14,7 +14,6 @@
 
 @property (nonatomic) int cellCount;
 @property (strong, nonatomic)DBInk* editingInk;
-@property (strong, nonatomic) NSArray* remoteArray;
 
 
 @end

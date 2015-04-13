@@ -177,6 +177,39 @@
     [self.activityIndicatorView stopAnimating];
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    //int numberOfChracters = 0;
+    //bool lowerCaseLetter = false, upperCaseLetter = false, digit = false, specialCharacter = 0;
+    if (textField == self.passwordTextfield) {
+        if ([textField.text length] >= 6) {
+            //        for (int i = 0; i<[textField.text length]; i++) {
+            //            unichar c = [textField.text characterAtIndex:i];
+            //            if (!lowerCaseLetter) {
+            //                lowerCaseLetter = [[NSCharacterSet lowercaseLetterCharacterSet]characterIsMember:c];
+            //            }
+            //            if (!upperCaseLetter) {
+            //                upperCaseLetter = [[NSCharacterSet uppercaseLetterCharacterSet]characterIsMember:c];
+            //            }
+            //            if (!digit) {
+            //                digit = [[NSCharacterSet decimalDigitCharacterSet]characterIsMember:c];
+            //            }
+            //            if (!specialCharacter) {
+            //                specialCharacter = [[NSCharacterSet symbolCharacterSet]characterIsMember:c];
+            //            }
+            //        }
+            //        if (specialCharacter && digit && lowerCaseLetter && upperCaseLetter) {
+            //            //do what you want
+            //        }else{
+            //            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Ensure that you have at least one lower case letter, one upper case letter, one digit and one special character" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            //            [alert show];
+            //        }
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hey!" message:@"Please Enter at least 6 characters for the password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+}
+
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar
 {
