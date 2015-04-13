@@ -16,10 +16,10 @@
 @implementation InkCommentTableViewCell
 - (void)configureForInk:(DBInk *)ink
 {
-    if ([ink.hasComments count] > 1) {
-        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comments", (unsigned long)[ink.hasComments count]];
-    } else if ([ink.hasComments count] == 1) {
-        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comment", (unsigned long)[ink.hasComments count]];
+    if ([ink.comments count] > 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comments", (unsigned long)[ink.comments count]];
+    } else if ([ink.comments count] == 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comment", (unsigned long)[ink.comments count]];
     } else {
         self.commentLabel.text = @"Add Comment";
     }

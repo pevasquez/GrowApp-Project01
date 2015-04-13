@@ -32,6 +32,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 @property (strong, nonatomic) NSMutableArray* stringsArray;
 @property (strong, nonatomic) NSIndexPath* selectedIndexPath;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation CreateBoardViewController
@@ -43,6 +44,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         // Get ManagedObjectContext from AppDelegate
         self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
     }
+    [self hideActivityIndicator];
     if (!self.activeUser) {
         self.activeUser = [DataManager sharedInstance].activeUser;
     }
@@ -51,6 +53,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         self.title = NSLocalizedString(@"Edit Board",nil);
         self.stringsArray = [[NSMutableArray alloc] initWithObjects:self.board.boardTitle,self.board.boardDescription, nil];
     } else {
+        self.board = [self.activeUser createNewBoard];
         self.title = NSLocalizedString(@"Create Board",nil);
         self.stringsArray = [[NSMutableArray alloc] initWithObjects:@"",@"",nil];
     }
@@ -180,23 +183,33 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         [alertView show];
     } else {
         if (!self.isEditing) {
-            DBBoard * board = [self.activeUser createBoardWithTitle:self.stringsArray[kBoardTitle] AndDescription:self.stringsArray[kBoardDescription]];
-            [board postWithTarget:self completeAction:@selector(boardCreateComplete) completeError:@selector(boardCreateError)];
-            [self.delegate boardCreated:board];
+            self.board.boardTitle = self.stringsArray[kBoardTitle];
+            self.board.boardDescription = self.stringsArray[kBoardDescription];
+            [self.board postWithTarget:self completeAction:@selector(boardCreateComplete) completeError:@selector(boardServiceError:)];
+            [self showActivityIndicator];
         } else {
             self.board.boardTitle = self.stringsArray[kBoardTitle];
             self.board.boardDescription = self.stringsArray[kBoardDescription];
+            [self.board updateWithTarget:self completeAction:@selector(boardUpdateComplete) completeError:@selector(boardServiceError:)];
         }
-        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)boardCreateComplete
 {
+    [self.delegate boardCreated:self.board];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)boardCreateError
+- (void)boardUpdateComplete
 {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)boardServiceError:(NSString *)errorString
+{
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:errorString message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
+    [alertView show];
 }
 
 - (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
@@ -218,6 +231,19 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         [self.board deleteBoard];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+#pragma mark - Activity Indicator Methods
+- (void) showActivityIndicator
+{
+    self.activityIndicatorView.hidden = NO;
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void) hideActivityIndicator
+{
+    self.activityIndicatorView.hidden = YES;
+    [self.activityIndicatorView stopAnimating];
 }
 
 @end

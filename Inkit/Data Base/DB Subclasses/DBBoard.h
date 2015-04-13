@@ -2,14 +2,14 @@
 //  DBBoard.h
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 1/4/15.
+//  Created by Cristian Pena on 4/12/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DBArtist, DBInk, DBUser;
+@class DBInk, DBUser;
 
 @interface DBBoard : NSManagedObject
 
@@ -17,9 +17,7 @@
 @property (nonatomic, retain) NSString * boardDescription;
 @property (nonatomic, retain) NSNumber * boardID;
 @property (nonatomic, retain) NSString * boardTitle;
-@property (nonatomic, retain) DBArtist *inArtist;
 @property (nonatomic, retain) NSSet *inks;
-@property (nonatomic, retain) DBUser *ofUser;
 @property (nonatomic, retain) DBUser *user;
 @end
 

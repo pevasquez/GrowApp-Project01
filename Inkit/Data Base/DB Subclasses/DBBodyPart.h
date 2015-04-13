@@ -2,34 +2,33 @@
 //  DBBodyPart.h
 //  Inkit
 //
-//  Created by Cristian Pena on 4/11/15.
+//  Created by Cristian Pena on 4/12/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DBArtist, DBInk, DBShop;
+@class DBInk, DBShop, DBUser;
 
 @interface DBBodyPart : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * bodyPartId;
-@property (nonatomic, retain) DBArtist *inArtist;
-@property (nonatomic, retain) NSSet *inInks;
-@property (nonatomic, retain) NSSet *inShop;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *users;
+@property (nonatomic, retain) NSSet *inks;
 @end
 
 @interface DBBodyPart (CoreDataGeneratedAccessors)
 
-- (void)addInInksObject:(DBInk *)value;
-- (void)removeInInksObject:(DBInk *)value;
-- (void)addInInks:(NSSet *)values;
-- (void)removeInInks:(NSSet *)values;
+- (void)addUsersObject:(DBUser *)value;
+- (void)removeUsersObject:(DBUser *)value;
+- (void)addUsers:(NSSet *)values;
+- (void)removeUsers:(NSSet *)values;
 
-- (void)addInShopObject:(DBShop *)value;
-- (void)removeInShopObject:(DBShop *)value;
-- (void)addInShop:(NSSet *)values;
-- (void)removeInShop:(NSSet *)values;
+- (void)addInksObject:(DBInk *)value;
+- (void)removeInksObject:(DBInk *)value;
+- (void)addInks:(NSSet *)values;
+- (void)removeInks:(NSSet *)values;
 
 @end

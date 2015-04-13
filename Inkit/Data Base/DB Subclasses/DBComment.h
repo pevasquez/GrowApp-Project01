@@ -2,19 +2,21 @@
 //  DBComment.h
 //  Inkit
 //
-//  Created by Cristian Pena on 7/3/15.
+//  Created by Cristian Pena on 4/12/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DBInk, DBUser;
+@class DBInk, DBShop, DBUser;
 
 @interface DBComment : NSManagedObject
 
+@property (nonatomic, retain) NSDate * commentDate;
 @property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) DBUser *ofUser;
-@property (nonatomic, retain) DBInk *inInk;
+@property (nonatomic, retain) DBInk *ink;
+@property (nonatomic, retain) DBShop *shop;
+@property (nonatomic, retain) DBUser *user;
 
 @end

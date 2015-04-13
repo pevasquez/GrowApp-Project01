@@ -10,6 +10,7 @@
 #import "DataManager.h"
 #import "InkitService.h"
 #import "DBBodyPart+Management.h"
+#import "DBBoard+Management.h"
 #import "DBTattooType+Management.h"
 #import "DBComment+Management.h"
 #import "DBArtist+Management.h"
@@ -37,11 +38,11 @@
     newInk.reInksCount = ink.reInksCount;
     newInk.updatedAt = ink.updatedAt;
     newInk.image = ink.image;
-    newInk.ofArtist = ink.ofArtist;
-    [newInk addOfBodyParts:ink.ofBodyParts];
-    [newInk addOfTattooTypes:ink.ofTattooTypes];
-    newInk.ofShop = ink.ofShop;
-    newInk.inBoard = ink.inBoard;
+    newInk.artist = ink.artist;
+    [newInk addBodyParts:ink.bodyParts];
+    [newInk addTattooTypes:ink.tattooTypes];
+    newInk.shop = ink.shop;
+    newInk.board = ink.board;
     newInk.user = ink.user;
     return newInk;
 }
@@ -79,7 +80,7 @@
 - (NSString *)getBodyPartsAsString
 {
     NSString* bodyParts = @"";
-    for (DBBodyPart* bodyPart in self.ofBodyParts) {
+    for (DBBodyPart* bodyPart in self.bodyParts) {
         bodyParts = [bodyParts stringByAppendingString:[NSString stringWithFormat:@"%@ ",bodyPart.name]];
     }
     return bodyParts;
@@ -88,7 +89,7 @@
 - (NSString *)getTattooTypesAsString
 {
     NSString* tattooTypes = @"";
-    for (DBTattooType* tattooType in self.ofTattooTypes) {
+    for (DBTattooType* tattooType in self.tattooTypes) {
         tattooTypes = [tattooTypes stringByAppendingString:[NSString stringWithFormat:@"%@ ",tattooType.name]];
     }
     return tattooTypes;
@@ -96,7 +97,7 @@
 
 - (NSString *)getArtistsAsString
 {
-    return self.ofArtist.name;
+    return self.artist.name;
 }
 
 - (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -108,8 +109,8 @@
 - (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user
 {
     DBComment* comment = [DBComment createCommentWithText:text];
-    comment.ofUser = user;
-    [self addHasCommentsObject:comment];
+    comment.user = user;
+    [self addCommentsObject:comment];
 
     [DataManager saveContext];
 }
@@ -182,12 +183,19 @@
     self.reInksCount = ink.reInksCount;
     self.updatedAt = ink.updatedAt;
     self.image = ink.image;
-    self.ofArtist = ink.ofArtist;
-    [self addOfBodyParts:ink.ofBodyParts];
-    [self addOfTattooTypes:ink.ofTattooTypes];
-    self.ofShop = ink.ofShop;
-    self.inBoard = ink.inBoard;
+    self.artist = ink.artist;
+    [self addBodyParts:ink.bodyParts];
+    [self addTattooTypes:ink.tattooTypes];
+    self.shop = ink.shop;
+    self.board = ink.board;
     self.user = ink.user;
+}
+
+- (void)deleteInk
+{
+    [self.board removeInksObject:self];
+    [self.managedObjectContext deleteObject:self];
+    [self saveManagedObjectContext];
 }
 
 @end

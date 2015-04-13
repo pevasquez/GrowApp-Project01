@@ -34,7 +34,7 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : board.user.token,
+    NSDictionary* jsonDataDictionary = @{@"access_token" : [NSString stringWithFormat:@"%@",board.user.token],
                                          @"name":board.boardTitle,
                                          @"description":board.boardDescription
                                          };
@@ -116,8 +116,8 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : @"3",//board.user.token,
-                                         @"board_id": board.boardID,
+    NSDictionary* jsonDataDictionary = @{@"access_token" : [NSString stringWithFormat:@"%@",board.user.token],
+                                         @"board_id": [NSString stringWithFormat:@"%@",board.boardID],
                                          @"name":board.boardTitle,
                                          @"description":board.boardDescription
                                          };
@@ -135,21 +135,18 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             NSError *error = nil;
              
-             // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+//             NSError *error = nil;
+//             
+//             // Parse JSON Response
+//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+//                                                                                options:NSJSONReadingMutableContainers
+//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
-                 case kHTTPResponseCodeOK:
+                 case kHTTPResponseCodeOKNoResponse:
                  {
-                     // Acá va a ir el código para el caso de éxito
-                     if ([responseDictionary objectForKey:@"data"]) {
-                         [board updateWithJson:responseDictionary[@"data"]];
-                     }
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
                  case 422:

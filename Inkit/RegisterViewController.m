@@ -12,6 +12,9 @@
 #import "InkitService.h"
 
 @interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate, UITextFieldDelegate>
+{
+    NSString* name;
+}
 
 @property (strong, nonatomic) IBOutlet UITextField *eMailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextfield;
@@ -173,6 +176,7 @@
 
     [self.activityIndicatorView stopAnimating];
 }
+
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar
 {

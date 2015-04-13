@@ -51,7 +51,9 @@ typedef enum
 @property (strong, nonatomic) UITextView *selectedTextView;
 @property (strong, nonatomic) NSIndexPath* selectedIndexPath;
 @property (strong, nonatomic) DBInk* ink;
-
+@property (strong, nonatomic) UIAlertView* cancelAlertView;
+@property (strong, nonatomic) UIAlertView* deleteAlertView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation CreateInkViewController
@@ -63,6 +65,7 @@ typedef enum
     
     [self customizeNavigationBar];
     [self registerForKeyboardNotifications];
+    [self hideActivityIndicator];
     self.inkImageView.image = self.inkImage;
     if (!self.activeUser) {
         self.activeUser = [DataManager sharedInstance].activeUser;
@@ -117,99 +120,118 @@ typedef enum
 }
 
 #pragma mark - TableView Data Source Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (self.isEditingInk) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return kCreateInkTotal;
+    if (section == 0) {
+        return kCreateInkTotal;
+    } else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = nil;
-    switch (indexPath.row) {
-        case kInkImage:
-        {
-            CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
-            [imageCell configureForImage:[self.ink.image getImage]];
-            cell = imageCell;
-            break;
-        }
-        case kInkDescription:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-            if ([self.ink.inkDescription isEqualToString:@""]) {
-                cell.textLabel.text = NSLocalizedString(@"Description",nil);
-                cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-            } else {
-                cell.textLabel.text = self.ink.inkDescription;
-                cell.textLabel.textColor = [InkitTheme getColorForText];
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case kInkImage:
+            {
+                CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
+                [imageCell configureForImage:[self.ink.image getImage]];
+                cell = imageCell;
+                break;
             }
-            break;
-        }
-        case kInkBoard:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-                if (!self.ink.inBoard) {
-                    cell.textLabel.text = NSLocalizedString(@"Select Board",nil);
+            case kInkDescription:
+            {
+                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+                if ([self.ink.inkDescription isEqualToString:@""]) {
+                    cell.textLabel.text = NSLocalizedString(@"Description",nil);
                     cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
                 } else {
-                    cell.textLabel.text = self.ink.inBoard.boardTitle;
+                    cell.textLabel.text = self.ink.inkDescription;
                     cell.textLabel.textColor = [InkitTheme getColorForText];
                 }
-            break;
-        }
-        case kInkBodyPart:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-            if ([self.ink.ofBodyParts count]) {
-                cell.textLabel.text = [self.ink getBodyPartsAsString];
-                cell.textLabel.textColor = [InkitTheme getColorForText];
-            } else {
-                cell.textLabel.text = NSLocalizedString(@"Select Body Parts", nil);
-                cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+                break;
             }
-            break;
-        }
-        case kInkTattooType:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-            if ([self.ink.ofTattooTypes count]) {
-                cell.textLabel.text = [self.ink getTattooTypesAsString];
-                cell.textLabel.textColor = [InkitTheme getColorForText];
-            } else {
-                cell.textLabel.text = NSLocalizedString(@"Select Tattoo Types", nil);
-                cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+            case kInkBoard:
+            {
+                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+                    if (!self.ink.board) {
+                        cell.textLabel.text = NSLocalizedString(@"Select Board",nil);
+                        cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+                    } else {
+                        cell.textLabel.text = self.ink.board.boardTitle;
+                        cell.textLabel.textColor = [InkitTheme getColorForText];
+                    }
+                break;
             }
-            break;
-        }
-        case kInkArtist:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-            if (self.ink.ofArtist) {
-                cell.textLabel.text = [self.ink getArtistsAsString];
-                cell.textLabel.textColor = [InkitTheme getColorForText];
-            } else {
-                cell.textLabel.text = NSLocalizedString(@"Select Artist", nil);
-                cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+            case kInkBodyPart:
+            {
+                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+                if ([self.ink.bodyParts count]) {
+                    cell.textLabel.text = [self.ink getBodyPartsAsString];
+                    cell.textLabel.textColor = [InkitTheme getColorForText];
+                } else {
+                    cell.textLabel.text = NSLocalizedString(@"Select Body Parts", nil);
+                    cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+                }
+                break;
             }
-            break;
-        }
+            case kInkTattooType:
+            {
+                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+                if ([self.ink.tattooTypes count]) {
+                    cell.textLabel.text = [self.ink getTattooTypesAsString];
+                    cell.textLabel.textColor = [InkitTheme getColorForText];
+                } else {
+                    cell.textLabel.text = NSLocalizedString(@"Select Tattoo Types", nil);
+                    cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+                }
+                break;
+            }
+            case kInkArtist:
+            {
+                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+                if (self.ink.artist) {
+                    cell.textLabel.text = [self.ink getArtistsAsString];
+                    cell.textLabel.textColor = [InkitTheme getColorForText];
+                } else {
+                    cell.textLabel.text = NSLocalizedString(@"Select Artist", nil);
+                    cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+                }
+                break;
+            }
 
-        case kInkShop:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-            if (self.ink.ofShop) {
-               // cell.textLabel.text = [self.ink getArtistsAsString];
-                cell.textLabel.textColor = [InkitTheme getColorForText];
-            } else {
-                cell.textLabel.text = NSLocalizedString(@"Select Shop", nil);
-                cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+            case kInkShop:
+            {
+                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+                if (self.ink.shop) {
+                   // cell.textLabel.text = [self.ink getArtistsAsString];
+                    cell.textLabel.textColor = [InkitTheme getColorForText];
+                } else {
+                    cell.textLabel.text = NSLocalizedString(@"Select Shop", nil);
+                    cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+                }
+                break;
             }
-            break;
+
+
+            default:
+                break;
         }
-
-
-        default:
-            break;
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
+        cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
+        cell.textLabel.text = @"Delete";
     }
     return cell;
 }
@@ -226,27 +248,27 @@ typedef enum
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    } else if (!self.ink.inBoard) {
+    } else if (!self.ink.board) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Board" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    }else if ([self.ink.ofBodyParts count]) {
+    }else if ([self.ink.bodyParts count]) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Body Part" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    }else if ([self.ink.ofTattooTypes count]) {
+    }else if ([self.ink.tattooTypes count]) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Tattoo Type" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    }else if (self.ink.ofArtist) {
+    }else if (self.ink.artist) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Artist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    }else if (self.ink.ofShop) {
+    }else if (self.ink.shop) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Shop" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
@@ -259,39 +281,43 @@ typedef enum
 #pragma mark - TableView Delegte Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == kInkImage) {
-        CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
-        [imageCell configureForImage:[self.ink.image getImage]];
-        
-        // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-        [imageCell setNeedsUpdateConstraints];
-        [imageCell updateConstraintsIfNeeded];
-        
-        [imageCell setNeedsLayout];
-        [imageCell layoutIfNeeded];
-
-        CGFloat height = imageCell.cellHeight;
-        height += 1;
-        
-        double maxHeight = tableView.frame.size.height - kCreateInkTotal*kCreateInkCellHeight;
-
-        return MIN(maxHeight, height);
-    } else if (indexPath.row == kInkDescription){
-        InkDescriptionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkDescriptionTableViewCellIdentifier];
-        [cell configureForDescription:self.ink.inkDescription];
-        
-        // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-        [cell setNeedsUpdateConstraints];
-        [cell updateConstraintsIfNeeded];
-        
-        [cell setNeedsLayout];
-        [cell layoutIfNeeded];
-        
-        // Get the actual height required for the cell
-        CGFloat height = cell.cellHeight;
-        height += 1;
-        
-        return MAX(height, kCreateInkCellHeight);
+    if(indexPath.section == 0) {
+        if (indexPath.row == kInkImage) {
+            CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
+            [imageCell configureForImage:[self.ink.image getImage]];
+            
+            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
+            [imageCell setNeedsUpdateConstraints];
+            [imageCell updateConstraintsIfNeeded];
+            
+            [imageCell setNeedsLayout];
+            [imageCell layoutIfNeeded];
+            
+            CGFloat height = imageCell.cellHeight;
+            height += 1;
+            
+            double maxHeight = tableView.frame.size.height - kCreateInkTotal*kCreateInkCellHeight;
+            
+            return MIN(maxHeight, height);
+        } else if (indexPath.row == kInkDescription){
+            InkDescriptionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkDescriptionTableViewCellIdentifier];
+            [cell configureForDescription:self.ink.inkDescription];
+            
+            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
+            [cell setNeedsUpdateConstraints];
+            [cell updateConstraintsIfNeeded];
+            
+            [cell setNeedsLayout];
+            [cell layoutIfNeeded];
+            
+            // Get the actual height required for the cell
+            CGFloat height = cell.cellHeight;
+            height += 1;
+            
+            return MAX(height, kCreateInkCellHeight);
+        } else {
+            return kCreateInkCellHeight;
+        }
     } else {
         return kCreateInkCellHeight;
     }
@@ -300,31 +326,36 @@ typedef enum
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.row) {
-        case kInkDescription:
-        {
-            [self performSegueWithIdentifier:@"EditTextSegue" sender:indexPath];
-            break;
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case kInkDescription:
+            {
+                [self performSegueWithIdentifier:@"EditTextSegue" sender:indexPath];
+                break;
+            }
+            case kInkBoard:
+            {
+                [self performSegueWithIdentifier:@"SelectBoardSegue" sender:nil];
+                break;
+            }
+            case kInkBodyPart:
+            case kInkTattooType:
+            {
+                [self performSegueWithIdentifier:@"SelectLocalSegue" sender:indexPath];
+                break;
+            }
+            case kInkArtist:
+            case kInkShop:
+            {
+                [self performSegueWithIdentifier:@"SelectRemoteSegue" sender:indexPath];
+                break;
+            }
+            default:
+                break;
         }
-        case kInkBoard:
-        {
-            [self performSegueWithIdentifier:@"SelectBoardSegue" sender:nil];
-            break;
-        }
-        case kInkBodyPart:
-        case kInkTattooType:
-        {
-            [self performSegueWithIdentifier:@"SelectLocalSegue" sender:indexPath];
-            break;
-        }
-        case kInkArtist:
-        case kInkShop:
-        {
-            [self performSegueWithIdentifier:@"SelectRemoteSegue" sender:indexPath];
-            break;
-        }
-        default:
-            break;
+    } else {
+        self.deleteAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to delete this ink", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Delete", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
+        [self.deleteAlertView show];
     }
 }
 
@@ -397,8 +428,8 @@ typedef enum
 - (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
 {
     //[self.ink delete];
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"All data will be lost", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Accept", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
-    [alertView show];
+    self.cancelAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"All data will be lost", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Accept", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
+    [self.cancelAlertView show];
 }
 
 - (void)postInkCompleteAction:(DBInk *)ink
@@ -442,14 +473,23 @@ typedef enum
 #pragma mark - UIAlertView Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        if (self.editingInk) {
-            [self.navigationController popViewControllerAnimated:YES];
-
-        } else {
+    if (alertView == self.cancelAlertView) {
+        if (buttonIndex == 0) {
+            if (self.editingInk) {
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            } else {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }
+    } else if (alertView == self.deleteAlertView) {
+        if (buttonIndex == 0) {
+            [self.ink deleteInk];
+            [self.editingInk deleteInk];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
+    
 }
 
 #pragma mark - EditTextViewController Delegate
@@ -473,8 +513,21 @@ typedef enum
 #pragma mark - Select Board Delegate
 - (void)boardSelected:(DBBoard *)board
 {
-    self.ink.inBoard = board;
+    self.ink.board = board;
     [self.createInkTableView reloadData];
+}
+
+#pragma mark - Activity Indicator Methods
+- (void) showActivityIndicator
+{
+    self.activityIndicatorView.hidden = NO;
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void) hideActivityIndicator
+{
+    self.activityIndicatorView.hidden = YES;
+    [self.activityIndicatorView stopAnimating];
 }
 
 @end

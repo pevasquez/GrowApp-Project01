@@ -41,8 +41,6 @@
         self.styles = jsonDictionary[@"styles"];
     if ([jsonDictionary objectForKey:@"id"])
         self.userID = jsonDictionary[@"id"];
-    if ([jsonDictionary objectForKey:@"type"])
-        self.type = jsonDictionary[@"type"];
     if ([jsonDictionary objectForKey:@"country"])
         self.country = jsonDictionary[@"country"];
     if ([jsonDictionary objectForKey:@"gender"])
@@ -81,12 +79,12 @@
         self.boardsCount = jsonDictionary[@"boards_count"];
     if ([jsonDictionary objectForKey:@"social_networks"])
         self.socialNetworks = jsonDictionary[@"social_networks"];
-    if ([jsonDictionary objectForKey:@"artists"])
-        self.artists = jsonDictionary[@"artists"];
-    if ([jsonDictionary objectForKey:@"shops"])
-        self.shops = jsonDictionary[@"shops"];
-    if ([jsonDictionary objectForKey:@"tattoo_types"])
-        self.tattooTypes = jsonDictionary[@"tattoo_types"];
+//    if ([jsonDictionary objectForKey:@"artists"])
+//        self.artists = jsonDictionary[@"artists"];
+//    if ([jsonDictionary objectForKey:@"shops"])
+//        self.shops = jsonDictionary[@"shops"];
+//    if ([jsonDictionary objectForKey:@"tattoo_types"])
+//        self.tattooTypes = jsonDictionary[@"tattoo_types"];
 }
 
 
@@ -121,6 +119,14 @@
     NSError* error = nil;
     [self.managedObjectContext save:&error];
     
+    return board;
+}
+
+- (DBBoard *)createNewBoard
+{
+    DBBoard* board = [DBBoard createNewBoard];
+    board.user = self;
+    [DataManager saveContext];
     return board;
 }
 

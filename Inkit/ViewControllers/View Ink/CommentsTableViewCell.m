@@ -21,8 +21,8 @@
 @implementation CommentsTableViewCell
 - (void)configureForComment:(DBComment *)comment
 {
-    self.userImage.image = [UIImage imageWithData:comment.ofUser.userImage];
-    self.userName.text = comment.ofUser.name;
+    self.userImage.image = [UIImage imageWithData:comment.user.userImage];
+    self.userName.text = comment.user.name;
     self.commentLabel.text = comment.text;
     double leading = self.commentLabel.frame.origin.x;
     

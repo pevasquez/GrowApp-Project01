@@ -98,7 +98,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 }
 - (void)updateCommentsTableView
 {
-    self.commentsArray = self.ink.hasComments.allObjects;
+    self.commentsArray = self.ink.comments.allObjects;
     [self.commentsTableView reloadData];
 }
 @end

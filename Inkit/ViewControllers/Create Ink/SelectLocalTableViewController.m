@@ -50,7 +50,7 @@ static NSString * const LocalTableViewCellIdentifier = @"LocalTableViewCell";
     if ([local isKindOfClass:[DBBodyPart class]]) {
         DBBodyPart* bodyPart = self.filteredLocalsArray[indexPath.row];
         cell.textLabel.text = bodyPart.name;
-        if ([self.editingInk.ofBodyParts containsObject:bodyPart]) {
+        if ([self.editingInk.bodyParts containsObject:bodyPart]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -58,7 +58,7 @@ static NSString * const LocalTableViewCellIdentifier = @"LocalTableViewCell";
     } else if ([local isKindOfClass:[DBTattooType class]]) {
         DBTattooType* tattooType = self.filteredLocalsArray[indexPath.row];
         cell.textLabel.text = tattooType.name;
-        if ([self.editingInk.ofTattooTypes containsObject:tattooType]) {
+        if ([self.editingInk.tattooTypes containsObject:tattooType]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -79,18 +79,18 @@ static NSString * const LocalTableViewCellIdentifier = @"LocalTableViewCell";
     
     if ([local isKindOfClass:[DBBodyPart class]]) {
         DBBodyPart* bodyPart = (DBBodyPart *)local;
-        if ([self.editingInk.ofBodyParts containsObject:bodyPart]) {
-            [self.editingInk removeOfBodyPartsObject:bodyPart];
+        if ([self.editingInk.bodyParts containsObject:bodyPart]) {
+            [self.editingInk removeBodyPartsObject:bodyPart];
         } else {
-            [self.editingInk addOfBodyPartsObject:bodyPart];
+            [self.editingInk addBodyPartsObject:bodyPart];
         }
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     } else if ([local isKindOfClass:[DBTattooType class]]) {
         DBTattooType* tattooType = (DBTattooType *)local;
-        if ([self.editingInk.ofTattooTypes containsObject:tattooType]) {
-            [self.editingInk removeOfTattooTypesObject:tattooType];
+        if ([self.editingInk.tattooTypes containsObject:tattooType]) {
+            [self.editingInk removeTattooTypesObject:tattooType];
         } else {
-            [self.editingInk addOfTattooTypesObject:tattooType];
+            [self.editingInk addTattooTypesObject:tattooType];
         }
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }

@@ -2,7 +2,7 @@
 //  DBInk.h
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 1/4/15.
+//  Created by Cristian Pena on 4/12/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -13,38 +13,38 @@
 
 @interface DBInk : NSManagedObject
 
+@property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSNumber * extraData;
 @property (nonatomic, retain) NSString * inkDescription;
 @property (nonatomic, retain) NSNumber * inkID;
 @property (nonatomic, retain) NSNumber * likesCount;
 @property (nonatomic, retain) NSNumber * reInksCount;
-@property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSDate * updatedAt;
-@property (nonatomic, retain) NSNumber * extraData;
-@property (nonatomic, retain) NSSet *hasComments;
-@property (nonatomic, retain) DBBoard *inBoard;
-@property (nonatomic, retain) DBArtist *ofArtist;
-@property (nonatomic, retain) NSSet *ofBodyParts;
-@property (nonatomic, retain) DBShop *ofShop;
-@property (nonatomic, retain) NSSet *ofTattooTypes;
-@property (nonatomic, retain) DBUser *user;
+@property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) DBImage *image;
+@property (nonatomic, retain) DBBoard *board;
+@property (nonatomic, retain) DBArtist *artist;
+@property (nonatomic, retain) NSSet *bodyParts;
+@property (nonatomic, retain) DBShop *shop;
+@property (nonatomic, retain) NSSet *tattooTypes;
+@property (nonatomic, retain) DBUser *user;
 @end
 
 @interface DBInk (CoreDataGeneratedAccessors)
 
-- (void)addHasCommentsObject:(DBComment *)value;
-- (void)removeHasCommentsObject:(DBComment *)value;
-- (void)addHasComments:(NSSet *)values;
-- (void)removeHasComments:(NSSet *)values;
+- (void)addCommentsObject:(DBComment *)value;
+- (void)removeCommentsObject:(DBComment *)value;
+- (void)addComments:(NSSet *)values;
+- (void)removeComments:(NSSet *)values;
 
-- (void)addOfBodyPartsObject:(DBBodyPart *)value;
-- (void)removeOfBodyPartsObject:(DBBodyPart *)value;
-- (void)addOfBodyParts:(NSSet *)values;
-- (void)removeOfBodyParts:(NSSet *)values;
+- (void)addBodyPartsObject:(DBBodyPart *)value;
+- (void)removeBodyPartsObject:(DBBodyPart *)value;
+- (void)addBodyParts:(NSSet *)values;
+- (void)removeBodyParts:(NSSet *)values;
 
-- (void)addOfTattooTypesObject:(DBTattooType *)value;
-- (void)removeOfTattooTypesObject:(DBTattooType *)value;
-- (void)addOfTattooTypes:(NSSet *)values;
-- (void)removeOfTattooTypes:(NSSet *)values;
+- (void)addTattooTypesObject:(DBTattooType *)value;
+- (void)removeTattooTypesObject:(DBTattooType *)value;
+- (void)addTattooTypes:(NSSet *)values;
+- (void)removeTattooTypes:(NSSet *)values;
 
 @end

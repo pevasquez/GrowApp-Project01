@@ -27,5 +27,5 @@
 
 // Comment Actions
 - (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user;
-
+- (void)deleteInk;
 @end

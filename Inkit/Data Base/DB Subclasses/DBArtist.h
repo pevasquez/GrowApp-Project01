@@ -2,7 +2,7 @@
 //  DBArtist.h
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 8/4/15.
+//  Created by Cristian Pena on 4/12/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -10,32 +10,20 @@
 #import <CoreData/CoreData.h>
 #import "DBUser.h"
 
-@class DBBodyPart, DBInk, DBShop, DBTattooType;
+@class DBInk, DBUser;
 
 @interface DBArtist : DBUser
 
 @property (nonatomic, retain) NSNumber * artistId;
-@property (nonatomic, retain) DBBodyPart *hasBodyParts;
-@property (nonatomic, retain) NSSet *hasInks;
-@property (nonatomic, retain) NSSet *hasTattooType;
-@property (nonatomic, retain) NSSet *inShop;
+@property (nonatomic, retain) DBUser *user;
+@property (nonatomic, retain) NSSet *didInks;
 @end
 
 @interface DBArtist (CoreDataGeneratedAccessors)
 
-- (void)addHasInksObject:(DBInk *)value;
-- (void)removeHasInksObject:(DBInk *)value;
-- (void)addHasInks:(NSSet *)values;
-- (void)removeHasInks:(NSSet *)values;
-
-- (void)addHasTattooTypeObject:(DBTattooType *)value;
-- (void)removeHasTattooTypeObject:(DBTattooType *)value;
-- (void)addHasTattooType:(NSSet *)values;
-- (void)removeHasTattooType:(NSSet *)values;
-
-- (void)addInShopObject:(DBShop *)value;
-- (void)removeInShopObject:(DBShop *)value;
-- (void)addInShop:(NSSet *)values;
-- (void)removeInShop:(NSSet *)values;
+- (void)addDidInksObject:(DBInk *)value;
+- (void)removeDidInksObject:(DBInk *)value;
+- (void)addDidInks:(NSSet *)values;
+- (void)removeDidInks:(NSSet *)values;
 
 @end
