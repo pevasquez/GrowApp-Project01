@@ -9,13 +9,8 @@
 #import "DBBodyPart.h"
 
 @interface DBBodyPart (Management)
-+ (DBBodyPart *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (DBBodyPart *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBBodyPart *)fromJson:(NSDictionary *)bodyPartDictionary;
 
 // Get Body Parts
 + (NSArray *)getBodyPartsSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
-// Mock Methods
-+ (void)createMockBodyPartsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 @end

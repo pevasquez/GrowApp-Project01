@@ -14,37 +14,33 @@
 
 @implementation DBBodyPart (Management)
 
-+ (DBBodyPart *)fromJson:(NSDictionary *)bodyPartDictionary
++ (DBBodyPart *)withID:(NSString *)bodyPartId
 {
-    DBBodyPart* bodyPart = [DBBodyPart createNewBodyPart];
-    if ([bodyPartDictionary objectForKey:@"id"] && ([bodyPartDictionary objectForKey:@"id"] != [NSNull null])) {
-        bodyPart.bodyPartId = [bodyPartDictionary objectForKey:@"id"];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"bodyPartId = %@",bodyPartId];
+    return (DBBodyPart *)[[DataManager sharedInstance] first:kDBBodyPart predicate:predicate sort:nil limit:1];
+}
+
++ (DBBodyPart *)fromJson:(NSDictionary *)bodyPartData
+{
+    NSString* bodyPartID = [NSString stringWithFormat:@"%@",bodyPartData[@"id"]] ;
+    DBBodyPart* obj = [DBBodyPart withID:bodyPartID];
+    DBBodyPart* bodyPart = nil;
+    if (!obj) {
+        bodyPart = (DBBodyPart *)[[DataManager sharedInstance] insert:kDBBodyPart];
+        bodyPart.bodyPartId = bodyPartID;
+    } else {
+        bodyPart = obj;
     }
-    if ([bodyPartDictionary objectForKey:@"name"] && ([bodyPartDictionary objectForKey:@"name"] != [NSNull null])) {
-        bodyPart.name = [bodyPartDictionary objectForKey:@"name"];
+    [bodyPart updateWithJson:bodyPartData];
+    [DataManager saveContext];
+    return bodyPart;
+}
+
+- (void)updateWithJson:(NSDictionary *)bodyPartDictionary
+{
+    if ([bodyPartDictionary objectForKey:@"name"]) {
+        self.name = [bodyPartDictionary objectForKey:@"name"];
     }
-    return bodyPart;
-}
-
-+ (DBBodyPart *)createNewBodyPart
-{
-    DBBodyPart* bodyPart = [DBBodyPart createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
-    bodyPart.bodyPartId = @0;
-    bodyPart.name = @"";
-    return bodyPart;
-}
-
-+ (DBBodyPart *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBBodyPart* bodyPart = [NSEntityDescription insertNewObjectForEntityForName:kDBBodyPart inManagedObjectContext:managedObjectContext];
-    return bodyPart;
-}
-
-+ (DBBodyPart *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBBodyPart* bodyPart = [DBBodyPart createInManagedObjectContext:managedObjectContext];
-    bodyPart.name = name;
-    return bodyPart;
 }
 
 + (NSArray *)getBodyPartsSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -63,36 +59,6 @@
         return bodyParts;
     } else {
         return nil;
-    }
-}
-
-
-+ (void)createMockBodyPartsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSArray* currentBodyParts = [DBBodyPart getBodyPartsSortedInManagedObjectContext:managedObjectContext];
-    for (DBBodyPart* bodyPart in currentBodyParts) {
-        [managedObjectContext deleteObject:bodyPart];
-    }
-    
-    NSArray* bodyPartsArray = @[@"Ankle",
-                                @"Arm",
-                                @"Back",
-                                @"Bicep",
-                                @"Chest",
-                                @"Ear",
-                                @"Face",
-                                @"Foot",
-                                @"Hand",
-                                @"Head",
-                                @"Leg",
-                                @"Lip",
-                                @"Neck",
-                                @"Shoulder",
-                                @"Stomach",
-                                @"Wrist"];
-    
-    for (NSString* name in bodyPartsArray) {
-        [DBBodyPart createWithName:name InManagedObjectContext:managedObjectContext];
     }
 }
 

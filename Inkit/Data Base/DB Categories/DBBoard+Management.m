@@ -10,33 +10,11 @@
 #import "InkitService.h"
 #import "DataManager.h"
 #import "InkitServiceConstants.h"
+#import "InkitConstants.h"
 
 #define kDBBoard     @"DBBoard"
-#define kBoardTitle     @"boardTitle"
 
 @implementation DBBoard (Management)
-+ (DBBoard *)createNewBoard
-{
-    return [DBBoard createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
-}
-
-
-+ (DBBoard *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBBoard* board = [NSEntityDescription insertNewObjectForEntityForName:kDBBoard inManagedObjectContext:managedObjectContext];
-    return board;
-}
-
-+ (DBBoard *)createWithTitle:(NSString *)boardTitle AndDescription:(NSString *)boardDescription
-{
-    DBBoard* board = [DBBoard createNewBoard];
-    board.boardDescription = boardDescription;
-    board.boardTitle = boardTitle;
-    
-    [DataManager saveContext];
-    return board;
-}
-
 + (NSArray *)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBBoard];
@@ -65,14 +43,9 @@
     }
 }
 
-- (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+- (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    [InkitService postBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
-}
-
-- (void)updateWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    [InkitService updateBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
+    [InkitService updateBoard:self withDictionary:boardDictionary target:target completeAction:completeAction completeError:completeError];
 }
 
 - (void)deleteWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -93,8 +66,7 @@
 - (void)addInkToBoard:(DBInk *)ink
 {
     [self addInksObject:ink];
-    
-    [self saveManagedObjectContext];
+    [DataManager saveContext];
 }
 
 - (void)addInksToBoard:(NSArray *)inksArray
@@ -102,13 +74,13 @@
     for (DBInk* ink in inksArray) {
         [self addInkToBoard:ink];
     }
-    [self saveManagedObjectContext];
+    [DataManager saveContext];
 }
 
 - (void)removeInkFromBoard:(DBInk *)ink
 {
     [self removeInksObject:ink];
-    [self saveManagedObjectContext];
+    [DataManager saveContext];
 }
 
 - (void)removeInksFromBoard:(NSArray *)inksArray
@@ -116,22 +88,16 @@
     for (DBInk* ink in inksArray) {
         [self removeInkFromBoard:ink];
     }
-    [self saveManagedObjectContext];
+    [DataManager saveContext];
 }
 
 - (void)deleteBoard
 {
-    [self.managedObjectContext deleteObject:self];
-    [self saveManagedObjectContext];
-}
-- (void)saveManagedObjectContext
-{
-    // Save context
-    NSError* error = nil;
-    [self.managedObjectContext save:&error];
+    [[DataManager sharedInstance] deleteObject:self];
+    [DataManager saveContext];
 }
 
-// 
+//
 + (DBBoard *)withID:(NSString *)boardID
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"boardID = %@",boardID];
@@ -149,16 +115,20 @@
         board = obj;
     }
     [board updateWithJson:boardData];
+    [DataManager saveContext];
     return board;
 }
 
 - (void)updateWithJson:(NSDictionary *)jsonDictionary
 {
-    if ([jsonDictionary objectForKey:@"id"]) {
-        self.boardID = jsonDictionary[@"id"];
+    if ([jsonDictionary objectForKey:kBoardID]) {
+        self.boardID = jsonDictionary[kBoardID];
     }
-    if ([jsonDictionary objectForKey:@"name"]) {
-        self.boardTitle = jsonDictionary[@"name"];
+    if ([jsonDictionary objectForKey:kBoardTitle]) {
+        self.boardTitle = jsonDictionary[kBoardTitle];
+    }
+    if ([jsonDictionary objectForKey:kBoardDescription]) {
+        self.boardDescription = jsonDictionary[kBoardDescription];
     }
 }
 

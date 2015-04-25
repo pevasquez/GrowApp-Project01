@@ -36,7 +36,7 @@
 @property (nonatomic, retain) NSString * socialNetworks;
 @property (nonatomic, retain) NSString * styles;
 @property (nonatomic, retain) NSString * timezone;
-@property (nonatomic, retain) NSNumber * token;
+@property (nonatomic, retain) NSString * token;
 @property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * updatedTime;
 @property (nonatomic, retain) NSNumber * userID;

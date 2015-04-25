@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DBInk (Management)
++ (DBInk *)fromJson:(NSDictionary *)inkData;
 + (DBInk *)createNewInk;
-+ (DBInk *)createWithImage:(UIImage *)image AndDescription:(NSString *)inkDescription InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBInk *)inkWithInk:(DBInk *)ink;
 + (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
@@ -23,7 +23,9 @@
 - (NSString *)getTattooTypesAsString;
 - (NSString *)getArtistsAsString;
 
-+ (DBInk *)fromJson:(NSDictionary *)inkData;
+- (NSArray *)toArray;
+- (NSDictionary *)toDictionary;
++ (NSDictionary *)emptyDictionary;
 
 // Comment Actions
 - (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user;

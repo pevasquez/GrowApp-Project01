@@ -13,7 +13,7 @@
 
 @interface DBBodyPart : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * bodyPartId;
+@property (nonatomic, retain) NSString * bodyPartId;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *users;
 @property (nonatomic, retain) NSSet *inks;

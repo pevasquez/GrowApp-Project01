@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -208,7 +208,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hh4-gU-qbt" id="m2i-MX-TVQ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV9-cY-fuY" customClass="DynamicSizeLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV9-cY-fuY" customClass="DynamicSizeLabel">
                                                     <rect key="frame" x="8" y="8" width="584" height="54"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1196,7 +1196,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SelectLocalTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3KV-ST-JBN" customClass="SelectLocalTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Usp-S7-UAu">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="sTu-b2-TaO">
@@ -1208,7 +1208,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocalTableViewCell" textLabel="dpx-j2-KWq" style="IBUITableViewCellStyleDefault" id="Ibl-WT-rkj">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectLocalCell" textLabel="dpx-j2-KWq" style="IBUITableViewCellStyleDefault" id="Ibl-WT-rkj">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ibl-WT-rkj" id="Bkm-MN-49H">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1228,7 +1228,14 @@
                             <outlet property="delegate" destination="3KV-ST-JBN" id="ZeT-tp-Xuc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Local" id="GSp-AB-WDc"/>
+                    <navigationItem key="navigationItem" title="Select Local" id="GSp-AB-WDc">
+                        <barButtonItem key="rightBarButtonItem" title="Ok" id="pDQ-ak-f1q">
+                            <connections>
+                                <action selector="okButtonPressed:" destination="3KV-ST-JBN" id="6kf-gy-YRK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="localsSearchBar" destination="sTu-b2-TaO" id="MEu-39-nwp"/>
                         <outlet property="localsTableView" destination="Usp-S7-UAu" id="ORT-Rc-osB"/>
@@ -1239,46 +1246,6 @@
             <point key="canvasLocation" x="4469" y="2418"/>
         </scene>
         <!--Select Remote-->
-        <scene sceneID="1fN-Wp-yQy">
-            <objects>
-                <tableViewController storyboardIdentifier="SelectRemoteTableViewController" title="Select Remote" id="C1o-uy-5Z8" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BXn-6q-H6I">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="4VY-lC-KLE">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="C1o-uy-5Z8" id="Ofq-Rd-u7b"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectRemoteCell" id="RwM-sR-QLD">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RwM-sR-QLD" id="two-EE-XGc">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="C1o-uy-5Z8" id="8ri-mD-8qQ"/>
-                            <outlet property="delegate" destination="C1o-uy-5Z8" id="oE1-zM-1Sb"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Select Remote" id="oTM-zo-XFb"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="remoteTableView" destination="BXn-6q-H6I" id="dLF-X7-eWr"/>
-                        <outlet property="searchBar" destination="4VY-lC-KLE" id="8oJ-K4-XpG"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n1o-0Z-0Nx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5171" y="2418"/>
-        </scene>
-        <!--Select Remote-->
         <scene sceneID="Vli-xa-F6Y">
             <objects>
                 <viewController id="yTm-e0-Pfh" customClass="SelectRemoteViewController" sceneMemberID="viewController">
@@ -1287,19 +1254,22 @@
                         <viewControllerLayoutGuide type="bottom" id="WuL-h6-gFX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tyk-W6-JdX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="T3z-2U-eQq">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="LuH-dD-ZbI">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="yTm-e0-Pfh" id="Dgc-sQ-caA"/>
+                                    </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Maa-Iv-AEa">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectRemoteCell" id="Maa-Iv-AEa">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Maa-Iv-AEa" id="x3K-0N-r92">
@@ -1312,20 +1282,22 @@
                                     <outlet property="delegate" destination="yTm-e0-Pfh" id="OUK-CC-dli"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oK0-6n-uxL">
-                                <rect key="frame" x="290" y="319" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oK0-6n-uxL">
+                                <rect key="frame" x="290" y="258" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="oK0-6n-uxL" secondAttribute="centerY" id="DbI-r0-taj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="T3z-2U-eQq" secondAttribute="trailing" constant="-16" id="V2Y-UX-b0U"/>
                             <constraint firstItem="T3z-2U-eQq" firstAttribute="leading" secondItem="Tyk-W6-JdX" secondAttribute="leadingMargin" constant="-16" id="bnG-tF-DYS"/>
+                            <constraint firstAttribute="centerX" secondItem="oK0-6n-uxL" secondAttribute="centerX" id="feX-a5-xqA"/>
                             <constraint firstItem="WuL-h6-gFX" firstAttribute="top" secondItem="T3z-2U-eQq" secondAttribute="bottom" id="loj-9X-dMU"/>
                             <constraint firstItem="T3z-2U-eQq" firstAttribute="top" secondItem="Tyk-W6-JdX" secondAttribute="topMargin" id="lou-bb-201"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select Remote" id="UaK-3m-kAC"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="activityIndicator" destination="oK0-6n-uxL" id="qne-ZD-Uca"/>
                         <outlet property="remoteTableView" destination="T3z-2U-eQq" id="LoH-t2-ZP1"/>
@@ -1334,7 +1306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rs-x3-yCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5812" y="2418"/>
+            <point key="canvasLocation" x="5109" y="2418"/>
         </scene>
         <!--BrowseViewController-->
         <scene sceneID="2Kk-zZ-uym">
@@ -2488,10 +2460,10 @@
         <image name="ViewInks-ReInk" width="7" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eTF-QW-UEi"/>
         <segue reference="YiA-aR-fdm"/>
         <segue reference="NRZ-KG-SSz"/>
-        <segue reference="0Nl-hs-tvc"/>
+        <segue reference="eTF-QW-UEi"/>
+        <segue reference="jnN-Q2-2iU"/>
         <segue reference="qdy-Zm-66Q"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

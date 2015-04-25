@@ -11,6 +11,7 @@
 #import "DBUser+Management.h"
 #import "DBInk+Management.h"
 #import "InkitServiceConstants.h"
+#import "InkitConstants.h"
 #import "DataManager.h"
 
 
@@ -74,7 +75,7 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      [DataManager sharedInstance].activeUser = user;
-                     user.token = responseDictionary[@"access_token"];
+                     user.token = responseDictionary[kAccessToken];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
@@ -103,7 +104,7 @@
 }
 
 
-+ (NSError *)logInUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)logInUserDictionary:(NSDictionary *)userDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
@@ -125,13 +126,8 @@
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"email" : user.email,
-                                         @"password" : user.password,
-                                         };
-    
     NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
 
     [request setHTTPBody: jsonData];
     
@@ -154,10 +150,12 @@
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
-                     [DataManager sharedInstance].activeUser = user;
+                     
                      // Acá va a ir el código para el caso de éxito
-                     if ([responseDictionary objectForKey:@"access_token"]) {
-                         user.token = [responseDictionary objectForKey:@"access_token"];
+                     if ([responseDictionary objectForKey:kAccessToken]) {
+                         DBUser* user = [DBUser createNewUser];
+                         [user updateWithJson:userDictionary];
+                         [user updateWithJson:responseDictionary];
                          [DataManager sharedInstance].activeUser = user;
                          [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      } else {
@@ -274,7 +272,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : user.token,
+    NSDictionary* jsonDataDictionary = @{kAccessToken : user.token,
                                          @"*first_name": user.name ,
                                          @"*last_name" : user.lastName,
                                          @"*profile_pic" : user.userImage,

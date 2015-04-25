@@ -42,8 +42,8 @@
     //Expectation
     self.expectation = [self expectationWithDescription:@"Testing Async Method Works!"];
     
-    DBBoard* board = [DBBoard createWithTitle:@"New Board 3" AndDescription:@"New Boards Description"];
-    [board postWithTarget:self completeAction:@selector(serviceComplete) completeError:@selector(serviceError:)];
+//    DBBoard* board = [DBBoard createWithTitle:@"New Board 3" AndDescription:@"New Boards Description"];
+//    [board postWithTarget:self completeAction:@selector(serviceComplete) completeError:@selector(serviceError:)];
     
     [self waitForExpectationsWithTimeout:5 handler:^(NSError *error) {
         if(error)
@@ -59,9 +59,9 @@
     //Expectation
     self.expectation = [self expectationWithDescription:@"Testing Async Method Works!"];
     
-    DBBoard* board = [DBBoard createWithTitle:@"New Board" AndDescription:@"New Boards Description"];
-    //board.boardID = @1;
-    [board updateWithTarget:self completeAction:@selector(serviceComplete) completeError:@selector(serviceError:)];
+//    DBBoard* board = [DBBoard createWithTitle:@"New Board" AndDescription:@"New Boards Description"];
+//    //board.boardID = @1;
+//    [board updateWithTarget:self completeAction:@selector(serviceComplete) completeError:@selector(serviceError:)];
     
     [self waitForExpectationsWithTimeout:5 handler:^(NSError *error) {
         if(error)
@@ -77,8 +77,8 @@
     //Expectation
     self.expectation = [self expectationWithDescription:@"Testing Async Method Works!"];
     
-    DBBoard* board = [DBBoard createWithTitle:@"New Board" AndDescription:@"New Boards Description"];
-    [board deleteWithTarget:self completeAction:@selector(serviceComplete) completeError:@selector(serviceError:)];
+//    DBBoard* board = [DBBoard createWithTitle:@"New Board" AndDescription:@"New Boards Description"];
+//    [board deleteWithTarget:self completeAction:@selector(serviceComplete) completeError:@selector(serviceError:)];
     
     [self waitForExpectationsWithTimeout:5 handler:^(NSError *error) {
         if(error)

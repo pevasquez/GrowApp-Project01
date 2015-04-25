@@ -9,10 +9,6 @@
 #import "DBTattooType.h"
 
 @interface DBTattooType (Management)
-+ (void)createMockTattooTypesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (DBTattooType *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (DBTattooType *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
 + (DBTattooType *)fromJson:(NSDictionary *)tattooTypeDictionary;
 
 // Get Body Parts

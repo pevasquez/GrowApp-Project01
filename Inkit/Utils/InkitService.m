@@ -22,18 +22,10 @@
 
 @implementation InkitService
 
-+ (NSError *)logInUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)logInUserDictionary:(NSDictionary *)userDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    return [UserService logInUser:user withTarget:target completeAction:completeAction completeError:completeError];
+    return [UserService logInUserDictionary:userDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
-
-+ (NSError *)logInUser:(DBUser *)user WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    NSError* returnError = nil;
-
-    return returnError;
-}
-
 
 + (NSError *)registerUser:(DBUser *)user WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
@@ -97,16 +89,9 @@
 //    return returnError;
 }
 
-+ (NSError *)postInk:(DBInk *)ink WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    NSError* returnError = nil;
-
-    //return [InkService createInk:ink forUser:ink.user inBoard:ink.inBoard withTarget:target completeAction:completeAction completeError:completeError];
-
-    // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:ink waitUntilDone:NO];
-    
-    return returnError;
+    return [InkService createInk:inkDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -114,9 +99,9 @@
     return [BoardService postBoard:boardDictionary WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)updateBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)updateBoard:(DBBoard *)board withDictionary:(NSDictionary *)boardDictionary target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
-    return [BoardService updateBoard:board WithTarget:target completeAction:completeAction completeError:completeError];
+    return [BoardService updateBoard:board withDictionary:boardDictionary target:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)deleteBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

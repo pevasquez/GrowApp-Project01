@@ -9,7 +9,6 @@
 #import "DBArtist.h"
 
 @interface DBArtist (Management)
-+ (void)createMockArtistInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBArtist *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBArtist *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 

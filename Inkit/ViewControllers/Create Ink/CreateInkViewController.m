@@ -20,7 +20,7 @@
 #import "DBTattooType+Management.h"
 #import "DBImage+Management.h"
 #import "DBArtist+Management.h"
-
+#import "InkitConstants.h"
 
 #import "AppDelegate.h"
 #import "DataManager.h"
@@ -37,14 +37,13 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 #define kCreateInkTextFieldCellHeight   90
 typedef enum
 {
-    kInkImage,
-    kInkDescription,
-    kInkBoard,
-    //kInkCategory,
-    kInkBodyPart,
-    kInkTattooType,
-    kInkArtist,
-    kInkShop,
+    kCreateInkImageIndex,
+    kCreateInkDescriptionIndex,
+    kCreateInkBoardIndex,
+    kCreateInkBodyPartIndex,
+    kCreateInkTattooTypeIndex,
+    kCreateInkArtistIndex,
+    kCreateInkShopIndex,
     kCreateInkTotal,
 } kCreateInkCells;
 
@@ -54,11 +53,12 @@ typedef enum
 @property (strong, nonatomic) UIImageView *inkImageView;
 @property (strong, nonatomic) UITextView *selectedTextView;
 @property (strong, nonatomic) NSIndexPath* selectedIndexPath;
+@property (strong, nonatomic) NSMutableDictionary* inkData;
 @property (strong, nonatomic) DBInk* ink;
 @property (strong, nonatomic) UIAlertView* cancelAlertView;
 @property (strong, nonatomic) UIAlertView* deleteAlertView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-
+@property (strong, nonatomic) DBUser* activeUser;
 
 @end
 
@@ -73,12 +73,10 @@ typedef enum
     [self registerForKeyboardNotifications];
     [self hideActivityIndicator];
     self.inkImageView.image = self.inkImage;
-    if (!self.activeUser) {
-        self.activeUser = [DataManager sharedInstance].activeUser;
-    }
+    self.activeUser = [DataManager sharedInstance].activeUser;
     
     if (self.isEditingInk) {
-        self.ink = [DBInk inkWithInk:self.editingInk];
+        self.inkData = [[self.editingInk toDictionary] mutableCopy];
         self.title = NSLocalizedString(@"Edit Ink",nil);
         UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil)
                                                                        style:UIBarButtonItemStylePlain
@@ -87,8 +85,7 @@ typedef enum
         
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:editButton];
     } else if (self.isReInking) {
-        self.ink = [DBInk inkWithInk:self.editingInk];
-        self.ink.inkID = @0;
+        self.inkData = [[self.editingInk toDictionary] mutableCopy];
         self.title = NSLocalizedString(@"ReInk",nil);
         UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Create", nil)
                                                                        style:UIBarButtonItemStylePlain
@@ -97,9 +94,7 @@ typedef enum
         
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:editButton];
     } else {
-        self.ink = [DBInk createNewInk];
-        DBImage* image = [DBImage fromUIImage:self.inkImage];
-        [image addInkObject:self.ink];
+        self.inkData = [[NSMutableDictionary alloc] init];
         self.title = NSLocalizedString(@"Create Ink",nil);
         UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Create", nil)
                                                                        style:UIBarButtonItemStylePlain
@@ -110,11 +105,6 @@ typedef enum
     }
     [self customizeTableView];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -149,42 +139,42 @@ typedef enum
     UITableViewCell* cell = nil;
     if (indexPath.section == 0) {
         switch (indexPath.row) {
-            case kInkImage:
+            case kCreateInkImageIndex:
             {
                 CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
-                [imageCell configureForImage:[self.ink.image getImage]];
+                [imageCell configureForImage:self.inkImage];
                 cell = imageCell;
                 break;
             }
-            case kInkDescription:
+            case kCreateInkDescriptionIndex:
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-                if ([self.ink.inkDescription isEqualToString:@""]) {
+                if ([self.inkData objectForKey:kInkDescription]) {
+                    cell.textLabel.text = [self.inkData objectForKey:kInkDescription];
+                    cell.textLabel.textColor = [InkitTheme getColorForText];
+                } else {
                     cell.textLabel.text = NSLocalizedString(@"Description",nil);
                     cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-                } else {
-                    cell.textLabel.text = self.ink.inkDescription;
-                    cell.textLabel.textColor = [InkitTheme getColorForText];
                 }
                 break;
             }
-            case kInkBoard:
+            case kCreateInkBoardIndex:
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-                    if (!self.ink.board) {
+                    if ([self.inkData objectForKey:kInkBoard]) {
+                        cell.textLabel.text = ((DBBoard *)[self.inkData objectForKey:kInkBoard]).boardTitle;
+                        cell.textLabel.textColor = [InkitTheme getColorForText];
+                    } else {
                         cell.textLabel.text = NSLocalizedString(@"Select Board",nil);
                         cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-                    } else {
-                        cell.textLabel.text = self.ink.board.boardTitle;
-                        cell.textLabel.textColor = [InkitTheme getColorForText];
                     }
                 break;
             }
-            case kInkBodyPart:
+            case kCreateInkBodyPartIndex:
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-                if ([self.ink.bodyParts count]) {
-                    cell.textLabel.text = [self.ink getBodyPartsAsString];
+                if ([self.inkData objectForKey:kInkBodyParts]) {
+                    cell.textLabel.text = @"";//[self.ink getBodyPartsAsString];
                     cell.textLabel.textColor = [InkitTheme getColorForText];
                 } else {
                     cell.textLabel.text = NSLocalizedString(@"Select Body Parts", nil);
@@ -192,11 +182,11 @@ typedef enum
                 }
                 break;
             }
-            case kInkTattooType:
+            case kCreateInkTattooTypeIndex:
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-                if ([self.ink.tattooTypes count]) {
-                    cell.textLabel.text = [self.ink getTattooTypesAsString];
+                if ([self.inkData objectForKey:kInkTattooTypes]) {
+                    cell.textLabel.text = @"";//[self.ink getTattooTypesAsString];
                     cell.textLabel.textColor = [InkitTheme getColorForText];
                 } else {
                     cell.textLabel.text = NSLocalizedString(@"Select Tattoo Types", nil);
@@ -204,11 +194,11 @@ typedef enum
                 }
                 break;
             }
-            case kInkArtist:
+            case kCreateInkArtistIndex:
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-                if (self.ink.artist) {
-                    cell.textLabel.text = self.ink.artist.fullName;
+                if ([self.inkData objectForKey:kInkArtist]) {
+                    cell.textLabel.text = ((DBArtist *)[self.inkData objectForKey:kInkArtist]).fullName;
                     cell.textLabel.textColor = [InkitTheme getColorForText];
                 } else {
                     cell.textLabel.text = NSLocalizedString(@"Select Artist", nil);
@@ -217,7 +207,7 @@ typedef enum
                 break;
             }
 
-            case kInkShop:
+            case kCreateInkShopIndex:
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
                 if (self.ink.shop) {
@@ -244,39 +234,15 @@ typedef enum
 
 - (BOOL)verifyCells
 {
-    if([self.ink.inkDescription isEqualToString:@""]) {
-        
+    if(![self.inkData objectForKey:kInkDescription]) {
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
-    } else if (!self.ink.board) {
-        
+    } else if (![self.inkData objectForKey:kInkBoard]) {
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Board" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
         return NO;
     }
-//    else if ([self.ink.bodyParts count]) {
-//        
-//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Body Part" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//        [alert show];
-//        return NO;
-//    } else if ([self.ink.tattooTypes count]) {
-//        
-//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Tattoo Type" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//        [alert show];
-//        return NO;
-//    }else if (self.ink.artist) {
-//        
-//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Artist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//        [alert show];
-//        return NO;
-//    }else if (self.ink.shop) {
-//        
-//        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Select Shop" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//        [alert show];
-//        return NO;
-//    
-//    }
     return YES;
 }
 
@@ -284,9 +250,9 @@ typedef enum
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0) {
-        if (indexPath.row == kInkImage) {
+        if (indexPath.row == kCreateInkImageIndex) {
             CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
-            [imageCell configureForImage:[self.ink.image getImage]];
+            [imageCell configureForImage:self.inkImage];
             
             // Make sure the constraints have been added to this cell, since it may have just been created from scratch
             [imageCell setNeedsUpdateConstraints];
@@ -300,23 +266,26 @@ typedef enum
             
             double maxHeight = tableView.frame.size.height - kCreateInkTotal*kCreateInkCellHeight;
             
-            return MIN(maxHeight, height);
-        } else if (indexPath.row == kInkDescription){
+            return MAX(maxHeight, height);
+        } else if (indexPath.row == kCreateInkDescriptionIndex){
             InkDescriptionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkDescriptionTableViewCellIdentifier];
-            [cell configureForDescription:self.ink.inkDescription];
-            
-            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-            [cell setNeedsUpdateConstraints];
-            [cell updateConstraintsIfNeeded];
-            
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-            
-            // Get the actual height required for the cell
-            CGFloat height = cell.cellHeight;
-            height += 1;
-            
-            return MAX(height, kCreateInkCellHeight);
+            if ([self.inkData objectForKey:kInkDescription]) {
+                [cell configureForDescription:[self.inkData objectForKey:kInkDescription]];
+                // Make sure the constraints have been added to this cell, since it may have just been created from scratch
+                [cell setNeedsUpdateConstraints];
+                [cell updateConstraintsIfNeeded];
+                
+                [cell setNeedsLayout];
+                [cell layoutIfNeeded];
+                
+                // Get the actual height required for the cell
+                CGFloat height = cell.cellHeight;
+                height += 1;
+                
+                return MAX(height, kCreateInkCellHeight);
+            } else {
+                return kCreateInkCellHeight;
+            }
         } else {
             return kCreateInkCellHeight;
         }
@@ -330,24 +299,24 @@ typedef enum
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         switch (indexPath.row) {
-            case kInkDescription:
+            case kCreateInkDescriptionIndex:
             {
                 [self performSegueWithIdentifier:@"EditTextSegue" sender:indexPath];
                 break;
             }
-            case kInkBoard:
+            case kCreateInkBoardIndex:
             {
                 [self performSegueWithIdentifier:@"SelectBoardSegue" sender:nil];
                 break;
             }
-            case kInkBodyPart:
-            case kInkTattooType:
+            case kCreateInkBodyPartIndex:
+            case kCreateInkTattooTypeIndex:
             {
                 [self performSegueWithIdentifier:@"SelectLocalSegue" sender:indexPath];
                 break;
             }
-            case kInkArtist:
-            case kInkShop:
+            case kCreateInkArtistIndex:
+            case kCreateInkShopIndex:
             {
                 [self performSegueWithIdentifier:@"SelectRemoteSegue" sender:indexPath];
                 break;
@@ -382,10 +351,10 @@ typedef enum
         SelectLocalTableViewController* selectLocalTableViewController = [segue destinationViewController];
         selectLocalTableViewController.editingInk = self.ink;
         NSIndexPath* indexPath = (NSIndexPath* )sender;
-        if (indexPath.row == kInkBodyPart) {
+        if (indexPath.row == kCreateInkBodyPartIndex) {
             selectLocalTableViewController.localsArray = [DBBodyPart getBodyPartsSortedInManagedObjectContext:self.activeUser.managedObjectContext];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Body Parts",nil);
-        } else if (indexPath.row == kInkTattooType) {
+        } else if (indexPath.row == kCreateInkTattooTypeIndex) {
             selectLocalTableViewController.localsArray = [DBTattooType getTattooTypeSortedInManagedObjectContext:self.activeUser.managedObjectContext];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Tattoo Types",nil);
         }
@@ -393,9 +362,9 @@ typedef enum
         SelectRemoteViewController* selectRemoteViewController = [segue destinationViewController];
         selectRemoteViewController.editingInk = self.ink;
         NSIndexPath* indexPath = (NSIndexPath* )sender;
-        if (indexPath.row == kInkArtist) {
+        if (indexPath.row == kCreateInkArtistIndex) {
             selectRemoteViewController.title = NSLocalizedString(@"Select Artist",nil);
-        } else if (indexPath.row == kInkShop) {
+        } else if (indexPath.row == kCreateInkShopIndex) {
             selectRemoteViewController.title = NSLocalizedString(@"Select Shop",nil);
         }
     }
@@ -497,22 +466,9 @@ typedef enum
 #pragma mark - EditTextViewController Delegate
 - (void)didFinishEnteringText:(NSString *)text
 {
-    self.ink.inkDescription = text;
+    self.inkData[kInkDescription] = text;
     [self.createInkTableView reloadData];
 }
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-//    if(textField == self.description) {
-//        NSUInteger newLength = [textField.text length] + [string length] - range.length;
-//        return (newLength > 25) = YES;
-//    }
-//    else if(textField == self.title)
-//    {
-//        NSUInteger newLength = [textField.text length] + [string length] - range.length;
-//        return (newLength > 25) = YES;
-//
-//    }
-//}
 
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar
@@ -528,7 +484,7 @@ typedef enum
 #pragma mark - Select Board Delegate
 - (void)boardSelected:(DBBoard *)board
 {
-    self.ink.board = board;
+    self.inkData[kInkBoard] = board;
     [self.createInkTableView reloadData];
 }
 

@@ -13,6 +13,7 @@
 #import "DBShop+Management.h"
 #import "InkitTheme.h"
 
+static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 
 @interface SelectRemoteViewController ()<UISearchBarDelegate>
 
@@ -29,24 +30,6 @@
     [super viewDidLoad];
     [self searchForSearchString:@""];
     [self hideActivityIndicator];
-}
-
-- (void)getArtistError:(NSString *)stringError
-{
-    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Artist not found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-}
-
-- (void)getArtistComplete:(NSArray *)artistsArray
-{
-    self.filteredRemotesArray = artistsArray;
-    [self.remoteTableView reloadData];
-    [self showActivityIndicator];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - TableView Delegate
@@ -92,7 +75,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectRemoteCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RemoteTableViewCellIdentifier];
     
     DBArtist* artist = [self.filteredRemotesArray objectAtIndex:indexPath.row];
     cell.textLabel.text = artist.fullName;
@@ -111,16 +94,31 @@
     [alert show];
 }
 
+#pragma mark - Search Bar Methods
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self searchForSearchString:searchText];
+}
+
 - (void)searchForSearchString:(NSString *)string
 {
     [InkitService getArtistsForSearchString:string withTarget:self completeAction:@selector(getArtistComplete:) completeError:@selector(getArtistError:)];
+    [self showActivityIndicator];
 }
 
-//#pragma mark - Search Bar Methods
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-//{
-//    [self searchForSearchString:searchText];
-//}
+- (void)getArtistError:(NSString *)stringError
+{
+    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Artist not found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [self hideActivityIndicator];
+}
+
+- (void)getArtistComplete:(NSArray *)artistsArray
+{
+    self.filteredRemotesArray = artistsArray;
+    [self.remoteTableView reloadData];
+    [self hideActivityIndicator];
+}
 
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator

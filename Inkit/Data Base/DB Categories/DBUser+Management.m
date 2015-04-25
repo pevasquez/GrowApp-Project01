@@ -10,15 +10,16 @@
 #import "DBBoard+Management.h"
 #import "DBImage+Management.h"
 #import "InkitService.h"
+#import "InkitConstants.h"
 #import "DataManager.h"
 
 #define kDBUser     @"DBUser"
-#define kBoardTitle @"boardTitle"
 
 @implementation DBUser (Management)
 + (DBUser *)createNewUser
 {
-    DBUser* user = [DBUser createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    
+    DBUser* user = (DBUser *)[[DataManager sharedInstance] insert:kDBUser];
     user.firstName = @"";
     user.lastName = @"";
     user.email = @"";
@@ -27,11 +28,24 @@
     return user;
 }
 
++ (DBUser *)withID:(NSString *)userID
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"userID = %@",userID];
+    return (DBUser *)[[DataManager sharedInstance] first:kDBUser predicate:predicate sort:nil limit:1];
+}
+
 + (DBUser *)fromJson:(NSDictionary *)userData
 {
-    DBUser* user = [DBUser createNewUser];
-    
+    NSString* userID = userData[kUserID];
+    DBUser* obj = [DBUser withID:userID];
+    DBUser* user = nil;
+    if (!obj) {
+        user = (DBUser *)[[DataManager sharedInstance] insert:kDBUser];
+    } else {
+        user = obj;
+    }
     [user updateWithJson:userData];
+    [DataManager saveContext];
     return user;
 }
 
@@ -39,8 +53,8 @@
 {
     if ([jsonDictionary objectForKey:@"styles"])
         self.styles = jsonDictionary[@"styles"];
-    if ([jsonDictionary objectForKey:@"id"])
-        self.userID = jsonDictionary[@"id"];
+    if ([jsonDictionary objectForKey:kUserID])
+        self.userID = jsonDictionary[kUserID];
     if ([jsonDictionary objectForKey:@"country"])
         self.country = jsonDictionary[@"country"];
     if ([jsonDictionary objectForKey:@"gender"])
@@ -79,6 +93,9 @@
         self.boardsCount = jsonDictionary[@"boards_count"];
     if ([jsonDictionary objectForKey:@"social_networks"])
         self.socialNetworks = jsonDictionary[@"social_networks"];
+    if ([jsonDictionary objectForKeyedSubscript:kAccessToken]) {
+        self.token = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKeyedSubscript:kAccessToken]];
+    }
 //    if ([jsonDictionary objectForKey:@"artists"])
 //        self.artists = jsonDictionary[@"artists"];
 //    if ([jsonDictionary objectForKey:@"shops"])
@@ -115,25 +132,6 @@
     [managedObjectContext save:&error];
     
     return user;
-}
-
-- (DBBoard *)createBoardWithTitle:(NSString *)title AndDescription:(NSString *)description
-{
-    DBBoard* board = [DBBoard createWithTitle:title AndDescription:description];
-    board.user = self;
-    // Save context
-    NSError* error = nil;
-    [self.managedObjectContext save:&error];
-    
-    return board;
-}
-
-- (DBBoard *)createNewBoard
-{
-    DBBoard* board = [DBBoard createNewBoard];
-    board.user = self;
-    [DataManager saveContext];
-    return board;
 }
 
 //- (NSString *)description

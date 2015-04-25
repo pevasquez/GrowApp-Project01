@@ -10,6 +10,7 @@
 #import "RegisterViewController.h"
 #import "InkitService.h"
 #import "InkitTheme.h"
+#import "InkitConstants.h"
 
 @interface LogInViewController () <RegisterDelegate, UITextFieldDelegate>
 
@@ -57,10 +58,8 @@
 - (void)login {
     if([self verifyTextFields])
     {
-        DBUser* user = [DBUser createNewUser];
-        user.email = self.logInEmailTextField.text;
-        user.password = self.logInPasswordTextField.text;
-        [InkitService logInUser:user withTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError:)];
+        NSDictionary* userDictionary = @{kUserEmail:self.logInEmailTextField.text,kUserPassword:self.logInPasswordTextField.text};
+        [InkitService logInUserDictionary:userDictionary withTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError:)];
         [self showActivityIndicator];
     }
 }

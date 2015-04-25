@@ -9,6 +9,7 @@
 #import "BoardService.h"
 #import "DataManager.h"
 #import "InkitServiceConstants.h"
+#import "InkitConstants.h"
 #import "NSDictionary+Extensions.h"
 
 @implementation BoardService
@@ -35,9 +36,9 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : [NSString stringWithFormat:@"%@",[DataManager sharedInstance].activeUser.token],
+    NSDictionary* jsonDataDictionary = @{@"access_token" : [DataManager sharedInstance].activeUser.token,
                                          @"name":boardDictionary[@"name"],
-                                         @"description":boardDictionary[@"description"]                                         };
+                                         @"description":boardDictionary[@"description"]};
     
     NSString *encodedDictionary = [jsonDataDictionary serializeParams];
     
@@ -64,10 +65,10 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:@"data"]) {
-                         [[DataManager sharedInstance].activeUser createBoardFromJson:responseDictionary[@"data"]];
-                         //[board updateWithJson:responseDictionary[@"data"]];
+                         DBBoard* board = [[DataManager sharedInstance].activeUser createBoardFromJson:responseDictionary[@"data"]];
+                         [board updateWithJson:boardDictionary];
+                         [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
                      }
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
                  case 422:
@@ -94,7 +95,7 @@
     return returnError;
 }
 
-+ (NSError *)updateBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)updateBoard:(DBBoard *)board withDictionary:(NSDictionary *)boardDictionary target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
     // Create returnError
     NSError* returnError = nil;
@@ -117,10 +118,10 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : [NSString stringWithFormat:@"%@",board.user.token],
+    NSDictionary* jsonDataDictionary = @{@"access_token" : [DataManager sharedInstance].activeUser.token,
                                          @"board_id": [NSString stringWithFormat:@"%@",board.boardID],
-                                         @"name":board.boardTitle,
-                                         @"description":board.boardDescription
+                                         @"name":boardDictionary[kBoardTitle],
+                                         @"description":boardDictionary[kBoardDescription]
                                          };
     
     NSString *encodedDictionary = [jsonDataDictionary serializeParams];
@@ -137,17 +138,12 @@
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
              
-//             NSError *error = nil;
-//             
-//             // Parse JSON Response
-//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOKNoResponse:
                  {
-                    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     [board updateWithJson:boardDictionary];
+                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
                  case 422:

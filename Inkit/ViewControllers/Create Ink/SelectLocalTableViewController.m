@@ -11,7 +11,7 @@
 #import "DBTattooType+Management.h"
 #import "InkitTheme.h"
 
-static NSString * const LocalTableViewCellIdentifier = @"LocalTableViewCell";
+static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 
 @interface SelectLocalTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *localsTableView;
@@ -146,6 +146,9 @@ static NSString * const LocalTableViewCellIdentifier = @"LocalTableViewCell";
 - (void)reloadFilteredLocals
 {
     self.filteredLocalsArray = [NSMutableArray arrayWithArray:self.localsArray];
+}
+- (IBAction)okButtonPressed:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

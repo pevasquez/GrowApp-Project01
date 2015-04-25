@@ -29,10 +29,24 @@
     return artist;
 }
 
-+ (DBArtist *)fromJson:(NSDictionary *)jsonDictionary
++ (DBArtist *)withID:(NSString *)artistId
 {
-    DBArtist* artist = [DBArtist createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
-    [artist updateWithJson:jsonDictionary];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"artistId = %@",artistId];
+    return (DBArtist *)[[DataManager sharedInstance] first:KDBArtist predicate:predicate sort:nil limit:1];
+}
+
++ (DBArtist *)fromJson:(NSDictionary *)artistData
+{
+    NSString* artistID = artistData[@"id"];
+    DBArtist* obj = [DBArtist withID:artistID];
+    DBArtist* artist = nil;
+    if (!obj) {
+        artist = (DBArtist *)[[DataManager sharedInstance] insert:KDBArtist];
+    } else {
+        artist = obj;
+    }
+    [artist updateWithJson:artistData];
+    [DataManager saveContext];
     return artist;
 }
 
@@ -50,20 +64,6 @@
     NSError *error;
     NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
     return matches;
-}
-
-+ (void)createMockArtistInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSArray* currentArtist = [DBArtist getArtistSortedInManagedObjectContext:managedObjectContext];
-    for (DBArtist* artist in currentArtist) {
-        [managedObjectContext deleteObject:artist];
-    }
-    
-    NSArray* artistArray = @[];
-    
-    for (NSString* name in artistArray) {
-        [DBArtist createWithName:name InManagedObjectContext:managedObjectContext];
-    }
 }
 
 @end

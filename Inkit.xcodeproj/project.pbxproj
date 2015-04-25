@@ -214,6 +214,7 @@
 		FBC433151A855C4E00EFAA24 /* DBInk+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBInk+Management.h"; path = "Data Base/DB Categories/DBInk+Management.h"; sourceTree = "<group>"; };
 		FBC433161A855C4E00EFAA24 /* DBInk+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBInk+Management.m"; path = "Data Base/DB Categories/DBInk+Management.m"; sourceTree = "<group>"; };
 		FBC5170F1A9F37F200110CC9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FBC5AB7A1AEBD47D00E800FB /* InkitConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkitConstants.h; sourceTree = "<group>"; };
 		FBCCAF841A8CE8390052DCB9 /* ViewBoardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewBoardsViewController.h; path = "ViewControllers/View Boards/ViewBoardsViewController.h"; sourceTree = "<group>"; };
 		FBCCAF851A8CE8390052DCB9 /* ViewBoardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewBoardsViewController.m; path = "ViewControllers/View Boards/ViewBoardsViewController.m"; sourceTree = "<group>"; };
 		FBCCAF911A8CF2420052DCB9 /* DBBoard+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBBoard+Management.h"; path = "Data Base/DB Categories/DBBoard+Management.h"; sourceTree = "<group>"; };
@@ -619,6 +620,7 @@
 			children = (
 				FBDCB1991A83EB1800E05053 /* AppDelegate.h */,
 				FBDCB19A1A83EB1800E05053 /* AppDelegate.m */,
+				FBC5AB7A1AEBD47D00E800FB /* InkitConstants.h */,
 				FBDCB1A21A83EB1800E05053 /* Main.storyboard */,
 				FBBC573C1AB2300200FF2219 /* Images.xcassets */,
 				FBDCB1C91A83F38B00E05053 /* ViewControllers */,

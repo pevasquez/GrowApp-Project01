@@ -14,7 +14,7 @@
 @interface DBTattooType : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * tattooTypeId;
+@property (nonatomic, retain) NSString * tattooTypeId;
 @property (nonatomic, retain) DBInk *inks;
 @property (nonatomic, retain) DBUser *user;
 

@@ -12,15 +12,10 @@
 @interface DBBoard (Management)
 + (DBBoard *)fromJson:(NSDictionary *)boardData;
 
-
-+ (DBBoard *)createNewBoard;
-+ (DBBoard *)createWithTitle:(NSString *)title AndDescription:(NSString *)boardDescription;
-
 + (NSArray *)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (void)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;;
 
-- (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-- (void)updateWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+- (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 - (void)deleteWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
 - (void)updateWithJson:(NSDictionary *)jsonDictionary;

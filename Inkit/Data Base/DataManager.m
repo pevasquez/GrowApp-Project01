@@ -7,7 +7,6 @@
 //
 
 #import "DataManager.h"
-#import "AppDelegate.h"
 #import "DBUser+Management.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
@@ -35,8 +34,6 @@
 - (id)init {
     if ( (self = [super init]) ) {
         // your custom initialization
-        AppDelegate* appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        self.managedObjectContext = appDelegate.managedObjectContext;
     }
     return self;
 }
@@ -97,9 +94,8 @@
     if (userData) {
         NSURL* activeUserIDURL = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
         if (activeUserIDURL) {
-            AppDelegate* appDelegate = ((AppDelegate*)([[UIApplication sharedApplication] delegate]));
-            NSPersistentStoreCoordinator *persistentStoreCoordinator = appDelegate.persistentStoreCoordinator;
-            NSManagedObjectContext* managedObjectContext = appDelegate.managedObjectContext;
+            NSPersistentStoreCoordinator *persistentStoreCoordinator = self.persistentStoreCoordinator;
+            NSManagedObjectContext* managedObjectContext = self.managedObjectContext;
             NSManagedObjectID *objectID = [persistentStoreCoordinator managedObjectIDForURIRepresentation:activeUserIDURL];
             if (!objectID) {
                 return;
@@ -179,7 +175,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"DataManager" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Inkit" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -193,7 +189,7 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DataManager.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Inkit.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
@@ -223,7 +219,7 @@
     if (!coordinator) {
         return nil;
     }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
 }

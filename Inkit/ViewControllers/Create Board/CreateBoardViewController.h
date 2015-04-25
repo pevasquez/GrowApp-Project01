@@ -18,8 +18,6 @@
 @end
 
 @interface CreateBoardViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,EditTextViewDelegate>
-@property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
-@property (strong, nonatomic) DBUser* activeUser;
 @property (strong, nonatomic) DBBoard* board;
 @property (nonatomic) BOOL isEditing;
 @property (weak, nonatomic) id<CreateBoardDelegate> delegate;

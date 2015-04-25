@@ -18,6 +18,7 @@
 #import "DBShop+Management.h"
 #import "DataManager.h"
 #import "InkitServiceConstants.h"
+#import "InkitConstants.h"
 
 #define kDBInk     @"DBInk"
 
@@ -140,20 +141,40 @@
     }
 }
 
++ (DBInk *)withID:(NSString *)inkID
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"inkID = %@",inkID];
+    return (DBInk *)[[DataManager sharedInstance] first:kDBInk predicate:predicate sort:nil limit:1];
+}
+
 + (DBInk *)fromJson:(NSDictionary *)inkData
 {
-    DBInk* ink = [DBInk createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    NSString* inkID = inkData[@"id"];
+    DBInk* obj = [DBInk withID:inkID];
+    DBInk* ink = nil;
+    if (!obj) {
+        ink = (DBInk *)[[DataManager sharedInstance] insert:kDBInk];
+    } else {
+        ink = obj;
+    }
+    [ink updateWithJson:inkData];
+    [DataManager saveContext];
+    return ink;
+}
+
+- (void)updateWithJson:(NSDictionary *)inkData
+{
     if ([inkData objectForKey:@"id"]) {
-        ink.inkID = inkData[@"id"];
+        self.inkID = inkData[@"id"];
     }
     if ([inkData objectForKey:kInkDescription]) {
-        ink.inkDescription = inkData[kInkDescription];
+        self.inkDescription = inkData[kInkDescription];
     }
     if ([inkData objectForKey:@"image_path"]) {
-        ink.image = [DBImage fromURL:inkData[@"image_path"]];
+        self.image = [DBImage fromURL:inkData[@"image_path"]];
     }
     if ([inkData objectForKey:@"user"]) {
-        ink.user = [DBUser fromJson:inkData[@"user"]];
+        self.user = [DBUser fromJson:inkData[@"user"]];
     }
 //    if ([inkData objectForKey:@"created_at"]) {
 //        ink.createdAt = inkData[@"created_at"];
@@ -162,15 +183,14 @@
 //        ink.updatedAt = inkData[@"updated_at"];
 //    }
     if ([inkData objectForKey:@"likes_count"]) {
-        ink.likesCount = inkData[@"lkes_count"];
+        self.likesCount = inkData[@"lkes_count"];
     }
     if ([inkData objectForKey:@"reinks_count"]) {
-        ink.reInksCount = inkData[@"reinks_count"];
+        self.reInksCount = inkData[@"reinks_count"];
     }
 //    if ([inkData objectForKey:@"extra_data"]) {
 //        ink.extraData = inkData[@"extra_data"];
 //    }
-    return ink;
 }
 
 - (void)updateWithInk:(DBInk *)ink
@@ -198,4 +218,30 @@
     [self saveManagedObjectContext];
 }
 
+- (NSArray *)toArray
+{
+    return @[];
+}
+
+- (NSDictionary *)toDictionary
+{
+    NSArray* bodyParts = self.bodyParts.allObjects;
+    NSArray* tattooTypes = self.tattooTypes.allObjects;
+    return @{kInkDescription:self.inkDescription,
+             kInkBoard:self.board,
+             kInkImage:self.image,
+             kInkTattooTypes: tattooTypes,
+             kInkBodyParts:bodyParts
+             };
+}
+
++ (NSDictionary *)emptyDictionary
+{
+    return @{kInkDescription:@"",
+             kInkBoard:@"",
+             kInkImage:@"",
+             kInkTattooTypes:@[],
+             kInkBodyParts:@[]
+             };
+}
 @end

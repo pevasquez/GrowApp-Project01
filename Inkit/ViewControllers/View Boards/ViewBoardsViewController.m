@@ -32,22 +32,15 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 {
     [super viewDidLoad];
     
-//    self.title = NSLocalizedString(@"My Boards",nil);
-//    if (!self.managedObjectContext) {
-//        // Get ManagedObjectContext from AppDelegate
-//        self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-//    }
-//    if (!self.activeUser) {
-//        self.activeUser = [DataManager sharedInstance].activeUser;
-//    }
-//    
-//    [self customizeNavigationBar];
-//}
-//
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    [self getMyBoards];
+    self.title = NSLocalizedString(@"My Boards",nil);
+    self.activeUser = [DataManager sharedInstance].activeUser;
+    [self customizeNavigationBar];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getMyBoards];
 }
 
 #pragma mark - CollectionView Data Source

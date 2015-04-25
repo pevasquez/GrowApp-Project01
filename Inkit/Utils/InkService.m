@@ -14,7 +14,7 @@
 
 @implementation InkService
 
-+ (NSError *) createInk:(DBInk *)ink forUser:(DBUser *)user inBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
@@ -37,7 +37,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSMutableDictionary* jsonDataDictionary = [@{@"access_token" : user.token,
+    NSMutableDictionary* jsonDataDictionary = [@{@"access_token" : [DataManager sharedInstance].activeUser.token,
 //                                         @"image": ink.inkImage,
                                          @"description" : board.boardDescription,
                                          } mutableCopy];
