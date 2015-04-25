@@ -7,11 +7,12 @@
 //
 
 #import "BoardService.h"
+#import "DataManager.h"
 #import "InkitServiceConstants.h"
 #import "NSDictionary+Extensions.h"
 
 @implementation BoardService
-+ (NSError *)postBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
@@ -34,10 +35,9 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : [NSString stringWithFormat:@"%@",board.user.token],
-                                         @"name":board.boardTitle,
-                                         @"description":board.boardDescription
-                                         };
+    NSDictionary* jsonDataDictionary = @{@"access_token" : [NSString stringWithFormat:@"%@",[DataManager sharedInstance].activeUser.token],
+                                         @"name":boardDictionary[@"name"],
+                                         @"description":boardDictionary[@"description"]                                         };
     
     NSString *encodedDictionary = [jsonDataDictionary serializeParams];
     
@@ -64,7 +64,8 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:@"data"]) {
-                         [board updateWithJson:responseDictionary[@"data"]];
+                         [[DataManager sharedInstance].activeUser createBoardFromJson:responseDictionary[@"data"]];
+                         //[board updateWithJson:responseDictionary[@"data"]];
                      }
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;

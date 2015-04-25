@@ -11,7 +11,6 @@
 #import "DataManager.h"
 #import "InkitServiceConstants.h"
 
-
 #define kDBBoard     @"DBBoard"
 #define kBoardTitle     @"boardTitle"
 
@@ -132,12 +131,24 @@
     [self.managedObjectContext save:&error];
 }
 
+// 
++ (DBBoard *)withID:(NSString *)boardID
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"boardID = %@",boardID];
+    return (DBBoard *)[[DataManager sharedInstance] first:kDBBoard predicate:predicate sort:nil limit:1];
+}
 
 + (DBBoard *)fromJson:(NSDictionary *)boardData
 {
-    DBBoard* board = [DBBoard createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    NSString* boardID = boardData[@"id"];
+    DBBoard* obj = [DBBoard withID:boardID];
+    DBBoard* board = nil;
+    if (!obj) {
+        board = (DBBoard *)[[DataManager sharedInstance] insert:kDBBoard];
+    } else {
+        board = obj;
+    }
     [board updateWithJson:boardData];
-    
     return board;
 }
 
@@ -149,6 +160,6 @@
     if ([jsonDictionary objectForKey:@"name"]) {
         self.boardTitle = jsonDictionary[@"name"];
     }
-
 }
+
 @end

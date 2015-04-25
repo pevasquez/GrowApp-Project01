@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 
 @interface DBBoard (Management)
++ (DBBoard *)fromJson:(NSDictionary *)boardData;
+
+
 + (DBBoard *)createNewBoard;
 + (DBBoard *)createWithTitle:(NSString *)title AndDescription:(NSString *)boardDescription;
 

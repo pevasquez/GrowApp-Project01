@@ -11,18 +11,23 @@
 
 @interface InkImageTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *inkImageView;
-
+@property (strong, nonatomic) DBInk* ink;
 @end
 
 @implementation InkImageTableViewCell
 - (void)configureForInk:(DBInk *)ink
 {
-    UIImage* inkImage = [ink getInkImage];
-    [ink.image setInImageView:self.inkImageView];
-    self.inkImageView.clipsToBounds = YES;
-    self.cellHeight = [self getInkImageHeightForImage:inkImage];
+    self.ink = ink;
 }
 
+- (void)layoutSubviews
+{
+    UIImage* inkImage = [self.ink getInkImage];
+    [self.ink.image setInImageView:self.inkImageView];
+    self.inkImageView.clipsToBounds = YES;
+    self.cellHeight = [self getInkImageHeightForImage:inkImage];
+
+}
 - (double)getInkImageHeightForImage:(UIImage *)inkImage
 {
     CGSize inkImageSize = inkImage.size;

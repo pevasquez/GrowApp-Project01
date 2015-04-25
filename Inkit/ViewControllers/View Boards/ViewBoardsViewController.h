@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DBUser+Management.h"
 
+
 @interface ViewBoardsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (strong, nonatomic) DBUser* activeUser;
+
 @end

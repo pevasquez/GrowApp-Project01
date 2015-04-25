@@ -35,8 +35,19 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+    if ([self.boardsArray count]) {
+        self.boardsTableView.backgroundView = nil;
+        return 1;
+    } else {// Display a message when the table is empty
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        messageLabel.text = @"Create your first Board";
+        messageLabel.textColor = [InkitTheme getBaseColor];
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
+        [messageLabel sizeToFit];
+        self.boardsTableView.backgroundView = messageLabel;
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

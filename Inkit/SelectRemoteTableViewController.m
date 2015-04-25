@@ -14,19 +14,21 @@
 #import "InkitTheme.h"
 
 
-@interface SelectRemoteTableViewController ()<UISearchBarDelegate>
+@interface SelectRemoteViewController ()<UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *remoteTableView;
 @property (strong, nonatomic) NSArray* filteredRemotesArray;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
-@implementation SelectRemoteTableViewController
+@implementation SelectRemoteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self searchForSearchString:@""];
+    [self hideActivityIndicator];
 }
 
 - (void)getArtistError:(NSString *)stringError
@@ -38,7 +40,8 @@
 - (void)getArtistComplete:(NSArray *)artistsArray
 {
     self.filteredRemotesArray = artistsArray;
-    [self.tableView reloadData];
+    [self.remoteTableView reloadData];
+    [self showActivityIndicator];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,5 +121,18 @@
 //{
 //    [self searchForSearchString:searchText];
 //}
+
+#pragma mark - Activity Indicator Methods
+- (void) showActivityIndicator
+{
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+}
+
+- (void) hideActivityIndicator
+{
+    self.activityIndicator.hidden = YES;
+    [self.activityIndicator stopAnimating];
+}
 
 @end

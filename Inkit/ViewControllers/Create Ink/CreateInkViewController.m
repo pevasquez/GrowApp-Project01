@@ -21,6 +21,7 @@
 #import "DBImage+Management.h"
 #import "DBArtist+Management.h"
 
+
 #import "AppDelegate.h"
 #import "DataManager.h"
 #import "InkitTheme.h"
@@ -30,6 +31,7 @@ static NSString * const CreateInkImageTableViewCellIdentifier = @"CreateInkImage
 static NSString * const CreateInkTableViewCellIdentifier = @"CreateInkInkTableViewCell";
 static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
+
 
 #define kCreateInkCellHeight            44
 #define kCreateInkTextFieldCellHeight   90
@@ -56,6 +58,8 @@ typedef enum
 @property (strong, nonatomic) UIAlertView* cancelAlertView;
 @property (strong, nonatomic) UIAlertView* deleteAlertView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+
+
 @end
 
 @implementation CreateInkViewController
@@ -385,14 +389,14 @@ typedef enum
             selectLocalTableViewController.localsArray = [DBTattooType getTattooTypeSortedInManagedObjectContext:self.activeUser.managedObjectContext];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Tattoo Types",nil);
         }
-    } else if ([[segue destinationViewController] isKindOfClass:[SelectRemoteTableViewController class]]) {
-        SelectRemoteTableViewController* selectRemoteTableViewController = [segue destinationViewController];
-        selectRemoteTableViewController.editingInk = self.ink;
+    } else if ([[segue destinationViewController] isKindOfClass:[SelectRemoteViewController class]]) {
+        SelectRemoteViewController* selectRemoteViewController = [segue destinationViewController];
+        selectRemoteViewController.editingInk = self.ink;
         NSIndexPath* indexPath = (NSIndexPath* )sender;
         if (indexPath.row == kInkArtist) {
-            selectRemoteTableViewController.title = NSLocalizedString(@"Select Artist",nil);
+            selectRemoteViewController.title = NSLocalizedString(@"Select Artist",nil);
         } else if (indexPath.row == kInkShop) {
-            selectRemoteTableViewController.title = NSLocalizedString(@"Select Shop",nil);
+            selectRemoteViewController.title = NSLocalizedString(@"Select Shop",nil);
         }
     }
 }

@@ -11,7 +11,7 @@
 #import "InkitTheme.h"
 #import "InkitService.h"
 
-@interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate, UITextFieldDelegate>
+@interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate >
 {
     NSString* name;
 }
@@ -35,6 +35,7 @@
     [super viewDidLoad];
     [self hideActivityIndicator];
 }
+
 - (IBAction)userTypeTextFieldClicked:(id)sender
 {
     //[self performSegueWithIdentifier:@"UserType" sender:nil];
@@ -85,7 +86,7 @@
 }
 - (BOOL)verifyTextFields
 {
-    // TODO: Agregar chequeo password min 6 caracteres
+    //verificar campos para que esté completo.
     
     if(![self.passwordTextfield.text isEqualToString:self.confirmPasswordTextField.text]) {
         
@@ -151,6 +152,7 @@
     }
 }
 
+//activity indicator
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator
 {
@@ -216,6 +218,7 @@
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 
+//Código para que al dar enter se pase al textField de abajo.
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == self.firstNameTextField) {

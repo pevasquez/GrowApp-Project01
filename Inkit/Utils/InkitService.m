@@ -109,9 +109,9 @@
     return returnError;
 }
 
-+ (NSError *)postBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    return [BoardService postBoard:board WithTarget:target completeAction:completeAction completeError:completeError];
+    return [BoardService postBoard:boardDictionary WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)updateBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

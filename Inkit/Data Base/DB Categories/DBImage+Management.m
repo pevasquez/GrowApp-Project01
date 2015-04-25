@@ -36,8 +36,10 @@
     if (self.imageData) {
         imageView.image = [UIImage imageWithData:self.imageData];
     } else {
+        NSLog(@"%@",NSStringFromCGRect(imageView.frame));
         UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
-        activityIndicator.center = imageView.center;
+        activityIndicator.center = CGPointMake(imageView.frame.size.width /2 , imageView.frame.size.height /2);
+        activityIndicator.color = [UIColor grayColor];
         [imageView addSubview:activityIndicator];
         [activityIndicator startAnimating];
         dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);

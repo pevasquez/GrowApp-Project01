@@ -18,8 +18,6 @@ typedef enum
 {
     kBoardTitle,
     kBoardDescription,
-    //kInkCategory,
-    //kInkBodyPart,
     kCreateBoardTotal
 } kCreateBoardCells;
 
@@ -30,6 +28,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 @interface CreateBoardViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *createBoardTableView;
 @property (strong, nonatomic) NSMutableArray* stringsArray;
+@property (strong, nonatomic) NSMutableDictionary* boardDictionary;
 @property (strong, nonatomic) NSIndexPath* selectedIndexPath;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
@@ -184,9 +183,12 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         [alertView show];
     } else {
         if (!self.isEditing) {
-            self.board.boardTitle = self.stringsArray[kBoardTitle];
-            self.board.boardDescription = self.stringsArray[kBoardDescription];
-            [self.board postWithTarget:self completeAction:@selector(boardCreateComplete) completeError:@selector(boardServiceError:)];
+            //self.board.boardTitle = self.stringsArray[kBoardTitle];
+            //self.board.boardDescription = self.stringsArray[kBoardDescription];
+            
+            // Post board from dictionary
+            [InkitService postBoard:self.boardDictionary WithTarget:self completeAction:@selector(boardCreateComplete) completeError:@selector(boardServiceError:)];
+            //[self.board postWithTarget:self completeAction:@selector(boardCreateComplete) completeError:@selector(boardServiceError:)];
             [self showActivityIndicator];
         } else {
             self.board.boardTitle = self.stringsArray[kBoardTitle];

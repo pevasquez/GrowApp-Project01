@@ -10,7 +10,7 @@
 #import "DBInk+Management.h" 
 
 
-@interface SelectRemoteTableViewController : UITableViewController
+@interface SelectRemoteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) int cellCount;
 @property (strong, nonatomic)DBInk* editingInk;

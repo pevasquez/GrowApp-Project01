@@ -87,6 +87,12 @@
 //        self.tattooTypes = jsonDictionary[@"tattoo_types"];
 }
 
+- (DBBoard *)createBoardFromJson:(NSDictionary *)boardDictionary
+{
+    DBBoard* board = [DBBoard fromJson:boardDictionary];
+    board.user = self;
+    return board;
+}
 
 + (DBUser *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {

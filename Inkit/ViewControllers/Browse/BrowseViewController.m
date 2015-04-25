@@ -19,6 +19,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 @interface BrowseViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *browseCollectionView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray* inksArray;
 @end
 
@@ -36,18 +37,23 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
         self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
     }
     [InkitService getDashboardInksWithTarget:self completeAction:@selector(getInksComplete) completeError:@selector(getInksError:)];
+    
+    [self hideActivityIndicator];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self showActivityIndicator];
 }
+
 
 - (void)getInksComplete
 {
     self.inksArray = [DBInk getAllInksInManagedObjectContext:self.managedObjectContext];
     [self.browseCollectionView reloadData];
+    [self hideActivityIndicator];
 }
 
 - (void)getInksError:(NSString *)errorString
@@ -120,5 +126,19 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
+
+#pragma mark - Activity Indicator Methods
+- (void) showActivityIndicator
+{
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+}
+
+- (void) hideActivityIndicator
+{
+    self.activityIndicator.hidden = YES;
+    [self.activityIndicator stopAnimating];
+}
+
 
 @end
