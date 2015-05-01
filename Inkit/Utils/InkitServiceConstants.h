@@ -25,19 +25,19 @@
 #define kwebServiceLogout               @"logout"
 #define kWebServiceInks                 @"inks"
 #define kWebServiceGetBoards            @"boards?"
-#define kWebServiceGetInk               @"search?access_token=3&keywords="
+#define kWebServiceGetInk               @"search?"
 #define kWebServiceArtist               @"/artist"
 #define kWebServiceArtist2              @"artist/"
 #define kWebServiceSearch               @"/search"
 #define kWebServiceSearch2              @"search"
-#define kWebServiceProfileAccesToken    @"profile?access_token=3&user_id=2"
-#define kWebServiceDashboardAccesToken  @"/dashboard?access_token="
+#define kWebServiceProfileAccesToken    @"profile?"
+#define kWebServiceDashboard            @"/dashboard?"
 #define kWebServiceLike                 @"/like"
 #define kWebServiceStatics              @"statics/"
 #define kWebServiceBodyParts            @"body-parts"
 #define kWebServiceTattooTypes          @"tattoo-types"
 #define kWebServiceTattooStyles         @"tattoo-styles"
-
+#define kWebServiceAccessToken          @"access_token"
 
 // Respuestas de los WS
 #define kHTTPResponseCodeOK                 200
