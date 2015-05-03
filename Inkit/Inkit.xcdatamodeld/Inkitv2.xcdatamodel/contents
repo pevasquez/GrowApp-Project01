@@ -8,7 +8,7 @@
     <entity name="DBBoard" representedClassName="DBBoard" syncable="YES">
         <attribute name="boardCover" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="boardDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="boardID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="boardID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="boardTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="inks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="board" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="boards" inverseEntity="DBUser" syncable="YES"/>
@@ -29,7 +29,9 @@
     <entity name="DBImage" representedClassName="DBImage" syncable="YES">
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fullScreenInk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="fullScreenImage" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="ink" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="image" inverseEntity="DBInk" syncable="YES"/>
+        <relationship name="thumbnailInk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="thumbnailImage" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="userPic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="profilePic" inverseEntity="DBUser" syncable="YES"/>
         <relationship name="userPicThumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="profilePicThumbnail" inverseEntity="DBUser" syncable="YES"/>
     </entity>
@@ -45,9 +47,11 @@
         <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBBoard" inverseName="inks" inverseEntity="DBBoard" syncable="YES"/>
         <relationship name="bodyParts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBBodyPart" inverseName="inks" inverseEntity="DBBodyPart" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBComment" inverseName="ink" inverseEntity="DBComment" syncable="YES"/>
+        <relationship name="fullScreenImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" inverseName="fullScreenInk" inverseEntity="DBImage" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" inverseName="ink" inverseEntity="DBImage" syncable="YES"/>
         <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBShop" inverseName="didInks" inverseEntity="DBShop" syncable="YES"/>
         <relationship name="tattooTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBTattooType" inverseName="inks" inverseEntity="DBTattooType" syncable="YES"/>
+        <relationship name="thumbnailImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" inverseName="thumbnailInk" inverseEntity="DBImage" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="inks" inverseEntity="DBUser" syncable="YES"/>
     </entity>
     <entity name="DBShop" representedClassName="DBShop" parentEntity="DBUser" syncable="YES">
@@ -108,8 +112,8 @@
         <element name="DBBoard" positionX="403" positionY="180" width="128" height="135"/>
         <element name="DBBodyPart" positionX="-288" positionY="144" width="128" height="105"/>
         <element name="DBComment" positionX="196" positionY="108" width="128" height="120"/>
-        <element name="DBImage" positionX="27" positionY="90" width="128" height="120"/>
-        <element name="DBInk" positionX="-11" positionY="360" width="128" height="270"/>
+        <element name="DBImage" positionX="27" positionY="90" width="128" height="150"/>
+        <element name="DBInk" positionX="-11" positionY="360" width="128" height="300"/>
         <element name="DBShop" positionX="277" positionY="563" width="128" height="120"/>
         <element name="DBTattooType" positionX="243" positionY="437" width="128" height="105"/>
         <element name="DBUser" positionX="-684" positionY="0" width="128" height="615"/>

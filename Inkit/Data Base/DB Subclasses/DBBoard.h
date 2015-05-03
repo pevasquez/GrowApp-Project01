@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) id boardCover;
 @property (nonatomic, retain) NSString * boardDescription;
-@property (nonatomic, retain) NSNumber * boardID;
+@property (nonatomic, retain) NSString * boardID;
 @property (nonatomic, retain) NSString * boardTitle;
 @property (nonatomic, retain) NSSet *inks;
 @property (nonatomic, retain) DBUser *user;

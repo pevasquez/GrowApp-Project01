@@ -106,7 +106,7 @@
 
 + (DBBoard *)fromJson:(NSDictionary *)boardData
 {
-    NSString* boardID = boardData[@"id"];
+    NSString* boardID = [NSString stringWithFormat:@"%@",boardData[@"id"]];
     DBBoard* obj = [DBBoard withID:boardID];
     DBBoard* board = nil;
     if (!obj) {
@@ -122,7 +122,7 @@
 - (void)updateWithJson:(NSDictionary *)jsonDictionary
 {
     if ([jsonDictionary objectForKey:kBoardID]) {
-        self.boardID = jsonDictionary[kBoardID];
+        self.boardID = [NSString stringWithFormat:@"%@",jsonDictionary[kBoardID]];
     }
     if ([jsonDictionary objectForKey:kBoardTitle]) {
         self.boardTitle = jsonDictionary[kBoardTitle];

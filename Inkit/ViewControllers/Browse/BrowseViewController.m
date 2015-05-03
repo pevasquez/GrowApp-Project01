@@ -37,15 +37,13 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
         self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
     }
     [InkitService getDashboardInksWithTarget:self completeAction:@selector(getInksComplete) completeError:@selector(getInksError:)];
-    
-    [self hideActivityIndicator];
+    [self showActivityIndicator];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self showActivityIndicator];
 }
 
 
@@ -58,7 +56,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 - (void)getInksError:(NSString *)errorString
 {
-    
+    [self hideActivityIndicator];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,19 +86,8 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 #pragma mark - CollectionView Delegate
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     double width = (screenBounds.size.width-12)/2;
-    //    double imageWidth = width - 4;
-    //    DBInk* ink = self.inksArray[indexPath.row];
-    //    UIImage* image = (UIImage *)ink.inkImage;
-    //    CGSize imageSize = image.size;
-    //    double aspectRatio = imageSize.height / imageSize.width;
-    //    double imageHeight = imageWidth*aspectRatio;
-    //    double height = imageHeight + 50 + 38;
-    
-    //CGSize cellSize = CGSizeMake(width, height);
-    
     return CGSizeMake(width, 360);
 }
 

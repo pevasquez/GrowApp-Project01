@@ -2,7 +2,7 @@
 //  DBImage.h
 //  Inkit
 //
-//  Created by Cristian Pena on 4/12/15.
+//  Created by Cristian Pena on 5/3/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -18,6 +18,8 @@
 @property (nonatomic, retain) NSSet *ink;
 @property (nonatomic, retain) DBUser *userPic;
 @property (nonatomic, retain) DBUser *userPicThumbnail;
+@property (nonatomic, retain) DBInk *thumbnailInk;
+@property (nonatomic, retain) DBInk *fullScreenInk;
 @end
 
 @interface DBImage (CoreDataGeneratedAccessors)

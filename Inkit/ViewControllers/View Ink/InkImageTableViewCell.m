@@ -22,12 +22,18 @@
 
 - (void)layoutSubviews
 {
-    UIImage* inkImage = [self.ink getInkImage];
-    [self.ink.image setInImageView:self.inkImageView];
+    [super layoutSubviews];
+    NSLog(@"%f",self.bounds.size.width);
+    NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
+    if (self.bounds.size.width < [UIScreen mainScreen].bounds.size.width/2) {
+        [self.ink.thumbnailImage setInImageView:self.inkImageView];
+    } else {
+        [self.ink.fullScreenImage setInImageView:self.inkImageView];
+    }
     self.inkImageView.clipsToBounds = YES;
-    self.cellHeight = [self getInkImageHeightForImage:inkImage];
-
 }
+
+
 - (double)getInkImageHeightForImage:(UIImage *)inkImage
 {
     CGSize inkImageSize = inkImage.size;

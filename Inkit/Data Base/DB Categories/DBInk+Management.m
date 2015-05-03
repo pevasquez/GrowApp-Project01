@@ -171,7 +171,23 @@
         self.inkDescription = inkData[kInkDescription];
     }
     if ([inkData objectForKey:@"image_path"]) {
-        self.image = [DBImage fromURL:inkData[@"image_path"]];
+        NSString* imagePath = inkData[@"image_path"];
+        NSString* pathExtension = imagePath.pathExtension;
+        NSString* path = imagePath.stringByDeletingPathExtension;
+        NSString* scale = @"";
+        switch ((int)[UIScreen mainScreen].scale) {
+            case 2:
+                scale = @"@2x";
+                break;
+            case 3:
+                scale = @"@3x";
+                break;
+            default:
+                break;
+        }
+        self.image = [DBImage fromURL:imagePath];
+        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
+        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
     }
     if ([inkData objectForKey:@"user"]) {
         self.user = [DBUser fromJson:inkData[@"user"]];
@@ -182,11 +198,14 @@
 //    if ([inkData objectForKey:@"updated_at"]) {
 //        ink.updatedAt = inkData[@"updated_at"];
 //    }
-    if ([inkData objectForKey:@"likes_count"]) {
-        self.likesCount = inkData[@"lkes_count"];
+    if (!([inkData objectForKey:@"likes_count"] == [NSNull null])) {
+        self.likesCount = inkData[@"likes_count"];
     }
-    if ([inkData objectForKey:@"reinks_count"]) {
+    if (!([inkData objectForKey:@"reinks_count"] == [NSNull null])) {
         self.reInksCount = inkData[@"reinks_count"];
+    }
+    if ([inkData objectForKey:kInkBoard]) {
+        self.board = [DBBoard fromJson:inkData[kInkBoard][@"data"]];
     }
 //    if ([inkData objectForKey:@"extra_data"]) {
 //        ink.extraData = inkData[@"extra_data"];

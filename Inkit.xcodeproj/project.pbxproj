@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */; };
 		86647CBA1AF403830013658A /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86647CB91AF403830013658A /* FacebookManager.m */; };
-		86647CBC1AF4192F0013658A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86647CBB1AF4192F0013658A /* FacebookSDK.framework */; };
-		86647CBD1AF512220013658A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86647CBB1AF4192F0013658A /* FacebookSDK.framework */; };
-		86647CC71AF541040013658A /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86647CC61AF541040013658A /* GooglePlus.framework */; };
-		86647CC91AF541120013658A /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86647CC81AF541120013658A /* GoogleOpenSource.framework */; };
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
 		86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411CC1ACC85DC00463622 /* DBImage+Management.m */; };
 		86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */; };
@@ -25,7 +21,6 @@
 		86DFBC681AF554F1000EAF62 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC671AF554F1000EAF62 /* CoreMotion.framework */; };
 		86DFBC6A1AF56071000EAF62 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC691AF56071000EAF62 /* Security.framework */; };
 		86DFBC6C1AF5607C000EAF62 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC6B1AF5607C000EAF62 /* SystemConfiguration.framework */; };
-		86DFBC6E1AF56587000EAF62 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86DFBC6D1AF56587000EAF62 /* GooglePlus.bundle */; };
 		86DFBC701AF56858000EAF62 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC6F1AF56858000EAF62 /* AssetsLibrary.framework */; };
 		86DFBC721AF56864000EAF62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC711AF56864000EAF62 /* Foundation.framework */; };
 		86DFBC741AF56870000EAF62 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC731AF56870000EAF62 /* CoreLocation.framework */; };
@@ -94,8 +89,6 @@
 		FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF921A8CF2420052DCB9 /* DBBoard+Management.m */; };
 		FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */; };
 		FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */; };
-		FBD2FEB51ADB4F08005D1AAE /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEB41ADB4F08005D1AAE /* DBImage.m */; };
-		FBD2FED91ADB550E005D1AAE /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FED81ADB550E005D1AAE /* DBInk.m */; };
 		FBD2FEDF1ADB550F005D1AAE /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEDE1ADB550F005D1AAE /* DBUser.m */; };
 		FBD2FEE21ADB550F005D1AAE /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEE11ADB550F005D1AAE /* DBBoard.m */; };
 		FBD2FEE51ADB550F005D1AAE /* DBTattooType.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEE41ADB550F005D1AAE /* DBTattooType.m */; };
@@ -122,6 +115,13 @@
 		FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1D31A83F81500E05053 /* DBBodyPart+Management.m */; };
 		FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E01A84095200E05053 /* DBUser+Management.m */; };
 		FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E31A840C2400E05053 /* LogInViewController.m */; };
+		FBE704561AF6B0060041DD0E /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE704551AF6B0060041DD0E /* GooglePlus.framework */; };
+		FBE704581AF6B00E0041DD0E /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FBE704571AF6B00E0041DD0E /* GooglePlus.bundle */; };
+		FBE7045A1AF6B0140041DD0E /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE704591AF6B0140041DD0E /* GoogleOpenSource.framework */; };
+		FBE7045C1AF6B07B0041DD0E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE7045B1AF6B07B0041DD0E /* FacebookSDK.framework */; };
+		FBE7045D1AF6B0A40041DD0E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE7045B1AF6B07B0041DD0E /* FacebookSDK.framework */; };
+		FBE704601AF6CFB70041DD0E /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE7045F1AF6CFB70041DD0E /* DBInk.m */; };
+		FBE704631AF6CFB80041DD0E /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE704621AF6CFB80041DD0E /* DBImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,9 +139,6 @@
 		8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRemoteTableViewController.m; sourceTree = "<group>"; };
 		86647CB81AF403830013658A /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
 		86647CB91AF403830013658A /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
-		86647CBB1AF4192F0013658A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		86647CC61AF541040013658A /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
-		86647CC81AF541120013658A /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../../../google-plus-ios-sdk-1.7.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
 		86C2F62E1AAA4E9F003D58E3 /* DBTattooType+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBTattooType+Management.h"; path = "Data Base/DB Categories/DBTattooType+Management.h"; sourceTree = "<group>"; };
 		86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBTattooType+Management.m"; path = "Data Base/DB Categories/DBTattooType+Management.m"; sourceTree = "<group>"; };
 		86C411CB1ACC85DC00463622 /* DBImage+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBImage+Management.h"; path = "Data Base/DB Categories/DBImage+Management.h"; sourceTree = "<group>"; };
@@ -162,7 +159,6 @@
 		86DFBC671AF554F1000EAF62 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		86DFBC691AF56071000EAF62 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		86DFBC6B1AF5607C000EAF62 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		86DFBC6D1AF56587000EAF62 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../../../google-plus-ios-sdk-1.7.1/GooglePlus.bundle"; sourceTree = "<group>"; };
 		86DFBC6F1AF56858000EAF62 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		86DFBC711AF56864000EAF62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86DFBC731AF56870000EAF62 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -255,10 +251,6 @@
 		FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = "ViewControllers/Create Board/CreateBoardViewController.m"; sourceTree = "<group>"; };
 		FBCCAF9A1A8CFE4E0052DCB9 /* EditTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTextViewController.h; path = ViewControllers/General/EditTextViewController.h; sourceTree = "<group>"; };
 		FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTextViewController.m; path = ViewControllers/General/EditTextViewController.m; sourceTree = "<group>"; };
-		FBD2FEB31ADB4F08005D1AAE /* DBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBImage.h; path = "Data Base/DB Subclasses/DBImage.h"; sourceTree = "<group>"; };
-		FBD2FEB41ADB4F08005D1AAE /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
-		FBD2FED71ADB550E005D1AAE /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBInk.h; path = "Data Base/DB Subclasses/DBInk.h"; sourceTree = "<group>"; };
-		FBD2FED81ADB550E005D1AAE /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBInk.m; path = "Data Base/DB Subclasses/DBInk.m"; sourceTree = "<group>"; };
 		FBD2FEDD1ADB550F005D1AAE /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
 		FBD2FEDE1ADB550F005D1AAE /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
 		FBD2FEE01ADB550F005D1AAE /* DBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBoard.h; path = "Data Base/DB Subclasses/DBBoard.h"; sourceTree = "<group>"; };
@@ -311,6 +303,14 @@
 		FBDCB1E01A84095200E05053 /* DBUser+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBUser+Management.m"; path = "Data Base/DB Categories/DBUser+Management.m"; sourceTree = "<group>"; };
 		FBDCB1E21A840C2400E05053 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ViewControllers/LogIn/LogInViewController.h; sourceTree = "<group>"; };
 		FBDCB1E31A840C2400E05053 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ViewControllers/LogIn/LogInViewController.m; sourceTree = "<group>"; };
+		FBE704551AF6B0060041DD0E /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
+		FBE704571AF6B00E0041DD0E /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"; sourceTree = "<group>"; };
+		FBE704591AF6B0140041DD0E /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
+		FBE7045B1AF6B07B0041DD0E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		FBE7045E1AF6CFB70041DD0E /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBInk.h; path = "Data Base/DB Subclasses/DBInk.h"; sourceTree = "<group>"; };
+		FBE7045F1AF6CFB70041DD0E /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBInk.m; path = "Data Base/DB Subclasses/DBInk.m"; sourceTree = "<group>"; };
+		FBE704611AF6CFB80041DD0E /* DBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBImage.h; path = "Data Base/DB Subclasses/DBImage.h"; sourceTree = "<group>"; };
+		FBE704621AF6CFB80041DD0E /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +318,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBE704561AF6B0060041DD0E /* GooglePlus.framework in Frameworks */,
 				86DFBC7A1AF5689A000EAF62 /* UIKit.framework in Frameworks */,
 				86DFBC781AF5688A000EAF62 /* MediaPlayer.framework in Frameworks */,
 				86DFBC761AF56881000EAF62 /* CoreText.framework in Frameworks */,
@@ -329,10 +330,9 @@
 				86DFBC6A1AF56071000EAF62 /* Security.framework in Frameworks */,
 				86DFBC681AF554F1000EAF62 /* CoreMotion.framework in Frameworks */,
 				86DFBC661AF554DF000EAF62 /* AddressBook.framework in Frameworks */,
-				86647CC71AF541040013658A /* GooglePlus.framework in Frameworks */,
-				86647CBC1AF4192F0013658A /* FacebookSDK.framework in Frameworks */,
 				FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */,
-				86647CC91AF541120013658A /* GoogleOpenSource.framework in Frameworks */,
+				FBE7045C1AF6B07B0041DD0E /* FacebookSDK.framework in Frameworks */,
+				FBE7045A1AF6B0140041DD0E /* GoogleOpenSource.framework in Frameworks */,
 				FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,7 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86647CBD1AF512220013658A /* FacebookSDK.framework in Frameworks */,
+				FBE7045D1AF6B0A40041DD0E /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +557,10 @@
 		FBC433111A8556B200EFAA24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBE7045B1AF6B07B0041DD0E /* FacebookSDK.framework */,
+				FBE704591AF6B0140041DD0E /* GoogleOpenSource.framework */,
+				FBE704571AF6B00E0041DD0E /* GooglePlus.bundle */,
+				FBE704551AF6B0060041DD0E /* GooglePlus.framework */,
 				86DFBC791AF5689A000EAF62 /* UIKit.framework */,
 				86DFBC771AF5688A000EAF62 /* MediaPlayer.framework */,
 				86DFBC751AF56881000EAF62 /* CoreText.framework */,
@@ -567,10 +571,6 @@
 				86DFBC691AF56071000EAF62 /* Security.framework */,
 				86DFBC671AF554F1000EAF62 /* CoreMotion.framework */,
 				86DFBC651AF554DF000EAF62 /* AddressBook.framework */,
-				86DFBC6D1AF56587000EAF62 /* GooglePlus.bundle */,
-				86647CC81AF541120013658A /* GoogleOpenSource.framework */,
-				86647CC61AF541040013658A /* GooglePlus.framework */,
-				86647CBB1AF4192F0013658A /* FacebookSDK.framework */,
 				FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */,
 				FBB488541A8BF176009E1789 /* MobileCoreServices.framework */,
 				FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */,
@@ -779,6 +779,10 @@
 		FBDCB1D11A83F7F000E05053 /* DBSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				FBE704611AF6CFB80041DD0E /* DBImage.h */,
+				FBE704621AF6CFB80041DD0E /* DBImage.m */,
+				FBE7045E1AF6CFB70041DD0E /* DBInk.h */,
+				FBE7045F1AF6CFB70041DD0E /* DBInk.m */,
 				FBD2FEEF1ADB55ED005D1AAE /* DBShop.h */,
 				FBD2FEF01ADB55ED005D1AAE /* DBShop.m */,
 				FBD2FEEC1ADB550F005D1AAE /* DBComment.h */,
@@ -793,10 +797,6 @@
 				FBD2FEE11ADB550F005D1AAE /* DBBoard.m */,
 				FBD2FEDD1ADB550F005D1AAE /* DBUser.h */,
 				FBD2FEDE1ADB550F005D1AAE /* DBUser.m */,
-				FBD2FED71ADB550E005D1AAE /* DBInk.h */,
-				FBD2FED81ADB550E005D1AAE /* DBInk.m */,
-				FBD2FEB31ADB4F08005D1AAE /* DBImage.h */,
-				FBD2FEB41ADB4F08005D1AAE /* DBImage.m */,
 			);
 			name = DBSubclasses;
 			sourceTree = "<group>";
@@ -918,8 +918,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
+				FBE704581AF6B00E0041DD0E /* GooglePlus.bundle in Resources */,
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
-				86DFBC6E1AF56587000EAF62 /* GooglePlus.bundle in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
 				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
@@ -946,13 +946,13 @@
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
 				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
+				FBE704601AF6CFB70041DD0E /* DBInk.m in Sources */,
 				FB4A23C81AD9AC5D002EE49B /* CommonService.m in Sources */,
 				FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */,
 				FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */,
 				FBCCAF861A8CE8390052DCB9 /* ViewBoardsViewController.m in Sources */,
 				FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */,
 				FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */,
-				FBD2FED91ADB550E005D1AAE /* DBInk.m in Sources */,
 				FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */,
 				FBD2FEE21ADB550F005D1AAE /* DBBoard.m in Sources */,
 				8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */,
@@ -962,8 +962,8 @@
 				FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */,
 				86DC98F81AC4955700A39C28 /* DataManager.m in Sources */,
 				86DC990D1AC9E3E400A39C28 /* DBArtist+Management.m in Sources */,
-				FBD2FEB51ADB4F08005D1AAE /* DBImage.m in Sources */,
 				FBB696DF1AAB9D4F0071D96B /* UserNameLabel.m in Sources */,
+				FBE704631AF6CFB80041DD0E /* DBImage.m in Sources */,
 				FBC432FD1A853BC500EFAA24 /* InkitTabBarController.m in Sources */,
 				FBD91E2C1A96795800B00724 /* ViewInksViewController.m in Sources */,
 				FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */,
@@ -1162,6 +1162,8 @@
 					"$(inherited)",
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					"/Users/mariaveronicasonzini/Documents/google-plus-ios-sdk-1.7.1",
+					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1183,6 +1185,8 @@
 					"$(inherited)",
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					"/Users/mariaveronicasonzini/Documents/google-plus-ios-sdk-1.7.1",
+					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1204,6 +1208,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1227,6 +1232,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = InkitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -2,7 +2,7 @@
 //  DBImage.m
 //  Inkit
 //
-//  Created by Cristian Pena on 4/12/15.
+//  Created by Cristian Pena on 5/3/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -18,5 +18,7 @@
 @dynamic ink;
 @dynamic userPic;
 @dynamic userPicThumbnail;
+@dynamic thumbnailInk;
+@dynamic fullScreenInk;
 
 @end

@@ -18,74 +18,87 @@
 
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    // Create returnError
     NSError* returnError = nil;
+
+    DBBoard* board = inkDictionary[kInkBoard];
     
-    // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceInks,kWebServiceCreate];
+    NSString *boundary = @"14737809831466499882746641449";
+    NSMutableData *body = [NSMutableData data];
     
-    // Create URL
-    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    // Body part for "Access Token" parameter. This is a string.
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"access_token"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", [DataManager sharedInstance].activeUser.token] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    // Create and configure URLRequest
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:120.0];
+    // Body part for "Description" parameter. This is a string.
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"description"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", inkDictionary[kInkDescription]] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    // Body part for "board_id" parameter. This is a string.
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"board_id"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", board.boardID] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    // Specify that it will be a POST request
+    // add image data
+    NSData* imageData = UIImageJPEGRepresentation(inkDictionary[kInkImage], 1.0);
+    if (imageData) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.png\"\r\n", @"image"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:imageData];
+        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Setup the session
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    
+    NSURL* createInkURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://inkit.digbang.com/api/inks/create"]];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:createInkURL];
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
     
-    // Convert your data and set your request's HTTPBody property
-    NSMutableDictionary* jsonDataDictionary = [@{@"access_token" : [DataManager sharedInstance].activeUser.token,
-                                                 //                                         @"image": ink.inkImage,
-                                                 @"description" : inkDictionary[kInkDescription],
-                                                 @"board_id":inkDictionary[kInkBoardID]
-                                                 } mutableCopy];
     
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError) {
+        if (!connectionError)
+        {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSError *error = nil;
+            
+            // Parse JSON Response
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                               options:NSJSONReadingMutableContainers
+                                                                                 error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case kHTTPResponseCodeOK:
+                {
+                    NSDictionary* inkDictionary = responseDictionary[@"data"];
+                    // Acá va a ir el código para el caso de éxito
+                    DBInk* ink = [DBInk fromJson:inkDictionary];
+                    
+                    [target performSelectorOnMainThread:completeAction withObject:ink waitUntilDone:NO];
+                    break;
+                }
+                default:
+                {
+                    NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                    [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                    break;
+                }
+            }
+        } else {
+            [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+        }
+        
+    }];
     
-    // Create Asynchronous Request URLConnection
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-     {
-         if (!connectionError)
-         {
-             // Cast Response
-             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             //NSError *error = nil;
-             
-             // Parse JSON Response
-//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
-             // Check Response's StatusCode
-             switch (httpResponse.statusCode) {
-                 case kHTTPResponseCodeOK:
-                 {
-                     // Acá va a ir el código para el caso de éxito
-                     
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-                     break;
-                 }
-                 default:
-                 {
-                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
-                     break;
-                 }
-             }
-         } else {
-             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
-         }
-         
-     }];
-    
+    [task resume];
     return returnError;
 }
 

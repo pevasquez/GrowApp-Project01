@@ -59,12 +59,12 @@ typedef enum
     UIViewController* parentViewController = [self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-2)];
     if ([parentViewController isKindOfClass:[CreateInkViewController class]]) {
         self.navigationItem.hidesBackButton = YES;
-    } else {
-        self.navigationItem.rightBarButtonItem = self.editButton;
     }
-    //if (self.ink.user == [DataManager sharedInstance].activeUser) {
-//        self.navigationItem.rightBarButtonItem = self.editButton;
-    //}
+    if (self.ink.user == [DataManager sharedInstance].activeUser) {
+        self.navigationItem.rightBarButtonItem = self.editButton;
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,7 +85,7 @@ typedef enum
     if([cellIdentifier isEqualToString:InkRemoteTableViewCellIdentifier])
     {
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        cell.textLabel.text = @"prueba";
+//        cell.textLabel.text = ;
         return cell;
         
     } else if ([cellIdentifier isEqualToString:InkActionsTableViewCellIdentifier]) {
@@ -106,27 +106,28 @@ typedef enum
 {
     switch (indexPath.row) {
         case kInkImage:
+        {
+            return 300.0;
+            break;
+        }
         case kInkDescription:
         {
-            NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
-            ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            [cell configureForInk:self.ink];
+//            NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
+//            ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//            [cell configureForInk:self.ink];
+//            
+//            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
+//            [cell setNeedsUpdateConstraints];
+//            [cell updateConstraintsIfNeeded];
+//            
+//            [cell setNeedsLayout];
+//            [cell layoutIfNeeded];
+//            
+//            // Get the actual height required for the cell
+//            CGFloat height = cell.cellHeight;
+//            height += 1;
             
-            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-            [cell setNeedsUpdateConstraints];
-            [cell updateConstraintsIfNeeded];
-            
-            [cell setNeedsLayout];
-            [cell layoutIfNeeded];
-            
-            // Get the actual height required for the cell
-            CGFloat height = cell.cellHeight;
-            
-            // Add an extra point to the height to account for the cell separator, which is added between the bottom
-            // of the cell's contentView and the bottom of the table view cell.
-            height += 1;
-            
-            return MAX(height,10);
+            return 44.0;
             break;
         }
         case kInkActions:

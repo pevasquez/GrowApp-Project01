@@ -382,14 +382,15 @@ typedef enum
 }
 
 - (IBAction)createInkButtonPressed:(UIBarButtonItem *)sender
-{
+{    
     if ([self verifyCells]) {
         if (self.isReInking) {
             [self postInkCompleteAction:self.ink];
         } else if (self.isEditingInk) {
             [self postInkCompleteAction:self.ink];
         } else {
-        [self.ink postWithTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
+            self.inkData[kInkImage] = self.inkImage;
+            [InkitService createInk:self.inkData withTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
         }
     }
 }

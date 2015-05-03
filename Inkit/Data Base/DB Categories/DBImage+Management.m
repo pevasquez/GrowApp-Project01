@@ -7,6 +7,7 @@
 //
 
 #import "DBImage+Management.h"
+#import "InkitTheme.h"
 #import "DataManager.h"
 
 @implementation DBImage (Management)
@@ -36,11 +37,18 @@
     if (self.imageData) {
         imageView.image = [UIImage imageWithData:self.imageData];
     } else {
+        [imageView layoutIfNeeded];
         NSLog(@"%@",NSStringFromCGRect(imageView.frame));
         UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
-        activityIndicator.center = CGPointMake(imageView.frame.size.width /2 , imageView.frame.size.height /2);
-        activityIndicator.color = [UIColor grayColor];
+        
+        activityIndicator.center = imageView.center;
+        activityIndicator.color = [InkitTheme getTintColor];
         [imageView addSubview:activityIndicator];
+//
+//        NSLayoutConstraint* centerY = [NSLayoutConstraint constraintWithItem:activityIndicator attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+//        NSLayoutConstraint* centerX= [NSLayoutConstraint constraintWithItem:activityIndicator attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+//        [imageView addConstraints:@[centerX,centerY]];
+
         [activityIndicator startAnimating];
         dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
         dispatch_async(downloadQueue, ^{
