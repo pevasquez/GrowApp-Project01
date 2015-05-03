@@ -35,4 +35,13 @@
 #define kTattooTypeName     @"name"
 #define kTattooTypeID       @"id"
 
+#define kUserFullName       @"fullname"
+#define kUserFirstName      @"firstname"
+#define kUserLastName       @"lastname"
+#define kUserBirthDate      @"date_birth"
+#define kUserFacebookID     @"fbid"
+#define kUserImageURL       @"imageURL"
+
+#define kClientID           @"clientID"
+
 #endif

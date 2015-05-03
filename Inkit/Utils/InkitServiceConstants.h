@@ -38,6 +38,8 @@
 #define kWebServiceTattooTypes          @"tattoo-types"
 #define kWebServiceTattooStyles         @"tattoo-styles"
 #define kWebServiceAccessToken          @"access_token"
+#define kWebServiceSocialLogin          @"/social-network"
+
 
 // Respuestas de los WS
 #define kHTTPResponseCodeOK                 200

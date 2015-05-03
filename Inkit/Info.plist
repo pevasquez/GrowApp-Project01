@@ -18,8 +18,27 @@
 	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string></string>
+			<key>CFBundleURLName</key>
+			<string>com.digbang.inkit</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.digbang.inkit</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>16</string>
+	<key>FacebookAppID</key>
+	<string>1581652675419360</string>
+	<key>FacebookDisplayName</key>
+	<string>verónica</string>
+	<key>Google</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

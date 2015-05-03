@@ -18,6 +18,7 @@
 #import "DBUser+Management.h"
 #import "DBShop+Management.h"
 #import "InkitServiceConstants.h"
+#import "FacebookManager.h"
 
 
 @implementation InkitService
@@ -32,6 +33,10 @@
     return [UserService registerUser:user withTarget:target completeAction:completeAction completeError:completeError];
 }
 
++ (NSError *)logInFacebookDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [UserService logInFacebookDictionary:facebookDictionary withTarget:target completeAction:completeAction completeError:completeError];
+}
 
 + (NSError *)logInUserWithToken:(NSString *)token WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {

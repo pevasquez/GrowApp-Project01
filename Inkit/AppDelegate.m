@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "DataManager.h"
 #import "DBInk+Management.h"
+#import <GoogleOpenSource/GoogleOpenSource.h>
+#import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
 
@@ -83,7 +85,18 @@
     } else {
         [self setLogInViewController];
     }
+    
+    GPPSignIn *googleSignIn = [GPPSignIn sharedInstance];
+    googleSignIn.clientID = @"126893056585-fujj1qeei47bholl4fknfbk8rsh4934h.apps.googleusercontent.com";
+    googleSignIn.scopes = @[kGTLAuthScopePlusLogin];
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation]) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -198,5 +211,6 @@
         }
     }
 }
+#pragma mark - Google
 
 @end

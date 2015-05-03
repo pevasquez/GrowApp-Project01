@@ -103,7 +103,7 @@
 
 - (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    [InkitService postInk:self WithTarget:target completeAction:completeAction completeError:completeError];
+    //[InkitService postInk:self WithTarget:target completeAction:completeAction completeError:completeError];
     [self saveManagedObjectContext];
 }
 
