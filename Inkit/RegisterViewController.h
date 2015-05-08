@@ -17,4 +17,5 @@
 
 @interface RegisterViewController : UIViewController
 @property (nonatomic, weak) id<RegisterDelegate> delegate;
+@property (strong, nonatomic) NSMutableDictionary* userDictionary;
 @end

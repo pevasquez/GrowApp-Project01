@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIButton *actionButton;
 
 @end
 
@@ -24,6 +25,12 @@
     
     if (self.page == nil) {
         self.page = [TutorialPage allPages][0];
+    }
+    
+    if (self.page == [TutorialPage allPages].lastObject) {
+        [self.actionButton setTitle:@"Start Using App" forState:UIControlStateNormal];
+    } else {
+        [self.actionButton setTitle:@"Skip" forState:UIControlStateNormal];
     }
     
     self.bgImageView.image = self.page.bgImage;
@@ -41,6 +48,10 @@
     NSParagraphStyleAttributeName: style};
     
     self.textLabel.attributedText = [[NSAttributedString alloc] initWithString:self.page.text attributes:attrs];
+}
+
+- (IBAction)actionButtonPressed:(UIButton *)sender {
+    [self.delegate didFinishTutorial];
 }
 
 @end

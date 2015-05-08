@@ -131,7 +131,7 @@
 
 - (BOOL)checkIfPermissionsGranted:(FBSession *)session
 {
-    if ([session.permissions containsObject:@"email"] && [session.permissions containsObject:@"public_profile"] && [session.permissions containsObject:@"user_birthday"]) {
+    if ([session.permissions containsObject:@"email"] && [session.permissions containsObject:@"public_profile"]) {
         return YES;
     } else {
         return NO;

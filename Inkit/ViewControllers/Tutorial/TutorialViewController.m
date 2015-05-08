@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 María Verónica Sonzini. All rights reserved.
 //
 
-#import "PageViewController.h"
+#import "TutorialViewController.h"
 #import "TutorialStepViewController.h"
 #import "TutorialPage.h"
 
-@interface PageViewController () <UIPageViewControllerDataSource>
+@interface TutorialViewController () <UIPageViewControllerDataSource, TutorialStepViewControllerDelegate>
 
 @property (strong, nonatomic) NSArray *pages;
 
 @end
 
-@implementation PageViewController
+@implementation TutorialViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -24,6 +24,7 @@
     self.pages = [TutorialPage allPages];
     TutorialStepViewController *stepVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialStepViewController"];
     stepVC.page = self.pages [0];
+    stepVC.delegate = self;
     
     [self setViewControllers:@[stepVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     self.dataSource = self;
@@ -37,6 +38,7 @@
     
     TutorialStepViewController *newVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialStepViewController"];
     newVC.page = self.pages[newIndex];
+    newVC.delegate = self;
     return newVC;
     
 }
@@ -66,5 +68,9 @@
     TutorialStepViewController *vc = (TutorialStepViewController *)pageViewController.viewControllers[0];
     return vc.page.index;
 }
-
+// MARK:- TutorialStepViewControllerDelegate
+- (void)didFinishTutorial
+{
+    [self.tutorialDelegate didFinishTutorial];
+}
 @end

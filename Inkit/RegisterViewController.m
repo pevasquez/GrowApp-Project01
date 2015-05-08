@@ -10,6 +10,7 @@
 #import "UserTypeViewController.h"
 #import "InkitTheme.h"
 #import "InkitService.h"
+#import "InkitConstants.h"
 
 @interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate >
 {
@@ -34,6 +35,15 @@
 {
     [super viewDidLoad];
     [self hideActivityIndicator];
+    if (!self.userDictionary) {
+        self.userDictionary = [[NSMutableDictionary alloc] init];
+    }
+    if ([self.userDictionary objectForKey:kUserEmail]) {
+        self.eMailTextField.text = self.userDictionary[kUserEmail];
+    }
+    if ([self.userDictionary objectForKey:kUserFirstName]) {
+        
+    }
 }
 
 - (IBAction)userTypeTextFieldClicked:(id)sender
@@ -44,13 +54,18 @@
 - (void)registerUser {
     if ([self verifyTextFields]) {
         // Continue registration process
-        self.user = [DBUser createNewUser];
-        self.user.email = self.eMailTextField.text;
-        self.user.password = self.passwordTextfield.text;
-        self.user.firstName = self.firstNameTextField.text;
-        self.user.lastName = self.lastNameTextField.text;
+//        self.user = [DBUser createNewUser];
+//        self.user.email = self.eMailTextField.text;
+//        self.user.password = self.passwordTextfield.text;
+//        self.user.firstName = self.firstNameTextField.text;
+//        self.user.lastName = self.lastNameTextField.text;
+        
+        // actualizar dictionary con datos de textfields
+        self.userDictionary[kUserFirstName] = self.firstNameTextField.text;
+//        self.userDictionary
+        
         [self showActivityIndicator];
-        [InkitService registerUser:self.user WithTarget:self completeAction:@selector(registerUserComplete) completeError:@selector(registerUserError:)];
+        [InkitService registerUserDictionary:self.userDictionary WithTarget:self completeAction:@selector(registerUserComplete) completeError:@selector(registerUserError:)];
     }
 }
 

@@ -44,4 +44,6 @@
 
 #define kClientID           @"clientID"
 
+#define kSeenTutorial       @"Seen Tutorial"
+
 #endif

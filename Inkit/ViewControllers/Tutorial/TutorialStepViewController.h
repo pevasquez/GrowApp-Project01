@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TutorialPage.h"
 
-@interface TutorialStepViewController : UIViewController
+@protocol TutorialStepViewControllerDelegate
+- (void)didFinishTutorial;
+@end
 
+@interface TutorialStepViewController : UIViewController
+@property (nonatomic, weak) id<TutorialStepViewControllerDelegate> delegate;
 @property (nonatomic, strong) TutorialPage *page;
 
 @end

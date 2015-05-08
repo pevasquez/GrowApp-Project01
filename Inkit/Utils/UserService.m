@@ -17,7 +17,7 @@
 
 @implementation UserService
 
-+ (NSError *)registerUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)registerUserDictionary:(NSDictionary *)userDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
@@ -39,19 +39,8 @@
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    // Convert your data and set your request's HTTPBody property
-    NSMutableDictionary* jsonDataDictionary = [@{@"first_name" : user.firstName,
-                                         @"last_name": user.lastName,
-                                         @"email": user.email,
-                                         @"password" : user.password,
-                                         } mutableCopy];
-    
-    if (user.gender) {
-        jsonDataDictionary[@"gender"] = user.gender;
-    }
-    
     NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
     [request setHTTPBody: jsonData];
     
     // Create Asynchronous Request URLConnection
@@ -74,6 +63,8 @@
                  case kHTTPResponseCodeOK:
                  {
                      // Acá va a ir el código para el caso de éxito
+                     DBUser* user = [DBUser fromJson:userDictionary];
+                     [user updateWithJson:responseDictionary];
                      [DataManager sharedInstance].activeUser = user;
                      user.token = responseDictionary[kAccessToken];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
@@ -184,7 +175,7 @@
     return returnError;
 }
 
-+ (NSError *)logInFacebookDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)logInSocialDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
     // Create returnError
     NSError* returnError = nil;

@@ -102,11 +102,10 @@
 
 - (IBAction)facebookLoginPressed:(id)sender {
     // If the session state is any of the two "open" states when the button is clicked
-    if (FBSession.activeSession.state == FBSessionStateOpen
-        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-        [FBSession.activeSession closeAndClearTokenInformation];
-        
-    }
+//    if (FBSession.activeSession.state == FBSessionStateOpen
+//        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
+//        [FBSession.activeSession closeAndClearTokenInformation];
+//    }
     [FacebookManager sharedInstance].delegate = self;
     [[FacebookManager sharedInstance] logInUser];
 
@@ -128,6 +127,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"RegisterSegue"]) {
         RegisterViewController* rvc = [segue destinationViewController];
+        rvc.userDictionary = self.userDictionary;
         rvc.delegate = self;
     }
     
@@ -182,6 +182,8 @@
 {
     
 }
+
+
 - (void)onUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo
 {
     self.userDictionary = [[NSMutableDictionary alloc] init];
@@ -198,20 +200,33 @@
     NSString* imageURL = [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=large", userInfo.objectID];
     self.userDictionary[kUserImageURL] = imageURL;
     
-    [self facebookLogin];
+    [self socialLogin];
 }
 
 - (void)onPermissionsDeclined:(NSArray *)declinedPermissions
 {
-    //[self setLogInViewController];
+    
+    
 }
 
 #pragma mark - Facebook Login
 
-- (void)facebookLogin {
+- (void)socialLogin {
     {
-        [InkitService logInFacebookDictionary:self.userDictionary withTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError:)];
+        [InkitService logInSocialDictionary:self.userDictionary withTarget:self completeAction:@selector(socialLogInUserComplete) completeError:@selector(socialLogInUserError:)];
         [self showActivityIndicator];
+    }
+}
+
+- (void)socialLogInUserComplete {
+    [self.delegate logInDidFinishedLoading];
+    [self hideActivityIndicator];
+}
+
+- (void)socialLogInUserError:(NSString *)errorMessage {
+    if ([errorMessage isEqualToString:@"Social Network Id mismatch"]) {
+        // set register window pero seteando el diccionario de datos
+        [self performSegueWithIdentifier:@"RegisterSegue" sender:nil];
     }
 }
 

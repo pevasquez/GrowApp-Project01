@@ -9,11 +9,11 @@
 #import "AppDelegate.h"
 #import "DataManager.h"
 #import "DBInk+Management.h"
+#import "InkitConstants.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
-#import "PageViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <TutorialViewControllerDelegate>
 
 @end
 
@@ -59,6 +59,15 @@
     [self.window makeKeyAndVisible];
 }
 
+- (void)setTutorialViewController
+{
+    TutorialViewController *tutorialViewController = [[UIStoryboard storyboardWithName:@"Tutorial" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PageViewController"];
+    tutorialViewController.tutorialDelegate = self;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = tutorialViewController;
+    [self.window makeKeyAndVisible];
+}
+
 #pragma mark - Splash Screen Delegate Methods
 - (void)splashScreenDidFinishedLoading
 {
@@ -76,21 +85,30 @@
     [self setSplashViewController];
 }
 
+#pragma mark - Tutorial Delegate
+- (void)didFinishTutorial
+{
+    [self setLogInViewController];
+}
+
 #pragma mark - Application Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     
-//    // If there's a logged user, silent logIn
-//    if ([DataManager sharedInstance].activeUser) {
-//        // log user
-//        [self setSplashViewController];
-//    } else {
-//        [self setLogInViewController];
-//    }
+    // If there's a logged user, silent logIn
+    if ([DataManager sharedInstance].activeUser) {
+        // log user
+        [self setSplashViewController];
+    } else {
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        if ([userDefaults objectForKey:kSeenTutorial]) {
+            [self setLogInViewController];
+        } else {
+            [self setTutorialViewController];
+        }
+    }
     
-    PageViewController *root = [[UIStoryboard storyboardWithName:@"Tutorial" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PageViewController"];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = root;
+    
 
     GPPSignIn *googleSignIn = [GPPSignIn sharedInstance];
     googleSignIn.clientID = @"126893056585-fujj1qeei47bholl4fknfbk8rsh4934h.apps.googleusercontent.com";

@@ -11,6 +11,7 @@
 #import "SplashViewController.h"
 #import "LogInViewController.h"
 #import "InkitTabBarController.h"
+#import "TutorialViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, SplashViewControllerDelegate,LogInViewControllerDelegate>
 

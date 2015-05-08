@@ -28,14 +28,14 @@
     return [UserService logInUserDictionary:userDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)registerUser:(DBUser *)user WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)registerUserDictionary:(NSDictionary *)userDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    return [UserService registerUser:user withTarget:target completeAction:completeAction completeError:completeError];
+    return [UserService registerUserDictionary:userDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)logInFacebookDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)logInSocialDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
-    return [UserService logInFacebookDictionary:facebookDictionary withTarget:target completeAction:completeAction completeError:completeError];
+    return [UserService logInSocialDictionary:facebookDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)logInUserWithToken:(NSString *)token WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

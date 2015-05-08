@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qkq-51-PVe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qkq-51-PVe">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Page View Controller-->
+        <!--Tutorial View Controller-->
         <scene sceneID="LJo-5p-YVy">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="25" navigationOrientation="horizontal" spineLocation="none" id="qkq-51-PVe" customClass="PageViewController" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="25" navigationOrientation="horizontal" spineLocation="none" id="qkq-51-PVe" customClass="TutorialViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkP-5T-xbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-852" y="-355"/>
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slide for Next Step" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0z6-cO-Jm7">
-                                <rect key="frame" x="177" y="282" width="246.5" height="36"/>
+                                <rect key="frame" x="177" y="282" width="247" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -41,6 +41,15 @@
                                     <constraint firstAttribute="height" constant="128" id="zXe-0m-jd9"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWf-Iu-ohV">
+                                <rect key="frame" x="283" y="550" width="34" height="30"/>
+                                <state key="normal" title="SKIP">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V6v-pm-iXe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -58,10 +67,12 @@
                             <constraint firstItem="gFP-Wk-41e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="164" id="UY1-Od-5jj"/>
                             <constraint firstAttribute="trailing" secondItem="VpR-KA-cF3" secondAttribute="trailing" id="ZJC-cm-mLB"/>
                             <constraint firstItem="gFP-Wk-41e" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="108" id="asU-Zq-MPn"/>
+                            <constraint firstAttribute="centerX" secondItem="WWf-Iu-ohV" secondAttribute="centerX" id="bLb-Ca-oSP"/>
                             <constraint firstItem="0z6-cO-Jm7" firstAttribute="top" secondItem="gFP-Wk-41e" secondAttribute="bottom" constant="26" id="cnJ-CP-FLF"/>
                             <constraint firstItem="VpR-KA-cF3" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="hen-eQ-Qnf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0z6-cO-Jm7" secondAttribute="trailing" constant="159" id="t5Y-8z-HTJ"/>
                             <constraint firstItem="VpR-KA-cF3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="uFh-08-za9"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="WWf-Iu-ohV" secondAttribute="bottom" constant="20" id="v6B-Nb-GDD"/>
                             <constraint firstAttribute="bottom" secondItem="VpR-KA-cF3" secondAttribute="bottom" id="yhQ-DG-10V"/>
                         </constraints>
                         <variation key="default">
@@ -81,6 +92,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="WWf-Iu-ohV" id="Khv-OR-Y1B"/>
                         <outlet property="bgImageView" destination="VpR-KA-cF3" id="99O-Gm-mE9"/>
                         <outlet property="iconImageView" destination="gFP-Wk-41e" id="Atv-qs-RbW"/>
                         <outlet property="textLabel" destination="0z6-cO-Jm7" id="8I9-ES-UHU"/>
