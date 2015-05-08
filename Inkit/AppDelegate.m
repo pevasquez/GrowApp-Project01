@@ -11,6 +11,7 @@
 #import "DBInk+Management.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
+#import "PageViewController.h"
 
 @interface AppDelegate ()
 
@@ -77,15 +78,20 @@
 
 #pragma mark - Application Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     
-    // If there's a logged user, silent logIn
-    if ([DataManager sharedInstance].activeUser) {
-        // log user
-        [self setSplashViewController];
-    } else {
-        [self setLogInViewController];
-    }
+//    // If there's a logged user, silent logIn
+//    if ([DataManager sharedInstance].activeUser) {
+//        // log user
+//        [self setSplashViewController];
+//    } else {
+//        [self setLogInViewController];
+//    }
     
+    PageViewController *root = [[UIStoryboard storyboardWithName:@"Tutorial" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PageViewController"];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = root;
+
     GPPSignIn *googleSignIn = [GPPSignIn sharedInstance];
     googleSignIn.clientID = @"126893056585-fujj1qeei47bholl4fknfbk8rsh4934h.apps.googleusercontent.com";
     googleSignIn.scopes = @[kGTLAuthScopePlusLogin];
