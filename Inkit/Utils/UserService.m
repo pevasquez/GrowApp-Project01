@@ -66,7 +66,6 @@
                      DBUser* user = [DBUser fromJson:userDictionary];
                      [user updateWithJson:responseDictionary];
                      [DataManager sharedInstance].activeUser = user;
-                     user.token = responseDictionary[kAccessToken];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }

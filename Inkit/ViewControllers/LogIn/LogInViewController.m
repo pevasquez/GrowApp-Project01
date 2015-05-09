@@ -102,10 +102,10 @@
 
 - (IBAction)facebookLoginPressed:(id)sender {
     // If the session state is any of the two "open" states when the button is clicked
-//    if (FBSession.activeSession.state == FBSessionStateOpen
-//        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-//        [FBSession.activeSession closeAndClearTokenInformation];
-//    }
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
+        [FBSession.activeSession closeAndClearTokenInformation];
+    }
     [FacebookManager sharedInstance].delegate = self;
     [[FacebookManager sharedInstance] logInUser];
 
@@ -187,16 +187,18 @@
 - (void)onUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo
 {
     self.userDictionary = [[NSMutableDictionary alloc] init];
-    self.userDictionary[kUserFullName] = userInfo.name;
+    //self.userDictionary[kUserFullName] = userInfo.name;
     self.userDictionary[kUserFirstName] = userInfo.first_name;
     self.userDictionary[kUserLastName] = userInfo.last_name;
-    if (userInfo.birthday) {
-        self.userDictionary[kUserBirthDate] = userInfo.birthday;
-    }
+//    if (userInfo.birthday) {
+//        self.userDictionary[kUserBirthDate] = userInfo.birthday;
+//    }
     if ([userInfo objectForKey:@"email"]) {
         self.userDictionary[kUserEmail] = userInfo[@"email"];
     }
-    self.userDictionary[kUserFacebookID] = userInfo.objectID;
+    self.userDictionary[kUserExternalId] = userInfo.objectID;
+    self.userDictionary[kUserSocialNetworkId] = @"1";
+    
     NSString* imageURL = [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=large", userInfo.objectID];
     self.userDictionary[kUserImageURL] = imageURL;
     

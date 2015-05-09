@@ -35,7 +35,7 @@
 {
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_birthday"]
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           if(!error) {
@@ -51,7 +51,7 @@
 
 - (void)logInUser
 {
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_birthday"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session, FBSessionState state, NSError *error) {

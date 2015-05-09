@@ -42,7 +42,13 @@
         self.eMailTextField.text = self.userDictionary[kUserEmail];
     }
     if ([self.userDictionary objectForKey:kUserFirstName]) {
-        
+        self.firstNameTextField.text = self.userDictionary[kUserFirstName];
+    }
+    if ([self.userDictionary objectForKey:kUserLastName]) {
+        self.lastNameTextField.text = self.userDictionary[kUserLastName];
+    }
+    if ([self.userDictionary objectForKey:kUserPassword]) {
+        self.passwordTextfield.text = self.userDictionary[kUserPassword];
     }
 }
 
@@ -61,8 +67,10 @@
 //        self.user.lastName = self.lastNameTextField.text;
         
         // actualizar dictionary con datos de textfields
+        self.userDictionary[kUserEmail] = self.eMailTextField.text;
         self.userDictionary[kUserFirstName] = self.firstNameTextField.text;
-//        self.userDictionary
+        self.userDictionary[kUserLastName] = self.lastNameTextField.text;
+        self.userDictionary[kUserPassword] = self.passwordTextfield.text;
         
         [self showActivityIndicator];
         [InkitService registerUserDictionary:self.userDictionary WithTarget:self completeAction:@selector(registerUserComplete) completeError:@selector(registerUserError:)];

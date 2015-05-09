@@ -21,6 +21,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 @property (weak, nonatomic) IBOutlet UICollectionView *browseCollectionView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray* inksArray;
+
 @end
 
 @implementation BrowseViewController

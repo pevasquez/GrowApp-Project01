@@ -28,9 +28,9 @@
     return [UserService logInUserDictionary:userDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)registerUserDictionary:(NSDictionary *)userDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)registerUserDictionary:(NSDictionary *)userDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
-    return [UserService registerUserDictionary:userDictionary withTarget:target completeAction:completeAction completeError:completeError];
+    return [UserService registerUserDictionary:userDictionary WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)logInSocialDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
