@@ -31,10 +31,16 @@
 
 @implementation RegisterViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self hideActivityIndicator];
+    [self loadUserData];
+}
+
+- (void)loadUserData
+{
     if (!self.userDictionary) {
         self.userDictionary = [[NSMutableDictionary alloc] init];
     }
@@ -60,13 +66,6 @@
 - (void)registerUser {
     if ([self verifyTextFields]) {
         // Continue registration process
-//        self.user = [DBUser createNewUser];
-//        self.user.email = self.eMailTextField.text;
-//        self.user.password = self.passwordTextfield.text;
-//        self.user.firstName = self.firstNameTextField.text;
-//        self.user.lastName = self.lastNameTextField.text;
-        
-        // actualizar dictionary con datos de textfields
         self.userDictionary[kUserEmail] = self.eMailTextField.text;
         self.userDictionary[kUserFirstName] = self.firstNameTextField.text;
         self.userDictionary[kUserLastName] = self.lastNameTextField.text;

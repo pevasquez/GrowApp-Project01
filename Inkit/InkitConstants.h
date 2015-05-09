@@ -41,7 +41,7 @@
 #define kUserBirthDate      @"date_birth"
 #define kUserFacebookID     @"social_network_id"
 #define kUserImageURL       @"imageURL"
-#define kUserExternalId     @"exteral_id"
+#define kUserExternalId     @"external_id"
 #define kUserSocialNetworkId @"social_network_id"
 
 #define kClientID           @"clientID"
