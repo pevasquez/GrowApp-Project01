@@ -34,7 +34,7 @@
 #pragma mark - ViewControllers
 - (void)setLogInViewController
 {
-    LogInViewController* logInViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInViewController"];
+    LogInViewController* logInViewController = [[UIStoryboard storyboardWithName:@"OnBoarding" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInViewController"];
     logInViewController.delegate = self;
     UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:logInViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -44,7 +44,7 @@
 
 - (void)setSplashViewController
 {
-    SplashViewController* splashViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SplashViewController"];
+    SplashViewController* splashViewController = [[UIStoryboard storyboardWithName:@"OnBoarding" bundle:nil] instantiateViewControllerWithIdentifier:@"SplashViewController"];
     splashViewController.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = splashViewController;
@@ -67,6 +67,7 @@
     self.window.rootViewController = tutorialViewController;
     [self.window makeKeyAndVisible];
 }
+
 
 #pragma mark - Splash Screen Delegate Methods
 - (void)splashScreenDidFinishedLoading

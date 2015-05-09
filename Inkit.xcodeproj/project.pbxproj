@@ -20,6 +20,8 @@
 		8673CBB21AFBFAD200179FA2 /* TutorialStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAE1AFBFAD200179FA2 /* TutorialStepViewController.m */; };
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
 		86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411CC1ACC85DC00463622 /* DBImage+Management.m */; };
+		86C5A6C51AFE950300449FA7 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */; };
+		86C5A6C71AFEA61600449FA7 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C61AFEA61600449FA7 /* image1.jpg */; };
 		86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */; };
 		86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98E81AC32E3200A39C28 /* UserTypeViewController.m */; };
 		86DC98F81AC4955700A39C28 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98F71AC4955700A39C28 /* DataManager.m */; };
@@ -158,6 +160,8 @@
 		86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBTattooType+Management.m"; path = "Data Base/DB Categories/DBTattooType+Management.m"; sourceTree = "<group>"; };
 		86C411CB1ACC85DC00463622 /* DBImage+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBImage+Management.h"; path = "Data Base/DB Categories/DBImage+Management.h"; sourceTree = "<group>"; };
 		86C411CC1ACC85DC00463622 /* DBImage+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBImage+Management.m"; path = "Data Base/DB Categories/DBImage+Management.m"; sourceTree = "<group>"; };
+		86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
+		86C5A6C61AFEA61600449FA7 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image1.jpg; path = ../../../../../Downloads/WeirdAsFuck/image1.jpg; sourceTree = "<group>"; };
 		86DC98DC1AC2E21B00A39C28 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		86DC98E71AC32E3200A39C28 /* UserTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeViewController.h; sourceTree = "<group>"; };
@@ -391,6 +395,16 @@
 				86647CB91AF403830013658A /* FacebookManager.m */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		86C5A6C31AFE948900449FA7 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */,
+				FBDCB1E51A840C2D00E05053 /* LogIn View Controller */,
+				86DC98DF1AC2E24900A39C28 /* Register View Controllers */,
+			);
+			name = OnBoarding;
 			sourceTree = "<group>";
 		};
 		86DC98DF1AC2E24900A39C28 /* Register View Controllers */ = {
@@ -705,6 +719,7 @@
 		FBDCB1941A83EB1800E05053 /* Inkit */ = {
 			isa = PBXGroup;
 			children = (
+				86C5A6C61AFEA61600449FA7 /* image1.jpg */,
 				FBDCB1991A83EB1800E05053 /* AppDelegate.h */,
 				FBDCB19A1A83EB1800E05053 /* AppDelegate.m */,
 				FBC5AB7A1AEBD47D00E800FB /* InkitConstants.h */,
@@ -775,12 +790,11 @@
 			isa = PBXGroup;
 			children = (
 				8673CBB31AFBFAD900179FA2 /* Tutorial */,
+				86C5A6C31AFE948900449FA7 /* OnBoarding */,
 				86DC98EF1AC48BAB00A39C28 /* Settings View Controller */,
 				FBDCB1C81A83F38100E05053 /* Splash View Controller */,
 				FBCCAF9D1A8CFE540052DCB9 /* General View Controllers */,
 				86DC98EA1AC32E3900A39C28 /* User Type View Controllers */,
-				86DC98DF1AC2E24900A39C28 /* Register View Controllers */,
-				FBDCB1E51A840C2D00E05053 /* LogIn View Controller */,
 				FBC432FE1A853BCD00EFAA24 /* Inkit Tab Bar Controller */,
 				FB76CAB11AB114E900B68BAD /* Browse */,
 				FBCCAF981A8CF6630052DCB9 /* Inks */,
@@ -948,6 +962,8 @@
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
+				86C5A6C71AFEA61600449FA7 /* image1.jpg in Resources */,
+				86C5A6C51AFE950300449FA7 /* OnBoarding.storyboard in Resources */,
 				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
 				8673CB1D1AFA6F9100179FA2 /* GooglePlus.bundle in Resources */,
