@@ -186,6 +186,12 @@
     self.userType.userInteractionEnabled = NO;
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
+    [self.eMailTextField resignFirstResponder];
+    [self.passwordTextfield resignFirstResponder];
+    [self.confirmPasswordTextField resignFirstResponder];
+    [self.firstNameTextField resignFirstResponder];
+    [self.lastNameTextField resignFirstResponder];
+    [self.userType resignFirstResponder];
 }
 
 - (void) hideActivityIndicator
@@ -205,29 +211,7 @@
     //int numberOfChracters = 0;
     //bool lowerCaseLetter = false, upperCaseLetter = false, digit = false, specialCharacter = 0;
     if (textField == self.passwordTextfield) {
-        if ([textField.text length] >= 6) {
-            //        for (int i = 0; i<[textField.text length]; i++) {
-            //            unichar c = [textField.text characterAtIndex:i];
-            //            if (!lowerCaseLetter) {
-            //                lowerCaseLetter = [[NSCharacterSet lowercaseLetterCharacterSet]characterIsMember:c];
-            //            }
-            //            if (!upperCaseLetter) {
-            //                upperCaseLetter = [[NSCharacterSet uppercaseLetterCharacterSet]characterIsMember:c];
-            //            }
-            //            if (!digit) {
-            //                digit = [[NSCharacterSet decimalDigitCharacterSet]characterIsMember:c];
-            //            }
-            //            if (!specialCharacter) {
-            //                specialCharacter = [[NSCharacterSet symbolCharacterSet]characterIsMember:c];
-            //            }
-            //        }
-            //        if (specialCharacter && digit && lowerCaseLetter && upperCaseLetter) {
-            //            //do what you want
-            //        }else{
-            //            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Ensure that you have at least one lower case letter, one upper case letter, one digit and one special character" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            //            [alert show];
-            //        }
-        } else {
+        if ([textField.text length] < 6) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hey!" message:@"Please Enter at least 6 characters for the password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
             [alert show];
         }
@@ -240,7 +224,6 @@
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 
-//Código para que al dar enter se pase al textField de abajo.
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == self.firstNameTextField) {
