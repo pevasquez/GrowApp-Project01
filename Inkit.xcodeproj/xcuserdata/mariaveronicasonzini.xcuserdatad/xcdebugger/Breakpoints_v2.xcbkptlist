@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Inkit/ViewControllers/LogIn/LogInViewController.m"
-            timestampString = "452806754.675472"
+            timestampString = "452903111.660939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "-onUserInfoRequestComplete:"
             landmarkType = "5">
          </BreakpointContent>

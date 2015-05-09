@@ -17,7 +17,6 @@
 #import <GoogleOpenSource/GoogleOpenSource.h>
 
 
-
 @interface LogInViewController () <RegisterDelegate, UITextFieldDelegate, FacebookManagerDelegate, GPPSignInDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *googleSignInButton;
@@ -30,6 +29,10 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong, nonatomic) NSMutableDictionary* userDictionary;
+@property (nonatomic) CGFloat mailLogInBottomConstant;
+@property (nonatomic) BOOL userIsEnteringEmail;
+@property (strong, nonatomic) IBOutlet UIView *scrollView;
+
 
 @end
 
@@ -38,13 +41,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideActivityIndicator];
-    
+
     [self customizeNavigationBar];
     
     [GPPSignIn sharedInstance].delegate = self;
     [[GPPSignIn sharedInstance]trySilentAuthentication];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self registerForKeyboardNotifications];
+    self.mailLogInBottomConstant = 165;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -110,6 +129,45 @@
     [[FacebookManager sharedInstance] logInUser];
 
 }
+
+#pragma mark - Keyboard Notifications
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)unregisterFromKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.scrollView.frame = CGRectMake(0, -100, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    } completion:nil];
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    } completion:nil];
+}
+
+
+
 
 
 #pragma mark - Appearence Methods
