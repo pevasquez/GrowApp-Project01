@@ -173,7 +173,7 @@
     if ([inkData objectForKey:@"image_path"]) {
         NSString* imagePath = inkData[@"image_path"];
         NSString* pathExtension = imagePath.pathExtension;
-        NSString* path = imagePath.stringByDeletingPathExtension;
+        NSString* path = [imagePath substringToIndex:(imagePath.length - pathExtension.length - 1)];
         NSString* scale = @"";
         switch ((int)[UIScreen mainScreen].scale) {
             case 2:

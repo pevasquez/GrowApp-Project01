@@ -241,13 +241,21 @@
     return returnError;
 }
 
-+ (NSError *)getBoard:(DBBoard *)board forUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
     
+    // Convert your data and set your request's HTTPBody property
+    NSMutableDictionary* jsonDataDictionary = [@{@"access_token" : [DataManager sharedInstance].activeUser.token} mutableCopy ];
+    if (!(user == [DataManager sharedInstance].activeUser)) {
+        jsonDataDictionary[@"user_id"] = user.userID;
+    }
+    
+    NSString *encodedDictionary = [jsonDataDictionary serializeParams];
+    
     // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@access_token=3&user_id=%@",kWebServiceBase,kWebServiceGetBoards,user.userID];
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@?%@",kWebServiceBase,kWebServiceGetBoards,encodedDictionary];
     
     // Create URL
     NSURL *registerUserURL = [NSURL URLWithString:stringURL];
@@ -262,13 +270,8 @@
     // Specify that it will be a POST request
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : user.token
-                                         };
     
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDataDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    
     
     // Create Asynchronous Request URLConnection
     [NSURLConnection sendAsynchronousRequest:request
@@ -282,22 +285,28 @@
              NSError *error = nil;
              
              // Parse JSON Response
-//             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                options:NSJSONReadingMutableContainers
+                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
-                     // Acá va a ir el código para el caso de éxito
+                     NSMutableArray* boardsArray = [[NSMutableArray alloc] init];
+                     NSDictionary* dataDictionary = responseDictionary[@"data"];
                      
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     for (NSDictionary* boardDictionary in dataDictionary) {
+                         [boardsArray addObject:[DBBoard fromJson:boardDictionary]];
+                     }
+                     [target performSelectorOnMainThread:completeAction withObject:boardsArray waitUntilDone:NO];
                      break;
                  }
                  default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                     NSLog(@"%@",responseDictionary);
+                     [target performSelectorOnMainThread:completeError withObject:errorString waitUntilDone:NO];
                      break;
                  }
              }

@@ -38,7 +38,7 @@
         imageView.image = [UIImage imageWithData:self.imageData];
     } else {
         [imageView layoutIfNeeded];
-        NSLog(@"%@",NSStringFromCGRect(imageView.frame));
+//        NSLog(@"%@",NSStringFromCGRect(imageView.frame));
         UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
         
         activityIndicator.center = imageView.center;

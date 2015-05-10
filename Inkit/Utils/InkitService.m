@@ -114,14 +114,9 @@
     return [BoardService deleteBoard:board WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    NSError* returnError = nil;
-
-    // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-    
-    return returnError;
+    return [BoardService getBoardsForUser:user withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)postComment:(DBComment*)comment withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

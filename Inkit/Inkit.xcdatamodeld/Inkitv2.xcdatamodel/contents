@@ -87,7 +87,7 @@
         <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="profileURL" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="profileURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="socialNetworks" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="styles" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>

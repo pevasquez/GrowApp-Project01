@@ -69,7 +69,7 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BoardCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:BoardCollectionViewCellIdentifier forIndexPath:indexPath];
-    [cell configureForBoard:self.boardsArray[indexPath.row]];
+    cell.board = self.boardsArray[indexPath.row];
     return cell;
 }
 
@@ -91,20 +91,20 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 - (void)getMyBoards
 {
     [self showActivityIndicator];
-    [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction) completeError:@selector(getBoardsCompleteError)];
+    [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction:) completeError:@selector(getBoardsCompleteError:)];
 }
 
-- (void)getBoardsCompleteAction
+- (void)getBoardsCompleteAction:(NSArray *)boardsArray
 {
     [self hideActitivyIndicator];
-    self.boardsArray = [self.activeUser getBoards];
+    self.boardsArray = boardsArray;
     [self.boardsCollectionView reloadData];
 }
 
-- (void)getBoardsCompleteError
+- (void)getBoardsCompleteError:(NSString *)errorString
 {
     [self hideActitivyIndicator];
-
+    [self showAlertForMessage:errorString];
 }
 
 #pragma mark - Navigation Methods
@@ -142,6 +142,12 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 {
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
+}
+
+- (void)showAlertForMessage:(NSString *)errorMessage
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+    [alert show];
 }
 
 @end

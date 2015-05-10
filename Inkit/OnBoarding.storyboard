@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -32,7 +32,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-3Q-Xbf" userLabel="Register View">
                                         <rect key="frame" x="148" y="359" width="293" height="35"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAb-6j-Ntt">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAb-6j-Ntt">
                                                 <rect key="frame" x="0.0" y="9" width="191.5" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="220" id="9wN-kT-t5g"/>
@@ -43,12 +43,12 @@
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="erq-XR-Jlt"/>
                                                         <exclude reference="9wN-kT-t5g"/>
+                                                        <exclude reference="erq-XR-Jlt"/>
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIC-wn-nFQ">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIC-wn-nFQ">
                                                 <rect key="frame" x="199" y="1" width="64" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="78" id="5AC-VY-qbY"/>
@@ -67,14 +67,14 @@
                                                 </state>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="5AC-VY-qbY"/>
+                                                        <exclude reference="6Ut-yl-p3R"/>
                                                         <exclude reference="A2h-Xi-bNt"/>
+                                                        <exclude reference="DAx-pa-vCN"/>
+                                                        <exclude reference="H0B-Z8-Jsf"/>
+                                                        <exclude reference="HGw-gG-25z"/>
                                                         <exclude reference="Sjp-jm-NAc"/>
                                                         <exclude reference="qXB-la-TEI"/>
-                                                        <exclude reference="DAx-pa-vCN"/>
-                                                        <exclude reference="HGw-gG-25z"/>
-                                                        <exclude reference="6Ut-yl-p3R"/>
-                                                        <exclude reference="5AC-VY-qbY"/>
-                                                        <exclude reference="H0B-Z8-Jsf"/>
                                                     </mask>
                                                 </variation>
                                                 <connections>
@@ -402,9 +402,9 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="16o-U1-gUk"/>
-                                <exclude reference="sBr-yt-k0O"/>
                                 <exclude reference="Dpl-9i-qBN"/>
                                 <exclude reference="E5g-yR-1rG"/>
+                                <exclude reference="sBr-yt-k0O"/>
                             </mask>
                         </variation>
                     </view>

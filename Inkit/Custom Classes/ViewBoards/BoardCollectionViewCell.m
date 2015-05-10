@@ -32,21 +32,28 @@
     self.fourthThumbnailImageView.clipsToBounds = YES;
 }
 
+- (void)layoutSubviews {
+    [self configureForBoard:self.board];
+}
+
 - (void)configureForBoard:(DBBoard *)board
 {
     self.boardTitleLabel.text = board.boardTitle;
     NSArray* inks = board.inks.allObjects;
-    
     if ([inks count]) [((DBInk *)inks[0]).image setInImageView:self.mainImageView];
-    else self.mainImageView.image = nil;
-    if ([inks count] > 1) [((DBInk *)inks[1]).image setInImageView:self.firstThumbnailImageView];
-    else self.firstThumbnailImageView.image = nil;
-    if ([inks count] > 2)  [((DBInk *)inks[2]).image setInImageView:self.secondThumbnailImageView];
-    else self.secondThumbnailImageView.image = nil;
-    if ([inks count] > 3)  [((DBInk *)inks[3]).image setInImageView:self.thirdThumbnailImageView];
-    else self.thirdThumbnailImageView.image = nil;
-    if ([inks count] > 4)  [((DBInk *)inks[4]).image setInImageView:self.fourthThumbnailImageView];
-    else self.fourthThumbnailImageView.image = nil;
+    if ([inks count] > 1) [((DBInk *)inks[1]).thumbnailImage setInImageView:self.firstThumbnailImageView];
+    if ([inks count] > 2)  [((DBInk *)inks[2]).thumbnailImage setInImageView:self.secondThumbnailImageView];
+    if ([inks count] > 3)  [((DBInk *)inks[3]).thumbnailImage setInImageView:self.thirdThumbnailImageView];
+    if ([inks count] > 4)  [((DBInk *)inks[4]).thumbnailImage setInImageView:self.fourthThumbnailImageView];
+}
+
+- (void)prepareForReuse {
+    self.board = nil;
+    self.mainImageView.image = nil;
+    self.firstThumbnailImageView.image = nil;
+    self.secondThumbnailImageView.image = nil;
+    self.thirdThumbnailImageView.image = nil;
+    self.fourthThumbnailImageView.image = nil;
 }
 
 - (CGSize)getSizeForBounds:(CGRect)screenBounds
