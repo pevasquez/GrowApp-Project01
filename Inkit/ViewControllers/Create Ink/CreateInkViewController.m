@@ -50,6 +50,7 @@ typedef enum
 @interface CreateInkViewController () <SelectBoardDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *createInkTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *createBarButtonItem;
 @property (strong, nonatomic) UIImageView *inkImageView;
 @property (strong, nonatomic) UITextView *selectedTextView;
 @property (strong, nonatomic) NSIndexPath* selectedIndexPath;
@@ -72,10 +73,10 @@ typedef enum
     [self customizeNavigationBar];
     [self registerForKeyboardNotifications];
     [self hideActivityIndicator];
-    self.inkImageView.image = self.inkImage;
     self.activeUser = [DataManager sharedInstance].activeUser;
     
     if (self.isEditingInk) {
+        self.inkImage = [self.editingInk.fullScreenImage getImage];
         self.inkData = [[self.editingInk toDictionary] mutableCopy];
         self.title = NSLocalizedString(@"Edit Ink",nil);
         UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil)
@@ -85,7 +86,9 @@ typedef enum
         
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:editButton];
     } else if (self.isReInking) {
+        self.inkImage = [self.editingInk.fullScreenImage getImage];
         self.inkData = [[self.editingInk toDictionary] mutableCopy];
+        [self.inkData removeObjectForKey:kInkBoard];
         self.title = NSLocalizedString(@"ReInk",nil);
         UIBarButtonItem* editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Create", nil)
                                                                        style:UIBarButtonItemStylePlain
@@ -384,11 +387,10 @@ typedef enum
 - (IBAction)createInkButtonPressed:(UIBarButtonItem *)sender
 {    
     if ([self verifyCells]) {
-        if (self.isReInking) {
-            [self postInkCompleteAction:self.ink];
-        } else if (self.isEditingInk) {
+        if (self.isEditingInk) {
             [self postInkCompleteAction:self.ink];
         } else {
+            [self showActivityIndicator];
             self.inkData[kInkImage] = self.inkImage;
             [InkitService createInk:self.inkData withTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
         }
@@ -492,12 +494,16 @@ typedef enum
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator
 {
+    self.createBarButtonItem.enabled = false;
+    self.createInkTableView.userInteractionEnabled = false;
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActivityIndicator
 {
+    self.createBarButtonItem.enabled = true;
+    self.createInkTableView.userInteractionEnabled = true;
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
 }

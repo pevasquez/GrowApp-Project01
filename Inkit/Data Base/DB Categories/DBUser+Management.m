@@ -54,7 +54,7 @@
     if ([jsonDictionary objectForKey:@"styles"])
         self.styles = jsonDictionary[@"styles"];
     if ([jsonDictionary objectForKey:kUserID])
-        self.userID = jsonDictionary[kUserID];
+        self.userID = [NSString stringWithFormat:@"%@",jsonDictionary[kUserID]];
     if ([jsonDictionary objectForKey:@"country"])
         self.country = jsonDictionary[@"country"];
     if ([jsonDictionary objectForKey:@"gender"])
@@ -96,7 +96,8 @@
     if ([jsonDictionary objectForKey:@"social_networks"])
         self.socialNetworks = jsonDictionary[@"social_networks"];
     if ([jsonDictionary objectForKeyedSubscript:kAccessToken]) {
-        self.token = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKeyedSubscript:kAccessToken]];
+        self.token = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
+        self.userID = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
     }
 //    if ([jsonDictionary objectForKey:@"artists"])
 //        self.artists = jsonDictionary[@"artists"];
@@ -113,17 +114,10 @@
     return board;
 }
 
-+ (DBUser *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBUser* user = [NSEntityDescription insertNewObjectForEntityForName:kDBUser inManagedObjectContext:managedObjectContext];
-    return user;
-}
-
-
 - (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     if ([self getBoards]) {
-        [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+        [target performSelectorOnMainThread:completeAction withObject:[self getBoards] waitUntilDone:NO];
     }
     [InkitService getBoardsForUser:self withTarget:target completeAction:completeAction completeError:completeError];
 }

@@ -40,7 +40,7 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getMyBoards];
+    [self getBoards];
 }
 
 #pragma mark - CollectionView Data Source
@@ -88,7 +88,7 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 }
 
 #pragma mark - Get Data Methods
-- (void)getMyBoards
+- (void)getBoards
 {
     [self showActivityIndicator];
     [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction:) completeError:@selector(getBoardsCompleteError:)];

@@ -31,7 +31,6 @@ typedef enum
 
 @interface InkCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UITableView *inkTableView;
-@property (strong, nonatomic) DBInk* ink;
 @end
 
 @implementation InkCollectionViewCell
@@ -41,9 +40,8 @@ typedef enum
     self.inkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)configureForInk:(DBInk *)ink
-{
-    self.ink = ink;
+- (void)layoutSubviews {
+    [super layoutSubviews];
     [self.inkTableView reloadData];
 }
 
@@ -64,7 +62,7 @@ typedef enum
 {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
     ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    [cell configureForInk:self.ink];
+    cell.ink = self.ink;
     return cell;
 }
 
@@ -76,7 +74,7 @@ typedef enum
             {
                 NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
                 ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-                [cell configureForInk:self.ink];
+                cell.ink = self.ink;
                 
                 // Make sure the constraints have been added to this cell, since it may have just been created from scratch
                 [cell setNeedsUpdateConstraints];
@@ -101,7 +99,7 @@ typedef enum
             {
                 NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
                 ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-                [cell configureForInk:self.ink];
+                cell.ink = self.ink;
                 
                 // Make sure the constraints have been added to this cell, since it may have just been created from scratch
                 [cell setNeedsUpdateConstraints];

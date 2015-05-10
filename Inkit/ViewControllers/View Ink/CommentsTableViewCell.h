@@ -11,5 +11,5 @@
 
 @interface CommentsTableViewCell : UITableViewCell
 @property (nonatomic)double cellHeight;
-- (void)configureForComment:(DBComment *)comment;
+@property (strong, nonatomic) DBComment* comment;
 @end

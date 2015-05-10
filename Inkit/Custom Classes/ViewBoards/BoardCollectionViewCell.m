@@ -33,6 +33,7 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     [self configureForBoard:self.board];
 }
 
@@ -40,7 +41,7 @@
 {
     self.boardTitleLabel.text = board.boardTitle;
     NSArray* inks = board.inks.allObjects;
-    if ([inks count]) [((DBInk *)inks[0]).image setInImageView:self.mainImageView];
+    if ([inks count]) [((DBInk *)inks[0]).thumbnailImage setInImageView:self.mainImageView];
     if ([inks count] > 1) [((DBInk *)inks[1]).thumbnailImage setInImageView:self.firstThumbnailImageView];
     if ([inks count] > 2)  [((DBInk *)inks[2]).thumbnailImage setInImageView:self.secondThumbnailImageView];
     if ([inks count] > 3)  [((DBInk *)inks[3]).thumbnailImage setInImageView:self.thirdThumbnailImageView];

@@ -76,8 +76,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
-    DBInk* ink = self.inksArray[indexPath.row];
-    [cell configureForInk:ink];
+    cell.ink = self.inksArray[indexPath.row];
     return cell;
 }
 

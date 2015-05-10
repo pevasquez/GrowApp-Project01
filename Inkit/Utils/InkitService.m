@@ -42,15 +42,15 @@
 {
     NSError* returnError = nil;
     
-    // Get ManagedObjectContext from AppDelegate
-    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-    
-    DBUser* user = [DBUser createMockUserInManagedObjectContext:managedObjectContext];
-    
-    [DataManager sharedInstance].activeUser = user;
-    
-    // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+//    // Get ManagedObjectContext from AppDelegate
+//    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
+//    
+//    DBUser* user = [DBUser createMockUserInManagedObjectContext:managedObjectContext];
+//    
+//    [DataManager sharedInstance].activeUser = user;
+//    
+//    // Call complete Action
+//    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
     
     return returnError;
 }
@@ -99,6 +99,7 @@
     return [InkService createInk:inkDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
 
+// MARK:- Board Service
 + (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     return [BoardService postBoard:boardDictionary WithTarget:target completeAction:completeAction completeError:completeError];
@@ -117,6 +118,10 @@
 + (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     return [BoardService getBoardsForUser:user withTarget:target completeAction:completeAction completeError:completeError];
+}
+
++ (NSError *)getInksFromBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
+    return [BoardService getInksFromBoard:board withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)postComment:(DBComment*)comment withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -139,8 +144,7 @@
     return [InkService getArtistsForSearchString:searchString withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)getShopsForSearchString:(NSString *)searchString WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
++ (NSError *)getShopsForSearchString:(NSString *)searchString withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     return [InkService getShopsForSearchString:searchString withTarget:target completeAction:completeAction completeError:completeError];
 }
 

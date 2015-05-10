@@ -10,9 +10,13 @@
 
 @implementation ViewInkTableViewCell
 
-- (void)configureForInk:(DBInk *)ink
-{
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self configureForInk];
+}
 
+- (void)configureForInk {
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 @end

@@ -38,17 +38,11 @@
         imageView.image = [UIImage imageWithData:self.imageData];
     } else {
         [imageView layoutIfNeeded];
-//        NSLog(@"%@",NSStringFromCGRect(imageView.frame));
         UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
         
         activityIndicator.center = imageView.center;
         activityIndicator.color = [InkitTheme getTintColor];
         [imageView addSubview:activityIndicator];
-//
-//        NSLayoutConstraint* centerY = [NSLayoutConstraint constraintWithItem:activityIndicator attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
-//        NSLayoutConstraint* centerX= [NSLayoutConstraint constraintWithItem:activityIndicator attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
-//        [imageView addConstraints:@[centerX,centerY]];
-
         [activityIndicator startAnimating];
         dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
         dispatch_async(downloadQueue, ^{
@@ -59,6 +53,24 @@
                 [activityIndicator removeFromSuperview];
                 self.imageData = imageData;
                 imageView.image = [UIImage imageWithData:self.imageData];
+            });
+        });
+    }
+}
+
+- (void)setInImage:(UIImage *)image
+{
+    __block UIImage *localImage = image;
+    if (self.imageData) {
+        image = [UIImage imageWithData:self.imageData];
+    } else {
+        dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
+        dispatch_async(downloadQueue, ^{
+            NSURL* url = [NSURL URLWithString:self.imageURL];
+            NSData * imageData = [NSData dataWithContentsOfURL:url];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.imageData = imageData;
+                localImage = [UIImage imageWithData:self.imageData];
             });
         });
     }

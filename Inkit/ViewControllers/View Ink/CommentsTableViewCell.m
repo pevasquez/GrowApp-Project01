@@ -10,6 +10,7 @@
 #import "ProfileImageView.h"
 #import "DBUser+Management.h"
 #import "DynamicSizeLabel.h"
+#import "DBImage+Management.h"
 
 @interface CommentsTableViewCell()
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImage;
@@ -19,9 +20,16 @@
 
 @end
 @implementation CommentsTableViewCell
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self configureForComment:self.comment];
+}
+
 - (void)configureForComment:(DBComment *)comment
 {
-    self.userImage.image = [UIImage imageWithData:comment.user.userImage];
+    [comment.user.profilePicThumbnail setInImageView:self.userImage];
     self.userName.text = comment.user.name;
     self.commentLabel.text = comment.text;
     double leading = self.commentLabel.frame.origin.x;

@@ -319,4 +319,84 @@
     return returnError;
 }
 
++ (NSError *)getInksFromBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
+    // Create returnError
+    NSError* returnError = nil;
+    
+    // Convert your data and set your request's HTTPBody property
+    NSDictionary* jsonDataDictionary = @{@"access_token" : [DataManager sharedInstance].activeUser.token,
+                                          @"board_id" : board.boardID};
+    
+    NSString *encodedDictionary = [jsonDataDictionary serializeParams];
+    
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@?%@",kWebServiceBase,kWebServiceBoards,kWebServiceInks,encodedDictionary];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a POST request
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    
+    // Create Asynchronous Request URLConnection
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+     {
+         if (!connectionError)
+         {
+             // Cast Response
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             NSError *error = nil;
+             
+             // Parse JSON Response
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                                options:NSJSONReadingMutableContainers
+                                                                                  error:&error];
+             // Check Response's StatusCode
+             switch (httpResponse.statusCode) {
+                 case kHTTPResponseCodeOK:
+                 {
+                     NSMutableArray* inksArray = [[NSMutableArray alloc] init];
+                     NSDictionary* dataDictionary = responseDictionary[@"data"];
+                     
+                     for (NSDictionary* inkDictionary in dataDictionary) {
+                         DBInk* ink =[DBInk fromJson:inkDictionary];
+                         [inksArray addObject:ink];
+//                         if (![board.inks containsObject:ink]) {
+//                             [board addInksObject:ink];
+//                         }
+                     }
+                     [target performSelectorOnMainThread:completeAction withObject:inksArray waitUntilDone:NO];
+                     break;
+                 }
+                 default:
+                 {
+                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                     NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                     NSLog(@"%@",responseDictionary);
+                     [target performSelectorOnMainThread:completeError withObject:errorString waitUntilDone:NO];
+                     break;
+                 }
+             }
+         } else {
+             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+         }
+         
+     }];
+    
+    return returnError;
+
+}
+
 @end

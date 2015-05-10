@@ -167,8 +167,8 @@
     if ([inkData objectForKey:@"id"]) {
         self.inkID = inkData[@"id"];
     }
-    if ([inkData objectForKey:kInkDescription]) {
-        self.inkDescription = inkData[kInkDescription];
+    if ([inkData objectForKey:@"description"]) {
+        self.inkDescription = inkData[@"description"];
     }
     if ([inkData objectForKey:@"image_path"]) {
         NSString* imagePath = inkData[@"image_path"];
@@ -186,11 +186,15 @@
                 break;
         }
         self.image = [DBImage fromURL:imagePath];
-        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
-        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
+//        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
+//        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
+        NSString* thumbnailString = [NSString stringWithFormat:@"%@_160%@.jpg",path,scale];
+        NSLog(@"%@",thumbnailString);
+        self.thumbnailImage = [DBImage fromURL:thumbnailString];
+        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.jpg",path,scale]];
     }
     if ([inkData objectForKey:@"user"]) {
-        self.user = [DBUser fromJson:inkData[@"user"]];
+        self.user = [DBUser fromJson:inkData[@"user"][@"data"]];
     }
 //    if ([inkData objectForKey:@"created_at"]) {
 //        ink.createdAt = inkData[@"created_at"];
@@ -204,8 +208,8 @@
     if (!([inkData objectForKey:@"reinks_count"] == [NSNull null])) {
         self.reInksCount = inkData[@"reinks_count"];
     }
-    if ([inkData objectForKey:kInkBoard]) {
-        self.board = [DBBoard fromJson:inkData[kInkBoard][@"data"]];
+    if ([inkData objectForKey:@"board"]) {
+        self.board = [DBBoard fromJson:inkData[@"board"][@"data"]];
     }
 //    if ([inkData objectForKey:@"extra_data"]) {
 //        ink.extraData = inkData[@"extra_data"];
