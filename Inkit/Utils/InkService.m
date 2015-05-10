@@ -143,12 +143,13 @@
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
+                     NSMutableArray* inksArray = [[NSMutableArray alloc] init];
                      NSDictionary* dataDictionary = responseDictionary[@"data"];
-                     // Acá va a ir el código para el caso de éxito
+
                      for (NSDictionary* inkDictionary in dataDictionary) {
-                         [DBInk fromJson:inkDictionary];
+                         [inksArray addObject:[DBInk fromJson:inkDictionary]];
                      }
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     [target performSelectorOnMainThread:completeAction withObject:inksArray waitUntilDone:NO];
                      break;
                  }
                  default:

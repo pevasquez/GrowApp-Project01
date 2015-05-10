@@ -14,6 +14,7 @@
 + (DBImage *)fromURL:(NSString *)URLString;
 + (DBImage *)fromUIImage:(UIImage *)image;
 - (void)setInImageView:(UIImageView *)imageView;
+- (void)setInImage:(UIImage *)image;
 - (UIImage *)getImage;
 
 @end

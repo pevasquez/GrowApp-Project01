@@ -23,7 +23,6 @@
         <attribute name="commentDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="comments" inverseEntity="DBInk" syncable="YES"/>
-        <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBShop" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="comments" inverseEntity="DBUser" syncable="YES"/>
     </entity>
     <entity name="DBImage" representedClassName="DBImage" syncable="YES">
@@ -87,14 +86,14 @@
         <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="profileURL" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="profileURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="socialNetworks" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="styles" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="updatedTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="verified" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <relationship name="artists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBArtist" inverseName="user" inverseEntity="DBArtist" syncable="YES"/>
@@ -111,7 +110,7 @@
         <element name="DBArtist" positionX="-99" positionY="692" width="128" height="90"/>
         <element name="DBBoard" positionX="403" positionY="180" width="128" height="135"/>
         <element name="DBBodyPart" positionX="-288" positionY="144" width="128" height="105"/>
-        <element name="DBComment" positionX="196" positionY="108" width="128" height="120"/>
+        <element name="DBComment" positionX="196" positionY="108" width="128" height="105"/>
         <element name="DBImage" positionX="27" positionY="90" width="128" height="150"/>
         <element name="DBInk" positionX="-11" positionY="360" width="128" height="300"/>
         <element name="DBShop" positionX="277" positionY="563" width="128" height="120"/>

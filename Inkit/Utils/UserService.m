@@ -143,7 +143,7 @@
                      
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:kAccessToken]) {
-                         DBUser* user = [DBUser createNewUser];
+                         DBUser* user = [DBUser fromJson:userDictionary];
                          [user updateWithJson:userDictionary];
                          [user updateWithJson:responseDictionary];
                          [DataManager sharedInstance].activeUser = user;

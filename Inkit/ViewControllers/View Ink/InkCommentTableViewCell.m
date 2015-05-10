@@ -14,12 +14,18 @@
 @end
 
 @implementation InkCommentTableViewCell
-- (void)configureForInk:(DBInk *)ink
+
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    [self configureForInk];
+//}
+
+- (void)configureForInk
 {
-    if ([ink.comments count] > 1) {
-        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comments", (unsigned long)[ink.comments count]];
-    } else if ([ink.comments count] == 1) {
-        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comment", (unsigned long)[ink.comments count]];
+    if ([self.ink.comments count] > 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comments", (unsigned long)[self.ink.comments count]];
+    } else if ([self.ink.comments count] == 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comment", (unsigned long)[self.ink.comments count]];
     } else {
         self.commentLabel.text = @"Add Comment";
     }

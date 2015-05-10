@@ -21,7 +21,6 @@
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
 		86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411CC1ACC85DC00463622 /* DBImage+Management.m */; };
 		86C5A6C51AFE950300449FA7 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */; };
-		86C5A6C71AFEA61600449FA7 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C61AFEA61600449FA7 /* image1.jpg */; };
 		86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */; };
 		86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98E81AC32E3200A39C28 /* UserTypeViewController.m */; };
 		86DC98F81AC4955700A39C28 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98F71AC4955700A39C28 /* DataManager.m */; };
@@ -59,7 +58,6 @@
 		FB4A23BE1AD95B5B002EE49B /* InkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1C31A83F06A00E05053 /* InkitService.m */; };
 		FB4A23BF1AD95B5B002EE49B /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B85B1AA4C3CC00ED7ECD /* UserService.m */; };
 		FB4A23C01AD95B5B002EE49B /* InkService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711861AAF0318004EBBD1 /* InkService.m */; };
-		FB4A23C11AD95B94002EE49B /* InkitDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1BF1A83ED2C00E05053 /* InkitDataUtil.m */; };
 		FB4A23C41AD9630C002EE49B /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4A23C31AD9630C002EE49B /* NSDictionary+Extensions.m */; };
 		FB4A23C81AD9AC5D002EE49B /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4A23C71AD9AC5D002EE49B /* CommonService.m */; };
 		FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B85B1AA4C3CC00ED7ECD /* UserService.m */; };
@@ -119,7 +117,6 @@
 		FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A21A83EB1800E05053 /* Main.storyboard */; };
 		FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */; };
 		FBDCB1B51A83EB1800E05053 /* InkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1B41A83EB1800E05053 /* InkitTests.m */; };
-		FBDCB1C01A83ED2C00E05053 /* InkitDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1BF1A83ED2C00E05053 /* InkitDataUtil.m */; };
 		FBDCB1C41A83F06A00E05053 /* InkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1C31A83F06A00E05053 /* InkitService.m */; };
 		FBDCB1C71A83F37D00E05053 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1C61A83F37D00E05053 /* SplashViewController.m */; };
 		FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1CB1A83F48A00E05053 /* InkitTheme.m */; };
@@ -161,7 +158,6 @@
 		86C411CB1ACC85DC00463622 /* DBImage+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBImage+Management.h"; path = "Data Base/DB Categories/DBImage+Management.h"; sourceTree = "<group>"; };
 		86C411CC1ACC85DC00463622 /* DBImage+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBImage+Management.m"; path = "Data Base/DB Categories/DBImage+Management.m"; sourceTree = "<group>"; };
 		86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
-		86C5A6C61AFEA61600449FA7 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image1.jpg; path = ../../../../../Downloads/WeirdAsFuck/image1.jpg; sourceTree = "<group>"; };
 		86DC98DC1AC2E21B00A39C28 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		86DC98E71AC32E3200A39C28 /* UserTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeViewController.h; sourceTree = "<group>"; };
@@ -308,8 +304,6 @@
 		FBDCB1AE1A83EB1800E05053 /* InkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDCB1B31A83EB1800E05053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBDCB1B41A83EB1800E05053 /* InkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InkitTests.m; sourceTree = "<group>"; };
-		FBDCB1BE1A83ED2C00E05053 /* InkitDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitDataUtil.h; path = Utils/InkitDataUtil.h; sourceTree = "<group>"; };
-		FBDCB1BF1A83ED2C00E05053 /* InkitDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitDataUtil.m; path = Utils/InkitDataUtil.m; sourceTree = "<group>"; };
 		FBDCB1C21A83F06A00E05053 /* InkitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitService.h; path = Utils/InkitService.h; sourceTree = "<group>"; };
 		FBDCB1C31A83F06A00E05053 /* InkitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkitService.m; path = Utils/InkitService.m; sourceTree = "<group>"; };
 		FBDCB1C51A83F37D00E05053 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashViewController.h; path = ViewControllers/Splash/SplashViewController.h; sourceTree = "<group>"; };
@@ -540,15 +534,6 @@
 			name = Theme;
 			sourceTree = "<group>";
 		};
-		FBB696E41AABA7920071D96B /* Data Util */ = {
-			isa = PBXGroup;
-			children = (
-				FBDCB1BE1A83ED2C00E05053 /* InkitDataUtil.h */,
-				FBDCB1BF1A83ED2C00E05053 /* InkitDataUtil.m */,
-			);
-			name = "Data Util";
-			sourceTree = "<group>";
-		};
 		FBC432FE1A853BCD00EFAA24 /* Inkit Tab Bar Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,7 +704,6 @@
 		FBDCB1941A83EB1800E05053 /* Inkit */ = {
 			isa = PBXGroup;
 			children = (
-				86C5A6C61AFEA61600449FA7 /* image1.jpg */,
 				FBDCB1991A83EB1800E05053 /* AppDelegate.h */,
 				FBDCB19A1A83EB1800E05053 /* AppDelegate.m */,
 				FBC5AB7A1AEBD47D00E800FB /* InkitConstants.h */,
@@ -771,7 +755,6 @@
 			children = (
 				868A5CA21AA626D6006DD52D /* Service */,
 				FBB696E31AABA7890071D96B /* Theme */,
-				FBB696E41AABA7920071D96B /* Data Util */,
 				FBC4330B1A85472E00EFAA24 /* Custom Fonts */,
 			);
 			name = Utils;
@@ -962,7 +945,6 @@
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
-				86C5A6C71AFEA61600449FA7 /* image1.jpg in Resources */,
 				86C5A6C51AFE950300449FA7 /* OnBoarding.storyboard in Resources */,
 				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
@@ -1057,7 +1039,6 @@
 				FBDCB1981A83EB1800E05053 /* main.m in Sources */,
 				FBB384341A894168004C440A /* ViewInkTableViewCell.m in Sources */,
 				FBB384411A895B1D004C440A /* CameraViewController.m in Sources */,
-				FBDCB1C01A83ED2C00E05053 /* InkitDataUtil.m in Sources */,
 				FBD2FEDF1ADB550F005D1AAE /* DBUser.m in Sources */,
 				FBDCB1C71A83F37D00E05053 /* SplashViewController.m in Sources */,
 			);
@@ -1073,7 +1054,6 @@
 				FB4A23A71AD95514002EE49B /* DBInk+Management.m in Sources */,
 				FB4A23AB1AD95514002EE49B /* DBBodyPart+Management.m in Sources */,
 				FB4A23A81AD95514002EE49B /* DBComment+Management.m in Sources */,
-				FB4A23C11AD95B94002EE49B /* InkitDataUtil.m in Sources */,
 				FB4A23BE1AD95B5B002EE49B /* InkitService.m in Sources */,
 				FB4A23AA1AD95514002EE49B /* DBUser+Management.m in Sources */,
 				FBDCB1B51A83EB1800E05053 /* InkitTests.m in Sources */,

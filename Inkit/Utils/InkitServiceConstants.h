@@ -24,7 +24,7 @@
 #define kWebServiceUsers                @"users/"
 #define kwebServiceLogout               @"logout"
 #define kWebServiceInks                 @"inks"
-#define kWebServiceGetBoards            @"boards?"
+#define kWebServiceGetBoards            @"boards"
 #define kWebServiceGetInk               @"search?"
 #define kWebServiceArtist               @"/artist"
 #define kWebServiceArtist2              @"artist/"

@@ -30,7 +30,7 @@
 - (void)fetchAsync:(NSString *)type predicate:(NSPredicate *)predicate sort:(NSArray *)sort limit:(int)limit completion:(void (^)(NSArray *))completion;
 - (NSManagedObject *)first:(NSString *)type predicate:(NSPredicate *)predicate sort:(NSArray *)sort limit:(int)limit;
 - (void)firstAsync:(NSString *)type predicate:(NSPredicate *)predicate sort:(NSArray *)sort limit:(int)limit completion:(void (^)(NSArray *))completion;
-- (int) count:(NSString *)type predicate:(NSPredicate *)predicate;
+- (NSUInteger) count:(NSString *)type predicate:(NSPredicate *)predicate;
 - (void)countAsync:(NSString *)type predicate:(NSPredicate *)predicate completion:(void (^)(NSUInteger))completion;
 
 @end

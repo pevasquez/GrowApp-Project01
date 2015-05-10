@@ -54,7 +54,7 @@
     if ([jsonDictionary objectForKey:@"styles"])
         self.styles = jsonDictionary[@"styles"];
     if ([jsonDictionary objectForKey:kUserID])
-        self.userID = jsonDictionary[kUserID];
+        self.userID = [NSString stringWithFormat:@"%@",jsonDictionary[kUserID]];
     if ([jsonDictionary objectForKey:@"country"])
         self.country = jsonDictionary[@"country"];
     if ([jsonDictionary objectForKey:@"gender"])
@@ -77,10 +77,12 @@
         self.fullName = jsonDictionary[@"name"];
     if ([jsonDictionary objectForKey:@"profile_url"])
         self.profileURL = jsonDictionary[@"profile_url"];
-    if ([jsonDictionary objectForKey:@"created_at"])
-        self.createdAt = jsonDictionary[@"created_at"];
-    if ([jsonDictionary objectForKey:@"updated_at"])
-        self.updatedAt = jsonDictionary[@"updated_at"];
+    if ([jsonDictionary objectForKey:@"created_at"]){
+//        self.createdAt = jsonDictionary[@"created_at"];
+    }
+    if ([jsonDictionary objectForKey:@"updated_at"]) {
+//        self.updatedAt = jsonDictionary[@"updated_at"];
+    }
     if ([jsonDictionary objectForKey:@"default_language"])
         self.defaultLanguage = jsonDictionary[@"default_language"];
     if ([jsonDictionary objectForKey:@"artist_shop_data"])
@@ -94,7 +96,8 @@
     if ([jsonDictionary objectForKey:@"social_networks"])
         self.socialNetworks = jsonDictionary[@"social_networks"];
     if ([jsonDictionary objectForKeyedSubscript:kAccessToken]) {
-        self.token = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKeyedSubscript:kAccessToken]];
+        self.token = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
+        self.userID = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
     }
 //    if ([jsonDictionary objectForKey:@"artists"])
 //        self.artists = jsonDictionary[@"artists"];
@@ -111,48 +114,19 @@
     return board;
 }
 
-+ (DBUser *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBUser* user = [NSEntityDescription insertNewObjectForEntityForName:kDBUser inManagedObjectContext:managedObjectContext];
-    return user;
-}
-
-+ (DBUser *)createMockUserInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBUser* user = [NSEntityDescription insertNewObjectForEntityForName:kDBUser inManagedObjectContext:managedObjectContext];
-    user.firstName = @"Cristian";
-    user.lastName = @"Pena";
-    user.name = @"Cristian Pena";
-    user.birthday = @"30/08/1984";
-    user.email = @"cpena@digbang.com";
-    user.userImage = UIImageJPEGRepresentation([UIImage imageNamed:@"Cristian con clase.jpg"],0.9);
-    
-    // Save context
-    NSError* error = nil;
-    [managedObjectContext save:&error];
-    
-    return user;
-}
-
-//- (NSString *)description
-//{
-//    return [NSString stringWithFormat:@"First Name:%@\nToken:%@",self.firstName,self.token];
-//}
-
 - (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     if ([self getBoards]) {
-        [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-    } else {
-        [InkitService getBoardsWithTarget:target completeAction:completeAction completeError:completeError];
+        [target performSelectorOnMainThread:completeAction withObject:[self getBoards] waitUntilDone:NO];
     }
+    [InkitService getBoardsForUser:self withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 - (NSArray *)getBoards
 {
     NSArray* boardsArray = self.boards.array;
     //NSArray* boardsArray = [DBBoard getBoardsInManagedObjectContext:self.managedObjectContext];
-    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:kBoardTitle ascending:YES];
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"boardTitle" ascending:YES];
     NSArray* descriptors = [NSArray arrayWithObject:valueDescriptor];
     NSArray* sortedArray = [boardsArray sortedArrayUsingDescriptors:descriptors];
     return sortedArray;

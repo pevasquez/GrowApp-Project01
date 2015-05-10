@@ -14,9 +14,15 @@
 @end
 
 @implementation InkDescriptionTableViewCell
-- (void)configureForInk:(DBInk *)ink
+
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    [self configureForInk];
+//}
+
+- (void)configureForInk
 {
-    self.inkDescriptionLabel.text = ink.inkDescription;
+    self.inkDescriptionLabel.text = self.ink.inkDescription;
     self.inkDescriptionLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 16;
     CGSize size = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     if (!self.cellHeight) {

@@ -133,11 +133,8 @@
 {
     activeUser = user;
     
-    AppDelegate* appDelegate = ((AppDelegate*)([[UIApplication sharedApplication] delegate]));
-    NSManagedObjectContext* managedObjectContext = appDelegate.managedObjectContext;
-    
     NSError* error = nil;
-    [managedObjectContext save:&error];
+    [self.managedObjectContext save:&error];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (activeUser) {
