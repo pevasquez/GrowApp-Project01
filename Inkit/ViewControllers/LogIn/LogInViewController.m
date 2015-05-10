@@ -15,24 +15,24 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
-
+#import "RoundedCornerButton.h"
 
 @interface LogInViewController () <RegisterDelegate, UITextFieldDelegate, FacebookManagerDelegate, GPPSignInDelegate>
 
-@property (strong, nonatomic) IBOutlet UIButton *googleSignInButton;
+@property (strong, nonatomic) IBOutlet RoundedCornerButton *googleSignInButton;
 
-@property (strong, nonatomic) IBOutlet UIButton *facebookButton;
+@property (strong, nonatomic) IBOutlet RoundedCornerButton *facebookButton;
 @property (strong, nonatomic) IBOutlet UITextField *logInEmailTextField;
 
 @property (strong, nonatomic) IBOutlet UITextField *logInPasswordTextField;
-@property (strong, nonatomic) IBOutlet UIButton *logInButton;
+@property (strong, nonatomic) IBOutlet RoundedCornerButton *logInButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong, nonatomic) NSMutableDictionary* userDictionary;
 @property (nonatomic) CGFloat mailLogInBottomConstant;
 @property (nonatomic) BOOL userIsEnteringEmail;
 @property (strong, nonatomic) IBOutlet UIView *scrollView;
-
+@property (strong, nonatomic) UITextField* activeTextField;
 
 @end
 
@@ -151,11 +151,17 @@
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
     NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint kbOrigin = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
 
-    [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.scrollView.frame = CGRectMake(0, -100, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-    } completion:nil];
+    CGPoint tfOrigin =[self.view convertPoint:self.activeTextField.frame.origin fromView:self.scrollView];
+    CGPoint tfEnd = CGPointMake(tfOrigin.x, tfOrigin.y + self.activeTextField.frame.size.height);
+    
+    if (tfEnd.y > kbOrigin.y) {
+        CGFloat distanceToScroll = tfEnd.y - kbOrigin.y + 40;
+        [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.scrollView.frame = CGRectMake(0, - distanceToScroll, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        } completion:nil];
+    }
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
@@ -219,6 +225,16 @@
     [self.activityIndicatorView stopAnimating];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeTextField = textField;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    self.activeTextField = nil;
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -230,6 +246,14 @@
     return NO;
 }
 
+- (IBAction)didTapScreen:(UITapGestureRecognizer *)sender {
+    [self dismissKeyboard];
+}
+
+- (void)dismissKeyboard {
+    [self.logInEmailTextField resignFirstResponder];
+    [self.logInPasswordTextField resignFirstResponder];
+}
 #pragma mark - FacebookManager Delegate Methods
 - (void)onUserLoggedIn
 {

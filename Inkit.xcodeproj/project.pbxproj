@@ -22,6 +22,8 @@
 		86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411CC1ACC85DC00463622 /* DBImage+Management.m */; };
 		86C5A6C51AFE950300449FA7 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */; };
 		86C5A6C71AFEA61600449FA7 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C61AFEA61600449FA7 /* image1.jpg */; };
+		86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */; };
+		86C5A6CD1AFFAC8400449FA7 /* FormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C5A6CC1AFFAC8400449FA7 /* FormTextField.m */; };
 		86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */; };
 		86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98E81AC32E3200A39C28 /* UserTypeViewController.m */; };
 		86DC98F81AC4955700A39C28 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98F71AC4955700A39C28 /* DataManager.m */; };
@@ -162,6 +164,10 @@
 		86C411CC1ACC85DC00463622 /* DBImage+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBImage+Management.m"; path = "Data Base/DB Categories/DBImage+Management.m"; sourceTree = "<group>"; };
 		86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
 		86C5A6C61AFEA61600449FA7 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image1.jpg; path = ../../../../../Downloads/WeirdAsFuck/image1.jpg; sourceTree = "<group>"; };
+		86C5A6C81AFF9BC900449FA7 /* RoundedCornerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCornerButton.h; sourceTree = "<group>"; };
+		86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCornerButton.m; sourceTree = "<group>"; };
+		86C5A6CB1AFFAC8400449FA7 /* FormTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTextField.h; sourceTree = "<group>"; };
+		86C5A6CC1AFFAC8400449FA7 /* FormTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTextField.m; sourceTree = "<group>"; };
 		86DC98DC1AC2E21B00A39C28 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		86DC98E71AC32E3200A39C28 /* UserTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeViewController.h; sourceTree = "<group>"; };
@@ -871,6 +877,10 @@
 			children = (
 				FBDCB1E21A840C2400E05053 /* LogInViewController.h */,
 				FBDCB1E31A840C2400E05053 /* LogInViewController.m */,
+				86C5A6C81AFF9BC900449FA7 /* RoundedCornerButton.h */,
+				86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */,
+				86C5A6CB1AFFAC8400449FA7 /* FormTextField.h */,
+				86C5A6CC1AFFAC8400449FA7 /* FormTextField.m */,
 			);
 			name = "LogIn View Controller";
 			sourceTree = "<group>";
@@ -987,6 +997,7 @@
 			files = (
 				FBC433171A855C4E00EFAA24 /* DBInk+Management.m in Sources */,
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
+				86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
 				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
 				FBE704601AF6CFB70041DD0E /* DBInk.m in Sources */,
@@ -997,6 +1008,7 @@
 				FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */,
 				FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */,
 				FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */,
+				86C5A6CD1AFFAC8400449FA7 /* FormTextField.m in Sources */,
 				FBD2FEE21ADB550F005D1AAE /* DBBoard.m in Sources */,
 				8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */,
 				8673CBB01AFBFAD200179FA2 /* TutorialViewController.m in Sources */,
