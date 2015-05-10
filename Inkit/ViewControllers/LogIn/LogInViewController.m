@@ -46,6 +46,7 @@
     
     [GPPSignIn sharedInstance].delegate = self;
     [[GPPSignIn sharedInstance]trySilentAuthentication];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
