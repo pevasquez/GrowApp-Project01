@@ -6,20 +6,20 @@
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
-#import "Settings.h"
+#import "SettingsViewController.h"
 #import "InkitService.h"
 #import "InkitTheme.h"
 #import "DataManager.h"
 #import "AppDelegate.h"
 
-@interface Settings () <UITableViewDataSource, UITableViewDelegate>
+@interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end
 
-@implementation Settings
+@implementation SettingsViewController
 
 -(id)init
 {

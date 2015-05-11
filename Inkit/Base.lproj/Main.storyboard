@@ -36,7 +36,7 @@
                                     <inset key="sectionInset" minX="4" minY="8" maxX="4" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="x8X-oS-UEm">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                                 <cells>
@@ -158,11 +158,11 @@
                         <viewControllerLayoutGuide type="bottom" id="sYa-cQ-Nnq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="saO-Dp-RxY">
-                        <rect key="frame" x="0.0" y="64" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="dYZ-OK-NSg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InkDescriptionTableViewCell" rowHeight="70" id="Hh4-gU-qbt" customClass="InkDescriptionTableViewCell">
@@ -171,8 +171,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hh4-gU-qbt" id="m2i-MX-TVQ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV9-cY-fuY" customClass="DynamicSizeLabel">
-                                                    <rect key="frame" x="8" y="8" width="584" height="54"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV9-cY-fuY" customClass="DynamicSizeLabel">
+                                                    <rect key="frame" x="8" y="8" width="584" height="53"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -211,7 +211,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="thx-cs-Mql">
-                                <rect key="frame" x="290" y="266" width="20" height="20"/>
+                                <rect key="frame" x="290" y="234" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -419,8 +419,8 @@
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CVC-u8-wco" id="BFm-1H-Cjf">
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOf-AE-mAR" customClass="DynamicSizeLabel">
-                                                                        <rect key="frame" x="8" y="8" width="262" height="54"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOf-AE-mAR" customClass="DynamicSizeLabel">
+                                                                        <rect key="frame" x="8" y="8" width="262" height="53"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1762,7 +1762,7 @@
         <!--AccountViewController-->
         <scene sceneID="lvS-NC-ee5">
             <objects>
-                <viewController title="AccountViewController" id="p1L-EI-LuS" customClass="Settings" sceneMemberID="viewController">
+                <viewController title="AccountViewController" id="p1L-EI-LuS" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O9D-ka-Ypi"/>
                         <viewControllerLayoutGuide type="bottom" id="hMZ-Ck-afe"/>
@@ -1819,7 +1819,7 @@
         <scene sceneID="aPK-bl-ePN">
             <objects>
                 <tabBarController storyboardIdentifier="InkitTabBarController" id="PlJ-6E-uV8" customClass="InkitTabBarController" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="NPp-P1-xJ0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1956,8 +1956,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="qdy-Zm-66Q"/>
         <segue reference="A8U-Jd-plz"/>
+        <segue reference="lQ1-q0-po4"/>
         <segue reference="YiA-aR-fdm"/>
-        <segue reference="jnN-Q2-2iU"/>
         <segue reference="Y98-t2-F6r"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

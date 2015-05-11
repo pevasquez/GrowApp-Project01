@@ -11,6 +11,7 @@
 #import "InkitTheme.h"
 #import "InkitService.h"
 #import "InkitConstants.h"
+#import "UIResponder+FirstResponder.h"
 
 @interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate >
 {
@@ -95,19 +96,8 @@
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
-
+    [self hideKeyboard];
     [self registerUser];
-}
-
-- (void)registerNewUser {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [defaults setObject: self.eMailTextField.text forKey:@"E-mail"];
-    [defaults setObject:self.passwordTextfield.text forKey:@"Password"];
-    [defaults setBool:YES forKey:@"Registered"];
-    
-    UIAlertView *success= [[UIAlertView alloc]initWithTitle:@"Success" message:@"You have registered a new user" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [success show];
 }
 
 - (void)registerUserError:(NSString *)errorMessage {
@@ -129,12 +119,7 @@
     //verificar campos para que esté completo.
     
     if(![self.passwordTextfield.text isEqualToString:self.confirmPasswordTextField.text]) {
-        
-        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Password don't match" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        
-        [alert show];
-        return NO;
-        
+        [self showAlertForMessage:@"Password don't match"];
     } else if ([self.eMailTextField.text isEqualToString:@""]) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -167,16 +152,6 @@
     return YES;
 }
 
-// Textfield delegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    self.activeTextField = textField;
-    if (textField == self.userType) {
-        [textField resignFirstResponder];
-        [self performSegueWithIdentifier:@"UserType" sender:nil];
-    }
-}
-
 // usertype delegate
 - (void)didSelectUserType:(NSString *)userType
 {
@@ -186,6 +161,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [self hideKeyboard];
     if ([[segue destinationViewController] isKindOfClass:[UserTypeViewController class]]) {
         UserTypeViewController* utvc = [segue destinationViewController];
         utvc.delegate = self;
@@ -226,7 +202,23 @@
     [self.activityIndicatorView stopAnimating];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+#pragma mark - TextField Delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == self.userType) {
+        [self performSegueWithIdentifier:@"UserType" sender:nil];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeTextField = textField;
+
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
     self.activeTextField = nil;
 }
 
@@ -301,6 +293,8 @@
 }
 
 - (void)hideKeyboard {
+    [self resignFirstResponder];
+    [self.view resignFirstResponder];
     [self.firstNameTextField resignFirstResponder];
     [self.lastNameTextField resignFirstResponder];
     [self.passwordTextfield resignFirstResponder];
@@ -310,7 +304,15 @@
 }
 
 - (IBAction)backButtonPressed:(id)sender {
+    [self hideKeyboard];
     [self.navigationController popViewControllerAnimated:YES];
 
+}
+
+#pragma mark - Helper Methods
+- (void)showAlertForMessage:(NSString *)errorMessage
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+    [alert show];
 }
 @end

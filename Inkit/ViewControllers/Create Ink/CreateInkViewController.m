@@ -388,7 +388,8 @@ typedef enum
 {    
     if ([self verifyCells]) {
         if (self.isEditingInk) {
-            [self postInkCompleteAction:self.ink];
+            [self showActivityIndicator];
+            [InkitService updateInk:self.editingInk withDictionary:self.inkData withTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
         } else {
             [self showActivityIndicator];
             self.inkData[kInkImage] = self.inkImage;

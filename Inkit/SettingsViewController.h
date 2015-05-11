@@ -13,7 +13,7 @@
 - (void)didSelectSettings:(NSString *)settings;
 @end
 
-@interface Settings : UIViewController
+@interface SettingsViewController : UIViewController
 
 @property (nonatomic, weak) id<SettingsDelegate> delegate;
 @property (nonatomic, strong) NSString* selectedString;
