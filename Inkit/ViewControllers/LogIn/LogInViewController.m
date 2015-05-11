@@ -15,21 +15,24 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
-
-
+#import "RoundedCornerButton.h"
 
 @interface LogInViewController () <RegisterDelegate, UITextFieldDelegate, FacebookManagerDelegate, GPPSignInDelegate>
 
-@property (strong, nonatomic) IBOutlet UIButton *googleSignInButton;
+@property (strong, nonatomic) IBOutlet RoundedCornerButton *googleSignInButton;
 
-@property (strong, nonatomic) IBOutlet UIButton *facebookButton;
+@property (strong, nonatomic) IBOutlet RoundedCornerButton *facebookButton;
 @property (strong, nonatomic) IBOutlet UITextField *logInEmailTextField;
 
 @property (strong, nonatomic) IBOutlet UITextField *logInPasswordTextField;
-@property (strong, nonatomic) IBOutlet UIButton *logInButton;
+@property (strong, nonatomic) IBOutlet RoundedCornerButton *logInButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (strong, nonatomic) NSMutableDictionary* userDictionary;
+@property (nonatomic) CGFloat mailLogInBottomConstant;
+@property (nonatomic) BOOL userIsEnteringEmail;
+@property (strong, nonatomic) IBOutlet UIView *scrollView;
+@property (strong, nonatomic) UITextField* activeTextField;
 
 @end
 
@@ -38,13 +41,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideActivityIndicator];
-    
+
     [self customizeNavigationBar];
     
     [GPPSignIn sharedInstance].delegate = self;
     [[GPPSignIn sharedInstance]trySilentAuthentication];
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self registerForKeyboardNotifications];
+    self.mailLogInBottomConstant = 165;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -111,6 +131,51 @@
 
 }
 
+#pragma mark - Keyboard Notifications
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)unregisterFromKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGPoint kbOrigin = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
+
+    CGPoint tfOrigin =[self.view convertPoint:self.activeTextField.frame.origin fromView:self.scrollView];
+    CGPoint tfEnd = CGPointMake(tfOrigin.x, tfOrigin.y + self.activeTextField.frame.size.height);
+    
+    if (tfEnd.y > kbOrigin.y) {
+        CGFloat distanceToScroll = tfEnd.y - kbOrigin.y + 40;
+        [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.scrollView.frame = CGRectMake(0, - distanceToScroll, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        } completion:nil];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    } completion:nil];
+}
+
+
+
+
 
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar
@@ -162,6 +227,16 @@
     [self.activityIndicatorView stopAnimating];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeTextField = textField;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    self.activeTextField = nil;
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -173,6 +248,14 @@
     return NO;
 }
 
+- (IBAction)didTapScreen:(UITapGestureRecognizer *)sender {
+    [self dismissKeyboard];
+}
+
+- (void)dismissKeyboard {
+    [self.logInEmailTextField resignFirstResponder];
+    [self.logInPasswordTextField resignFirstResponder];
+}
 #pragma mark - FacebookManager Delegate Methods
 - (void)onUserLoggedIn
 {

@@ -30,7 +30,7 @@
 - (void)configureForComment:(DBComment *)comment
 {
     [comment.user.profilePicThumbnail setInImageView:self.userImage];
-    self.userName.text = comment.user.name;
+    self.userName.text = comment.user.fullName;
     self.commentLabel.text = comment.text;
     double leading = self.commentLabel.frame.origin.x;
     

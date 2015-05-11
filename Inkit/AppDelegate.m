@@ -12,7 +12,8 @@
 #import "InkitConstants.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
-
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 @interface AppDelegate () <TutorialViewControllerDelegate>
 
 @end
@@ -116,6 +117,8 @@
     GPPSignIn *googleSignIn = [GPPSignIn sharedInstance];
     googleSignIn.clientID = @"126893056585-fujj1qeei47bholl4fknfbk8rsh4934h.apps.googleusercontent.com";
     googleSignIn.scopes = @[kGTLAuthScopePlusLogin];
+    [Fabric with:@[CrashlyticsKit]];
+
     return YES;
 }
 

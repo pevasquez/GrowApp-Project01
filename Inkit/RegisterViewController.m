@@ -25,6 +25,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *userType;
 @property (strong, nonatomic) DBUser *user;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
+@property (strong, nonatomic) IBOutlet UIView *scrollView;
+@property (strong, nonatomic) UITextField* activeTextField;
 
 @end
 
@@ -56,6 +59,21 @@
     if ([self.userDictionary objectForKey:kUserPassword]) {
         self.passwordTextfield.text = self.userDictionary[kUserPassword];
     }
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self registerForKeyboardNotifications];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 - (IBAction)userTypeTextFieldClicked:(id)sender
@@ -152,6 +170,7 @@
 // Textfield delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    self.activeTextField = textField;
     if (textField == self.userType) {
         [textField resignFirstResponder];
         [self performSegueWithIdentifier:@"UserType" sender:nil];
@@ -208,15 +227,57 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    //int numberOfChracters = 0;
-    //bool lowerCaseLetter = false, upperCaseLetter = false, digit = false, specialCharacter = 0;
-    if (textField == self.passwordTextfield) {
-        if ([textField.text length] < 6) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hey!" message:@"Please Enter at least 6 characters for the password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-            [alert show];
-        }
+    self.activeTextField = nil;
+//    if (textField == self.passwordTextfield) {
+//        if ([textField.text length] >= 6) {
+//        } else {
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hey!" message:@"Please Enter at least 6 characters for the password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+//            [alert show];
+//        }
+//    }
+}
+#pragma mark - Keyboard Notifications
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)unregisterFromKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGPoint kbOrigin = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
+    
+    CGPoint tfOrigin =[self.view convertPoint:self.activeTextField.frame.origin fromView:self.scrollView];
+    CGPoint tfEnd = CGPointMake(tfOrigin.x, tfOrigin.y + self.activeTextField.frame.size.height);
+    
+    if (tfEnd.y > kbOrigin.y) {
+        CGFloat distanceToScroll = tfEnd.y - kbOrigin.y + 40;
+        [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.scrollView.frame = CGRectMake(0, - distanceToScroll, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        } completion:nil];
     }
 }
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    } completion:nil];
+}
+
 
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar
@@ -240,5 +301,13 @@
         [self registerUser];
     }
     return NO;
+}
+- (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
+    [self.activeTextField resignFirstResponder];
+}
+
+- (IBAction)backButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 @end

@@ -31,7 +31,7 @@
 {
     DBUser* user = self.ink.user;
     [user.profilePicThumbnail setInImageView:self.userImageView];
-    self.userNameLabel.text = user.name;
+    self.userNameLabel.text = user.fullName;
     self.cellHeight = self.bounds.size.height;
     [self setLike:NO];
 }

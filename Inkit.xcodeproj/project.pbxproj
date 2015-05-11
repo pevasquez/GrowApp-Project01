@@ -20,7 +20,10 @@
 		8673CBB21AFBFAD200179FA2 /* TutorialStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAE1AFBFAD200179FA2 /* TutorialStepViewController.m */; };
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
 		86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411CC1ACC85DC00463622 /* DBImage+Management.m */; };
-		86C5A6C51AFE950300449FA7 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */; };
+		86C5A6C71AFEA61600449FA7 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6C61AFEA61600449FA7 /* image1.jpg */; };
+		86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */; };
+		86C5A6CD1AFFAC8400449FA7 /* FormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C5A6CC1AFFAC8400449FA7 /* FormTextField.m */; };
+		86C5A6CF1AFFE69900449FA7 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C5A6CE1AFFE69900449FA7 /* OnBoarding.storyboard */; };
 		86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */; };
 		86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98E81AC32E3200A39C28 /* UserTypeViewController.m */; };
 		86DC98F81AC4955700A39C28 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98F71AC4955700A39C28 /* DataManager.m */; };
@@ -105,6 +108,8 @@
 		FBD2FEEB1ADB550F005D1AAE /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEEA1ADB550F005D1AAE /* DBBodyPart.m */; };
 		FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEED1ADB550F005D1AAE /* DBComment.m */; };
 		FBD2FEF11ADB55ED005D1AAE /* DBShop.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEF01ADB55ED005D1AAE /* DBShop.m */; };
+		FBD79FB31B000CFA0011BDEE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD79FB11B000CFA0011BDEE /* Fabric.framework */; };
+		FBD79FB41B000CFA0011BDEE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD79FB21B000CFA0011BDEE /* Crashlytics.framework */; };
 		FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */; };
 		FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */; };
 		FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */; };
@@ -157,7 +162,12 @@
 		86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBTattooType+Management.m"; path = "Data Base/DB Categories/DBTattooType+Management.m"; sourceTree = "<group>"; };
 		86C411CB1ACC85DC00463622 /* DBImage+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBImage+Management.h"; path = "Data Base/DB Categories/DBImage+Management.h"; sourceTree = "<group>"; };
 		86C411CC1ACC85DC00463622 /* DBImage+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBImage+Management.m"; path = "Data Base/DB Categories/DBImage+Management.m"; sourceTree = "<group>"; };
-		86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
+		86C5A6C61AFEA61600449FA7 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image1.jpg; path = ../../../../../Downloads/WeirdAsFuck/image1.jpg; sourceTree = "<group>"; };
+		86C5A6C81AFF9BC900449FA7 /* RoundedCornerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedCornerButton.h; sourceTree = "<group>"; };
+		86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedCornerButton.m; sourceTree = "<group>"; };
+		86C5A6CB1AFFAC8400449FA7 /* FormTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTextField.h; sourceTree = "<group>"; };
+		86C5A6CC1AFFAC8400449FA7 /* FormTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTextField.m; sourceTree = "<group>"; };
+		86C5A6CE1AFFE69900449FA7 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = OnBoarding.storyboard; path = ViewControllers/Onboarding/OnBoarding.storyboard; sourceTree = "<group>"; };
 		86DC98DC1AC2E21B00A39C28 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		86DC98E71AC32E3200A39C28 /* UserTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeViewController.h; sourceTree = "<group>"; };
@@ -280,6 +290,8 @@
 		FBD2FEED1ADB550F005D1AAE /* DBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBComment.m; path = "Data Base/DB Subclasses/DBComment.m"; sourceTree = "<group>"; };
 		FBD2FEEF1ADB55ED005D1AAE /* DBShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBShop.h; path = "Data Base/DB Subclasses/DBShop.h"; sourceTree = "<group>"; };
 		FBD2FEF01ADB55ED005D1AAE /* DBShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBShop.m; path = "Data Base/DB Subclasses/DBShop.m"; sourceTree = "<group>"; };
+		FBD79FB11B000CFA0011BDEE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		FBD79FB21B000CFA0011BDEE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		FBD86C061AAE29C300FA369C /* Inkitv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inkitv2.xcdatamodel; sourceTree = "<group>"; };
 		FBD91E0E1A960EDA00B00724 /* BoardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardsCollectionView.h; path = "Custom Classes/ViewBoards/BoardsCollectionView.h"; sourceTree = "<group>"; };
 		FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardsCollectionView.m; path = "Custom Classes/ViewBoards/BoardsCollectionView.m"; sourceTree = "<group>"; };
@@ -337,11 +349,13 @@
 				86DFBC701AF56858000EAF62 /* AssetsLibrary.framework in Frameworks */,
 				86DFBC6C1AF5607C000EAF62 /* SystemConfiguration.framework in Frameworks */,
 				86DFBC6A1AF56071000EAF62 /* Security.framework in Frameworks */,
+				FBD79FB41B000CFA0011BDEE /* Crashlytics.framework in Frameworks */,
 				86DFBC681AF554F1000EAF62 /* CoreMotion.framework in Frameworks */,
 				8673CB191AFA6F7A00179FA2 /* GoogleOpenSource.framework in Frameworks */,
 				86DFBC661AF554DF000EAF62 /* AddressBook.framework in Frameworks */,
 				FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */,
 				FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */,
+				FBD79FB31B000CFA0011BDEE /* Fabric.framework in Frameworks */,
 				8673CB171AFA6F6D00179FA2 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,7 +408,7 @@
 		86C5A6C31AFE948900449FA7 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				86C5A6C41AFE950300449FA7 /* OnBoarding.storyboard */,
+				86C5A6CE1AFFE69900449FA7 /* OnBoarding.storyboard */,
 				FBDCB1E51A840C2D00E05053 /* LogIn View Controller */,
 				86DC98DF1AC2E24900A39C28 /* Register View Controllers */,
 			);
@@ -581,6 +595,8 @@
 		FBC433111A8556B200EFAA24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBD79FB11B000CFA0011BDEE /* Fabric.framework */,
+				FBD79FB21B000CFA0011BDEE /* Crashlytics.framework */,
 				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
 				8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */,
 				8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */,
@@ -854,6 +870,10 @@
 			children = (
 				FBDCB1E21A840C2400E05053 /* LogInViewController.h */,
 				FBDCB1E31A840C2400E05053 /* LogInViewController.m */,
+				86C5A6C81AFF9BC900449FA7 /* RoundedCornerButton.h */,
+				86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */,
+				86C5A6CB1AFFAC8400449FA7 /* FormTextField.h */,
+				86C5A6CC1AFFAC8400449FA7 /* FormTextField.m */,
 			);
 			name = "LogIn View Controller";
 			sourceTree = "<group>";
@@ -868,6 +888,7 @@
 				FBDCB18E1A83EB1800E05053 /* Sources */,
 				FBDCB18F1A83EB1800E05053 /* Frameworks */,
 				FBDCB1901A83EB1800E05053 /* Resources */,
+				FBD79FAB1B000C670011BDEE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -940,12 +961,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C5A6CF1AFFE69900449FA7 /* OnBoarding.storyboard in Resources */,
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				FBDCB1A41A83EB1800E05053 /* Main.storyboard in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
-				86C5A6C51AFE950300449FA7 /* OnBoarding.storyboard in Resources */,
+				86C5A6C71AFEA61600449FA7 /* image1.jpg in Resources */,
 				FBDCB1A91A83EB1800E05053 /* LaunchScreen.xib in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
 				8673CB1D1AFA6F9100179FA2 /* GooglePlus.bundle in Resources */,
@@ -962,6 +984,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FBD79FAB1B000C670011BDEE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a02646c584fe01ead4fee4188b2fe52dd0ce9eba c9ba5cb4c08ac0561389d0c028d92389afe54bd1dd3e5a2efa91ec0f83ea8c3a";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FBDCB18E1A83EB1800E05053 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -969,6 +1007,7 @@
 			files = (
 				FBC433171A855C4E00EFAA24 /* DBInk+Management.m in Sources */,
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
+				86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
 				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
 				FBE704601AF6CFB70041DD0E /* DBInk.m in Sources */,
@@ -979,6 +1018,7 @@
 				FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */,
 				FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */,
 				FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */,
+				86C5A6CD1AFFAC8400449FA7 /* FormTextField.m in Sources */,
 				FBD2FEE21ADB550F005D1AAE /* DBBoard.m in Sources */,
 				8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */,
 				8673CBB01AFBFAD200179FA2 /* TutorialViewController.m in Sources */,
@@ -1191,6 +1231,7 @@
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1215,6 +1256,7 @@
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1238,6 +1280,7 @@
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1263,6 +1306,7 @@
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = InkitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
