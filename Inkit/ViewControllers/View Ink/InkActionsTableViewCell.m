@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *reInkButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (weak, nonatomic) IBOutlet UILabel *reInksLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 
 @end
 @implementation InkActionsTableViewCell
@@ -33,7 +35,17 @@
     [user.profilePicThumbnail setInImageView:self.userImageView];
     self.userNameLabel.text = user.fullName;
     self.cellHeight = self.bounds.size.height;
+    self.reInksLabel.text = [NSString stringWithFormat:@"%@",self.ink.reInksCount];
+    self.likesLabel.text = [NSString stringWithFormat:@"%@",self.ink.likesCount];
     [self setLike:NO];
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.userNameLabel.text = @"";
+    self.reInksLabel.text = @"0";
+    self.likesLabel.text = @"0";
 }
 
 - (void)setLike:(BOOL)selected

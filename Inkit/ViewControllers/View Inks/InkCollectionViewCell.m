@@ -27,7 +27,7 @@ typedef enum
 
 #define kInkImageCellHeight     239
 #define kInkActionsCellHeight   34
-#define kInkUserCellHeight      50
+#define kInkUserCellHeight      40
 
 @interface InkCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UITableView *inkTableView;
@@ -51,6 +51,12 @@ typedef enum
     
     return self.inkTableView.contentSize.height;
 }
+
+- (void)prepareForReuse
+{
+    self.ink = nil;
+}
+
 #pragma mark UITableView Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

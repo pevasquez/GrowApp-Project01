@@ -226,8 +226,7 @@
                      
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:kAccessToken]) {
-                         DBUser* user = [DBUser createNewUser];
-                         [user updateWithJson:userDictionary];
+                         DBUser* user = [DBUser fromJson:responseDictionary];
                          [user updateWithJson:responseDictionary];
                          [DataManager sharedInstance].activeUser = user;
                          [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];

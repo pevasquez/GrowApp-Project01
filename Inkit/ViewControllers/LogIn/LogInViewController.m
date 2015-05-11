@@ -198,7 +198,7 @@
     
 }
 
-- (void)registrationCompleteForUser:(DBUser *)user
+- (void)registrationComplete
 {
     [self.delegate logInDidFinishedLoading];
     [self hideActivityIndicator];
@@ -291,7 +291,7 @@
 
 - (void)onPermissionsDeclined:(NSArray *)declinedPermissions
 {
-    
+    NSLog(@"declined Permissions");
     
 }
 

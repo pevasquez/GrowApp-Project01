@@ -29,12 +29,11 @@
     self.inkImageView.clipsToBounds = YES;
 }
 
-//- (void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//    [self configureForInk];
-//}
-
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.inkImageView.image = nil;
+}
 
 - (double)getInkImageHeightForImage:(UIImage *)inkImage
 {
