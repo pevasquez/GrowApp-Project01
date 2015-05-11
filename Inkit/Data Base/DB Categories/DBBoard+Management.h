@@ -12,14 +12,13 @@
 @interface DBBoard (Management)
 + (DBBoard *)fromJson:(NSDictionary *)boardData;
 
-+ (NSArray *)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
-+ (void)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 - (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 - (void)deleteWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+- (void)getInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
+- (NSArray *)getInksFromBoard;
 
 - (void)updateWithJson:(NSDictionary *)jsonDictionary;
-- (NSArray *)getInksFromBoard;
 - (void)addInkToBoard:(DBInk *)ink;
 - (void)addInksToBoard:(NSArray *)inksArray;
 - (void)removeInkFromBoard:(DBInk *)ink;

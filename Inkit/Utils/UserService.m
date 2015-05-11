@@ -143,7 +143,7 @@
                      
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:kAccessToken]) {
-                         DBUser* user = [DBUser createNewUser];
+                         DBUser* user = [DBUser fromJson:userDictionary];
                          [user updateWithJson:userDictionary];
                          [user updateWithJson:responseDictionary];
                          [DataManager sharedInstance].activeUser = user;
@@ -174,7 +174,7 @@
     return returnError;
 }
 
-+ (NSError *)logInSocialDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (NSError *)logInSocialDictionary:(NSDictionary *)userDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 {
     // Create returnError
     NSError* returnError = nil;
@@ -196,8 +196,11 @@
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
+    NSDictionary* loginDictionary = @{@"social_network_id":userDictionary[@"social_network_id"],
+                                      @"external_id":userDictionary[@"external_id"]};
+    
     NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:facebookDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:loginDictionary options:NSJSONWritingPrettyPrinted error:&error];
     
     [request setHTTPBody: jsonData];
     
@@ -224,7 +227,7 @@
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:kAccessToken]) {
                          DBUser* user = [DBUser createNewUser];
-                         [user updateWithJson:facebookDictionary];
+                         [user updateWithJson:userDictionary];
                          [user updateWithJson:responseDictionary];
                          [DataManager sharedInstance].activeUser = user;
                          [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];

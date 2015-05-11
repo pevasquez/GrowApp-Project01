@@ -208,6 +208,7 @@
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator
 {
+    [self hideKeyBoard];
     self.logInEmailTextField.userInteractionEnabled = NO;
     self.logInPasswordTextField.userInteractionEnabled = NO;
     self.logInButton.userInteractionEnabled = NO;
@@ -282,8 +283,8 @@
     self.userDictionary[kUserExternalId] = userInfo.objectID;
     self.userDictionary[kUserSocialNetworkId] = @"1";
     
-    NSString* imageURL = [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=large", userInfo.objectID];
-    self.userDictionary[kUserImageURL] = imageURL;
+    //NSString* imageURL = [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=large", userInfo.objectID];
+    //self.userDictionary[kUserImageURL] = imageURL;
     
     [self socialLogin];
 }
@@ -297,10 +298,8 @@
 #pragma mark - Facebook Login
 
 - (void)socialLogin {
-    {
-        [InkitService logInSocialDictionary:self.userDictionary withTarget:self completeAction:@selector(socialLogInUserComplete) completeError:@selector(socialLogInUserError:)];
-        [self showActivityIndicator];
-    }
+    [InkitService logInSocialDictionary:self.userDictionary withTarget:self completeAction:@selector(socialLogInUserComplete) completeError:@selector(socialLogInUserError:)];
+    [self showActivityIndicator];
 }
 
 - (void)socialLogInUserComplete {
@@ -309,9 +308,12 @@
 }
 
 - (void)socialLogInUserError:(NSString *)errorMessage {
-    if ([errorMessage isEqualToString:@"Social Network Id mismatch"]) {
+    [self hideActivityIndicator];
+    if ([errorMessage isEqualToString:@"Bad credentials"]) {
         // set register window pero seteando el diccionario de datos
         [self performSegueWithIdentifier:@"RegisterSegue" sender:nil];
+    } else {
+        [self showAlertForMessage:errorMessage];
     }
 }
 
@@ -363,5 +365,17 @@
         // El usuario ha cerrado sesión y se ha desconectado.
         // Borra los datos del usuario como especifican las condiciones de Google+.
     }
+}
+
+// Helper Methods
+- (void)showAlertForMessage:(NSString *)errorMessage
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+    [alert show];
+}
+
+- (void)hideKeyBoard {
+    [self.logInEmailTextField resignFirstResponder];
+    [self.logInPasswordTextField resignFirstResponder];
 }
 @end

@@ -16,8 +16,6 @@
 + (DBUser *)fromJson:(NSDictionary *)userData;
 - (void)updateWithJson:(NSDictionary *)jsonDictionary;
 
-+ (DBUser *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (DBUser *)createMockUserInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (DBBoard *)createBoardFromJson:(NSDictionary *)boardDictionary;
 - (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 - (NSArray *)getBoards;

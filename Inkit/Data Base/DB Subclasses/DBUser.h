@@ -39,7 +39,7 @@
 @property (nonatomic, retain) NSString * token;
 @property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * updatedTime;
-@property (nonatomic, retain) NSNumber * userID;
+@property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSData * userImage;
 @property (nonatomic, retain) NSNumber * verified;
 @property (nonatomic, retain) NSOrderedSet *boards;

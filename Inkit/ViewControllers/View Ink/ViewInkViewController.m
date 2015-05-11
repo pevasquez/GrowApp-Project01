@@ -92,11 +92,11 @@ typedef enum
         InkActionsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkActionsTableViewCellIdentifier];
        // cell.delegate = self;
         self.actionsCell = cell;
-        [cell configureForInk:self.ink];
+        cell.ink = self.ink;
         return cell;
     } else {
         ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        [cell configureForInk:self.ink];
+        cell.ink = self.ink;
         return cell;
     }
 }

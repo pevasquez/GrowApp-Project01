@@ -11,7 +11,6 @@
 
 @interface InkImageTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *inkImageView;
-@property (strong, nonatomic) DBInk* ink;
 @end
 
 @implementation InkImageTableViewCell
@@ -20,11 +19,8 @@
     self.ink = ink;
 }
 
-- (void)layoutSubviews
+- (void)configureForInk
 {
-    [super layoutSubviews];
-    NSLog(@"%f",self.bounds.size.width);
-    NSLog(@"%f",[UIScreen mainScreen].bounds.size.width);
     if (self.bounds.size.width < [UIScreen mainScreen].bounds.size.width/2) {
         [self.ink.thumbnailImage setInImageView:self.inkImageView];
     } else {
@@ -32,6 +28,12 @@
     }
     self.inkImageView.clipsToBounds = YES;
 }
+
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    [self configureForInk];
+//}
 
 
 - (double)getInkImageHeightForImage:(UIImage *)inkImage
