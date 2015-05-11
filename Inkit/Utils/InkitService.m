@@ -94,9 +94,15 @@
 //    return returnError;
 }
 
+#pragma mark - Inks Service
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     return [InkService createInk:inkDictionary withTarget:target completeAction:completeAction completeError:completeError];
+}
+
++ (NSError *)updateInk:(DBInk *)ink withDictionary:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    return [InkService updateInk:ink withDictionary:inkDictionary withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 // MARK:- Board Service

@@ -11,6 +11,7 @@
 #import "InkitTheme.h"
 #import "InkitService.h"
 #import "InkitConstants.h"
+#import "UIResponder+FirstResponder.h"
 
 @interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate >
 {
@@ -23,7 +24,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *userType;
-@property (strong, nonatomic) DBUser *user;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIView *scrollView;
@@ -90,24 +90,14 @@
         self.userDictionary[kUserPassword] = self.passwordTextfield.text;
         
         [self showActivityIndicator];
+        [self hideKeyboard];
         [InkitService registerUserDictionary:self.userDictionary WithTarget:self completeAction:@selector(registerUserComplete) completeError:@selector(registerUserError:)];
     }
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
-
+    [self hideKeyboard];
     [self registerUser];
-}
-
-- (void)registerNewUser {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [defaults setObject: self.eMailTextField.text forKey:@"E-mail"];
-    [defaults setObject:self.passwordTextfield.text forKey:@"Password"];
-    [defaults setBool:YES forKey:@"Registered"];
-    
-    UIAlertView *success= [[UIAlertView alloc]initWithTitle:@"Success" message:@"You have registered a new user" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [success show];
 }
 
 - (void)registerUserError:(NSString *)errorMessage {
@@ -121,7 +111,7 @@
 
 - (void)registerUserComplete {
     [self hideActivityIndicator];
-    [self.delegate registrationCompleteForUser:self.user];
+    [self.delegate registrationComplete];
 
 }
 - (BOOL)verifyTextFields
@@ -129,12 +119,7 @@
     //verificar campos para que esté completo.
     
     if(![self.passwordTextfield.text isEqualToString:self.confirmPasswordTextField.text]) {
-        
-        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Password don't match" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        
-        [alert show];
-        return NO;
-        
+        [self showAlertForMessage:@"Password don't match"];
     } else if ([self.eMailTextField.text isEqualToString:@""]) {
         
         UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Complete Email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -167,16 +152,6 @@
     return YES;
 }
 
-// Textfield delegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    self.activeTextField = textField;
-    if (textField == self.userType) {
-        [textField resignFirstResponder];
-        [self performSegueWithIdentifier:@"UserType" sender:nil];
-    }
-}
-
 // usertype delegate
 - (void)didSelectUserType:(NSString *)userType
 {
@@ -186,6 +161,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    [self hideKeyboard];
     if ([[segue destinationViewController] isKindOfClass:[UserTypeViewController class]]) {
         UserTypeViewController* utvc = [segue destinationViewController];
         utvc.delegate = self;
@@ -226,16 +202,26 @@
     [self.activityIndicatorView stopAnimating];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    self.activeTextField = nil;
-//    if (textField == self.passwordTextfield) {
-//        if ([textField.text length] >= 6) {
-//        } else {
-//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hey!" message:@"Please Enter at least 6 characters for the password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-//            [alert show];
-//        }
-//    }
+#pragma mark - TextField Delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == self.userType) {
+        [self performSegueWithIdentifier:@"UserType" sender:nil];
+        return NO;
+    }
+    return YES;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeTextField = textField;
+
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+    self.activeTextField = nil;
+}
+
 #pragma mark - Keyboard Notifications
 - (void)registerForKeyboardNotifications
 {
@@ -303,11 +289,30 @@
     return NO;
 }
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
-    [self.activeTextField resignFirstResponder];
+    [self hideKeyboard];
+}
+
+- (void)hideKeyboard {
+    [self resignFirstResponder];
+    [self.view resignFirstResponder];
+    [self.firstNameTextField resignFirstResponder];
+    [self.lastNameTextField resignFirstResponder];
+    [self.passwordTextfield resignFirstResponder];
+    [self.eMailTextField resignFirstResponder];
+    [self.confirmPasswordTextField resignFirstResponder];
+    [self.userType resignFirstResponder];
 }
 
 - (IBAction)backButtonPressed:(id)sender {
+    [self hideKeyboard];
     [self.navigationController popViewControllerAnimated:YES];
 
+}
+
+#pragma mark - Helper Methods
+- (void)showAlertForMessage:(NSString *)errorMessage
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+    [alert show];
 }
 @end

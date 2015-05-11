@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSNumber * extraData;
 @property (nonatomic, retain) NSString * inkDescription;
-@property (nonatomic, retain) NSNumber * inkID;
+@property (nonatomic, retain) NSString * inkID;
 @property (nonatomic, retain) NSNumber * likesCount;
 @property (nonatomic, retain) NSNumber * reInksCount;
 @property (nonatomic, retain) NSDate * updatedAt;

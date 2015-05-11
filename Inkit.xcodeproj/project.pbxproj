@@ -27,7 +27,7 @@
 		86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98DD1AC2E21B00A39C28 /* RegisterViewController.m */; };
 		86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98E81AC32E3200A39C28 /* UserTypeViewController.m */; };
 		86DC98F81AC4955700A39C28 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC98F71AC4955700A39C28 /* DataManager.m */; };
-		86DC99011AC59C1600A39C28 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC99001AC59C1600A39C28 /* Settings.m */; };
+		86DC99011AC59C1600A39C28 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC99001AC59C1600A39C28 /* SettingsViewController.m */; };
 		86DC990D1AC9E3E400A39C28 /* DBArtist+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC990C1AC9E3E400A39C28 /* DBArtist+Management.m */; };
 		86DC99101AC9E40100A39C28 /* DBShop+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DC990F1AC9E40100A39C28 /* DBShop+Management.m */; };
 		86DFBC661AF554DF000EAF62 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC651AF554DF000EAF62 /* AddressBook.framework */; };
@@ -45,6 +45,8 @@
 		FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
 		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
+		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
+		FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */; };
 		FB4A23A61AD954FD002EE49B /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
 		FB4A23A71AD95514002EE49B /* DBInk+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC433161A855C4E00EFAA24 /* DBInk+Management.m */; };
 		FB4A23A81AD95514002EE49B /* DBComment+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696CF1AAB841C0071D96B /* DBComment+Management.m */; };
@@ -174,8 +176,8 @@
 		86DC98E81AC32E3200A39C28 /* UserTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTypeViewController.m; sourceTree = "<group>"; };
 		86DC98F61AC4955700A39C28 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = "Data Base/DataManager.h"; sourceTree = "<group>"; };
 		86DC98F71AC4955700A39C28 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = "Data Base/DataManager.m"; sourceTree = "<group>"; };
-		86DC98FF1AC59C1500A39C28 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		86DC99001AC59C1600A39C28 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		86DC98FF1AC59C1500A39C28 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		86DC99001AC59C1600A39C28 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		86DC990B1AC9E3E400A39C28 /* DBArtist+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DBArtist+Management.h"; sourceTree = "<group>"; };
 		86DC990C1AC9E3E400A39C28 /* DBArtist+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DBArtist+Management.m"; sourceTree = "<group>"; };
 		86DC990E1AC9E40100A39C28 /* DBShop+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DBShop+Management.h"; sourceTree = "<group>"; };
@@ -201,6 +203,10 @@
 		FB0A40011A9D255900294F90 /* WaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterfallLayout.m; path = "ViewControllers/View Inks/WaterfallLayout.m"; sourceTree = "<group>"; };
 		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
 		FB29890A1AA868A0005D7327 /* CropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropView.m; path = Inkit/ViewControllers/Camera/CropView.m; sourceTree = "<group>"; };
+		FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleManager.h; path = Utils/GoogleManager.h; sourceTree = "<group>"; };
+		FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleManager.m; path = Utils/GoogleManager.m; sourceTree = "<group>"; };
+		FB37D06C1B00C88B00F8DFF7 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
+		FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
 		FB4A23BA1AD95546002EE49B /* InksServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InksServiceTests.m; sourceTree = "<group>"; };
 		FB4A23BC1AD95560002EE49B /* BoardsServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardsServiceTests.m; sourceTree = "<group>"; };
 		FB4A23C21AD9630C002EE49B /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extensions.h"; path = "Utils/NSDictionary+Extensions.h"; sourceTree = "<group>"; };
@@ -401,6 +407,8 @@
 				FB0711881AAF037F004EBBD1 /* InkitServiceConstants.h */,
 				86647CB81AF403830013658A /* FacebookManager.h */,
 				86647CB91AF403830013658A /* FacebookManager.m */,
+				FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */,
+				FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -436,8 +444,8 @@
 		86DC98EF1AC48BAB00A39C28 /* Settings View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				86DC98FF1AC59C1500A39C28 /* Settings.h */,
-				86DC99001AC59C1600A39C28 /* Settings.m */,
+				86DC98FF1AC59C1500A39C28 /* SettingsViewController.h */,
+				86DC99001AC59C1600A39C28 /* SettingsViewController.m */,
 			);
 			name = "Settings View Controller";
 			sourceTree = "<group>";
@@ -769,6 +777,8 @@
 		FBDCB1C11A83ED3100E05053 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FB37D06C1B00C88B00F8DFF7 /* UIResponder+FirstResponder.h */,
+				FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */,
 				868A5CA21AA626D6006DD52D /* Service */,
 				FBB696E31AABA7890071D96B /* Theme */,
 				FBC4330B1A85472E00EFAA24 /* Custom Fonts */,
@@ -1043,6 +1053,7 @@
 				FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */,
 				FBB696D61AAB88840071D96B /* CommentsTableViewCell.m in Sources */,
 				FBB384541A8A938D004C440A /* TextFieldTableViewCell.m in Sources */,
+				FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */,
 				86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */,
 				FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */,
 				FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */,
@@ -1066,10 +1077,11 @@
 				FBB696DC1AAB94C40071D96B /* CommentBarView.m in Sources */,
 				FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */,
 				FBC433051A85457E00EFAA24 /* InkitButton.m in Sources */,
-				86DC99011AC59C1600A39C28 /* Settings.m in Sources */,
+				86DC99011AC59C1600A39C28 /* SettingsViewController.m in Sources */,
 				86DC99101AC9E40100A39C28 /* DBShop+Management.m in Sources */,
 				FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */,
 				FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */,
+				FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */,
 				86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */,
 				8673CBB11AFBFAD200179FA2 /* TutorialPage.m in Sources */,
 				FBD2FEF11ADB55ED005D1AAE /* DBShop.m in Sources */,

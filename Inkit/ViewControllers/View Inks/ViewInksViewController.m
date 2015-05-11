@@ -88,7 +88,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     
     //CGSize cellSize = CGSizeMake(width, height);
 
-    return CGSizeMake(width, 360);
+    return CGSizeMake(width, 344);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

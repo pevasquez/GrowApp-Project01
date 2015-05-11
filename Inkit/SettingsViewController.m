@@ -6,19 +6,20 @@
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
-#import "Settings.h"
+#import "SettingsViewController.h"
 #import "InkitService.h"
+#import "InkitTheme.h"
 #import "DataManager.h"
 #import "AppDelegate.h"
 
-@interface Settings () <UITableViewDataSource, UITableViewDelegate>
+@interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end
 
-@implementation Settings
+@implementation SettingsViewController
 
 -(id)init
 {
@@ -32,17 +33,14 @@ static NSString *cellIdentifier;
     [super viewDidLoad];
     [self hideActivityIndicator];
     
-    self.data = @[@"Log Out",
-                  @"Etc",
-                  @"Etc",
-                  @"Etc",
-                  @"Etc"];
+    self.data = @[@"Log Out"];
     
     cellIdentifier = @"rowCell";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
 
     [self customizeTableView];
-    
+    [self customizeNavigationBar];
+
 }
 
 
@@ -76,7 +74,6 @@ static NSString *cellIdentifier;
 {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-
 }
 
 
@@ -109,6 +106,11 @@ static NSString *cellIdentifier;
     }
 }
 
+#pragma mark - Appearence Methods
+- (void)customizeNavigationBar
+{
+    [InkitTheme setUpNavigationBarForViewController:self];
+}
 
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator

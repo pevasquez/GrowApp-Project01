@@ -85,7 +85,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     double width = (screenBounds.size.width-12)/2;
-    return CGSizeMake(width, 360);
+    return CGSizeMake(width, 344);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

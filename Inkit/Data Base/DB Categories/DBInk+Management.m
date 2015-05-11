@@ -149,11 +149,11 @@
 
 + (DBInk *)fromJson:(NSDictionary *)inkData
 {
-    NSString* inkID = inkData[@"id"];
+    NSString* inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
     DBInk* obj = [DBInk withID:inkID];
     DBInk* ink = nil;
     if (!obj) {
-        ink = (DBInk *)[[DataManager sharedInstance] insert:kDBInk];
+        ink = [DBInk newInk];
     } else {
         ink = obj;
     }
@@ -162,10 +162,19 @@
     return ink;
 }
 
++ (DBInk *)newInk
+{
+    DBInk* ink = (DBInk *)[[DataManager sharedInstance] insert:kDBInk];
+    ink.likesCount = @0;
+    ink.reInksCount = @0;
+    ink.inkDescription = @"";
+    return ink;
+}
+
 - (void)updateWithJson:(NSDictionary *)inkData
 {
     if ([inkData objectForKey:@"id"]) {
-        self.inkID = inkData[@"id"];
+        self.inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
     }
     if ([inkData objectForKey:@"description"]) {
         self.inkDescription = inkData[@"description"];
@@ -189,7 +198,6 @@
 //        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
 //        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
         NSString* thumbnailString = [NSString stringWithFormat:@"%@_160%@.jpg",path,scale];
-        NSLog(@"%@",thumbnailString);
         self.thumbnailImage = [DBImage fromURL:thumbnailString];
         self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.jpg",path,scale]];
     }
@@ -202,10 +210,10 @@
 //    if ([inkData objectForKey:@"updated_at"]) {
 //        ink.updatedAt = inkData[@"updated_at"];
 //    }
-    if (!([inkData objectForKey:@"likes_count"] == [NSNull null])) {
+    if ([inkData objectForKey:@"likes_count"] && !([inkData objectForKey:@"likes_count"] == [NSNull null])) {
         self.likesCount = inkData[@"likes_count"];
     }
-    if (!([inkData objectForKey:@"reinks_count"] == [NSNull null])) {
+    if ([inkData objectForKey:@"reinks_count"] && !([inkData objectForKey:@"reinks_count"] == [NSNull null])) {
         self.reInksCount = inkData[@"reinks_count"];
     }
     if ([inkData objectForKey:@"board"]) {

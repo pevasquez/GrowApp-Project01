@@ -36,7 +36,7 @@
 
 + (DBUser *)fromJson:(NSDictionary *)userData
 {
-    NSString* userID = userData[kUserID];
+    NSString* userID = [NSString stringWithFormat:@"%@",userData[kUserID]] ;
     DBUser* obj = [DBUser withID:userID];
     DBUser* user = nil;
     if (!obj) {
@@ -95,7 +95,7 @@
         self.boardsCount = jsonDictionary[@"boards_count"];
     if ([jsonDictionary objectForKey:@"social_networks"])
         self.socialNetworks = jsonDictionary[@"social_networks"];
-    if ([jsonDictionary objectForKeyedSubscript:kAccessToken]) {
+    if ([jsonDictionary objectForKey:kAccessToken]) {
         self.token = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
         self.userID = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
     }

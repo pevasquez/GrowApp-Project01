@@ -38,7 +38,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="extraData" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="inkDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="inkID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="inkID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="likesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="reInksCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
