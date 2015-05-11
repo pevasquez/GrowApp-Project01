@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kd9-K6-G4c">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -454,16 +454,21 @@
                                     <constraint firstAttribute="bottom" secondItem="yzZ-8x-KAE" secondAttribute="bottom" id="yal-cK-bJq"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iAR-t5-aw9">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2yQ-3P-17I" firstAttribute="top" secondItem="djn-j3-biL" secondAttribute="topMargin" id="5EN-NQ-A26"/>
+                            <constraint firstAttribute="centerY" secondItem="iAR-t5-aw9" secondAttribute="centerY" id="CbG-AL-py7"/>
                             <constraint firstItem="2yQ-3P-17I" firstAttribute="leading" secondItem="djn-j3-biL" secondAttribute="leadingMargin" constant="-16" id="GzP-N7-1fX"/>
                             <constraint firstItem="7fQ-Tn-q9h" firstAttribute="top" secondItem="djn-j3-biL" secondAttribute="top" id="JQS-jH-E7u"/>
                             <constraint firstAttribute="centerX" secondItem="df3-Wu-3se" secondAttribute="centerX" id="QRJ-y7-UkI"/>
                             <constraint firstAttribute="trailing" secondItem="7fQ-Tn-q9h" secondAttribute="trailing" id="ZAZ-OK-Mg3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2yQ-3P-17I" secondAttribute="trailing" constant="-16" id="aGh-Ui-7g7"/>
                             <constraint firstItem="df3-Wu-3se" firstAttribute="top" secondItem="cJR-5a-VWw" secondAttribute="bottom" constant="-20" id="cbL-5E-xXf"/>
+                            <constraint firstAttribute="centerX" secondItem="iAR-t5-aw9" secondAttribute="centerX" id="eX5-O2-lWz"/>
                             <constraint firstItem="7fQ-Tn-q9h" firstAttribute="leading" secondItem="djn-j3-biL" secondAttribute="leading" id="qlc-b4-cNB"/>
                             <constraint firstAttribute="bottom" secondItem="7fQ-Tn-q9h" secondAttribute="bottom" id="zvi-sM-boL"/>
                         </constraints>
@@ -472,20 +477,16 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="iAR-t5-aw9" id="343-Gm-PoW"/>
+                        <outlet property="emailTextField" destination="1Ht-5C-c2R" id="QhN-C8-UgP"/>
                         <outlet property="facebookButton" destination="Ovp-2g-YgZ" id="dUf-3v-PG9"/>
-                        <outlet property="googleSignInButton" destination="EH8-aQ-Ujn" id="yfm-LG-ITa"/>
+                        <outlet property="googleButton" destination="EH8-aQ-Ujn" id="wUa-f2-sOc"/>
                         <outlet property="logInButton" destination="UPY-DI-Ou8" id="FDh-jv-XV1"/>
-                        <outlet property="logInEmailTextField" destination="1Ht-5C-c2R" id="p4h-qe-k12"/>
-                        <outlet property="logInPasswordTextField" destination="RwR-Pv-ttj" id="WeG-sS-Xqt"/>
+                        <outlet property="passwordTextField" destination="RwR-Pv-ttj" id="dvB-Jf-Paz"/>
                         <outlet property="scrollView" destination="7fQ-Tn-q9h" id="js5-ua-5Gn"/>
                         <segue destination="g4p-Om-lD5" kind="show" identifier="RegisterSegue" id="6a9-yT-Wei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C85-od-89q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="iAR-t5-aw9">
-                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </activityIndicatorView>
                 <tapGestureRecognizer id="i4z-cr-VD8">
                     <connections>
                         <action selector="didTapScreen:" destination="sSr-JA-j5N" id="5M9-7h-DS9"/>

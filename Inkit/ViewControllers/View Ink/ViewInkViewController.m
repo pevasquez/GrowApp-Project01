@@ -60,7 +60,8 @@ typedef enum
     if ([parentViewController isKindOfClass:[CreateInkViewController class]]) {
         self.navigationItem.hidesBackButton = YES;
     }
-    if (self.ink.user == [DataManager sharedInstance].activeUser) {
+    
+    if ([self.ink.user.userID isEqualToString:[DataManager sharedInstance].activeUser.userID]) {
         self.navigationItem.rightBarButtonItem = self.editButton;
     } else {
         self.navigationItem.rightBarButtonItem = nil;

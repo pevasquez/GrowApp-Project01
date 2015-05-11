@@ -102,6 +102,80 @@
     return returnError;
 }
 
++ (NSError *)updateInk:(DBInk *)ink withDictionary:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    NSError* returnError = nil;
+    
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@/%@",kWebServiceBase,kWebServiceInks,kWebServiceEdit];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a POST request
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    // Convert your data and set your request's HTTPBody property
+    __block NSMutableDictionary* inkData = [[NSMutableDictionary alloc] init];
+    inkData[@"access_token"] = [DataManager sharedInstance].activeUser.token;
+    inkData[@"ink_id"] = ink.inkID;
+    inkData[@"description"] = inkDictionary[@"description"];
+    inkData[@"board_id"] = ((DBBoard *)inkDictionary[@"board"]).boardID;
+    
+    NSString *encodedDictionary = [inkData serializeParams];
+    
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Create Asynchronous Request URLConnection
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+     {
+         if (!connectionError)
+         {
+             // Cast Response
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             
+             // Check Response's StatusCode
+             switch (httpResponse.statusCode) {
+                 case kHTTPResponseCodeOKNoResponse:
+                 {
+                     [ink updateWithJson:inkData];
+                     [target performSelectorOnMainThread:completeAction withObject:ink waitUntilDone:NO];
+                     break;
+                 }
+                 case 422:
+                 {
+                     NSString* errorMessage = [NSString stringWithFormat:@"Board already exists"];
+                     [target performSelectorOnMainThread:completeError withObject:errorMessage waitUntilDone:NO];
+                     break;
+                 }
+                     
+                 default:
+                 {
+                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                     NSString* errorMessage = [NSString stringWithFormat:@"%@",statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:errorMessage waitUntilDone:NO];
+                     break;
+                 }
+             }
+         } else {
+             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+         }
+         
+     }];
+
+    return returnError;
+}
+
 + (NSError *)getDashboardInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError

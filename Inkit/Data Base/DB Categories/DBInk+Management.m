@@ -149,7 +149,7 @@
 
 + (DBInk *)fromJson:(NSDictionary *)inkData
 {
-    NSString* inkID = inkData[@"id"];
+    NSString* inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
     DBInk* obj = [DBInk withID:inkID];
     DBInk* ink = nil;
     if (!obj) {
@@ -174,7 +174,7 @@
 - (void)updateWithJson:(NSDictionary *)inkData
 {
     if ([inkData objectForKey:@"id"]) {
-        self.inkID = inkData[@"id"];
+        self.inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
     }
     if ([inkData objectForKey:@"description"]) {
         self.inkDescription = inkData[@"description"];
