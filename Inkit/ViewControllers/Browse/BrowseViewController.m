@@ -33,11 +33,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     self.title = NSLocalizedString(@"Browse",nil);
     
     [self customizeNavigationBar];
-    if (!self.managedObjectContext) {
-        // Get ManagedObjectContext from AppDelegate
-        self.managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-    }
-    [InkitService getDashboardInksWithTarget:self completeAction:@selector(getInksComplete) completeError:@selector(getInksError:)];
+    
     [self showActivityIndicator];
 
 }
@@ -45,12 +41,13 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [InkitService getDashboardInksWithTarget:self completeAction:@selector(getInksComplete:) completeError:@selector(getInksError:)];
 }
 
 
-- (void)getInksComplete
+- (void)getInksComplete:(NSArray *)inksArray
 {
-    self.inksArray = [DBInk getAllInksInManagedObjectContext:self.managedObjectContext];
+    self.inksArray = inksArray;
     [self.browseCollectionView reloadData];
     [self hideActivityIndicator];
 }
@@ -79,8 +76,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
-    DBInk* ink = self.inksArray[indexPath.row];
-    [cell configureForInk:ink];
+    cell.ink = self.inksArray[indexPath.row];
     return cell;
 }
 

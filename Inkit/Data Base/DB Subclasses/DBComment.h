@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DBInk, DBShop, DBUser;
+@class DBInk, DBUser;
 
 @interface DBComment : NSManagedObject
 
 @property (nonatomic, retain) NSDate * commentDate;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) DBInk *ink;
-@property (nonatomic, retain) DBShop *shop;
 @property (nonatomic, retain) DBUser *user;
 
 @end

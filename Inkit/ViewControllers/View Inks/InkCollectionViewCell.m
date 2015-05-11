@@ -31,7 +31,6 @@ typedef enum
 
 @interface InkCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UITableView *inkTableView;
-@property (strong, nonatomic) DBInk* ink;
 @end
 
 @implementation InkCollectionViewCell
@@ -41,9 +40,8 @@ typedef enum
     self.inkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)configureForInk:(DBInk *)ink
-{
-    self.ink = ink;
+- (void)layoutSubviews {
+    [super layoutSubviews];
     [self.inkTableView reloadData];
 }
 
@@ -64,7 +62,7 @@ typedef enum
 {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
     ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    [cell configureForInk:self.ink];
+    cell.ink = self.ink;
     return cell;
 }
 
@@ -74,25 +72,25 @@ typedef enum
         switch (indexPath.row) {
             case kInkImage:
             {
-                NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
-                ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-                [cell configureForInk:self.ink];
-                
-                // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-                [cell setNeedsUpdateConstraints];
-                [cell updateConstraintsIfNeeded];
-                
-                [cell setNeedsLayout];
-                [cell layoutIfNeeded];
-                
-                // Get the actual height required for the cell
-                CGFloat height = cell.cellHeight;
-                
-                // Add an extra point to the height to account for the cell separator, which is added between the bottom
-                // of the cell's contentView and the bottom of the table view cell.
-                height += 1;
-                
-                //return height;
+//                NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
+//                ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//                cell.ink = self.ink;
+//                
+//                // Make sure the constraints have been added to this cell, since it may have just been created from scratch
+//                [cell setNeedsUpdateConstraints];
+//                [cell updateConstraintsIfNeeded];
+//                
+//                [cell setNeedsLayout];
+//                [cell layoutIfNeeded];
+//                
+//                // Get the actual height required for the cell
+//                CGFloat height = cell.cellHeight;
+//                
+//                // Add an extra point to the height to account for the cell separator, which is added between the bottom
+//                // of the cell's contentView and the bottom of the table view cell.
+//                height += 1;
+//                
+//                //return height;
 #warning aca no anda
                 return kInkImageCellHeight;
                 break;
@@ -101,7 +99,7 @@ typedef enum
             {
                 NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
                 ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-                [cell configureForInk:self.ink];
+                cell.ink = self.ink;
                 
                 // Make sure the constraints have been added to this cell, since it may have just been created from scratch
                 [cell setNeedsUpdateConstraints];

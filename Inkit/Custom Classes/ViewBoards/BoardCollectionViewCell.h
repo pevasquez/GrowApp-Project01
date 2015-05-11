@@ -10,6 +10,7 @@
 #import "DBBoard+Management.h"
 
 @interface BoardCollectionViewCell : UICollectionViewCell
-- (void)configureForBoard:(DBBoard *)board;
+@property (strong, nonatomic) DBBoard* board;
+//- (void)configureForBoard:(DBBoard *)board;
 - (CGSize)getSizeForBounds:(CGRect)screenBounds;
 @end

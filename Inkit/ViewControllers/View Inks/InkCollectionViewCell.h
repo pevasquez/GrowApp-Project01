@@ -10,6 +10,6 @@
 #import "DBInk+Management.h"
 
 @interface InkCollectionViewCell : UICollectionViewCell <UITableViewDataSource, UITableViewDelegate>
-- (void)configureForInk:(DBInk *)ink;
+@property (strong, nonatomic) DBInk* ink;
 - (double)getCellHeight;
 @end

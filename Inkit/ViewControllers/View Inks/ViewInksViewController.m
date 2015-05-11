@@ -16,6 +16,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 @interface ViewInksViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *inksCollectionView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (nonatomic) BOOL isEditing;
@@ -34,13 +35,26 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.board) {
+        [self.board getInksWithTarget:self completeAction:@selector(getInksComplete:) completeError:@selector(getInksError:)];
         self.title = self.board.boardTitle;
+        [self showActivityIndicator];
     }
 }
+
+- (void)getInksComplete:(NSArray *)inksArray {
+    [self hideActitivyIndicator];
+    self.inksArray = inksArray;
+    [self.inksCollectionView reloadData];
+}
+
+- (void)getInksError:(NSString *)errorString {
+    [self hideActitivyIndicator];
+    NSLog(@"%@",errorString);
+}
+
 #pragma mark - CollectionView Data Source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -55,8 +69,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
-    DBInk* ink = self.inksArray[indexPath.row];
-    [cell configureForInk:ink];
+    cell.ink = self.inksArray[indexPath.row];
     return cell;
 }
 
@@ -101,6 +114,25 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 - (IBAction)editButtonPressed:(UIBarButtonItem *)sender
 {
     [self performSegueWithIdentifier:@"EditBoardSegue" sender:nil];
+}
+
+#pragma mark - Actitivy Indicator Methods
+- (void) showActivityIndicator
+{
+    self.activityIndicatorView.hidden = NO;
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void) hideActitivyIndicator
+{
+    self.activityIndicatorView.hidden = YES;
+    [self.activityIndicatorView stopAnimating];
+}
+
+- (void)showAlertForMessage:(NSString *)errorMessage
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+    [alert show];
 }
 
 @end

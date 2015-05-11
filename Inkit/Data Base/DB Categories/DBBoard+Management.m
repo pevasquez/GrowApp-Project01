@@ -15,34 +15,6 @@
 #define kDBBoard     @"DBBoard"
 
 @implementation DBBoard (Management)
-+ (NSArray *)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBBoard];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:kBoardTitle ascending:YES]];
-    
-    NSError *error;
-    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
-    NSMutableArray* boards = [[NSMutableArray alloc] init];
-    
-    if ([matches count]&&!error) {
-        for (DBBoard* board in matches) {
-            [boards addObject:board];
-        }
-        return boards;
-    } else {
-        return nil;
-    }
-}
-
-+ (void)getBoardsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    if ([DBBoard getBoardsInManagedObjectContext:managedObjectContext]) {
-        [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-    } else {
-        [InkitService getBoardsWithTarget:target completeAction:completeAction completeError:completeError];
-    }
-}
-
 - (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     [InkitService updateBoard:self withDictionary:boardDictionary target:target completeAction:completeAction completeError:completeError];
@@ -53,9 +25,14 @@
     [InkitService deleteBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
+- (void)getInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
+    if ([self getInksFromBoard]) {
+        [target performSelectorOnMainThread:completeAction withObject:[self getInksFromBoard] waitUntilDone:NO];
+    }
+    [InkitService getInksFromBoard:self withTarget:target completeAction:completeAction completeError:completeError];
+}
 
-- (NSArray *)getInksFromBoard
-{
+- (NSArray *)getInksFromBoard {
     NSArray* inksArray = [self.inks allObjects];
     NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"inkDescription" ascending:YES];
     NSArray* descriptors = [NSArray arrayWithObject:valueDescriptor];
@@ -97,7 +74,6 @@
     [DataManager saveContext];
 }
 
-//
 + (DBBoard *)withID:(NSString *)boardID
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"boardID = %@",boardID];
@@ -121,14 +97,39 @@
 
 - (void)updateWithJson:(NSDictionary *)jsonDictionary
 {
-    if ([jsonDictionary objectForKey:kBoardID]) {
-        self.boardID = [NSString stringWithFormat:@"%@",jsonDictionary[kBoardID]];
+    if ([jsonDictionary objectForKey:@"id"]) {
+        self.boardID = [NSString stringWithFormat:@"%@",jsonDictionary[@"id"]];
     }
-    if ([jsonDictionary objectForKey:kBoardTitle]) {
-        self.boardTitle = jsonDictionary[kBoardTitle];
+    if ([jsonDictionary objectForKey:@"name"]) {
+        self.boardTitle = jsonDictionary[@"name"];
     }
-    if ([jsonDictionary objectForKey:kBoardDescription]) {
-        self.boardDescription = jsonDictionary[kBoardDescription];
+    if ([jsonDictionary objectForKey:@"description"]) {
+        self.boardDescription = jsonDictionary[@"description"];
+    }
+    if ([jsonDictionary objectForKey:@"created_at"]) {
+        //
+    }
+    if ([jsonDictionary objectForKey:@"extra_data"]) {
+        //
+    }
+    if ([jsonDictionary objectForKey:@"followers_count"]) {
+        //
+    }
+    if ([jsonDictionary objectForKey:@"inks_count"]) {
+        //
+    }
+    if ([jsonDictionary objectForKey:@"owner"]) {
+        NSDictionary* userDictionary = jsonDictionary[@"owner"][@"data"];
+        self.user = [DBUser fromJson:userDictionary];
+    }
+    if ([jsonDictionary objectForKey:@"preview_inks"]) {
+        NSDictionary* inksDictionary = jsonDictionary[@"preview_inks"][@"data"];
+        for (NSDictionary* inkDictionary in inksDictionary) {
+            [self addInksObject:[DBInk fromJson:inkDictionary]];
+        }
+    }
+    if ([jsonDictionary objectForKey:@"updated_at"]) {
+        //
     }
 }
 

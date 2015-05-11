@@ -11,5 +11,5 @@
 
 @interface ViewInkTableViewCell : UITableViewCell
 @property (nonatomic)double cellHeight;
-- (void)configureForInk:(DBInk *)ink;
+@property (strong, nonatomic) DBInk* ink;
 @end

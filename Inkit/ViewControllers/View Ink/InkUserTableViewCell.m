@@ -9,6 +9,7 @@
 #import "InkUserTableViewCell.h"
 #import "ProfileImageView.h"
 #import "DBUser+Management.h"
+#import "DBImage+Management.h"
 
 @interface InkUserTableViewCell()
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;
@@ -17,9 +18,14 @@
 @end
 @implementation InkUserTableViewCell
 
-- (void)configureForInk:(DBInk *)ink
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    [self configureForInk];
+//}
+
+- (void)configureForInk
 {
-    self.userNameLabel.text = ink.user.name;
-    self.userImageView.image = [UIImage imageWithData:ink.user.userImage];
+    self.userNameLabel.text = self.ink.user.fullName;
+    [self.ink.user.profilePicThumbnail setInImageView:self.userImageView];
 }
 @end

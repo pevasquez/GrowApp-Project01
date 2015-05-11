@@ -58,7 +58,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 {
     CommentsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CommentsTableViewCellIdentifier];
     DBComment* comment = self.commentsArray[indexPath.row];
-    [cell configureForComment:comment];
+    cell.comment =comment;
     return cell;
 }
 
@@ -66,7 +66,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CommentsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CommentsTableViewCellIdentifier];
-    [cell configureForComment:self.commentsArray[indexPath.row]];
+    cell.comment = self.commentsArray[indexPath.row];
     
     // Make sure the constraints have been added to this cell, since it may have just been created from scratch
     [cell setNeedsUpdateConstraints];

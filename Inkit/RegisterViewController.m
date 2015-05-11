@@ -34,10 +34,16 @@
 
 @implementation RegisterViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self hideActivityIndicator];
+    [self loadUserData];
+}
+
+- (void)loadUserData
+{
     if (!self.userDictionary) {
         self.userDictionary = [[NSMutableDictionary alloc] init];
     }
@@ -78,13 +84,6 @@
 - (void)registerUser {
     if ([self verifyTextFields]) {
         // Continue registration process
-//        self.user = [DBUser createNewUser];
-//        self.user.email = self.eMailTextField.text;
-//        self.user.password = self.passwordTextfield.text;
-//        self.user.firstName = self.firstNameTextField.text;
-//        self.user.lastName = self.lastNameTextField.text;
-        
-        // actualizar dictionary con datos de textfields
         self.userDictionary[kUserEmail] = self.eMailTextField.text;
         self.userDictionary[kUserFirstName] = self.firstNameTextField.text;
         self.userDictionary[kUserLastName] = self.lastNameTextField.text;
@@ -206,6 +205,12 @@
     self.userType.userInteractionEnabled = NO;
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
+    [self.eMailTextField resignFirstResponder];
+    [self.passwordTextfield resignFirstResponder];
+    [self.confirmPasswordTextField resignFirstResponder];
+    [self.firstNameTextField resignFirstResponder];
+    [self.lastNameTextField resignFirstResponder];
+    [self.userType resignFirstResponder];
 }
 
 - (void) hideActivityIndicator
@@ -222,7 +227,6 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-
     self.activeTextField = nil;
 //    if (textField == self.passwordTextfield) {
 //        if ([textField.text length] >= 6) {
@@ -281,7 +285,6 @@
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 
-//Código para que al dar enter se pase al textField de abajo.
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == self.firstNameTextField) {
