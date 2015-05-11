@@ -108,6 +108,8 @@
 		FBD2FEEB1ADB550F005D1AAE /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEEA1ADB550F005D1AAE /* DBBodyPart.m */; };
 		FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEED1ADB550F005D1AAE /* DBComment.m */; };
 		FBD2FEF11ADB55ED005D1AAE /* DBShop.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEF01ADB55ED005D1AAE /* DBShop.m */; };
+		FBD79FB31B000CFA0011BDEE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD79FB11B000CFA0011BDEE /* Fabric.framework */; };
+		FBD79FB41B000CFA0011BDEE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD79FB21B000CFA0011BDEE /* Crashlytics.framework */; };
 		FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */; };
 		FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */; };
 		FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */; };
@@ -288,6 +290,8 @@
 		FBD2FEED1ADB550F005D1AAE /* DBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBComment.m; path = "Data Base/DB Subclasses/DBComment.m"; sourceTree = "<group>"; };
 		FBD2FEEF1ADB55ED005D1AAE /* DBShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBShop.h; path = "Data Base/DB Subclasses/DBShop.h"; sourceTree = "<group>"; };
 		FBD2FEF01ADB55ED005D1AAE /* DBShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBShop.m; path = "Data Base/DB Subclasses/DBShop.m"; sourceTree = "<group>"; };
+		FBD79FB11B000CFA0011BDEE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		FBD79FB21B000CFA0011BDEE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		FBD86C061AAE29C300FA369C /* Inkitv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inkitv2.xcdatamodel; sourceTree = "<group>"; };
 		FBD91E0E1A960EDA00B00724 /* BoardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardsCollectionView.h; path = "Custom Classes/ViewBoards/BoardsCollectionView.h"; sourceTree = "<group>"; };
 		FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardsCollectionView.m; path = "Custom Classes/ViewBoards/BoardsCollectionView.m"; sourceTree = "<group>"; };
@@ -345,11 +349,13 @@
 				86DFBC701AF56858000EAF62 /* AssetsLibrary.framework in Frameworks */,
 				86DFBC6C1AF5607C000EAF62 /* SystemConfiguration.framework in Frameworks */,
 				86DFBC6A1AF56071000EAF62 /* Security.framework in Frameworks */,
+				FBD79FB41B000CFA0011BDEE /* Crashlytics.framework in Frameworks */,
 				86DFBC681AF554F1000EAF62 /* CoreMotion.framework in Frameworks */,
 				8673CB191AFA6F7A00179FA2 /* GoogleOpenSource.framework in Frameworks */,
 				86DFBC661AF554DF000EAF62 /* AddressBook.framework in Frameworks */,
 				FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */,
 				FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */,
+				FBD79FB31B000CFA0011BDEE /* Fabric.framework in Frameworks */,
 				8673CB171AFA6F6D00179FA2 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,6 +595,8 @@
 		FBC433111A8556B200EFAA24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBD79FB11B000CFA0011BDEE /* Fabric.framework */,
+				FBD79FB21B000CFA0011BDEE /* Crashlytics.framework */,
 				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
 				8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */,
 				8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */,
@@ -880,6 +888,7 @@
 				FBDCB18E1A83EB1800E05053 /* Sources */,
 				FBDCB18F1A83EB1800E05053 /* Frameworks */,
 				FBDCB1901A83EB1800E05053 /* Resources */,
+				FBD79FAB1B000C670011BDEE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -974,6 +983,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FBD79FAB1B000C670011BDEE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a02646c584fe01ead4fee4188b2fe52dd0ce9eba c9ba5cb4c08ac0561389d0c028d92389afe54bd1dd3e5a2efa91ec0f83ea8c3a";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FBDCB18E1A83EB1800E05053 /* Sources */ = {
@@ -1206,6 +1231,7 @@
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1230,6 +1256,7 @@
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1253,6 +1280,7 @@
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1278,6 +1306,7 @@
 					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = InkitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

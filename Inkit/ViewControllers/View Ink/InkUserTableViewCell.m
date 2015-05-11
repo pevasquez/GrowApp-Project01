@@ -25,7 +25,7 @@
 
 - (void)configureForInk
 {
-    self.userNameLabel.text = self.ink.user.name;
+    self.userNameLabel.text = self.ink.user.fullName;
     [self.ink.user.profilePicThumbnail setInImageView:self.userImageView];
 }
 @end
