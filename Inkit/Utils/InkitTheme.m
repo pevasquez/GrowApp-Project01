@@ -21,7 +21,7 @@
 
 + (UIColor *)getBackgroundColor
 {
-    return [UIColor colorWithRed:217.0/255.0 green:217.0/255.0 blue:217.0/255.0 alpha:1];
+    return [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1];
 }
 
 + (void)setUpNavigationBarForViewController:(UIViewController *)viewController;

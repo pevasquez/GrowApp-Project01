@@ -23,7 +23,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *userType;
-@property (strong, nonatomic) DBUser *user;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIView *scrollView;
@@ -90,6 +89,7 @@
         self.userDictionary[kUserPassword] = self.passwordTextfield.text;
         
         [self showActivityIndicator];
+        [self hideKeyboard];
         [InkitService registerUserDictionary:self.userDictionary WithTarget:self completeAction:@selector(registerUserComplete) completeError:@selector(registerUserError:)];
     }
 }
@@ -121,7 +121,7 @@
 
 - (void)registerUserComplete {
     [self hideActivityIndicator];
-    [self.delegate registrationCompleteForUser:self.user];
+    [self.delegate registrationComplete];
 
 }
 - (BOOL)verifyTextFields
@@ -228,14 +228,8 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     self.activeTextField = nil;
-//    if (textField == self.passwordTextfield) {
-//        if ([textField.text length] >= 6) {
-//        } else {
-//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hey!" message:@"Please Enter at least 6 characters for the password" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-//            [alert show];
-//        }
-//    }
 }
+
 #pragma mark - Keyboard Notifications
 - (void)registerForKeyboardNotifications
 {
@@ -303,7 +297,16 @@
     return NO;
 }
 - (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
-    [self.activeTextField resignFirstResponder];
+    [self hideKeyboard];
+}
+
+- (void)hideKeyboard {
+    [self.firstNameTextField resignFirstResponder];
+    [self.lastNameTextField resignFirstResponder];
+    [self.passwordTextfield resignFirstResponder];
+    [self.eMailTextField resignFirstResponder];
+    [self.confirmPasswordTextField resignFirstResponder];
+    [self.userType resignFirstResponder];
 }
 
 - (IBAction)backButtonPressed:(id)sender {

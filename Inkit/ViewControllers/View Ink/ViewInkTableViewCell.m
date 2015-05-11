@@ -19,4 +19,9 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.ink = nil;
+}
 @end

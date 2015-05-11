@@ -11,7 +11,7 @@
 
 @protocol RegisterDelegate <NSObject>
 
-- (void)registrationCompleteForUser:(DBUser *)user;
+- (void)registrationComplete;
 
 @end
 

@@ -63,6 +63,9 @@
                                                 <exclude reference="wsB-IE-pyd"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="facebookLoginPressed:" destination="sSr-JA-j5N" eventType="touchUpInside" id="Z7D-3G-ISo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EH8-aQ-Ujn" customClass="RoundedCornerButton">
                                         <rect key="frame" x="30" y="171" width="540" height="36"/>
@@ -81,6 +84,9 @@
                                                 <exclude reference="4PS-a6-eFC"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="GoogleSignInButton:" destination="sSr-JA-j5N" eventType="touchUpInside" id="L8A-dG-00V"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqJ-cX-8aC" userLabel="separator">
                                         <rect key="frame" x="30" y="222" width="540" height="25"/>
@@ -670,7 +676,7 @@
                                             <constraint firstAttribute="width" constant="35" id="EES-0F-NQU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" title="Back">
+                                        <state key="normal" title="&lt;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>

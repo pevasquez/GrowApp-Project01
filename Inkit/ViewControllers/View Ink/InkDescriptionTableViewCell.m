@@ -30,6 +30,11 @@
     }
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.inkDescriptionLabel.text = nil;
+}
 - (void)configureForDescription:(NSString *)inkDescription
 {
     self.inkDescriptionLabel.text = inkDescription;
