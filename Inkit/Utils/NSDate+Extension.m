@@ -11,7 +11,6 @@
 @implementation NSDate (Extension)
 
 + (NSDate *)fromUnixTimeStamp:(NSString *)timeStamp {
-    NSLog(@"%@", timeStamp);
 
     NSTimeInterval interval= [timeStamp doubleValue];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];

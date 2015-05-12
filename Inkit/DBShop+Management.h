@@ -9,10 +9,6 @@
 
 
 @interface DBShop (Management)
-+ (void)createMockShopInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (DBShop *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (DBShop *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
 // Get Shop
 + (NSArray *)getShopSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBShop *)fromJson: (NSDictionary *)jsonDictionary;

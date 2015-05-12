@@ -106,6 +106,7 @@
 //        self.shops = jsonDictionary[@"shops"];
 //    if ([jsonDictionary objectForKey:@"tattoo_types"])
 //        self.tattooTypes = jsonDictionary[@"tattoo_types"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationUserUpdate object:nil userInfo:@{kDBUser:self}];
 }
 
 - (DBBoard *)createBoardFromJson:(NSDictionary *)boardDictionary

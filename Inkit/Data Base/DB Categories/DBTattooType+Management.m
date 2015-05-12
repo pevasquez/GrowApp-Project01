@@ -37,30 +37,27 @@
     return tattooType;
 }
 
-- (void)updateWithJson:(NSDictionary *)tattooTypeDictionary
-{
+- (void)updateWithJson:(NSDictionary *)tattooTypeDictionary {
+    
     if ([tattooTypeDictionary objectForKey:@"name"]) {
         self.name = [tattooTypeDictionary objectForKey:@"name"];
     }
 }
 
-+ (NSArray *)getTattooTypeSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:KDBTattooType];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:kDBTattooTypeName ascending:YES]];
++ (NSArray *)getTattooTypeSorted {
     
-    NSError *error;
-    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
-    NSMutableArray* tattooTypes = [[NSMutableArray alloc] init];
-    
-    if ([matches count]&&!error) {
-        for (DBTattooType* tattooType in matches) {
-            [tattooTypes addObject:tattooType];
-        }
-        return tattooTypes;
-    } else {
-        return nil;
-    }
+    return [[DataManager sharedInstance] fetch:KDBTattooType predicate:nil sort:@[[NSSortDescriptor sortDescriptorWithKey:kDBTattooTypeName ascending:YES]] limit:0];
 }
 
++ (NSString *)stringFromArray:(NSArray *)tattooTypesArray {
+    NSString* tattooTypesString = [[NSMutableString alloc] init];
+    
+    for (DBTattooType* tattooType in tattooTypesArray) {
+        tattooTypesString = [tattooTypesString stringByAppendingString:[NSString stringWithFormat:@"%@",tattooType.name]];
+        if (!(tattooType == tattooTypesArray.lastObject)) {
+            tattooTypesString = [tattooTypesString stringByAppendingString:@", "];
+        }
+    }
+    return tattooTypesString;
+}
 @end

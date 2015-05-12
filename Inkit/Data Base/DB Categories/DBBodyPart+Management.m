@@ -43,23 +43,22 @@
     }
 }
 
-+ (NSArray *)getBodyPartsSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBBodyPart];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:kDBBodyPartName ascending:YES]];
++ (NSArray *)getBodyPartsSorted {
     
-    NSError *error;
-    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
-    NSMutableArray* bodyParts = [[NSMutableArray alloc] init];
-    
-    if ([matches count]&&!error) {
-        for (DBBodyPart* bodyPart in matches) {
-            [bodyParts addObject:bodyPart];
-        }
-        return bodyParts;
-    } else {
-        return nil;
-    }
+    return [[DataManager sharedInstance] fetch:kDBBodyPart predicate:nil sort:@[[NSSortDescriptor sortDescriptorWithKey:kDBBodyPartName ascending:YES]] limit:0];
 }
+
++ (NSString *)stringFromArray:(NSArray *)bodyPartsArray {
+    NSString* bodyPartsString = [[NSMutableString alloc] init];
+    
+    for (DBBodyPart* bodyPart in bodyPartsArray) {
+        bodyPartsString = [bodyPartsString stringByAppendingString:[NSString stringWithFormat:@"%@",bodyPart.name]];
+        if (!(bodyPart == bodyPartsArray.lastObject)) {
+            bodyPartsString = [bodyPartsString stringByAppendingString:@", "];
+        }
+    }
+    return bodyPartsString;
+}
+
 
 @end

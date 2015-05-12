@@ -10,7 +10,8 @@
 
 @interface DBBodyPart (Management)
 + (DBBodyPart *)fromJson:(NSDictionary *)bodyPartDictionary;
++ (NSString *)stringFromArray:(NSArray *)bodyPartsArray;
 
 // Get Body Parts
-+ (NSArray *)getBodyPartsSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (NSArray *)getBodyPartsSorted;
 @end

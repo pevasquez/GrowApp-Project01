@@ -11,10 +11,10 @@
 #import "CreateBoardViewController.h"
 
 @protocol SelectBoardDelegate <NSObject>
-- (void)boardSelected:(DBBoard *)board;
+- (void)didSelectBoard:(DBBoard *)board;
 @end
 
 @interface SelectBoardTableViewController : UITableViewController <CreateBoardDelegate>
-@property (strong, nonatomic) DBUser *activeUser;
+@property (strong, nonatomic) DBBoard *selectedBoard;
 @property (weak, nonatomic) id <SelectBoardDelegate> delegate;
 @end

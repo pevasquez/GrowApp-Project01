@@ -9,30 +9,22 @@
 #import "DBShop+Management.h"
 #import "DBUser+Management.h"
 #import "DataManager.h"
+#import "InkitConstants.h"
 
 @implementation DBShop (Management)
 
 
-#define kDBShop @"DBShop"
 #define kDBShopName @"name"
-
-+ (DBShop *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (DBShop *)newShop
 {
-    DBShop* shop = [NSEntityDescription insertNewObjectForEntityForName:kDBShop
-                                                     inManagedObjectContext:managedObjectContext];
-    return shop;
-}
-
-+ (DBShop *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBShop* shop = [DBShop createInManagedObjectContext:managedObjectContext];
-    shop.name = name;
+    DBShop* shop = (DBShop *)[[DataManager sharedInstance] insert:kDBShop];
+    shop.name = @"";
     return shop;
 }
 
 + (DBShop *)fromJson:(NSDictionary *)jsonDictionary
 {
-    DBShop* shop = [DBShop createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    DBShop* shop = [DBShop newShop];
     [shop updateWithJson:jsonDictionary];
     return shop;
 }
@@ -53,18 +45,4 @@
     return matches;
 }
 
-
-+ (void)createMockShopInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSArray* currentShop = [DBShop getShopSortedInManagedObjectContext:managedObjectContext];
-    for (DBShop* shop in currentShop) {
-        [managedObjectContext deleteObject:shop];
-    }
-    
-    NSArray* shopArray = @[];
-    
-    for (NSString* name in shopArray) {
-        [DBShop createWithName:name InManagedObjectContext:managedObjectContext];
-    }
-}
 @end
