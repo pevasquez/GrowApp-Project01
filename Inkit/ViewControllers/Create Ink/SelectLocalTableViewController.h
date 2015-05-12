@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DBInk+Management.h"
-
+// Delegate
+@protocol SelectLocalDelegate
+- (void)didSelectLocals:(NSArray *)locals forType:(NSString *)type;
+@end
 @interface SelectLocalTableViewController : UITableViewController <UISearchBarDelegate>
-@property (strong, nonatomic)DBInk* editingInk;
 @property (strong, nonatomic) NSArray* localsArray;
+@property (strong, nonatomic)NSMutableArray *selectedLocalsArray;
+@property (nonatomic, weak) id<SelectLocalDelegate> delegate;
+
 @end

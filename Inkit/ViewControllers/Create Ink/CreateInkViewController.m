@@ -47,7 +47,7 @@ typedef enum
     kCreateInkTotal,
 } kCreateInkCells;
 
-@interface CreateInkViewController () <SelectBoardDelegate>
+@interface CreateInkViewController () <SelectBoardDelegate, SelectLocalDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *createInkTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *createBarButtonItem;
@@ -352,13 +352,14 @@ typedef enum
         selectBoardTableViewController.delegate = self;
     } else if ([[segue destinationViewController] isKindOfClass:[SelectLocalTableViewController class]]) {
         SelectLocalTableViewController* selectLocalTableViewController = [segue destinationViewController];
-        selectLocalTableViewController.editingInk = self.ink;
         NSIndexPath* indexPath = (NSIndexPath* )sender;
         if (indexPath.row == kCreateInkBodyPartIndex) {
             selectLocalTableViewController.localsArray = [DBBodyPart getBodyPartsSortedInManagedObjectContext:self.activeUser.managedObjectContext];
+            selectLocalTableViewController.selectedLocalsArray = self.inkData[@"bodyParts"];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Body Parts",nil);
         } else if (indexPath.row == kCreateInkTattooTypeIndex) {
             selectLocalTableViewController.localsArray = [DBTattooType getTattooTypeSortedInManagedObjectContext:self.activeUser.managedObjectContext];
+            selectLocalTableViewController.selectedLocalsArray = self.inkData[@"tattooTypes"];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Tattoo Types",nil);
         }
     } else if ([[segue destinationViewController] isKindOfClass:[SelectRemoteViewController class]]) {
@@ -492,6 +493,14 @@ typedef enum
     [self.createInkTableView reloadData];
 }
 
+- (void)didSelectLocals:(NSArray *)locals forType:(NSString *)type
+{
+    if ([type isEqualToString:@"bodyParts"]) {
+        self.inkData[@"bodyParts"] = locals;
+    } else if ([type isEqualToString:@"tattooTypes"]) {
+        self.inkData[@"tattooTypes"] = locals;
+    }
+}
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator
 {

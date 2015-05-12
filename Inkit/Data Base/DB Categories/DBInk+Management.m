@@ -19,6 +19,7 @@
 #import "DataManager.h"
 #import "InkitServiceConstants.h"
 #import "InkitConstants.h"
+#import "NSDate+Extension.h"
 
 #define kDBInk     @"DBInk"
 
@@ -204,12 +205,13 @@
     if ([inkData objectForKey:@"user"]) {
         self.user = [DBUser fromJson:inkData[@"user"][@"data"]];
     }
-//    if ([inkData objectForKey:@"created_at"]) {
-//        ink.createdAt = inkData[@"created_at"];
-//    }
-//    if ([inkData objectForKey:@"updated_at"]) {
-//        ink.updatedAt = inkData[@"updated_at"];
-//    }
+    if ([inkData objectForKey:@"created_at"]) {
+        self.createdAt = [NSDate fromUnixTimeStamp:inkData[@"created_at"]];
+      }
+    
+    if ([inkData objectForKey:@"updated_at"]) {
+        self.updatedAt = [NSDate fromUnixTimeStamp:inkData[@"created_at"]];
+    }
     if ([inkData objectForKey:@"likes_count"] && !([inkData objectForKey:@"likes_count"] == [NSNull null])) {
         self.likesCount = inkData[@"likes_count"];
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PlJ-6E-uV8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PlJ-6E-uV8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -533,15 +533,15 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oscar White" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfb-rp-EOX">
-                                                                        <rect key="frame" x="33" y="14" width="237" height="15"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <rect key="frame" x="33" y="14.5" width="237" height="14.5"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="lYj-3x-ogH" firstAttribute="top" secondItem="lAs-et-Pcg" secondAttribute="topMargin" constant="-3" id="6Pr-Ch-9OU"/>
-                                                                    <constraint firstAttribute="centerY" secondItem="vfb-rp-EOX" secondAttribute="centerY" constant="0.25" id="Bo8-M1-2UQ"/>
+                                                                    <constraint firstAttribute="centerY" secondItem="vfb-rp-EOX" secondAttribute="centerY" id="Bo8-M1-2UQ"/>
                                                                     <constraint firstAttribute="centerY" secondItem="lYj-3x-ogH" secondAttribute="centerY" constant="-0.25" id="Mo1-4M-MrV"/>
                                                                     <constraint firstItem="vfb-rp-EOX" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lAs-et-Pcg" secondAttribute="trailingMargin" id="QBi-dy-Iyu"/>
                                                                     <constraint firstItem="lYj-3x-ogH" firstAttribute="leading" secondItem="lAs-et-Pcg" secondAttribute="leadingMargin" constant="-8" id="ScH-cP-wPF"/>

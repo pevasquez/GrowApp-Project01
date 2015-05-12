@@ -18,6 +18,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 @property (strong, nonatomic) NSMutableArray* filteredLocalsArray;
 @property (weak, nonatomic) IBOutlet UISearchBar *localsSearchBar;
 
+
 @end
 
 @implementation SelectLocalTableViewController
@@ -28,6 +29,8 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     [self customizeNavigationBar];
     [self customizeTableView];
     [self reloadFilteredLocals];
+    
+    NSMutableArray *selectedLocalsArray = [NSMutableArray arrayWithObjects:@"Animal", @"Baby", @"Aries",nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,7 +53,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     if ([local isKindOfClass:[DBBodyPart class]]) {
         DBBodyPart* bodyPart = self.filteredLocalsArray[indexPath.row];
         cell.textLabel.text = bodyPart.name;
-        if ([self.editingInk.bodyParts containsObject:bodyPart]) {
+        if ([self.selectedLocalsArray containsObject:bodyPart]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -58,7 +61,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     } else if ([local isKindOfClass:[DBTattooType class]]) {
         DBTattooType* tattooType = self.filteredLocalsArray[indexPath.row];
         cell.textLabel.text = tattooType.name;
-        if ([self.editingInk.tattooTypes containsObject:tattooType]) {
+        if ([self.selectedLocalsArray containsObject:tattooType]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -79,18 +82,18 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     
     if ([local isKindOfClass:[DBBodyPart class]]) {
         DBBodyPart* bodyPart = (DBBodyPart *)local;
-        if ([self.editingInk.bodyParts containsObject:bodyPart]) {
-            [self.editingInk removeBodyPartsObject:bodyPart];
+        if ([self.selectedLocalsArray containsObject:bodyPart]) {
+            [self.selectedLocalsArray removeObject:bodyPart];
         } else {
-            [self.editingInk addBodyPartsObject:bodyPart];
+            [self.selectedLocalsArray addObject:bodyPart];
         }
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     } else if ([local isKindOfClass:[DBTattooType class]]) {
         DBTattooType* tattooType = (DBTattooType *)local;
-        if ([self.editingInk.tattooTypes containsObject:tattooType]) {
-            [self.editingInk removeTattooTypesObject:tattooType];
+        if ([self.selectedLocalsArray containsObject:tattooType]) {
+            [self.selectedLocalsArray removeObject:tattooType];
         } else {
-            [self.editingInk addTattooTypesObject:tattooType];
+            [self.selectedLocalsArray addObject:tattooType];
         }
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
@@ -148,6 +151,16 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     self.filteredLocalsArray = [NSMutableArray arrayWithArray:self.localsArray];
 }
 - (IBAction)okButtonPressed:(UIBarButtonItem *)sender {
+    
+    NSManagedObject* local = [self.localsArray firstObject];
+
+    if ([local isKindOfClass:[DBTattooType class]]) {
+        [self.delegate didSelectLocals:self.selectedLocalsArray forType:@"tattooType"];
+    } else {
+        [self.delegate didSelectLocals:self.selectedLocalsArray forType:@"bodyPart"];
+
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
