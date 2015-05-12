@@ -12,8 +12,6 @@
 #import "InkitConstants.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 @interface AppDelegate () <TutorialViewControllerDelegate>
 
 @end
@@ -111,8 +109,6 @@
             [self setTutorialViewController];
         }
     }
-    
-    [Fabric with:@[CrashlyticsKit]];
 
     return YES;
 }

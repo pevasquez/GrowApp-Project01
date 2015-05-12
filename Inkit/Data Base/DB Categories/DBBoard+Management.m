@@ -11,6 +11,7 @@
 #import "DataManager.h"
 #import "InkitServiceConstants.h"
 #import "InkitConstants.h"
+#import "NSDate+Extension.h"
 
 #define kDBBoard     @"DBBoard"
 
@@ -107,7 +108,7 @@
         self.boardDescription = jsonDictionary[@"description"];
     }
     if ([jsonDictionary objectForKey:@"created_at"]) {
-        //
+        self.createdAt = [NSDate fromUnixTimeStamp:jsonDictionary[@"created_at"]];
     }
     if ([jsonDictionary objectForKey:@"extra_data"]) {
         //
@@ -129,7 +130,7 @@
         }
     }
     if ([jsonDictionary objectForKey:@"updated_at"]) {
-        //
+
     }
 }
 

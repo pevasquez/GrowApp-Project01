@@ -14,5 +14,5 @@
 @end
 
 @interface TutorialViewController : UIPageViewController
-@property (nonatomic, weak) id<TutorialViewControllerDelegate> tutorialDelegate;
+@property (nonatomic, weak) id <TutorialViewControllerDelegate> tutorialDelegate;
 @end

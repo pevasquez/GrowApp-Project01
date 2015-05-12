@@ -14,7 +14,7 @@
 @end
 
 @interface TutorialStepViewController : UIViewController
-@property (nonatomic, weak) id<TutorialStepViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <TutorialStepViewControllerDelegate> delegate;
 @property (nonatomic, strong) TutorialPage *page;
 
 @end
