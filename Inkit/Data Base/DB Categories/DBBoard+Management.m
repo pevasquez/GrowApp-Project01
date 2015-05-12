@@ -132,6 +132,8 @@
     if ([jsonDictionary objectForKey:@"updated_at"]) {
 
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationBoardUpdate object:nil userInfo:@{kDBBoard:self}];
+
 }
 
 @end

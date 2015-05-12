@@ -9,6 +9,7 @@
 #import "SelectLocalTableViewController.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
+#import "InkitConstants.h"
 #import "InkitTheme.h"
 
 static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
@@ -29,8 +30,9 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     [self customizeNavigationBar];
     [self customizeTableView];
     [self reloadFilteredLocals];
-    
-    NSMutableArray *selectedLocalsArray = [NSMutableArray arrayWithObjects:@"Animal", @"Baby", @"Aries",nil];
+    if (!self.selectedLocalsArray) {
+        self.selectedLocalsArray = [[NSMutableArray alloc] init];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -99,20 +101,9 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     }
 }
 
-#pragma mark - Appearence Methods
-- (void)customizeNavigationBar
-{
-    [InkitTheme setUpNavigationBarForViewController:self];
-}
-
-- (void)customizeTableView
-{
-    self.localsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-}
 
 #pragma mark - Search Bar Delegate Methods
--(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
-{
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
     [self.filteredLocalsArray removeAllObjects];
     // Filter the array using NSPredicate
     if (![text isEqualToString:@""]) {
@@ -128,12 +119,10 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     [self.localsTableView reloadData];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.localsSearchBar resignFirstResponder];
 }
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self.localsSearchBar resignFirstResponder];
 }
 
@@ -141,27 +130,34 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     [self.localsSearchBar resignFirstResponder];
 }
 
--(void)hideSearchBar
-{
+-(void)hideSearchBar {
     [self.localsTableView setContentOffset:CGPointMake(0,44) animated:NO];
 }
 
-- (void)reloadFilteredLocals
-{
+- (void)reloadFilteredLocals {
     self.filteredLocalsArray = [NSMutableArray arrayWithArray:self.localsArray];
 }
+
 - (IBAction)okButtonPressed:(UIBarButtonItem *)sender {
     
     NSManagedObject* local = [self.localsArray firstObject];
 
     if ([local isKindOfClass:[DBTattooType class]]) {
-        [self.delegate didSelectLocals:self.selectedLocalsArray forType:@"tattooType"];
+        [self.delegate didSelectLocals:self.selectedLocalsArray forType:kInkTattooTypes];
     } else {
-        [self.delegate didSelectLocals:self.selectedLocalsArray forType:@"bodyPart"];
-
+        [self.delegate didSelectLocals:self.selectedLocalsArray forType:kInkBodyParts];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Appearence Methods
+- (void)customizeNavigationBar {
+    [InkitTheme setUpNavigationBarForViewController:self];
+}
+
+- (void)customizeTableView {
+    self.localsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 @end

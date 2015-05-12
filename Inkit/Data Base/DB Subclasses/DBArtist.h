@@ -14,7 +14,7 @@
 
 @interface DBArtist : DBUser
 
-@property (nonatomic, retain) NSNumber * artistId;
+@property (nonatomic, retain) NSString * artistId;
 @property (nonatomic, retain) DBUser *user;
 @property (nonatomic, retain) NSSet *didInks;
 @end

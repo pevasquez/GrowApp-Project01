@@ -24,14 +24,9 @@
 #define kDBInk     @"DBInk"
 
 @implementation DBInk (Management)
-+ (DBInk *)createNewInk
-{
-    return [DBInk createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
-}
-
 + (DBInk *)inkWithInk:(DBInk *)ink
 {
-    DBInk* newInk = [DBInk createNewInk];
+    DBInk* newInk = [DBInk newInk];
     newInk.inkID = ink.inkID;
     newInk.likesCount = ink.likesCount;
     newInk.createdAt = ink.createdAt;
@@ -47,30 +42,6 @@
     newInk.board = ink.board;
     newInk.user = ink.user;
     return newInk;
-}
-
-+ (DBInk *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBInk* ink = [NSEntityDescription insertNewObjectForEntityForName:kDBInk inManagedObjectContext:managedObjectContext];
-    ink.inkDescription = @"";
-    
-    // Save context
-    NSError* error = nil;
-    [managedObjectContext save:&error];
-    return ink;
-}
-
-+ (DBInk *)createWithImage:(UIImage *)image AndDescription:(NSString *)description InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBInk* ink = [DBInk createInManagedObjectContext:managedObjectContext];
-    ink.image = [DBImage fromUIImage:image];
-    ink.inkDescription = description;
-    
-    // Save context
-    NSError* error = nil;
-    [managedObjectContext save:&error];
-
-    return ink;
 }
 
 - (UIImage *)getInkImage
@@ -207,8 +178,7 @@
     }
     if ([inkData objectForKey:@"created_at"]) {
         self.createdAt = [NSDate fromUnixTimeStamp:inkData[@"created_at"]];
-      }
-    
+    }
     if ([inkData objectForKey:@"updated_at"]) {
         self.updatedAt = [NSDate fromUnixTimeStamp:inkData[@"created_at"]];
     }
@@ -224,6 +194,7 @@
 //    if ([inkData objectForKey:@"extra_data"]) {
 //        ink.extraData = inkData[@"extra_data"];
 //    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationInkUpdate object:nil userInfo:@{kDBInk:self}];
 }
 
 - (void)updateWithInk:(DBInk *)ink
@@ -260,12 +231,22 @@
 {
     NSArray* bodyParts = self.bodyParts.allObjects;
     NSArray* tattooTypes = self.tattooTypes.allObjects;
-    return @{kInkDescription:self.inkDescription,
-             kInkBoard:self.board,
-             kInkImage:self.image,
-             kInkTattooTypes: tattooTypes,
-             kInkBodyParts:bodyParts
-             };
+    NSMutableDictionary* inkData = [@{kInkDescription:self.inkDescription,
+                                     kInkBoard:self.board,
+                                     kInkImage:self.image} mutableCopy];
+    if ([bodyParts count]) {
+        inkData[kInkBodyParts] = bodyParts;
+    }
+    if ([tattooTypes count]) {
+        inkData[kInkTattooTypes] = tattooTypes;
+    }
+    if (self.artist) {
+        inkData[kInkArtist] = self.artist;
+    }
+    if (self.shop) {
+        inkData[kInkShop] = self.shop;
+    }
+    return inkData;
 }
 
 + (NSDictionary *)emptyDictionary

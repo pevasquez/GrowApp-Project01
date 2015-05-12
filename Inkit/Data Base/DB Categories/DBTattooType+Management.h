@@ -12,5 +12,6 @@
 + (DBTattooType *)fromJson:(NSDictionary *)tattooTypeDictionary;
 
 // Get Body Parts
-+ (NSArray *)getTattooTypeSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (NSArray *)getTattooTypeSorted;
++ (NSString *)stringFromArray:(NSArray *)tattooTypesArray;
 @end

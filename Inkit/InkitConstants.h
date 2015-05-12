@@ -27,6 +27,7 @@
 #define kInkTattooTypes     @"tattoo_types"
 #define kInkBodyParts       @"body_parts"
 #define kInkArtist          @"artist"
+#define kInkShop            @"shop"
 #define kArtistID           @"artist_id"
 
 #define kBodyPartName       @"name"
@@ -45,7 +46,17 @@
 #define kUserSocialNetworkId @"social_network_id"
 
 #define kClientID           @"clientID"
-
 #define kSeenTutorial       @"Seen Tutorial"
+
+
+// Database
+#define kDBImage            @"DBImage"
+#define kDBShop             @"DBShop"
+
+#define DBNotificationInkUpdate     @"DBNotificationInkUpdate"
+#define DBNotificationBoardUpdate   @"DBNotificationBoardUpdate"
+#define DBNotificationUserUpdate    @"DBNotificationUserUpdate"
+#define DBNotificationImageUpdate   @"DBNotificationImageUpdate"
+
 
 #endif

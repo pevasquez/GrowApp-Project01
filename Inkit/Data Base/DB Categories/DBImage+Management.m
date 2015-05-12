@@ -9,28 +9,42 @@
 #import "DBImage+Management.h"
 #import "InkitTheme.h"
 #import "DataManager.h"
+#import "InkitConstants.h"
 
 @implementation DBImage (Management)
-+ (DBImage *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (DBImage *)newImage
 {
-    DBImage* inkImage = [NSEntityDescription insertNewObjectForEntityForName:@"DBImage" inManagedObjectContext:managedObjectContext];
-    
-    return inkImage;
+    DBImage* image = (DBImage *)[[DataManager sharedInstance] insert:kDBImage];
+    // configure image
+    return image;
+}
+
++ (DBImage *)withURL:(NSString *)imageURL
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"imageURL = %@",imageURL];
+    return (DBImage *)[[DataManager sharedInstance] first:kDBImage predicate:predicate sort:nil limit:1];
 }
 
 + (DBImage *)fromURL:(NSString *)URLString
 {
-    DBImage *inkImage = [DBImage createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
-    inkImage.imageURL = URLString;
-    return inkImage;
+    DBImage* obj = [DBImage withURL:URLString];
+    DBImage* image = nil;
+    if (!obj) {
+        image = [DBImage newImage];
+    } else {
+        image = obj;
+    }
+    image.imageURL = URLString;
+    return image;
 }
 
 + (DBImage *)fromUIImage:(UIImage *)image
 {
-    DBImage *inkImage = [DBImage createInManagedObjectContext:[DataManager sharedInstance].managedObjectContext];
+    DBImage *inkImage = [DBImage newImage];
     inkImage.imageData = UIImagePNGRepresentation(image);
     return inkImage;
 }
+
 
 - (void)setInImageView:(UIImageView *)imageView
 {
@@ -53,6 +67,7 @@
                 [activityIndicator removeFromSuperview];
                 self.imageData = imageData;
                 imageView.image = [UIImage imageWithData:self.imageData];
+                [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationImageUpdate object:nil userInfo:@{kDBImage:self}];
             });
         });
     }
