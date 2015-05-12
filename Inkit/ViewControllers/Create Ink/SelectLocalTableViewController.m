@@ -9,6 +9,7 @@
 #import "SelectLocalTableViewController.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
+#import "InkitConstants.h"
 #import "InkitTheme.h"
 
 static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
@@ -17,6 +18,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 @property (strong, nonatomic) IBOutlet UITableView *localsTableView;
 @property (strong, nonatomic) NSMutableArray* filteredLocalsArray;
 @property (weak, nonatomic) IBOutlet UISearchBar *localsSearchBar;
+
 
 @end
 
@@ -28,6 +30,9 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     [self customizeNavigationBar];
     [self customizeTableView];
     [self reloadFilteredLocals];
+    if (!self.selectedLocalsArray) {
+        self.selectedLocalsArray = [[NSMutableArray alloc] init];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,7 +55,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     if ([local isKindOfClass:[DBBodyPart class]]) {
         DBBodyPart* bodyPart = self.filteredLocalsArray[indexPath.row];
         cell.textLabel.text = bodyPart.name;
-        if ([self.editingInk.bodyParts containsObject:bodyPart]) {
+        if ([self.selectedLocalsArray containsObject:bodyPart]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -58,7 +63,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     } else if ([local isKindOfClass:[DBTattooType class]]) {
         DBTattooType* tattooType = self.filteredLocalsArray[indexPath.row];
         cell.textLabel.text = tattooType.name;
-        if ([self.editingInk.tattooTypes containsObject:tattooType]) {
+        if ([self.selectedLocalsArray containsObject:tattooType]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -79,37 +84,26 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     
     if ([local isKindOfClass:[DBBodyPart class]]) {
         DBBodyPart* bodyPart = (DBBodyPart *)local;
-        if ([self.editingInk.bodyParts containsObject:bodyPart]) {
-            [self.editingInk removeBodyPartsObject:bodyPart];
+        if ([self.selectedLocalsArray containsObject:bodyPart]) {
+            [self.selectedLocalsArray removeObject:bodyPart];
         } else {
-            [self.editingInk addBodyPartsObject:bodyPart];
+            [self.selectedLocalsArray addObject:bodyPart];
         }
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     } else if ([local isKindOfClass:[DBTattooType class]]) {
         DBTattooType* tattooType = (DBTattooType *)local;
-        if ([self.editingInk.tattooTypes containsObject:tattooType]) {
-            [self.editingInk removeTattooTypesObject:tattooType];
+        if ([self.selectedLocalsArray containsObject:tattooType]) {
+            [self.selectedLocalsArray removeObject:tattooType];
         } else {
-            [self.editingInk addTattooTypesObject:tattooType];
+            [self.selectedLocalsArray addObject:tattooType];
         }
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
-#pragma mark - Appearence Methods
-- (void)customizeNavigationBar
-{
-    [InkitTheme setUpNavigationBarForViewController:self];
-}
-
-- (void)customizeTableView
-{
-    self.localsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-}
 
 #pragma mark - Search Bar Delegate Methods
--(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
-{
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
     [self.filteredLocalsArray removeAllObjects];
     // Filter the array using NSPredicate
     if (![text isEqualToString:@""]) {
@@ -125,12 +119,10 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     [self.localsTableView reloadData];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self.localsSearchBar resignFirstResponder];
 }
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self.localsSearchBar resignFirstResponder];
 }
 
@@ -138,17 +130,34 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     [self.localsSearchBar resignFirstResponder];
 }
 
--(void)hideSearchBar
-{
+-(void)hideSearchBar {
     [self.localsTableView setContentOffset:CGPointMake(0,44) animated:NO];
 }
 
-- (void)reloadFilteredLocals
-{
+- (void)reloadFilteredLocals {
     self.filteredLocalsArray = [NSMutableArray arrayWithArray:self.localsArray];
 }
+
 - (IBAction)okButtonPressed:(UIBarButtonItem *)sender {
+    
+    NSManagedObject* local = [self.localsArray firstObject];
+
+    if ([local isKindOfClass:[DBTattooType class]]) {
+        [self.delegate didSelectLocals:self.selectedLocalsArray forType:kInkTattooTypes];
+    } else {
+        [self.delegate didSelectLocals:self.selectedLocalsArray forType:kInkBodyParts];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Appearence Methods
+- (void)customizeNavigationBar {
+    [InkitTheme setUpNavigationBarForViewController:self];
+}
+
+- (void)customizeTableView {
+    self.localsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 @end

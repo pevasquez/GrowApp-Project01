@@ -97,7 +97,8 @@ typedef enum
 //                height += 1;
 //                
 //                //return height;
-#warning aca no anda
+#pragma mark - warning aca no anda
+                
                 return kInkImageCellHeight;
                 break;
             }

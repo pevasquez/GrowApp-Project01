@@ -12,7 +12,6 @@
 @interface DBInk (Management)
 + (DBInk *)fromJson:(NSDictionary *)inkData;
 - (void)updateWithJson:(NSDictionary *)inkData;
-+ (DBInk *)createNewInk;
 + (DBInk *)inkWithInk:(DBInk *)ink;
 + (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 

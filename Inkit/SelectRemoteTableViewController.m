@@ -32,32 +32,6 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
     [self hideActivityIndicator];
 }
 
-#pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSManagedObject* remote = self.filteredRemotesArray[indexPath.row];
-    
-    if ([remote isKindOfClass:[DBArtist class]]) {
-        DBArtist* artist = (DBArtist *)remote;
-        if ([self.editingInk.artist isEqual:artist]) {
-            self.editingInk.artist = nil;
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        } else {
-            self.editingInk.artist = artist;
-            [tableView reloadData];
-        }
-    } else if ([remote isKindOfClass:[DBShop class]]) {
-        DBShop* shop = (DBShop *)remote;
-        if ([self.editingInk.shop isEqual:shop]) {
-            self.editingInk.shop = nil;
-        } else {
-            self.editingInk.shop = shop;
-        }
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-}
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -77,12 +51,18 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RemoteTableViewCellIdentifier];
     
-    DBArtist* artist = [self.filteredRemotesArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = artist.fullName;
-    if (self.editingInk.artist == artist) {
+    NSManagedObject* remote = [self.filteredRemotesArray objectAtIndex:indexPath.row];
+    
+    if (self.selectedRemote == remote) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    if ([remote isKindOfClass:[DBArtist class]]) {
+        cell.textLabel.text = ((DBArtist *)remote).fullName;
+    } else if ([remote isKindOfClass:[DBShop class]]) {
+        cell.textLabel.text = ((DBShop *)remote).name;
     }
     return cell;
 }
@@ -94,6 +74,21 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
     [alert show];
 }
 
+#pragma mark - TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSManagedObject* remote = self.filteredRemotesArray[indexPath.row];
+    
+    if ([self.selectedRemote isEqual:remote]) {
+        self.selectedRemote = nil;
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else {
+        self.selectedRemote = remote;
+        [self.delegate didSelectRemote:remote forType:self.type];
+        [self.navigationController popViewControllerAnimated:true];
+    }
+}
+
 #pragma mark - Search Bar Methods
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -102,20 +97,20 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 
 - (void)searchForSearchString:(NSString *)string
 {
-    [InkitService getArtistsForSearchString:string withTarget:self completeAction:@selector(getArtistComplete:) completeError:@selector(getArtistError:)];
+    [InkitService getRemotesForSearchString:string type:self.type withTarget:self completeAction:@selector(getRemotesComplete:) completeError:@selector(getRemotesError:)];
     [self showActivityIndicator];
 }
 
-- (void)getArtistError:(NSString *)stringError
+- (void)getRemotesError:(NSString *)stringError
 {
-    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Artist not found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Term not found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [self hideActivityIndicator];
 }
 
-- (void)getArtistComplete:(NSArray *)artistsArray
+- (void)getRemotesComplete:(NSArray *)remotesArray
 {
-    self.filteredRemotesArray = artistsArray;
+    self.filteredRemotesArray = remotesArray;
     [self.remoteTableView reloadData];
     [self hideActivityIndicator];
 }

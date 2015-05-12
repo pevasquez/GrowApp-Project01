@@ -145,6 +145,10 @@
     return [InkService getDashboardInksWithTarget:target completeAction:completeAction completeError:completeError];
 }
 
++ (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
+    
+    return [InkService getRemotesForSearchString:searchString type:type withTarget:target completeAction:completeAction completeError:completeError];
+}
 + (NSError *)getArtistsForSearchString:(NSString *)searchString withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     return [InkService getArtistsForSearchString:searchString withTarget:target completeAction:completeAction completeError:completeError];

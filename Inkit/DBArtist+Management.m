@@ -14,17 +14,17 @@
 
 #define KDBArtist @"DBArtist"
 #define KDBArtistName @"name"
-
-+ (DBArtist *)createInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (DBArtist *)newArtist
 {
-    DBArtist* artist = [NSEntityDescription insertNewObjectForEntityForName:KDBArtist
-                                                             inManagedObjectContext:managedObjectContext];
+    DBArtist * artist = (DBArtist *)[[DataManager sharedInstance] insert:KDBArtist];
+    // configure artist
+    
     return artist;
 }
 
 + (DBArtist *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    DBArtist* artist = [DBArtist createInManagedObjectContext:managedObjectContext];
+    DBArtist* artist = [DBArtist newArtist];
     artist.name = name;
     return artist;
 }
@@ -37,11 +37,12 @@
 
 + (DBArtist *)fromJson:(NSDictionary *)artistData
 {
-    NSString* artistID = artistData[@"id"];
+    NSString* artistID = [NSString stringWithFormat:@"%@",artistData[@"id"]];
     DBArtist* obj = [DBArtist withID:artistID];
     DBArtist* artist = nil;
     if (!obj) {
         artist = (DBArtist *)[[DataManager sharedInstance] insert:KDBArtist];
+        artist.artistId = artistID;
     } else {
         artist = obj;
     }

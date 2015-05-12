@@ -12,6 +12,7 @@
 #import "InkitService.h"
 #import "InkitConstants.h"
 #import "DataManager.h"
+#import "NSDate+Extension.h"
 
 #define kDBUser     @"DBUser"
 
@@ -78,10 +79,10 @@
     if ([jsonDictionary objectForKey:@"profile_url"])
         self.profileURL = jsonDictionary[@"profile_url"];
     if ([jsonDictionary objectForKey:@"created_at"]){
-//        self.createdAt = jsonDictionary[@"created_at"];
+        self.createdAt = [NSDate fromUnixTimeStamp:jsonDictionary[@"created_at"]];
     }
     if ([jsonDictionary objectForKey:@"updated_at"]) {
-//        self.updatedAt = jsonDictionary[@"updated_at"];
+        self.updatedAt = [NSDate fromUnixTimeStamp:jsonDictionary[@"created_at"]];
     }
     if ([jsonDictionary objectForKey:@"default_language"])
         self.defaultLanguage = jsonDictionary[@"default_language"];
@@ -105,6 +106,7 @@
 //        self.shops = jsonDictionary[@"shops"];
 //    if ([jsonDictionary objectForKey:@"tattoo_types"])
 //        self.tattooTypes = jsonDictionary[@"tattoo_types"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationUserUpdate object:nil userInfo:@{kDBUser:self}];
 }
 
 - (DBBoard *)createBoardFromJson:(NSDictionary *)boardDictionary

@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DBInk+Management.h" 
 
+@protocol SelectRemoteDelegate
+- (void)didSelectRemote:(NSManagedObject *)remote forType:(NSString *)type;
+@end
 
 @interface SelectRemoteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>
-
+@property (strong, nonatomic) NSString* type;
+@property (strong, nonatomic) NSManagedObject* selectedRemote;
 @property (nonatomic) int cellCount;
-@property (strong, nonatomic)DBInk* editingInk;
-
+@property (nonatomic, weak) id<SelectRemoteDelegate> delegate;
 
 @end
