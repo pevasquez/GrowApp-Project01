@@ -33,6 +33,7 @@
 #define kWebServiceProfileAccesToken    @"profile?"
 #define kWebServiceDashboard            @"/dashboard?"
 #define kWebServiceLike                 @"/like"
+#define kWebServiceUnLike               @"/unlike"
 #define kWebServiceStatics              @"statics/"
 #define kWebServiceBodyParts            @"body-parts"
 #define kWebServiceTattooTypes          @"tattoo-types"

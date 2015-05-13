@@ -12,4 +12,6 @@
 
 @interface InkActionsTableViewCell : ViewInkTableViewCell
 - (void)setLike:(BOOL)selected;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+
 @end

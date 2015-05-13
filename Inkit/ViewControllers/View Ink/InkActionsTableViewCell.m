@@ -17,17 +17,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *reInkButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
-@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (strong, nonatomic) IBOutlet UIButton *likeButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *reInksLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 
 @end
-@implementation InkActionsTableViewCell
 
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    [self configureForInk];
-//}
+@implementation InkActionsTableViewCell
 
 - (void)configureForInk
 {

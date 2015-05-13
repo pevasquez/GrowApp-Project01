@@ -427,15 +427,73 @@
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-             //NSError *error = nil;
              
-             // Parse JSON Response
-             //NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                options:NSJSONReadingMutableContainers
-//                                                                                  error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
-                 case kHTTPResponseCodeOKNoResponse:
+                 case kHTTPResponseCodeOK:
+                 {
+                    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     break;
+                 }
+                 default:
+                 {
+                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                     break;
+                 }
+             }
+         } else {
+             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+         }
+         
+     }];
+    return returnError;
+}
+
+
++ (NSError *)unLikeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
+{
+    // Create returnError
+    NSError* returnError = nil;
+    
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceInks,kWebServiceUnLike];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a POST request
+    [request setHTTPMethod:@"POST"];
+    
+    // get user
+    DBUser* activeUser = [DataManager sharedInstance].activeUser;
+    
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    NSString *encodedDictionary = [NSString stringWithFormat:@"access_token=%@&ink_id=%@",activeUser.token,ink.inkID];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Create Asynchronous Request URLConnection
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+     {
+         if (!connectionError)
+         {
+             // Cast Response
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             
+             // Check Response's StatusCode
+             switch (httpResponse.statusCode) {
+                 case kHTTPResponseCodeOK:
                  {
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
@@ -443,8 +501,7 @@
                  default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:errorString waitUntilDone:NO];
+                     [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
                      break;
                  }
              }

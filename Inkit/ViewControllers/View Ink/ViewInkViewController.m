@@ -19,7 +19,7 @@
 #import "InkitTheme.h"
 #import "DBImage+Management.h"
 #import "inkitService.h"
-
+#import "ViewInkTableViewCell.h"
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
@@ -46,6 +46,7 @@ typedef enum
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) InkActionsTableViewCell* actionsCell;
+
 @end
 
 @implementation ViewInkViewController
@@ -245,6 +246,14 @@ typedef enum
 - (IBAction)likeButtonPressed:(id)sender
 {
     [InkitService likeInk:self.ink withTarget:self completeAction:@selector(likeInkComplete) completeError:@selector(likeInkError:)];
+    [DataManager sharedInstance].activeUser;
+    
+    if (user likes ink) {
+    [self.actionsCell setLike:no]
+        unlike
+    } else {
+        
+    }
 }
 
 - (void)likeInkComplete
@@ -262,15 +271,7 @@ typedef enum
 {
     [self performSegueWithIdentifier:@"ReInkSegue" sender:nil];
 }
-//- (void)reInkComplete
-//{
-//    [self performSegueWithIdentifier: @"CreateInkSegue" sender:ink];
-//
-//}
-//- (void)reInkError
-//{
-//    
-//}
+
 
 - (IBAction)shareButtonPressed:(id)sender
 {
