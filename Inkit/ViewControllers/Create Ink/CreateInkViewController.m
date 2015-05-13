@@ -470,9 +470,17 @@ typedef enum
 
 - (void)didSelectLocals:(NSArray *)locals forType:(NSString *)type {
     if ([type isEqualToString:kInkBodyParts]) {
-        self.inkData[kInkBodyParts] = locals;
+        if ([locals count]) {
+            self.inkData[kInkBodyParts] = locals;
+        } else {
+            [self.inkData removeObjectForKey:kInkBodyParts];;
+        }
     } else if ([type isEqualToString:kInkTattooTypes]) {
-        self.inkData[kInkTattooTypes] = locals;
+        if ([locals count]) {
+            self.inkData[kInkTattooTypes] = locals;
+        } else {
+            [self.inkData removeObjectForKey:kInkTattooTypes];
+        }
     }
 }
 

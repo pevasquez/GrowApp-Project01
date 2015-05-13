@@ -13,6 +13,9 @@
 #import "DBShop+Management.h"
 #import "InkitConstants.h"
 #import "NSDictionary+Extensions.h"
+#import "NSData+Extension.h"
+#import "DBTattooType+Management.h"
+#import "DBBodyPart+Management.h"
 
 @implementation InkService
 
@@ -22,35 +25,31 @@
 
     DBBoard* board = inkDictionary[kInkBoard];
     
-    NSString *boundary = @"14737809831466499882746641449";
-    NSMutableData *body = [NSMutableData data];
-    
-    // Body part for "Access Token" parameter. This is a string.
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"access_token"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", [DataManager sharedInstance].activeUser.token] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // Body part for "Description" parameter. This is a string.
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"description"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", inkDictionary[kInkDescription]] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // Body part for "board_id" parameter. This is a string.
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"board_id"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", board.boardID] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // add image data
-    NSData* imageData = UIImageJPEGRepresentation(inkDictionary[kInkImage], 1.0);
-    if (imageData) {
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.png\"\r\n", @"image"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:imageData];
-        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableDictionary* dataDictionary = [@{@"access_token":[DataManager sharedInstance].activeUser.token,
+                                     @"description":inkDictionary[kInkDescription],
+                                     @"board_id":board.boardID,
+                                     @"image":inkDictionary[kInkImage]} mutableCopy];
+    if (inkDictionary[kInkArtist]) {
+        dataDictionary[@"artist_id"] = ((DBArtist *)inkDictionary[kInkArtist]).artistId;
     }
-    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
+    if (inkDictionary[kInkTattooTypes]) {
+        NSMutableArray* tattooTypesArray = [[NSMutableArray alloc] init];
+        for (DBTattooType* tattooType in inkDictionary[kInkTattooTypes]) {
+            [tattooTypesArray addObject:tattooType.tattooTypeId];
+        }
+        dataDictionary[@"tattoo_types"] = [tattooTypesArray copy];
+    }
+    if (inkDictionary[kInkBodyParts]) {
+        NSMutableArray* bodyPartsArray = [[NSMutableArray alloc] init];
+        for (DBBodyPart* bodyPart in inkDictionary[kInkBodyParts]) {
+            [bodyPartsArray addObject:bodyPart.bodyPartId];
+        }
+        dataDictionary[@"body_parts"] = [bodyPartsArray copy];
+    }
+
+    NSString *boundary = @"14737809831466499882746641449";
+    NSData* body = [NSData fromDictionary:dataDictionary andBoundary:boundary];
+
     // Setup the session
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
