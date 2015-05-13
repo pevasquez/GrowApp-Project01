@@ -160,7 +160,8 @@
                          [target performSelectorOnMainThread:completeError withObject:[responseDictionary objectForKey:@"message"] waitUntilDone:NO];
                      } else {
                          NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                         [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                         NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                         [target performSelectorOnMainThread:completeError withObject:errorString waitUntilDone:NO];
                      }
                      break;
                  }
@@ -242,7 +243,8 @@
                          [target performSelectorOnMainThread:completeError withObject:[responseDictionary objectForKey:@"message"] waitUntilDone:NO];
                      } else {
                          NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                         [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                         NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                         [target performSelectorOnMainThread:completeError withObject:errorString waitUntilDone:NO];
                      }
                      break;
                  }
