@@ -15,11 +15,6 @@
 
 @implementation InkDescriptionTableViewCell
 
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    [self configureForInk];
-//}
-
 - (void)configureForInk
 {
     self.inkDescriptionLabel.text = self.ink.inkDescription;
