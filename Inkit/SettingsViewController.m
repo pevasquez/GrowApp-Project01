@@ -29,7 +29,10 @@
 
 static NSString *cellIdentifier;
 
-- (void)viewDidLoad {
+#pragma marks - Lifecycle Methods
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self hideActivityIndicator];
     
@@ -44,10 +47,14 @@ static NSString *cellIdentifier;
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -69,13 +76,27 @@ static NSString *cellIdentifier;
     
 }
 
-//
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.delegate didSelectSettings:self.data[indexPath.row]];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+    if (indexPath.row == 0)
+    {
+        [self showActivityIndicator];
+        [InkitService logOutUser:[DataManager sharedInstance].activeUser WithTarget:self completeAction:@selector(logOutUserComplete) completeError:@selector(logOutUserError:)];
+    }
+}
+
 - (void)customizeTableView
 {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
 }
 
+#pragma mark - Logout
 
 - (void)logOutUserComplete
 {
@@ -92,27 +113,8 @@ static NSString *cellIdentifier;
 
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.delegate didSelectSettings:self.data[indexPath.row]];
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    
-    if (indexPath.row == 0)
-    {
-        [self showActivityIndicator];
-        [InkitService logOutUser:[DataManager sharedInstance].activeUser WithTarget:self completeAction:@selector(logOutUserComplete) completeError:@selector(logOutUserError:)];
-    }
-}
-
-#pragma mark - Appearence Methods
-- (void)customizeNavigationBar
-{
-    [InkitTheme setUpNavigationBarForViewController:self];
-}
-
 #pragma mark - Activity Indicator Methods
+
 - (void) showActivityIndicator
 {
     self.activityIndicatorView.hidden = NO;
@@ -125,6 +127,13 @@ static NSString *cellIdentifier;
     self.activityIndicatorView.hidden = YES;
     
     [self.activityIndicatorView stopAnimating];
+}
+
+#pragma mark - Appearence Methods
+
+- (void)customizeNavigationBar
+{
+    [InkitTheme setUpNavigationBarForViewController:self];
 }
 
 @end

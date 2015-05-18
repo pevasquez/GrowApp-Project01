@@ -64,7 +64,11 @@ typedef enum
 
 @implementation CreateInkViewController
 
-- (void)viewDidLoad {
+
+#pragma mark - Life cycle methods
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = NSLocalizedString(@"Create Ink",nil);
@@ -210,18 +214,7 @@ typedef enum
                 }
                 break;
             }
-//            case kCreateInkShopIndex:
-//            {
-//                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-//                if (self.inkData[kInkShop]) {
-//                   // cell.textLabel.text = [self.ink getArtistsAsString];
-//                    cell.textLabel.textColor = [InkitTheme getColorForText];
-//                } else {
-//                    cell.textLabel.text = NSLocalizedString(@"Select Shop", nil);
-//                    cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-//                }
-//                break;
-//            }
+
             default:
                 break;
         }
@@ -357,13 +350,10 @@ typedef enum
             selectRemoteViewController.selectedRemote = self.inkData[kInkArtist];
             selectRemoteViewController.title = NSLocalizedString(@"Select Artist",nil);
         }
-//        else if (indexPath.row == kCreateInkShopIndex) {
-//            selectRemoteViewController.type = kInkShop;
-//            selectRemoteViewController.selectedRemote = self.inkData[kInkShop];
-//            selectRemoteViewController.title = NSLocalizedString(@"Select Shop",nil);
-//        }
     }
 }
+
+#pragma mark -  Actions
 
 - (IBAction)doneButtonPressed:(UIBarButtonItem *)sender
 {
@@ -407,8 +397,9 @@ typedef enum
 {
     
 }
+
 #pragma mark - Keyboard Notifications
-// Call this method somewhere in your view controller setup code.
+
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -492,14 +483,6 @@ typedef enum
     }
 }
 
-#pragma mark - Appearence Methods
-- (void)customizeNavigationBar {
-    [InkitTheme setUpNavigationBarForViewController:self];
-}
-
-- (void)customizeTableView {
-    self.createInkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-}
 
 #pragma mark - Helper Methods
 - (BOOL)verifyCells {
@@ -531,6 +514,15 @@ typedef enum
     self.createInkTableView.userInteractionEnabled = true;
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
+}
+
+#pragma mark - Appearence Methods
+- (void)customizeNavigationBar {
+    [InkitTheme setUpNavigationBarForViewController:self];
+}
+
+- (void)customizeTableView {
+    self.createInkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 @end

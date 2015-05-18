@@ -230,10 +230,6 @@ typedef enum
     }
 }
 
-- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
-{
-    [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
-}
 
 #pragma mark - Edit Text Delegate
 - (void)didFinishEnteringText:(NSString *)text
@@ -243,17 +239,24 @@ typedef enum
 }
 
 #pragma mark - Ink Actions Delegate
+
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
+}
+
 - (IBAction)likeButtonPressed:(id)sender
 {
     [InkitService likeInk:self.ink withTarget:self completeAction:@selector(likeInkComplete) completeError:@selector(likeInkError:)];
-    [DataManager sharedInstance].activeUser;
     
-    if (user likes ink) {
-    [self.actionsCell setLike:no]
-        unlike
-    } else {
-        
-    }
+//    [DataManager sharedInstance].activeUser;
+//    
+//    if (user likes ink) {
+//        [self.actionsCell setLike:no]
+//        unlike
+//    } else {
+//        
+//    }
 }
 
 - (void)likeInkComplete

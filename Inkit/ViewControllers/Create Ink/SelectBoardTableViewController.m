@@ -21,7 +21,10 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 
 @implementation SelectBoardTableViewController
 
-- (void)viewDidLoad {
+
+#pragma mark - Life cycle methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Select Board",nil);
     self.activeUser = [DataManager sharedInstance].activeUser;

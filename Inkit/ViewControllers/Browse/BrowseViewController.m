@@ -26,7 +26,10 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 @implementation BrowseViewController
 
-- (void)viewDidLoad {
+
+#pragma mark - Life cycle methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Do any additional setup after loading the view.
@@ -44,6 +47,12 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     [InkitService getDashboardInksWithTarget:self completeAction:@selector(getInksComplete:) completeError:@selector(getInksError:)];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Get Ink methods
 
 - (void)getInksComplete:(NSArray *)inksArray
 {
@@ -57,12 +66,8 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     [self hideActivityIndicator];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - CollectionView DataSource
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -81,6 +86,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 }
 
 #pragma mark - CollectionView Delegate
+
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
@@ -96,6 +102,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 
 #pragma mark - Navigation Methods
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]] && [sender isKindOfClass:[NSIndexPath class]]) {
@@ -105,13 +112,8 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     }
 }
 
-#pragma mark - Appearence Methods
-- (void)customizeNavigationBar
-{
-    [InkitTheme setUpNavigationBarForViewController:self];
-}
-
 #pragma mark - Activity Indicator Methods
+
 - (void) showActivityIndicator
 {
     self.activityIndicator.hidden = NO;
@@ -124,5 +126,11 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     [self.activityIndicator stopAnimating];
 }
 
+#pragma mark - Appearence Methods
+
+- (void)customizeNavigationBar
+{
+    [InkitTheme setUpNavigationBarForViewController:self];
+}
 
 @end

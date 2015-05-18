@@ -29,7 +29,10 @@
 
 static NSString *cellIdentifier;
 
-- (void)viewDidLoad {
+#pragma mark - Life cycle methods
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.data = @[@"User",
@@ -49,7 +52,8 @@ static NSString *cellIdentifier;
 }
 
 
-// TableView Data Source
+#pragma mark - Table View
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -66,8 +70,7 @@ static NSString *cellIdentifier;
     cell.textLabel.text = [self.data objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-        //Cell Initialisation here
-        
+    
         if ([self.selectedString isEqualToString:[self.data objectAtIndex:indexPath.row]])
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -81,8 +84,6 @@ static NSString *cellIdentifier;
     
 }
 
-
-// 
 - (void)customizeTableView
 {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

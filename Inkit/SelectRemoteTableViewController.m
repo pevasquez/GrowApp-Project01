@@ -26,7 +26,9 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 
 @implementation SelectRemoteViewController
 
-- (void)viewDidLoad {
+#pragma mark - Life cycle methods 
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self searchForSearchString:@""];
     [self hideActivityIndicator];
