@@ -18,11 +18,6 @@
 @end
 @implementation InkUserTableViewCell
 
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    [self configureForInk];
-//}
-
 - (void)configureForInk
 {
     self.userNameLabel.text = self.ink.user.fullName;

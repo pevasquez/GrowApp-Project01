@@ -29,7 +29,7 @@ typedef enum
 #define kInkActionsCellHeight   34
 #define kInkUserCellHeight      40
 
-@interface InkCollectionViewCell ()
+@interface InkCollectionViewCell () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *inkTableView;
 @end
 
