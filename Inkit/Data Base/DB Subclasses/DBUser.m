@@ -2,7 +2,7 @@
 //  DBUser.m
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 12/5/15.
+//  Created by Cristian Pena on 5/18/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -53,10 +53,10 @@
 @dynamic bodyParts;
 @dynamic comments;
 @dynamic inks;
+@dynamic likedInks;
 @dynamic profilePic;
 @dynamic profilePicThumbnail;
 @dynamic shops;
 @dynamic tattooTypes;
-@dynamic likedInks;
 
 @end

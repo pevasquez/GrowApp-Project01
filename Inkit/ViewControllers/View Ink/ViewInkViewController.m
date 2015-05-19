@@ -31,7 +31,7 @@ static NSString * const InkRemoteTableViewCellIdentifier = @"RemoteIdentifier";
 typedef enum
 {
     kInkImage,
-    kInkRemote,
+    //kInkRemote,
     kInkDescription,
     kInkActions,
     kInkComment,
@@ -189,10 +189,10 @@ typedef enum
             cellIdentifier = InkCommentTableViewCellIdentifier;
             break;
         }
-        case kInkRemote:
-        {
-            cellIdentifier = InkRemoteTableViewCellIdentifier;
-        }
+//        case kInkRemote:
+//        {
+//            cellIdentifier = InkRemoteTableViewCellIdentifier;
+//        }
         default:
             break;
     }

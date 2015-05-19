@@ -118,17 +118,16 @@
 
 - (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    if ([self getBoards]) {
-        [target performSelectorOnMainThread:completeAction withObject:[self getBoards] waitUntilDone:NO];
+    if ([self getSortedBoards]) {
+        [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
     }
     [InkitService getBoardsForUser:self withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-- (NSArray *)getBoards
+- (NSArray *)getSortedBoards
 {
-    NSArray* boardsArray = self.boards.array;
-    //NSArray* boardsArray = [DBBoard getBoardsInManagedObjectContext:self.managedObjectContext];
-    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"boardTitle" ascending:YES];
+    NSArray* boardsArray = [self.boards.array copy];
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"boardTitle" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSArray* descriptors = [NSArray arrayWithObject:valueDescriptor];
     NSArray* sortedArray = [boardsArray sortedArrayUsingDescriptors:descriptors];
     return sortedArray;

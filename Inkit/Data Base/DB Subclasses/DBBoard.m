@@ -2,7 +2,7 @@
 //  DBBoard.m
 //  Inkit
 //
-//  Created by Cristian Pena on 4/12/15.
+//  Created by Cristian Pena on 5/18/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @dynamic boardDescription;
 @dynamic boardID;
 @dynamic boardTitle;
+@dynamic createdAt;
 @dynamic inks;
 @dynamic user;
 

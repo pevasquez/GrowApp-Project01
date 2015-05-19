@@ -44,6 +44,8 @@
 		FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */; };
 		FB0711871AAF0318004EBBD1 /* InkService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711861AAF0318004EBBD1 /* InkService.m */; };
 		FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
+		FB0929681B0AAD62005B3902 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0929671B0AAD62005B3902 /* DBUser.m */; };
+		FB09296B1B0AAD63005B3902 /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB09296A1B0AAD63005B3902 /* DBBoard.m */; };
 		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
 		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
@@ -103,8 +105,6 @@
 		FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF921A8CF2420052DCB9 /* DBBoard+Management.m */; };
 		FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */; };
 		FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */; };
-		FBD2FEDF1ADB550F005D1AAE /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEDE1ADB550F005D1AAE /* DBUser.m */; };
-		FBD2FEE21ADB550F005D1AAE /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEE11ADB550F005D1AAE /* DBBoard.m */; };
 		FBD2FEE51ADB550F005D1AAE /* DBTattooType.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEE41ADB550F005D1AAE /* DBTattooType.m */; };
 		FBD2FEE81ADB550F005D1AAE /* DBArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEE71ADB550F005D1AAE /* DBArtist.m */; };
 		FBD2FEEB1ADB550F005D1AAE /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEEA1ADB550F005D1AAE /* DBBodyPart.m */; };
@@ -200,6 +200,10 @@
 		FB0711881AAF037F004EBBD1 /* InkitServiceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitServiceConstants.h; path = Utils/InkitServiceConstants.h; sourceTree = "<group>"; };
 		FB0711891AAF077C004EBBD1 /* BoardService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardService.h; path = Utils/BoardService.h; sourceTree = "<group>"; };
 		FB07118A1AAF077C004EBBD1 /* BoardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardService.m; path = Utils/BoardService.m; sourceTree = "<group>"; };
+		FB0929661B0AAD62005B3902 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
+		FB0929671B0AAD62005B3902 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
+		FB0929691B0AAD63005B3902 /* DBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBoard.h; path = "Data Base/DB Subclasses/DBBoard.h"; sourceTree = "<group>"; };
+		FB09296A1B0AAD63005B3902 /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
 		FB0A40001A9D255900294F90 /* WaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterfallLayout.h; path = "ViewControllers/View Inks/WaterfallLayout.h"; sourceTree = "<group>"; };
 		FB0A40011A9D255900294F90 /* WaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterfallLayout.m; path = "ViewControllers/View Inks/WaterfallLayout.m"; sourceTree = "<group>"; };
 		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
@@ -281,10 +285,6 @@
 		FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = "ViewControllers/Create Board/CreateBoardViewController.m"; sourceTree = "<group>"; };
 		FBCCAF9A1A8CFE4E0052DCB9 /* EditTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTextViewController.h; path = ViewControllers/General/EditTextViewController.h; sourceTree = "<group>"; };
 		FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTextViewController.m; path = ViewControllers/General/EditTextViewController.m; sourceTree = "<group>"; };
-		FBD2FEDD1ADB550F005D1AAE /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
-		FBD2FEDE1ADB550F005D1AAE /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
-		FBD2FEE01ADB550F005D1AAE /* DBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBoard.h; path = "Data Base/DB Subclasses/DBBoard.h"; sourceTree = "<group>"; };
-		FBD2FEE11ADB550F005D1AAE /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
 		FBD2FEE31ADB550F005D1AAE /* DBTattooType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBTattooType.h; path = "Data Base/DB Subclasses/DBTattooType.h"; sourceTree = "<group>"; };
 		FBD2FEE41ADB550F005D1AAE /* DBTattooType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBTattooType.m; path = "Data Base/DB Subclasses/DBTattooType.m"; sourceTree = "<group>"; };
 		FBD2FEE61ADB550F005D1AAE /* DBArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBArtist.h; path = "Data Base/DB Subclasses/DBArtist.h"; sourceTree = "<group>"; };
@@ -831,6 +831,10 @@
 		FBDCB1D11A83F7F000E05053 /* DBSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				FB0929691B0AAD63005B3902 /* DBBoard.h */,
+				FB09296A1B0AAD63005B3902 /* DBBoard.m */,
+				FB0929661B0AAD62005B3902 /* DBUser.h */,
+				FB0929671B0AAD62005B3902 /* DBUser.m */,
 				FBE704611AF6CFB80041DD0E /* DBImage.h */,
 				FBE704621AF6CFB80041DD0E /* DBImage.m */,
 				FBE7045E1AF6CFB70041DD0E /* DBInk.h */,
@@ -845,10 +849,6 @@
 				FBD2FEE71ADB550F005D1AAE /* DBArtist.m */,
 				FBD2FEE31ADB550F005D1AAE /* DBTattooType.h */,
 				FBD2FEE41ADB550F005D1AAE /* DBTattooType.m */,
-				FBD2FEE01ADB550F005D1AAE /* DBBoard.h */,
-				FBD2FEE11ADB550F005D1AAE /* DBBoard.m */,
-				FBD2FEDD1ADB550F005D1AAE /* DBUser.h */,
-				FBD2FEDE1ADB550F005D1AAE /* DBUser.m */,
 			);
 			name = DBSubclasses;
 			sourceTree = "<group>";
@@ -1002,6 +1002,7 @@
 			files = (
 				FBC433171A855C4E00EFAA24 /* DBInk+Management.m in Sources */,
 				FBF2F8621B037A3F00057A71 /* NSData+Extension.m in Sources */,
+				FB0929681B0AAD62005B3902 /* DBUser.m in Sources */,
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
 				86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
@@ -1015,9 +1016,9 @@
 				FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */,
 				FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */,
 				86C5A6CD1AFFAC8400449FA7 /* FormTextField.m in Sources */,
-				FBD2FEE21ADB550F005D1AAE /* DBBoard.m in Sources */,
 				8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */,
 				8673CBB01AFBFAD200179FA2 /* TutorialViewController.m in Sources */,
+				FB09296B1B0AAD63005B3902 /* DBBoard.m in Sources */,
 				86F8A4591B0102FC007955C6 /* NSDate+Extension.m in Sources */,
 				FBB3841E1A89308E004C440A /* InkImageTableViewCell.m in Sources */,
 				FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */,
@@ -1078,7 +1079,6 @@
 				FBDCB1981A83EB1800E05053 /* main.m in Sources */,
 				FBB384341A894168004C440A /* ViewInkTableViewCell.m in Sources */,
 				FBB384411A895B1D004C440A /* CameraViewController.m in Sources */,
-				FBD2FEDF1ADB550F005D1AAE /* DBUser.m in Sources */,
 				FBDCB1C71A83F37D00E05053 /* SplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

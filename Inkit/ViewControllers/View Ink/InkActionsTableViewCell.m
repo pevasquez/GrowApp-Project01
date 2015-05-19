@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *reInkButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
-@property (strong, nonatomic) IBOutlet UIButton *likeButton;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *reInksLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;

@@ -86,7 +86,7 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 }
 
 - (void)getBoardsCompleteAction {
-    self.boardsArray = [self.activeUser getBoards];
+    self.boardsArray = [self.activeUser getSortedBoards];
     [self.boardsTableView reloadData];
 }
 
