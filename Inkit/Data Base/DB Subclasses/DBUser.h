@@ -2,7 +2,7 @@
 //  DBUser.h
 //  Inkit
 //
-//  Created by Cristian Pena on 4/12/15.
+//  Created by Cristian Pena on 5/18/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -32,7 +32,7 @@
 @property (nonatomic, retain) NSString * locale;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * password;
-@property (nonatomic, retain) NSData * profileURL;
+@property (nonatomic, retain) NSString * profileURL;
 @property (nonatomic, retain) NSString * socialNetworks;
 @property (nonatomic, retain) NSString * styles;
 @property (nonatomic, retain) NSString * timezone;
@@ -42,18 +42,24 @@
 @property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSData * userImage;
 @property (nonatomic, retain) NSNumber * verified;
+@property (nonatomic, retain) NSSet *artists;
 @property (nonatomic, retain) NSOrderedSet *boards;
+@property (nonatomic, retain) NSSet *bodyParts;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) NSSet *inks;
+@property (nonatomic, retain) DBInk *likedInks;
 @property (nonatomic, retain) DBImage *profilePic;
 @property (nonatomic, retain) DBImage *profilePicThumbnail;
 @property (nonatomic, retain) NSSet *shops;
-@property (nonatomic, retain) NSSet *artists;
 @property (nonatomic, retain) NSSet *tattooTypes;
-@property (nonatomic, retain) NSSet *bodyParts;
 @end
 
 @interface DBUser (CoreDataGeneratedAccessors)
+
+- (void)addArtistsObject:(DBArtist *)value;
+- (void)removeArtistsObject:(DBArtist *)value;
+- (void)addArtists:(NSSet *)values;
+- (void)removeArtists:(NSSet *)values;
 
 - (void)insertObject:(DBBoard *)value inBoardsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromBoardsAtIndex:(NSUInteger)idx;
@@ -65,6 +71,11 @@
 - (void)removeBoardsObject:(DBBoard *)value;
 - (void)addBoards:(NSOrderedSet *)values;
 - (void)removeBoards:(NSOrderedSet *)values;
+- (void)addBodyPartsObject:(DBBodyPart *)value;
+- (void)removeBodyPartsObject:(DBBodyPart *)value;
+- (void)addBodyParts:(NSSet *)values;
+- (void)removeBodyParts:(NSSet *)values;
+
 - (void)addCommentsObject:(DBComment *)value;
 - (void)removeCommentsObject:(DBComment *)value;
 - (void)addComments:(NSSet *)values;
@@ -80,19 +91,9 @@
 - (void)addShops:(NSSet *)values;
 - (void)removeShops:(NSSet *)values;
 
-- (void)addArtistsObject:(DBArtist *)value;
-- (void)removeArtistsObject:(DBArtist *)value;
-- (void)addArtists:(NSSet *)values;
-- (void)removeArtists:(NSSet *)values;
-
 - (void)addTattooTypesObject:(DBTattooType *)value;
 - (void)removeTattooTypesObject:(DBTattooType *)value;
 - (void)addTattooTypes:(NSSet *)values;
 - (void)removeTattooTypes:(NSSet *)values;
-
-- (void)addBodyPartsObject:(DBBodyPart *)value;
-- (void)removeBodyPartsObject:(DBBodyPart *)value;
-- (void)addBodyParts:(NSSet *)values;
-- (void)removeBodyParts:(NSSet *)values;
 
 @end

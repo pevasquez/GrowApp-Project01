@@ -91,13 +91,13 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 - (void)getBoards
 {
     [self showActivityIndicator];
-    [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction:) completeError:@selector(getBoardsCompleteError:)];
+    [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction) completeError:@selector(getBoardsCompleteError:)];
 }
 
-- (void)getBoardsCompleteAction:(NSArray *)boardsArray
+- (void)getBoardsCompleteAction
 {
     [self hideActitivyIndicator];
-    self.boardsArray = boardsArray;
+    self.boardsArray = [self.activeUser getSortedBoards];
     [self.boardsCollectionView reloadData];
 }
 

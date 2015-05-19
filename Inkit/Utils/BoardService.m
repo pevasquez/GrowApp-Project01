@@ -298,7 +298,7 @@
                      for (NSDictionary* boardDictionary in dataDictionary) {
                          [boardsArray addObject:[DBBoard fromJson:boardDictionary]];
                      }
-                     [target performSelectorOnMainThread:completeAction withObject:boardsArray waitUntilDone:NO];
+                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
                  default:

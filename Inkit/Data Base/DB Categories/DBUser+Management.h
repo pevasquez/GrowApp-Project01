@@ -18,5 +18,5 @@
 
 - (DBBoard *)createBoardFromJson:(NSDictionary *)boardDictionary;
 - (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-- (NSArray *)getBoards;
+- (NSArray *)getSortedBoards;
 @end

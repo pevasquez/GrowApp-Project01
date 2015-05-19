@@ -21,7 +21,10 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 
 @implementation SelectBoardTableViewController
 
-- (void)viewDidLoad {
+
+#pragma mark - Life cycle methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Select Board",nil);
     self.activeUser = [DataManager sharedInstance].activeUser;
@@ -83,7 +86,7 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 }
 
 - (void)getBoardsCompleteAction {
-    self.boardsArray = [self.activeUser getBoards];
+    self.boardsArray = [self.activeUser getSortedBoards];
     [self.boardsTableView reloadData];
 }
 

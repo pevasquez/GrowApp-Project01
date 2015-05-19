@@ -2,7 +2,7 @@
 //  DBBoard.h
 //  Inkit
 //
-//  Created by Cristian Pena on 4/12/15.
+//  Created by Cristian Pena on 5/18/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -17,8 +17,8 @@
 @property (nonatomic, retain) NSString * boardDescription;
 @property (nonatomic, retain) NSString * boardID;
 @property (nonatomic, retain) NSString * boardTitle;
+@property (nonatomic, retain) id createdAt;
 @property (nonatomic, retain) NSSet *inks;
-@property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) DBUser *user;
 @end
 

@@ -32,8 +32,11 @@
 @end
 
 @implementation LogInViewController
+
 #pragma mark - Lifecycle Methods
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self hideActivityIndicator];
     [self customizeNavigationBar];
@@ -56,13 +59,17 @@
     [self registerForKeyboardNotifications];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Action Methods
-- (IBAction)logInButtonPressed:(id)sender {
+
+- (IBAction)logInButtonPressed:(id)sender
+{
     
     [self login];
 }
@@ -72,7 +79,8 @@
     [self performSegueWithIdentifier:@"RegisterSegue" sender:nil];
 }
 
-- (IBAction)facebookLoginPressed:(id)sender {
+- (IBAction)facebookLoginPressed:(id)sender
+{
     // If the session state is any of the two "open" states when the button is clicked
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
@@ -82,18 +90,23 @@
     [[FacebookManager sharedInstance] logInUser];
 }
 
-- (IBAction)GoogleSignInButton:(id)sender {
+- (IBAction)GoogleSignInButton:(id)sender
+{
     [GoogleManager sharedInstance].delegate = self;
     [[GoogleManager sharedInstance] logInUser];
     [self showActivityIndicator];
 }
 
-- (IBAction)didTapScreen:(UITapGestureRecognizer *)sender {
+- (IBAction)didTapScreen:(UITapGestureRecognizer *)sender
+{
     [self hideKeyBoard];
 }
 
-#pragma mark - Flow Methods
-- (void)login {
+
+#pragma mark - Mail Login
+
+- (void)login
+{
     if([self verifyTextFields])
     {
         NSDictionary* userDictionary = @{kUserEmail:self.emailTextField.text,kUserPassword:self.passwordTextField.text};
@@ -115,60 +128,22 @@
     [self hideActivityIndicator];
 }
 
-#pragma mark - Register Delegate
-- (void)registrationComplete
-{
-    [self.delegate logInDidFinishedLoading];
-    [self hideActivityIndicator];
-}
-
-#pragma mark - Navigation
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"RegisterSegue"]) {
-        RegisterViewController* rvc = [segue destinationViewController];
-        rvc.userDictionary = self.userDictionary;
-        rvc.delegate = self;
-    }
-    
-}
-
-#pragma mark - TextField Delegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    self.activeTextField = textField;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    self.activeTextField = nil;
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (textField == self.emailTextField) {
-        [self.passwordTextField becomeFirstResponder];
-    }else if (textField == self.passwordTextField){
-        [self login];
-    }
-    return NO;
-}
-
 #pragma mark - Social Login
-- (void)socialLogin {
+
+- (void)socialLogin
+{
     [InkitService logInSocialDictionary:self.userDictionary withTarget:self completeAction:@selector(socialLogInUserComplete) completeError:@selector(socialLogInUserError:)];
     [self showActivityIndicator];
 }
 
-- (void)socialLogInUserComplete {
+- (void)socialLogInUserComplete
+{
     [self.delegate logInDidFinishedLoading];
     [self hideActivityIndicator];
 }
 
-- (void)socialLogInUserError:(NSString *)errorMessage {
+- (void)socialLogInUserError:(NSString *)errorMessage
+{
     [self hideActivityIndicator];
     if ([errorMessage isEqualToString:@"Bad credentials"]) {
         // set register window pero seteando el diccionario de datos
@@ -179,6 +154,7 @@
 }
 
 #pragma mark - FacebookManager Delegate Methods
+
 - (void)onUserLoggedIn
 {
     [[FacebookManager sharedInstance] requestUserInfo];
@@ -214,6 +190,7 @@
 }
 
 #pragma mark - Google+ Delegate
+
 - (void)onGoogleUserInfoRequestComplete:(NSDictionary *)userInfo
 {
     self.userDictionary = [[NSMutableDictionary alloc] init];
@@ -225,15 +202,64 @@
     [self socialLogin];
 }
 
-- (void)onGoogleUserLoggedIn {
+- (void)onGoogleUserLoggedIn
+{
     NSLog(@"Google User Logged In");
 }
 
-- (void)onGoogleUserLoggedOut {
+- (void)onGoogleUserLoggedOut
+{
     NSLog(@"Google User Logged Out");
+}
+#pragma mark - Register Delegate
+
+- (void)registrationComplete
+{
+    [self.delegate logInDidFinishedLoading];
+    [self hideActivityIndicator];
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"RegisterSegue"]) {
+        RegisterViewController* rvc = [segue destinationViewController];
+        rvc.userDictionary = self.userDictionary;
+        rvc.delegate = self;
+    }
+    
+}
+
+#pragma mark - TextField Delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeTextField = textField;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    self.activeTextField = nil;
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.emailTextField)
+    {
+        [self.passwordTextField becomeFirstResponder];
+    }else if (textField == self.passwordTextField){
+        [self login];
+    }
+    return NO;
 }
 
 #pragma mark - Keyboard Notifications
+
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -274,12 +300,15 @@
     } completion:nil];
 }
 
-- (void)hideKeyBoard {
+- (void)hideKeyBoard
+{
     [self.emailTextField resignFirstResponder];
     [self.passwordTextField resignFirstResponder];
 }
 
+
 #pragma mark - Helper Methods
+
 - (BOOL)verifyTextFields
 {
     if([self.emailTextField.text isEqualToString:@""]) {
@@ -299,6 +328,7 @@
 }
 
 #pragma mark - Activity Indicator Methods
+
 - (void) showActivityIndicator
 {
     [self hideKeyBoard];
@@ -322,6 +352,7 @@
 }
 
 #pragma mark - Appearence Methods
+
 - (void)customizeNavigationBar
 {
     [InkitTheme setUpNavigationBarForViewController:self];

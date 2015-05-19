@@ -19,6 +19,7 @@
 
 @implementation SplashViewController
 
+#pragma mark - LifeCycle methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,6 +62,8 @@
 {
     
 }
+
+#pragma mark - Login
 
 - (void)logInUserComplete
 {
