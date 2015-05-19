@@ -17,7 +17,11 @@
 
 @implementation EditImageViewController
 
-- (void)viewDidLoad {
+
+
+#pragma mark - Life cycle methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.cropView.delegate = self;
@@ -38,6 +42,13 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Actions
+
 - (IBAction)rotateButtonPressed:(id)sender
 {
     // Si la orientacion es Top --> Right
@@ -53,11 +64,6 @@
     }else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft){
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationUp];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)cropButtonPressed:(id)sender

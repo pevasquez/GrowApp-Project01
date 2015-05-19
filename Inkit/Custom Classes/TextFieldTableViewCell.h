@@ -19,8 +19,8 @@
 
 @protocol TextFieldTableViewCellDelegate <NSObject>
 
-- (void)textFieldTableViewCell:(TextFieldTableViewCell *)cell didFinishEnteringText:(NSString *)text;
-
+- (void)textFieldTableViewCellDidFinishEnteringText:(TextFieldTableViewCell *)cell;
+- (void)textFieldTableViewCell:(TextFieldTableViewCell *)cell didEnterText:(NSString *)text;
 @optional
 - (void)textFieldTableViewCellDidBeginEditing:(TextFieldTableViewCell *)cell;
 

@@ -10,10 +10,10 @@
 
 @interface TextFieldTableViewCell() <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-
 @end
 
 @implementation TextFieldTableViewCell
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.textField.delegate = self;
@@ -23,13 +23,17 @@
 }
 
 #pragma mark - UITextField Delegate
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [self.delegate textFieldTableViewCell:self didFinishEnteringText:textField.text];
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    textField.text = [textField.text stringByReplacingCharactersInRange:range
+                                                             withString:string];
+    self.text = textField.text;
+    [self.delegate textFieldTableViewCell:self didEnterText:textField.text];
+    return NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    [self.delegate textFieldTableViewCell:self didFinishEnteringText:textField.text];
+    [self.delegate textFieldTableViewCellDidBeginEditing:self];
     return NO;
 }
 

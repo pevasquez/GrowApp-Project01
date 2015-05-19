@@ -24,6 +24,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 
 @implementation SelectLocalTableViewController
 
+#pragma Life cycle methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -137,6 +138,8 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 - (void)reloadFilteredLocals {
     self.filteredLocalsArray = [NSMutableArray arrayWithArray:self.localsArray];
 }
+
+#pragma mark - Actions
 
 - (IBAction)okButtonPressed:(UIBarButtonItem *)sender {
     

@@ -41,6 +41,9 @@
 @end
 
 @implementation CameraViewController
+
+#pragma mark - Life cycle methods
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -222,6 +225,7 @@
 }
 
 #pragma mark - Buttons Methods
+
 - (IBAction)takePictureButtonPressed:(UIButton *)sender
 {
     self.isTakingPicture = NO;

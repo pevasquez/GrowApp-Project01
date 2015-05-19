@@ -48,7 +48,7 @@ typedef enum
     kCreateInkTotal,
 } kCreateInkCells;
 
-@interface CreateInkViewController () <SelectBoardDelegate, SelectLocalDelegate, SelectRemoteDelegate,UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate, EditTextViewDelegate, TextFieldTableViewCellDelegate>
+@interface CreateInkViewController () <SelectBoardDelegate, SelectLocalDelegate, SelectRemoteDelegate,UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate, TextFieldTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *createInkTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
@@ -61,12 +61,16 @@ typedef enum
 @property (strong, nonatomic) UIAlertView* deleteAlertView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) DBUser* activeUser;
-
+@property (strong, nonatomic) UIView* overlayView;
 @end
 
 @implementation CreateInkViewController
 
-- (void)viewDidLoad {
+
+#pragma mark - Life cycle methods
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = NSLocalizedString(@"Create Ink",nil);
@@ -218,18 +222,7 @@ typedef enum
                 }
                 break;
             }
-//            case kCreateInkShopIndex:
-//            {
-//                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-//                if (self.inkData[kInkShop]) {
-//                   // cell.textLabel.text = [self.ink getArtistsAsString];
-//                    cell.textLabel.textColor = [InkitTheme getColorForText];
-//                } else {
-//                    cell.textLabel.text = NSLocalizedString(@"Select Shop", nil);
-//                    cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-//                }
-//                break;
-//            }
+
             default:
                 break;
         }
@@ -263,28 +256,7 @@ typedef enum
             double maxHeight = tableView.frame.size.height - kCreateInkTotal*kCreateInkCellHeight;
             
             return MAX(maxHeight, height);
-        }
-//        else if (indexPath.row == kCreateInkDescriptionIndex){
-//            InkDescriptionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkDescriptionTableViewCellIdentifier];
-//            if ([self.inkData objectForKey:kInkDescription]) {
-//                [cell configureForDescription:[self.inkData objectForKey:kInkDescription]];
-//                // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-//                [cell setNeedsUpdateConstraints];
-//                [cell updateConstraintsIfNeeded];
-//                
-//                [cell setNeedsLayout];
-//                [cell layoutIfNeeded];
-//                
-//                // Get the actual height required for the cell
-//                CGFloat height = cell.cellHeight;
-//                height += 1;
-//                
-//                return MAX(height, kCreateInkCellHeight);
-//            } else {
-//                return kCreateInkCellHeight;
-//            }
-//        }
-    else {
+        } else {
             return kCreateInkCellHeight;
         }
     } else {
@@ -344,10 +316,6 @@ typedef enum
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]]) {
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
         viewInkViewController.ink = (DBInk *)sender;
-    } else if ([[segue destinationViewController] isKindOfClass:[EditTextViewController class]]) {
-        EditTextViewController* editTextViewController = [segue destinationViewController];
-        editTextViewController.delegate = self;
-        editTextViewController.textString = self.inkData[kInkDescription];
     } else if ([[segue destinationViewController] isKindOfClass:[SelectBoardTableViewController class]]) {
         SelectBoardTableViewController* selectBoardTableViewController = [segue destinationViewController];
         selectBoardTableViewController.selectedBoard = self.inkData[kInkBoard];
@@ -374,13 +342,10 @@ typedef enum
             selectRemoteViewController.selectedRemote = self.inkData[kInkArtist];
             selectRemoteViewController.title = NSLocalizedString(@"Select Artist",nil);
         }
-//        else if (indexPath.row == kCreateInkShopIndex) {
-//            selectRemoteViewController.type = kInkShop;
-//            selectRemoteViewController.selectedRemote = self.inkData[kInkShop];
-//            selectRemoteViewController.title = NSLocalizedString(@"Select Shop",nil);
-//        }
     }
 }
+
+#pragma mark -  Actions
 
 - (IBAction)doneButtonPressed:(UIBarButtonItem *)sender
 {
@@ -426,7 +391,7 @@ typedef enum
 }
 
 #pragma mark - Keyboard Notifications
-// Call this method somewhere in your view controller setup code.
+
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -443,15 +408,17 @@ typedef enum
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
     NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    self.createInkTableView.frame= CGRectMake(self.createInkTableView.frame.origin.x, self.createInkTableView.frame.origin.y, self.createInkTableView.frame.size.width, self.createInkTableView.frame.size.height - kbSize.height);
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets insets = UIEdgeInsetsMake(self.createInkTableView.contentInset.top, 0, kbSize.height, 0);
+    self.createInkTableView.contentInset = insets;
     [self.createInkTableView scrollToRowAtIndexPath:self.selectedIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    self.createInkTableView.frame= self.view.frame;
+    self.createInkTableView.contentInset = UIEdgeInsetsMake(self.createInkTableView.contentInset.top, 0, 0, 0);
 }
 
 #pragma mark - UIAlertView Delegate
@@ -471,17 +438,6 @@ typedef enum
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
-}
-
-#pragma mark - EditTextViewController Delegate
-- (void)didFinishEnteringText:(NSString *)text
-{
-    if (text.length > 0) {
-    self.inkData[kInkDescription] = text;
-    } else {
-        [self.inkData removeObjectForKey:kInkDescription];
-    }
-    [self.createInkTableView reloadData];
 }
 
 #pragma mark - Select Board Delegate
@@ -517,7 +473,11 @@ typedef enum
 }
 
 #pragma mark - TextFieldTableViewCell Delegate
-- (void)textFieldTableViewCell:(TextFieldTableViewCell *)cell didFinishEnteringText:(NSString *)text {
+- (void)textFieldTableViewCellDidFinishEnteringText:(TextFieldTableViewCell *)cell {
+    [self.createInkTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)textFieldTableViewCell:(TextFieldTableViewCell *)cell didEnterText:(NSString *)text {
     if (text.length > 0) {
         self.inkData[kInkDescription] = text;
     } else {
@@ -526,7 +486,8 @@ typedef enum
 }
 
 - (void)textFieldTableViewCellDidBeginEditing:(TextFieldTableViewCell *)cell {
-    [self.createInkTableView scrollToRowAtIndexPath:cell.indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
+    //self.createInkTableView.contentInset = UIEdgeInsetsMake(self.createInkTableView.contentInset.top, 0, 450, 0);
+    //[self.createInkTableView scrollToRowAtIndexPath:cell.indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
 }
 
 #pragma mark - Appearence Methods
@@ -558,17 +519,21 @@ typedef enum
 
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator {
-    self.createBarButtonItem.enabled = false;
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    [self.view insertSubview:self.overlayView belowSubview:self.activityIndicatorView];
+    self.navigationItem.rightBarButtonItem.enabled = false;
     self.createInkTableView.userInteractionEnabled = false;
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActivityIndicator {
-    self.createBarButtonItem.enabled = true;
+    self.navigationItem.rightBarButtonItem.enabled = true;
     self.createInkTableView.userInteractionEnabled = true;
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
+    [self.overlayView removeFromSuperview];
 }
 
 @end

@@ -2,7 +2,7 @@
 //  DBInk.h
 //  Inkit
 //
-//  Created by Cristian Pena on 5/3/15.
+//  Created by María Verónica  Sonzini on 12/5/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -24,12 +24,13 @@
 @property (nonatomic, retain) DBBoard *board;
 @property (nonatomic, retain) NSSet *bodyParts;
 @property (nonatomic, retain) NSSet *comments;
+@property (nonatomic, retain) DBImage *fullScreenImage;
 @property (nonatomic, retain) DBImage *image;
 @property (nonatomic, retain) DBShop *shop;
 @property (nonatomic, retain) NSSet *tattooTypes;
-@property (nonatomic, retain) DBUser *user;
 @property (nonatomic, retain) DBImage *thumbnailImage;
-@property (nonatomic, retain) DBImage *fullScreenImage;
+@property (nonatomic, retain) DBUser *user;
+@property (nonatomic, retain) DBUser *likedByUser;
 @end
 
 @interface DBInk (CoreDataGeneratedAccessors)

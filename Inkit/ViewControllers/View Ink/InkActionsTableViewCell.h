@@ -12,4 +12,5 @@
 
 @interface InkActionsTableViewCell : ViewInkTableViewCell
 - (void)setLike:(BOOL)selected;
+
 @end

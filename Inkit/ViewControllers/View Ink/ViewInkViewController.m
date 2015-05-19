@@ -19,7 +19,7 @@
 #import "InkitTheme.h"
 #import "DBImage+Management.h"
 #import "inkitService.h"
-
+#import "ViewInkTableViewCell.h"
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
@@ -31,7 +31,7 @@ static NSString * const InkRemoteTableViewCellIdentifier = @"RemoteIdentifier";
 typedef enum
 {
     kInkImage,
-    kInkRemote,
+    //kInkRemote,
     kInkDescription,
     kInkActions,
     kInkComment,
@@ -46,6 +46,7 @@ typedef enum
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) InkActionsTableViewCell* actionsCell;
+
 @end
 
 @implementation ViewInkViewController
@@ -188,10 +189,10 @@ typedef enum
             cellIdentifier = InkCommentTableViewCellIdentifier;
             break;
         }
-        case kInkRemote:
-        {
-            cellIdentifier = InkRemoteTableViewCellIdentifier;
-        }
+//        case kInkRemote:
+//        {
+//            cellIdentifier = InkRemoteTableViewCellIdentifier;
+//        }
         default:
             break;
     }
@@ -229,10 +230,6 @@ typedef enum
     }
 }
 
-- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
-{
-    [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
-}
 
 #pragma mark - Edit Text Delegate
 - (void)didFinishEnteringText:(NSString *)text
@@ -242,9 +239,24 @@ typedef enum
 }
 
 #pragma mark - Ink Actions Delegate
+
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
+}
+
 - (IBAction)likeButtonPressed:(id)sender
 {
     [InkitService likeInk:self.ink withTarget:self completeAction:@selector(likeInkComplete) completeError:@selector(likeInkError:)];
+    
+//    [DataManager sharedInstance].activeUser;
+//    
+//    if (user likes ink) {
+//        [self.actionsCell setLike:no]
+//        unlike
+//    } else {
+//        
+//    }
 }
 
 - (void)likeInkComplete
@@ -262,15 +274,7 @@ typedef enum
 {
     [self performSegueWithIdentifier:@"ReInkSegue" sender:nil];
 }
-//- (void)reInkComplete
-//{
-//    [self performSegueWithIdentifier: @"CreateInkSegue" sender:ink];
-//
-//}
-//- (void)reInkError
-//{
-//    
-//}
+
 
 - (IBAction)shareButtonPressed:(id)sender
 {

@@ -122,6 +122,8 @@
     if ([jsonDictionary objectForKey:@"owner"]) {
         NSDictionary* userDictionary = jsonDictionary[@"owner"][@"data"];
         self.user = [DBUser fromJson:userDictionary];
+//        DBUser* user = [DBUser fromJson:userDictionary];
+//        [user addBoardsObject:self];
     }
     if ([jsonDictionary objectForKey:@"preview_inks"]) {
         NSDictionary* inksDictionary = jsonDictionary[@"preview_inks"][@"data"];

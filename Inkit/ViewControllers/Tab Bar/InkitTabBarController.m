@@ -22,9 +22,11 @@ typedef enum {
 
 @implementation InkitTabBarController
 
-- (void)viewDidLoad {
+#pragma mark - Life cycle methods
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.view.tintColor = [InkitTheme getTintColor];
     self.selectedIndex = kBrowse;
     UITabBarItem* boards = [[self.tabBar items] objectAtIndex:kBoards];
@@ -41,6 +43,7 @@ typedef enum {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {

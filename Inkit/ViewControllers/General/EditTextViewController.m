@@ -16,9 +16,12 @@
 
 @implementation EditTextViewController
 
-- (void)viewDidLoad {
+#pragma mark - Lyfe cicle methods
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     if (self.textString) {
         self.textView.text = self.textString;
     }
@@ -29,6 +32,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Actions
+
 - (IBAction)doneButtonPressed:(UIBarButtonItem *)sender
 {
     [self.delegate didFinishEnteringText:self.textView.text];

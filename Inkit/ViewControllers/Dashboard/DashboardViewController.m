@@ -25,7 +25,10 @@
 
 @implementation DashboardViewController
 
-- (void)viewDidLoad {
+#pragma mark - Life cycle methods
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setUpButtons];
 }
@@ -50,6 +53,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Actions
 
 - (IBAction)fromCameraButtonPressed:(UIButton *)sender
 {
