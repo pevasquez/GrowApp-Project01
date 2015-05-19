@@ -89,7 +89,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Inkit/DBArtist+Management.m"
+            filePath = "Inkit/Data Base/DB Categories/DBArtist+Management.m"
             timestampString = "453129870.56654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

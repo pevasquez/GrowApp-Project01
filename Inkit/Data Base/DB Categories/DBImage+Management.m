@@ -2,7 +2,7 @@
 //  DBImage+Management.m
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 1/4/15.
+//  Created by Cristian Pena on 1/4/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
