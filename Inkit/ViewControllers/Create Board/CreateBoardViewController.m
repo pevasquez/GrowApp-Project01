@@ -7,7 +7,7 @@
 //
 
 #import "CreateBoardViewController.h"
-#import "EditTextViewController.h"
+#import "TextFieldTableViewCell.h"
 #import "InkDescriptionTableViewCell.h"
 #import "DBBoard+Management.h"
 #import "AppDelegate.h"
@@ -24,12 +24,13 @@ typedef enum
 
 #define kCreateBoardCellHeight            44
 static NSString * const CreateBoardTableViewCellIdentifier = @"CreateBoardTableViewCell";
-static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
+static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewCell";
 
-@interface CreateBoardViewController () <UIAlertViewDelegate>
+@interface CreateBoardViewController () <UIAlertViewDelegate, TextFieldTableViewCellDelegate>
 @property (strong, nonatomic) DBUser* activeUser;
 @property (weak, nonatomic) IBOutlet UITableView *createBoardTableView;
 @property (strong, nonatomic) NSMutableArray* stringsArray;
+@property (strong, nonatomic) NSArray* placeholdersArray;
 @property (strong, nonatomic) NSMutableDictionary* boardDictionary;
 @property (strong, nonatomic) NSIndexPath* selectedIndexPath;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
@@ -37,6 +38,8 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 @end
 
 @implementation CreateBoardViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,7 +54,8 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
         self.title = NSLocalizedString(@"Create Board",nil);
         self.stringsArray = [[NSMutableArray alloc] initWithObjects:@"",@"",nil];
     }
-    self.createBoardTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.placeholdersArray = @[@"Title",@"Description"];
+    [self customizeTableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,30 +84,17 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CreateBoardTableViewCellIdentifier];
+    UITableViewCell* cell = nil;
 
     if (indexPath.section == 0) {
-        if (![self.stringsArray[indexPath.row] isEqualToString:@""]) {
-            cell.textLabel.textColor = [InkitTheme getColorForText];
-            cell.textLabel.text = self.stringsArray[indexPath.row];
-        } else {
-            cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-            switch (indexPath.row) {
-                case kCreateBoardTitleIndex:
-                {
-                    cell.textLabel.text = @"Title";
-                    break;
-                }
-                case kCreateBoardDescriptionIndex:
-                {
-                    cell.textLabel.text = @"Description";
-                    break;
-                }
-                default:
-                    break;
-            }
-        }
+        TextFieldTableViewCell* textFieldCell = [tableView dequeueReusableCellWithIdentifier:TextFieldTableViewCellIdentifier];
+        textFieldCell.placeholder = NSLocalizedString(self.placeholdersArray[indexPath.row],nil);;
+        textFieldCell.text = self.stringsArray[indexPath.row];
+        textFieldCell.indexPath = indexPath;
+        textFieldCell.delegate = self;
+        cell = textFieldCell;
     } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:CreateBoardTableViewCellIdentifier];
         cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
         cell.textLabel.text = @"Delete";
     }
@@ -113,60 +104,17 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 #pragma mark - TableView Delegte Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (![self.stringsArray[indexPath.row] isEqualToString:@""]) {
-        InkDescriptionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkDescriptionTableViewCellIdentifier];
-        [cell configureForDescription:self.stringsArray[indexPath.row]];
-        
-        // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-        [cell setNeedsUpdateConstraints];
-        [cell updateConstraintsIfNeeded];
-        
-        [cell setNeedsLayout];
-        [cell layoutIfNeeded];
-        
-        // Get the actual height required for the cell
-        CGFloat height = cell.cellHeight;
-        height += 1;
-        
-        return MAX(height, kCreateBoardCellHeight);
-    } else {
-        return kCreateBoardCellHeight;
-    }
+    return kCreateBoardCellHeight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.selectedIndexPath = indexPath;
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case kCreateBoardTitleIndex:
-            case kCreateBoardDescriptionIndex:
-            {
-                [self performSegueWithIdentifier:@"EditTextSegue" sender:indexPath];
-                break;
-            }
-            default:
-                break;
-        }
-    } else {
+    if (indexPath.section == 1) {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to delete this board", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Delete", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
         [alertView show];
     }
     
-}
-
-#pragma mark - Navigation
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if ([sender isKindOfClass:[NSIndexPath class]]) {
-        NSIndexPath* indexPath = (NSIndexPath *)sender;
-        EditTextViewController* editTextViewController = [segue destinationViewController];
-        editTextViewController.delegate = self;
-        editTextViewController.textString = self.stringsArray[indexPath.row];
-    }
 }
 
 #pragma mark - Action Methods
@@ -219,11 +167,18 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - EditTextViewController Delegate
-- (void)didFinishEnteringText:(NSString *)text
-{
-    self.stringsArray[self.selectedIndexPath.row] = text;
-    [self.createBoardTableView reloadData];
+#pragma mark - TextFieldTableViewCell Delegate
+- (void)textFieldTableViewCellDidFinishEnteringText:(TextFieldTableViewCell *)cell {
+    [self.createBoardTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)textFieldTableViewCell:(TextFieldTableViewCell *)cell didEnterText:(NSString *)text {
+    
+    if (text.length > 0) {
+        self.stringsArray[cell.indexPath.row] = text;
+    } else {
+        self.stringsArray[cell.indexPath.row] = @"";
+    }
 }
 
 #pragma mark - UIAlertView Delegate
@@ -245,6 +200,13 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 {
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
+}
+
+#pragma mark - UIHelpers
+- (void)customizeTableView {
+    [self.createBoardTableView registerNib:[UINib nibWithNibName:@"TextFieldTableViewCell" bundle:nil] forCellReuseIdentifier:TextFieldTableViewCellIdentifier];
+    
+    self.createBoardTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 @end

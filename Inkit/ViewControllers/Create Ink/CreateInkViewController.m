@@ -14,7 +14,6 @@
 #import "InkDescriptionTableViewCell.h"
 #import "TextViewTableViewCell.h"
 #import "ViewInkViewController.h"
-#import "EditTextViewController.h"
 #import "DBUser+Management.h"
 #import "DBInk+Management.h"
 #import "DBBoard+Management.h"
@@ -27,6 +26,7 @@
 #import "InkitTheme.h"
 #import "InkitService.h"
 #import "TextFieldTableViewCell.h"
+#import "UIImage+Extension.h"
 
 static NSString * const CreateInkImageTableViewCellIdentifier = @"CreateInkImageTableViewCell";
 static NSString * const CreateInkTableViewCellIdentifier = @"CreateInkInkTableViewCell";
@@ -48,7 +48,7 @@ typedef enum
     kCreateInkTotal,
 } kCreateInkCells;
 
-@interface CreateInkViewController () <SelectBoardDelegate, SelectLocalDelegate, SelectRemoteDelegate,UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate, TextFieldTableViewCellDelegate>
+@interface CreateInkViewController () <SelectBoardDelegate, SelectLocalDelegate, SelectRemoteDelegate,UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate, TextFieldTableViewCellDelegate, NSURLSessionTaskDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *createInkTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
@@ -72,7 +72,6 @@ typedef enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.title = NSLocalizedString(@"Create Ink",nil);
     
     [self customizeNavigationBar];
@@ -108,7 +107,6 @@ typedef enum
                                                                        style:UIBarButtonItemStylePlain
                                                                       target:self
                                                                       action:@selector(createInkButtonPressed:)];
-        
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObject:editButton];
     }
     [self customizeTableView];
@@ -160,15 +158,6 @@ typedef enum
                 textFieldCell.placeholder = NSLocalizedString(@"Description",nil);;
                 textFieldCell.text = self.inkData[kInkDescription];
                 textFieldCell.delegate = self;
-//
-//                cell = [tableView dequeueReusableCellWithIdentifier:CreateInkTableViewCellIdentifier];
-//                if ([self.inkData objectForKey:kInkDescription]) {
-//                    cell.textLabel.text = [self.inkData objectForKey:kInkDescription];
-//                    cell.textLabel.textColor = [InkitTheme getColorForText];
-//                } else {
-//                    cell.textLabel.text = NSLocalizedString(@"Description",nil);
-//                    cell.textLabel.textColor = [InkitTheme getColorForPlaceHolderText];
-//                }
                 cell = textFieldCell;
                 break;
             }
@@ -276,11 +265,6 @@ typedef enum
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         switch (indexPath.row) {
-//            case kCreateInkDescriptionIndex:
-//            {
-//                [self performSegueWithIdentifier:@"EditTextSegue" sender:indexPath];
-//                break;
-//            }
             case kCreateInkBoardIndex:
             {
                 [self performSegueWithIdentifier:@"SelectBoardSegue" sender:nil];
@@ -311,8 +295,6 @@ typedef enum
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]]) {
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
         viewInkViewController.ink = (DBInk *)sender;
@@ -366,7 +348,9 @@ typedef enum
             [InkitService updateInk:self.editingInk withDictionary:self.inkData withTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
         } else {
             [self showActivityIndicator];
-            self.inkData[kInkImage] = self.inkImage;
+            
+            // TODO: seleccionar el tamaño de la imagen
+            self.inkData[kInkImage] = [self.inkImage getMediumImage];
             [InkitService createInk:self.inkData withTarget:self completeAction:@selector(postInkCompleteAction:) completeError:@selector(postInkCompleteError:)];
         }
     }
@@ -404,7 +388,6 @@ typedef enum
     
 }
 
-// Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
     NSDictionary* info = [aNotification userInfo];
@@ -415,7 +398,6 @@ typedef enum
     [self.createInkTableView scrollToRowAtIndexPath:self.selectedIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
     self.createInkTableView.contentInset = UIEdgeInsetsMake(self.createInkTableView.contentInset.top, 0, 0, 0);
@@ -485,11 +467,6 @@ typedef enum
     }
 }
 
-- (void)textFieldTableViewCellDidBeginEditing:(TextFieldTableViewCell *)cell {
-    //self.createInkTableView.contentInset = UIEdgeInsetsMake(self.createInkTableView.contentInset.top, 0, 450, 0);
-    //[self.createInkTableView scrollToRowAtIndexPath:cell.indexPath atScrollPosition:UITableViewScrollPositionTop animated:true];
-}
-
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar {
     [InkitTheme setUpNavigationBarForViewController:self];
@@ -536,4 +513,19 @@ typedef enum
     [self.overlayView removeFromSuperview];
 }
 
+
+// NSURLSession Task Delegate
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
+    
+
+}
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler {
+    
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    
+}
 @end
+
