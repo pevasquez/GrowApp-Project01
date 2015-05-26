@@ -12,7 +12,13 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
     self.layer.cornerRadius = self.bounds.size.width/2;
     self.clipsToBounds = YES;
 }
+
 @end

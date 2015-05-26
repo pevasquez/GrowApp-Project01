@@ -2,7 +2,7 @@
 //  PageViewController.h
 //  Tutorial
 //
-//  Created by María Verónica  Sonzini on 7/5/15.
+//  Created by Cristian Pena on 7/5/15.
 //  Copyright (c) 2015 María Verónica Sonzini. All rights reserved.
 //
 

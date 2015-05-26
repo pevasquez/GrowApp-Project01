@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EditTextViewController.h"
 #import "DBUser+Management.h"
 #import "DBBoard+Management.h"
 #import "InkitService.h"
@@ -17,7 +16,7 @@
 - (void)boardCreated:(DBBoard *)board;
 @end
 
-@interface CreateBoardViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,EditTextViewDelegate>
+@interface CreateBoardViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) DBBoard* board;
 @property (nonatomic) BOOL isEditing;
 @property (weak, nonatomic) id<CreateBoardDelegate> delegate;

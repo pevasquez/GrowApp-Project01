@@ -50,6 +50,7 @@
 		FB0929681B0AAD62005B3902 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0929671B0AAD62005B3902 /* DBUser.m */; };
 		FB09296B1B0AAD63005B3902 /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB09296A1B0AAD63005B3902 /* DBBoard.m */; };
 		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
+		FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB249C311B11077400AE29F2 /* UIImage+Extension.m */; };
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
 		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
 		FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */; };
@@ -75,6 +76,8 @@
 		FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
 		FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */; };
 		FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */; };
+		FBA038F01B122E5300700D93 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */; };
+		FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */; };
 		FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384191A892D92004C440A /* ViewInkViewController.m */; };
 		FBB3841E1A89308E004C440A /* InkImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB3841D1A89308E004C440A /* InkImageTableViewCell.m */; };
 		FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384201A8930AD004C440A /* InkDescriptionTableViewCell.m */; };
@@ -186,10 +189,10 @@
 		86DC98F71AC4955700A39C28 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = "Data Base/DataManager.m"; sourceTree = "<group>"; };
 		86DC98FF1AC59C1500A39C28 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		86DC99001AC59C1600A39C28 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		86DC990B1AC9E3E400A39C28 /* DBArtist+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DBArtist+Management.h"; sourceTree = "<group>"; };
-		86DC990C1AC9E3E400A39C28 /* DBArtist+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DBArtist+Management.m"; sourceTree = "<group>"; };
-		86DC990E1AC9E40100A39C28 /* DBShop+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DBShop+Management.h"; sourceTree = "<group>"; };
-		86DC990F1AC9E40100A39C28 /* DBShop+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DBShop+Management.m"; sourceTree = "<group>"; };
+		86DC990B1AC9E3E400A39C28 /* DBArtist+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBArtist+Management.h"; path = "Data Base/DB Categories/DBArtist+Management.h"; sourceTree = "<group>"; };
+		86DC990C1AC9E3E400A39C28 /* DBArtist+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBArtist+Management.m"; path = "Data Base/DB Categories/DBArtist+Management.m"; sourceTree = "<group>"; };
+		86DC990E1AC9E40100A39C28 /* DBShop+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBShop+Management.h"; path = "Data Base/DB Categories/DBShop+Management.h"; sourceTree = "<group>"; };
+		86DC990F1AC9E40100A39C28 /* DBShop+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBShop+Management.m"; path = "Data Base/DB Categories/DBShop+Management.m"; sourceTree = "<group>"; };
 		86DFBC651AF554DF000EAF62 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		86DFBC671AF554F1000EAF62 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		86DFBC691AF56071000EAF62 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -215,6 +218,8 @@
 		FB09296A1B0AAD63005B3902 /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
 		FB0A40001A9D255900294F90 /* WaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterfallLayout.h; path = "ViewControllers/View Inks/WaterfallLayout.h"; sourceTree = "<group>"; };
 		FB0A40011A9D255900294F90 /* WaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterfallLayout.m; path = "ViewControllers/View Inks/WaterfallLayout.m"; sourceTree = "<group>"; };
+		FB249C301B11077400AE29F2 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Extension.h"; path = "Utils/UIImage+Extension.h"; sourceTree = "<group>"; };
+		FB249C311B11077400AE29F2 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Extension.m"; path = "Utils/UIImage+Extension.m"; sourceTree = "<group>"; };
 		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
 		FB29890A1AA868A0005D7327 /* CropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropView.m; path = Inkit/ViewControllers/Camera/CropView.m; sourceTree = "<group>"; };
 		FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleManager.h; path = Utils/GoogleManager.h; sourceTree = "<group>"; };
@@ -234,6 +239,9 @@
 		FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditImageViewController.m; path = Inkit/ViewControllers/Camera/EditImageViewController.m; sourceTree = "<group>"; };
 		FB76CAAE1AB114E400B68BAD /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowseViewController.h; path = ViewControllers/Browse/BrowseViewController.h; sourceTree = "<group>"; };
 		FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = ViewControllers/Browse/BrowseViewController.m; sourceTree = "<group>"; };
+		FBA038EE1B122E5300700D93 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTableViewCell.h; path = "Custom Classes/ImageTableViewCell.h"; sourceTree = "<group>"; };
+		FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTableViewCell.m; path = "Custom Classes/ImageTableViewCell.m"; sourceTree = "<group>"; };
+		FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageTableViewCell.xib; path = "Custom Classes/ImageTableViewCell.xib"; sourceTree = "<group>"; };
 		FBB384181A892D92004C440A /* ViewInkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInkViewController.h; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.h"; sourceTree = "<group>"; };
 		FBB384191A892D92004C440A /* ViewInkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInkViewController.m; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.m"; sourceTree = "<group>"; };
 		FBB3841C1A89308E004C440A /* InkImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkImageTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.h"; sourceTree = "<group>"; };
@@ -607,6 +615,9 @@
 				FBB384291A893559004C440A /* ProfileImageView.m */,
 				FBB3843C1A89522B004C440A /* DynamicSizeLabel.h */,
 				FBB3843D1A89522B004C440A /* DynamicSizeLabel.m */,
+				FBA038EE1B122E5300700D93 /* ImageTableViewCell.h */,
+				FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */,
+				FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */,
 				FBF9F9E21B060F0100357F5B /* TextFieldTableViewCell.h */,
 				FBF9F9E31B060F0100357F5B /* TextFieldTableViewCell.m */,
 				FBF9F9E51B060F1900357F5B /* TextFieldTableViewCell.xib */,
@@ -798,6 +809,8 @@
 		FBDCB1C11A83ED3100E05053 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FB249C301B11077400AE29F2 /* UIImage+Extension.h */,
+				FB249C311B11077400AE29F2 /* UIImage+Extension.m */,
 				FBF2F8601B037A3F00057A71 /* NSData+Extension.h */,
 				FBF2F8611B037A3F00057A71 /* NSData+Extension.m */,
 				86F8A4571B0102FC007955C6 /* NSDate+Extension.h */,
@@ -1000,6 +1013,7 @@
 				86C5A6CF1AFFE69900449FA7 /* OnBoarding.storyboard in Resources */,
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
+				FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
@@ -1024,6 +1038,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBC433171A855C4E00EFAA24 /* DBInk+Management.m in Sources */,
+				FBA038F01B122E5300700D93 /* ImageTableViewCell.m in Sources */,
 				FBF2F8621B037A3F00057A71 /* NSData+Extension.m in Sources */,
 				FB0929681B0AAD62005B3902 /* DBUser.m in Sources */,
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
@@ -1085,6 +1100,7 @@
 				FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */,
 				FB4A23C41AD9630C002EE49B /* NSDictionary+Extensions.m in Sources */,
 				FBB384241A893102004C440A /* InkActionsTableViewCell.m in Sources */,
+				FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */,
 				FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */,
 				86BF40AA1B123A0A004E9025 /* GAProgressHUD.m in Sources */,
 				FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */,
@@ -1253,8 +1269,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/mariaveronicasonzini/Documents/FacebookSDK,
-					"/Users/mariaveronicasonzini/Documents/google-plus-ios-sdk-1.7.1",
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
@@ -1279,8 +1293,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/mariaveronicasonzini/Documents/FacebookSDK,
-					"/Users/mariaveronicasonzini/Documents/google-plus-ios-sdk-1.7.1",
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
@@ -1305,7 +1317,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
 					"$(PROJECT_DIR)",
@@ -1331,7 +1342,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					/Users/mariaveronicasonzini/Documents/FacebookSDK,
 					/Users/cristianpena/Documents/FacebookSDK,
 					"$(PROJECT_DIR)/Inkit",
 					"$(PROJECT_DIR)",

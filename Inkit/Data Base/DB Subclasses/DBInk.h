@@ -2,7 +2,7 @@
 //  DBInk.h
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 12/5/15.
+//  Created by Cristian Pena on 12/5/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 

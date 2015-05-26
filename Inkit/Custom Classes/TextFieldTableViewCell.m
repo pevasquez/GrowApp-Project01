@@ -27,13 +27,17 @@
     textField.text = [textField.text stringByReplacingCharactersInRange:range
                                                              withString:string];
     self.text = textField.text;
-    [self.delegate textFieldTableViewCell:self didEnterText:textField.text];
+    if ([self.delegate respondsToSelector:@selector(textFieldTableViewCell:didEnterText:)]) {
+        [self.delegate textFieldTableViewCell:self didEnterText:textField.text];
+    }
     return NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    [self.delegate textFieldTableViewCellDidBeginEditing:self];
+    if ([self.delegate respondsToSelector:@selector(textFieldTableViewCellDidBeginEditing:)]) {
+        [self.delegate textFieldTableViewCellDidBeginEditing:self];
+    }
     return NO;
 }
 

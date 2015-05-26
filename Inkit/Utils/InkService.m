@@ -52,6 +52,7 @@
 
     // Setup the session
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfiguration.timeoutIntervalForRequest = 10;
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     
     NSURL* createInkURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://inkit.digbang.com/api/inks/create"]];
@@ -61,14 +62,13 @@
     [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:body];
     
-    
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError) {
         if (!connectionError)
         {
             // Cast Response
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
             NSError *error = nil;
-            
+                    
             // Parse JSON Response
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                                options:NSJSONReadingMutableContainers
@@ -87,7 +87,8 @@
                 default:
                 {
                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                    [target performSelectorOnMainThread:completeError withObject:statusCode waitUntilDone:NO];
+                    NSString* errorCode = [NSString stringWithFormat:@"%@", statusCode];
+                    [target performSelectorOnMainThread:completeError withObject:errorCode waitUntilDone:NO];
                     break;
                 }
             }
