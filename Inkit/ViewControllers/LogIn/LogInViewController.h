@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FormViewController.h"
 // Delegate
 @protocol LogInViewControllerDelegate
 - (void)logInDidFinishedLoading;
 @end
 
-@interface LogInViewController : UIViewController
+@interface LogInViewController : FormViewController
 @property (nonatomic, weak) id<LogInViewControllerDelegate> delegate;
+
 @end
 

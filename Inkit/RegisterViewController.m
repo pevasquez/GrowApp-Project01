@@ -12,12 +12,12 @@
 #import "InkitService.h"
 #import "InkitConstants.h"
 #import "UIResponder+FirstResponder.h"
+#import "GAProgressHUDHelper.h"
 
 @interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate >
 {
     NSString* name;
 }
-
 @property (strong, nonatomic) IBOutlet UITextField *eMailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
@@ -41,6 +41,7 @@
     [super viewDidLoad];
     [self hideActivityIndicator];
     [self loadUserData];
+    self.textFieldsArray = @[self.firstNameTextField, self.lastNameTextField,self.eMailTextField, self.passwordTextfield, self.confirmPasswordTextField];
 }
 
 - (void)loadUserData
@@ -213,12 +214,15 @@
 
 - (void) showActivityIndicator
 {
-    self.eMailTextField.userInteractionEnabled = NO;
-    self.passwordTextfield.userInteractionEnabled = NO;
-    self.confirmPasswordTextField.userInteractionEnabled = NO;
-    self.firstNameTextField.userInteractionEnabled = NO;
-    self.lastNameTextField.userInteractionEnabled = NO;
-    self.userType.userInteractionEnabled = NO;
+    [GAProgressHUDHelper registeringProgressHUDinView:self.view];
+    [self disableTextFields];
+    [self hideKeyboard];
+//    self.eMailTextField.userInteractionEnabled = NO;
+//    self.passwordTextfield.userInteractionEnabled = NO;
+//    self.confirmPasswordTextField.userInteractionEnabled = NO;
+//    self.firstNameTextField.userInteractionEnabled = NO;
+//    self.lastNameTextField.userInteractionEnabled = NO;
+//    self.userType.userInteractionEnabled = NO;
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
     [self.eMailTextField resignFirstResponder];
@@ -297,41 +301,19 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == self.firstNameTextField) {
-        [self.lastNameTextField becomeFirstResponder];
-    }else if (textField == self.lastNameTextField){
-        [self.eMailTextField becomeFirstResponder];
-    }else if (textField == self.eMailTextField){
-        [self.passwordTextfield becomeFirstResponder];
-    }else if (textField == self.passwordTextfield){
-        [self.confirmPasswordTextField becomeFirstResponder];
-    }else if (textField == self.confirmPasswordTextField){
-        [self.userType becomeFirstResponder];
-    }else if (textField == self.userType){
+    [super textFieldShouldReturn:textField];
+    if ([self isFormValid]){
         [self registerUser];
     }
     return NO;
 }
 
 
-- (void)hideKeyboard {
-    [self resignFirstResponder];
-    [self.view resignFirstResponder];
-    [self.firstNameTextField resignFirstResponder];
-    [self.lastNameTextField resignFirstResponder];
-    [self.passwordTextfield resignFirstResponder];
-    [self.eMailTextField resignFirstResponder];
-    [self.confirmPasswordTextField resignFirstResponder];
-    [self.userType resignFirstResponder];
-}
-
-
-
 #pragma mark - Helper Methods
 
-- (void)showAlertForMessage:(NSString *)errorMessage
-{
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
-    [alert show];
-}
+//- (void)showAlertForMessage:(NSString *)errorMessage
+//{
+//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+//    [alert show];
+//}
 @end

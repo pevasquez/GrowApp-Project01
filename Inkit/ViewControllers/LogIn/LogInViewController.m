@@ -15,6 +15,8 @@
 #import "GoogleManager.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "RoundedCornerButton.h"
+#import "FormViewController.h"
+#import "GAProgressHUDHelper.h"
 
 @interface LogInViewController () <RegisterDelegate, UITextFieldDelegate, FacebookManagerDelegate, GoogleManagerDelegate>
 
@@ -40,6 +42,7 @@
     [super viewDidLoad];
     [self hideActivityIndicator];
     [self customizeNavigationBar];
+    self.textFieldsArray = @[self.emailTextField, self.passwordTextField];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,7 +73,6 @@
 
 - (IBAction)logInButtonPressed:(id)sender
 {
-    
     [self login];
 }
 
@@ -99,7 +101,7 @@
 
 - (IBAction)didTapScreen:(UITapGestureRecognizer *)sender
 {
-    [self hideKeyBoard];
+    [self hideKeyboard];
 }
 
 
@@ -221,11 +223,8 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"RegisterSegue"]) {
         RegisterViewController* rvc = [segue destinationViewController];
         rvc.userDictionary = self.userDictionary;
@@ -249,10 +248,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == self.emailTextField)
-    {
-        [self.passwordTextField becomeFirstResponder];
-    }else if (textField == self.passwordTextField){
+    [super textFieldShouldReturn:textField];
+    if ([self isFormValid]){
         [self login];
     }
     return NO;
@@ -300,12 +297,6 @@
     } completion:nil];
 }
 
-- (void)hideKeyBoard
-{
-    [self.emailTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
-}
-
 
 #pragma mark - Helper Methods
 
@@ -321,30 +312,35 @@
     return YES;
 }
 
-- (void)showAlertForMessage:(NSString *)errorMessage
-{
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
-    [alert show];
-}
+//- (void)showAlertForMessage:(NSString *)errorMessage
+//{
+//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+//    [alert show];
+//}
 
 #pragma mark - Activity Indicator Methods
 
 - (void) showActivityIndicator
 {
-    [self hideKeyBoard];
-    self.emailTextField.userInteractionEnabled = NO;
-    self.passwordTextField.userInteractionEnabled = NO;
+    [GAProgressHUDHelper loggingInProgressHUDinView:self.view];
+    [self hideKeyboard];
+    [self disableTextFields];
+    
+//    self.emailTextField.userInteractionEnabled = NO;
+//    self.passwordTextField.userInteractionEnabled = NO;
     self.logInButton.userInteractionEnabled = NO;
     self.facebookButton.userInteractionEnabled = NO;
     self.googleButton.userInteractionEnabled = NO;
-    self.activityIndicatorView.hidden = NO;
-    [self.activityIndicatorView startAnimating];
+//    self.activityIndicatorView.hidden = NO;
+//    [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActivityIndicator
 {
-    self.emailTextField.userInteractionEnabled = YES;
-    self.passwordTextField.userInteractionEnabled = YES;
+    [GAProgressHUDHelper hideHUDForView:self.view animated:true];
+    [self enableTextFields];
+//    self.emailTextField.userInteractionEnabled = YES;
+//    self.passwordTextField.userInteractionEnabled = YES;
     self.logInButton.userInteractionEnabled = YES;
     self.activityIndicatorView.hidden = YES;
     
