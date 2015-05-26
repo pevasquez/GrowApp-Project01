@@ -305,21 +305,10 @@
         completion(result.firstObject);
     }];
 }
-//
-//- (NSFetchedResultsController* )fetchResultController:(NSString *)type predicate:(NSPredicate *)predicate sort:(NSString *)sort group:(NSString *)group{
-//    NSFetchedResultsController* controller = nil;
-//    [self.managedObjectContext performBlockAndWait:^{
-//        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//        fetchRequest.entity = [NSEntityDescription entityForName:type inManagedObjectContext:self.managedObjectContext];
-//        fetchRequest.includesSubentities = true;
-//        fetchRequest.fetchBatchSize = 20;
-//        NSSortDescriptor *sortDescriptors = [sort];
-//        fetchRequest.sortDescriptors = sortDescriptors;
-//
-//    }];
-//
-//    return controller;
-//}
+
+- (NSFetchedResultsController* )fetchResultControllerWithRequest:(NSFetchRequest *)request {
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+}
 
 - (NSManagedObject *)first:(NSString *)type predicate:(NSPredicate *)predicate sort:(NSArray *)sort limit:(int)limit{
     __block NSArray *result = nil;

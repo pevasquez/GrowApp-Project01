@@ -146,7 +146,7 @@
         } else {
             imageToUse = originalImage;
         }
-        // Do something with imageToUse
+
         self.inkImage = imageToUse;
     }
     
