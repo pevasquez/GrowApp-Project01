@@ -11,6 +11,7 @@
 #import "InkitTheme.h"
 #import "DataManager.h"
 #import "AppDelegate.h"
+#import "GAProgressHUDHelper.h"
 
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -117,16 +118,18 @@ static NSString *cellIdentifier;
 
 - (void) showActivityIndicator
 {
-    self.activityIndicatorView.hidden = NO;
-    
-    [self.activityIndicatorView startAnimating];
+    [GAProgressHUDHelper standarBlankHUD:self.view];
+//    self.activityIndicatorView.hidden = NO;
+//    
+//    [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActivityIndicator
 {
-    self.activityIndicatorView.hidden = YES;
-    
-    [self.activityIndicatorView stopAnimating];
+    [GAProgressHUDHelper hideProgressHUDinView:self.view];
+//    self.activityIndicatorView.hidden = YES;
+//    
+//    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Appearence Methods

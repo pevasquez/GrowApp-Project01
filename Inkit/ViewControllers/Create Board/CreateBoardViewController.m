@@ -14,6 +14,7 @@
 #import "DataManager.h"
 #import "InkitTheme.h"
 #import "InkitConstants.h"
+#import "GAProgressHUDHelper.h"
 
 typedef enum
 {
@@ -192,14 +193,12 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator
 {
-    self.activityIndicatorView.hidden = NO;
-    [self.activityIndicatorView startAnimating];
+    [GAProgressHUDHelper standarBlankHUD:self.view];
 }
 
 - (void) hideActivityIndicator
 {
-    self.activityIndicatorView.hidden = YES;
-    [self.activityIndicatorView stopAnimating];
+    [GAProgressHUDHelper hideProgressHUDinView:self.view];
 }
 
 #pragma mark - UIHelpers

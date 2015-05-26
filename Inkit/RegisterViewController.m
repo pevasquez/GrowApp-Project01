@@ -235,12 +235,13 @@
 
 - (void) hideActivityIndicator
 {
-    self.eMailTextField.userInteractionEnabled = YES;
-    self.passwordTextfield.userInteractionEnabled = YES;
-    self.confirmPasswordTextField.userInteractionEnabled = YES;
-    self.firstNameTextField.userInteractionEnabled = YES;
-    self.lastNameTextField.userInteractionEnabled = YES;
-    self.userType.userInteractionEnabled = YES;
+    [GAProgressHUDHelper hideProgressHUDinView:self.view];
+//    self.eMailTextField.userInteractionEnabled = YES;
+//    self.passwordTextfield.userInteractionEnabled = YES;
+//    self.confirmPasswordTextField.userInteractionEnabled = YES;
+//    self.firstNameTextField.userInteractionEnabled = YES;
+//    self.lastNameTextField.userInteractionEnabled = YES;
+//    self.userType.userInteractionEnabled = YES;
     self.activityIndicatorView.hidden = YES;
 
     [self.activityIndicatorView stopAnimating];

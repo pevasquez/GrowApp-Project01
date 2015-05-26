@@ -1,4 +1,4 @@
-//
+ //
 //  LogInViewController.m
 //  Inkit
 //
@@ -17,6 +17,9 @@
 #import "RoundedCornerButton.h"
 #import "FormViewController.h"
 #import "GAProgressHUDHelper.h"
+#import "Social/Social.h"
+#import <Accounts/Accounts.h>
+
 
 @interface LogInViewController () <RegisterDelegate, UITextFieldDelegate, FacebookManagerDelegate, GoogleManagerDelegate>
 
@@ -25,7 +28,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet RoundedCornerButton *logInButton;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) NSMutableDictionary* userDictionary;
 @property (nonatomic) BOOL userIsEnteringEmail;
 @property (strong, nonatomic) IBOutlet UIView *scrollView;
@@ -83,13 +85,7 @@
 
 - (IBAction)facebookLoginPressed:(id)sender
 {
-    // If the session state is any of the two "open" states when the button is clicked
-    if (FBSession.activeSession.state == FBSessionStateOpen
-        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
-        [FBSession.activeSession closeAndClearTokenInformation];
-    }
-    [FacebookManager sharedInstance].delegate = self;
-    [[FacebookManager sharedInstance] logInUser];
+    [FacebookManager ]
 }
 
 - (IBAction)GoogleSignInButton:(id)sender
@@ -167,22 +163,27 @@
     
 }
 
-- (void)onUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo
+- (void)onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *)userInfo
 {
     self.userDictionary = [[NSMutableDictionary alloc] init];
     //self.userDictionary[kUserFullName] = userInfo.name;
-    self.userDictionary[kUserFirstName] = userInfo.first_name;
-    self.userDictionary[kUserLastName] = userInfo.last_name;
+    self.userDictionary[kUserFirstName] = userInfo[@"first_name"];
+    self.userDictionary[kUserLastName] = userInfo[@"last_name"];
     if ([userInfo objectForKey:@"email"]) {
         self.userDictionary[kUserEmail] = userInfo[@"email"];
     }
-    self.userDictionary[kUserExternalId] = userInfo.objectID;
+    self.userDictionary[kUserExternalId] = userInfo[@"id"];
     self.userDictionary[kUserSocialNetworkId] = @"1";
     
     //NSString* imageURL = [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=large", userInfo.objectID];
     //self.userDictionary[kUserImageURL] = imageURL;
     
     [self socialLogin];
+}
+
+- (void)onUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo
+{
+    [self onFacebookUserInfoRequestComplete:userInfo];
 }
 
 - (void)onPermissionsDeclined:(NSArray *)declinedPermissions
@@ -298,6 +299,8 @@
 }
 
 
+
+
 #pragma mark - Helper Methods
 
 - (BOOL)verifyTextFields
@@ -317,6 +320,7 @@
 //    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
 //    [alert show];
 //}
+
 
 #pragma mark - Activity Indicator Methods
 
@@ -339,12 +343,12 @@
 {
     [GAProgressHUDHelper hideHUDForView:self.view animated:true];
     [self enableTextFields];
-//    self.emailTextField.userInteractionEnabled = YES;
-//    self.passwordTextField.userInteractionEnabled = YES;
+    self.emailTextField.userInteractionEnabled = YES;
+    self.passwordTextField.userInteractionEnabled = YES;
     self.logInButton.userInteractionEnabled = YES;
-    self.activityIndicatorView.hidden = YES;
-    
-    [self.activityIndicatorView stopAnimating];
+//    self.activityIndicatorView.hidden = YES;
+//    
+//    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Appearence Methods

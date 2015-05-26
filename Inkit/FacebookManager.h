@@ -23,6 +23,7 @@
 - (void)onUserFriendRequestError:(NSError*)fbError;
 - (void)onUserInfoRequestError:(NSError*)fbError;
 - (void)onUserInfoRequestComplete:(NSDictionary *)userInfo;
+- (void) internalLogInUser;
 @end
 
 @interface FacebookManager : NSObject

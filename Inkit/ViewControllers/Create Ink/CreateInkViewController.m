@@ -27,6 +27,7 @@
 #import "InkitService.h"
 #import "TextFieldTableViewCell.h"
 #import "UIImage+Extension.h"
+#import "GAProgressHUDHelper.h"
 
 static NSString * const CreateInkImageTableViewCellIdentifier = @"CreateInkImageTableViewCell";
 static NSString * const CreateInkTableViewCellIdentifier = @"CreateInkInkTableViewCell";
@@ -496,20 +497,22 @@ typedef enum
 
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator {
+    [GAProgressHUDHelper creatingInkProgressHUD:self.view];
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     [self.view insertSubview:self.overlayView belowSubview:self.activityIndicatorView];
     self.navigationItem.rightBarButtonItem.enabled = false;
     self.createInkTableView.userInteractionEnabled = false;
-    self.activityIndicatorView.hidden = NO;
-    [self.activityIndicatorView startAnimating];
+//    self.activityIndicatorView.hidden = NO;
+//    [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActivityIndicator {
+    [GAProgressHUDHelper hideProgressHUDinView:self.view];
     self.navigationItem.rightBarButtonItem.enabled = true;
     self.createInkTableView.userInteractionEnabled = true;
-    self.activityIndicatorView.hidden = YES;
-    [self.activityIndicatorView stopAnimating];
+//    self.activityIndicatorView.hidden = YES;
+//    [self.activityIndicatorView stopAnimating];
     [self.overlayView removeFromSuperview];
 }
 

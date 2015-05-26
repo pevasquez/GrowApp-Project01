@@ -44,6 +44,11 @@
     return NO;
 }
 
+#pragma mark - Disable button when textfields are empty
+
+// Agregar lógica
+
+
 #pragma mark - Validation Methods
 - (BOOL)isFormValid {
     for (UITextField* textField in self.textFieldsArray) {

@@ -7,9 +7,15 @@
 //
 
 #import "FacebookManager.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 @interface FacebookManager()
 @property (strong, nonatomic) NSDictionary* userInfo;
+@property (strong, nonatomic) ACAccountStore *accountStore;
+@property (strong, nonatomic) NSDictionary *dictFB;
+@property (strong, nonatomic) ACAccountType *FBaccountType;
+@property (strong, nonatomic) ACAccount *facebookAccount;
 @end
 
 @implementation FacebookManager
@@ -49,6 +55,49 @@
     }
 }
 
+- (void) internalLogInUser
+{
+    self.accountStore = [[ACAccountStore alloc]init];
+    ACAccountType *FBaccountType= [self.accountStore accountTypeWithAccountTypeIdentifier:
+                                   ACAccountTypeIdentifierFacebook];
+    
+    NSDictionary *dictFB = @{ACFacebookAppIdKey : @"1410385759286626", ACFacebookPermissionsKey : [NSArray arrayWithObject:@"email"] };
+    [self.accountStore requestAccessToAccountsWithType:FBaccountType options:dictFB
+                                            completion: ^(BOOL granted, NSError *error) {
+                                                if (granted) {
+                                                    NSArray *accounts = [self.accountStore accountsWithAccountType:FBaccountType];
+                                                    //it will always be the last object with SSO
+                                                    self.facebookAccount = [accounts lastObject];
+                                                    NSURL *requestURL = [NSURL URLWithString:@"https://graph.facebook.com/me"];
+                                                    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                                                                            requestMethod:SLRequestMethodGET
+                                                                                                      URL:requestURL
+                                                                                               parameters:nil];
+                                                    request.account = self.facebookAccount;
+                                                    [request performRequestWithHandler:^(NSData *data,
+                                                                                         NSHTTPURLResponse *response,
+                                                                                         NSError *error) {
+                                                        
+                                                        if(!error){
+                                                            NSDictionary *list =[NSJSONSerialization JSONObjectWithData:data
+                                                                                                                options:kNilOptions error:&error];
+                                                            NSLog(@"Dictionary contains: %@", list );
+                                                            [self.delegate onUserInfoRequestComplete:(NSDictionary <FBGraphUser> *)list];
+                                                        }
+                                                        else{
+                                                        }
+                                                        
+                                                    }];
+                                                } else {
+                                                    // Do SDK Login
+                                                    if (FBSession.activeSession.state == FBSessionStateOpen
+                                                        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
+                                                        [FBSession.activeSession closeAndClearTokenInformation];
+                                                    }
+                                                    [FacebookManager sharedInstance].delegate = self;
+                                                    [[FacebookManager sharedInstance] logInUser];
+                                                } }];
+}
 - (void)logInUser
 {
     [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
@@ -84,7 +133,6 @@
     } else if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed) {
         [session closeAndClearTokenInformation];
         [self.delegate onUserLoggedOut];
-        //[self userLoggedOut];
         
     }
     
