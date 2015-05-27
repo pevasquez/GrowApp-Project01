@@ -85,7 +85,9 @@
 
 - (IBAction)facebookLoginPressed:(id)sender
 {
-    [FacebookManager ]
+    [FacebookManager sharedInstance].delegate = self;
+    [[FacebookManager sharedInstance] internalLogInUser];
+
 }
 
 - (IBAction)GoogleSignInButton:(id)sender
@@ -144,7 +146,6 @@
 {
     [self hideActivityIndicator];
     if ([errorMessage isEqualToString:@"Bad credentials"]) {
-        // set register window pero seteando el diccionario de datos
         [self performSegueWithIdentifier:@"RegisterSegue" sender:nil];
     } else {
         [self showAlertForMessage:errorMessage];
@@ -163,10 +164,20 @@
     
 }
 
-- (void)onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *)userInfo
-{
+- (void)onInternalLoginSuccess {
+    [[FacebookManager sharedInstance] requestUserGraph];
+}
+
+- (void)onInternalLoginError:(NSError *)error {
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
+        [FBSession.activeSession closeAndClearTokenInformation];
+    }
+    [[FacebookManager sharedInstance] sdkLogInUser];
+}
+
+- (void)onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo {
     self.userDictionary = [[NSMutableDictionary alloc] init];
-    //self.userDictionary[kUserFullName] = userInfo.name;
     self.userDictionary[kUserFirstName] = userInfo[@"first_name"];
     self.userDictionary[kUserLastName] = userInfo[@"last_name"];
     if ([userInfo objectForKey:@"email"]) {
@@ -175,21 +186,12 @@
     self.userDictionary[kUserExternalId] = userInfo[@"id"];
     self.userDictionary[kUserSocialNetworkId] = @"1";
     
-    //NSString* imageURL = [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=large", userInfo.objectID];
-    //self.userDictionary[kUserImageURL] = imageURL;
-    
     [self socialLogin];
-}
-
-- (void)onUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo
-{
-    [self onFacebookUserInfoRequestComplete:userInfo];
 }
 
 - (void)onPermissionsDeclined:(NSArray *)declinedPermissions
 {
     NSLog(@"declined Permissions");
-    
 }
 
 #pragma mark - Google+ Delegate
@@ -214,6 +216,7 @@
 {
     NSLog(@"Google User Logged Out");
 }
+
 #pragma mark - Register Delegate
 
 - (void)registrationComplete

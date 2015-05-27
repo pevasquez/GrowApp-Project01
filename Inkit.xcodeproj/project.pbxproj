@@ -70,6 +70,7 @@
 		86EE2E631B14E9F700DC64BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
 		86EE2E641B14E9F700DC64BC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB488541A8BF176009E1789 /* MobileCoreServices.framework */; };
 		86EE2E651B14E9F700DC64BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */; };
+		86EE2E6F1B15E8FD00DC64BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EE2E6E1B15E8FD00DC64BC /* ImageIO.framework */; };
 		86F8A44F1B00FFB4007955C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A21A83EB1800E05053 /* Main.storyboard */; };
 		86F8A4591B0102FC007955C6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F8A4581B0102FC007955C6 /* NSDate+Extension.m */; };
 		FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */; };
@@ -237,6 +238,7 @@
 		86EE2E2F1B14A9DA00DC64BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		86EE2E311B14A9F100DC64BC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		86EE2E6E1B15E8FD00DC64BC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = GooglePlus.bundle/ImageIO.framework; sourceTree = "<group>"; };
 		86F8A4571B0102FC007955C6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extension.h"; path = "Utils/NSDate+Extension.h"; sourceTree = "<group>"; };
 		86F8A4581B0102FC007955C6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extension.m"; path = "Utils/NSDate+Extension.m"; sourceTree = "<group>"; };
 		FB0138B91AA8F69E0037D945 /* SelectLocalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectLocalTableViewController.h; path = "ViewControllers/Create Ink/SelectLocalTableViewController.h"; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				86EE2DD61B14A06900DC64BC /* Accounts.framework in Frameworks */,
 				86EE2DD41B149EB500DC64BC /* Social.framework in Frameworks */,
 				86DFBC7A1AF5689A000EAF62 /* UIKit.framework in Frameworks */,
+				86EE2E6F1B15E8FD00DC64BC /* ImageIO.framework in Frameworks */,
 				8673CB1B1AFA6F8700179FA2 /* GooglePlus.framework in Frameworks */,
 				86DFBC781AF5688A000EAF62 /* MediaPlayer.framework in Frameworks */,
 				86DFBC761AF56881000EAF62 /* CoreText.framework in Frameworks */,
@@ -699,6 +702,7 @@
 			isa = PBXGroup;
 			children = (
 				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
+				86EE2E6E1B15E8FD00DC64BC /* ImageIO.framework */,
 				86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */,
 				86EE2E311B14A9F100DC64BC /* MessageUI.framework */,
 				86EE2E2F1B14A9DA00DC64BC /* AudioToolbox.framework */,
@@ -1343,6 +1347,7 @@
 					"$(PROJECT_DIR)",
 					/Users/mariaveronicasonzini/Documents/Mis,
 					"Proyectos/GoogleMobileAdsSdkiOS-7.2-2.2",
+					"$(PROJECT_DIR)/Inkit/GooglePlus.bundle",
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1369,6 +1374,7 @@
 					"$(PROJECT_DIR)",
 					/Users/mariaveronicasonzini/Documents/Mis,
 					"Proyectos/GoogleMobileAdsSdkiOS-7.2-2.2",
+					"$(PROJECT_DIR)/Inkit/GooglePlus.bundle",
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
