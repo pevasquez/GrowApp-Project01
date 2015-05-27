@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kd9-K6-G4c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kd9-K6-G4c">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -454,21 +454,16 @@
                                     <constraint firstAttribute="bottom" secondItem="yzZ-8x-KAE" secondAttribute="bottom" id="yal-cK-bJq"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iAR-t5-aw9">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2yQ-3P-17I" firstAttribute="top" secondItem="djn-j3-biL" secondAttribute="topMargin" id="5EN-NQ-A26"/>
-                            <constraint firstAttribute="centerY" secondItem="iAR-t5-aw9" secondAttribute="centerY" id="CbG-AL-py7"/>
                             <constraint firstItem="2yQ-3P-17I" firstAttribute="leading" secondItem="djn-j3-biL" secondAttribute="leadingMargin" constant="-16" id="GzP-N7-1fX"/>
                             <constraint firstItem="7fQ-Tn-q9h" firstAttribute="top" secondItem="djn-j3-biL" secondAttribute="top" id="JQS-jH-E7u"/>
                             <constraint firstAttribute="centerX" secondItem="df3-Wu-3se" secondAttribute="centerX" id="QRJ-y7-UkI"/>
                             <constraint firstAttribute="trailing" secondItem="7fQ-Tn-q9h" secondAttribute="trailing" id="ZAZ-OK-Mg3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2yQ-3P-17I" secondAttribute="trailing" constant="-16" id="aGh-Ui-7g7"/>
                             <constraint firstItem="df3-Wu-3se" firstAttribute="top" secondItem="cJR-5a-VWw" secondAttribute="bottom" constant="-20" id="cbL-5E-xXf"/>
-                            <constraint firstAttribute="centerX" secondItem="iAR-t5-aw9" secondAttribute="centerX" id="eX5-O2-lWz"/>
                             <constraint firstItem="7fQ-Tn-q9h" firstAttribute="leading" secondItem="djn-j3-biL" secondAttribute="leading" id="qlc-b4-cNB"/>
                             <constraint firstAttribute="bottom" secondItem="7fQ-Tn-q9h" secondAttribute="bottom" id="zvi-sM-boL"/>
                         </constraints>
@@ -476,7 +471,6 @@
                     <navigationItem key="navigationItem" title="Log In" id="pF7-Zk-oeV"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="iAR-t5-aw9" id="343-Gm-PoW"/>
                         <outlet property="emailTextField" destination="1Ht-5C-c2R" id="QhN-C8-UgP"/>
                         <outlet property="facebookButton" destination="Ovp-2g-YgZ" id="dUf-3v-PG9"/>
                         <outlet property="googleButton" destination="EH8-aQ-Ujn" id="wUa-f2-sOc"/>
@@ -664,9 +658,6 @@
                                     <outletCollection property="gestureRecognizers" destination="4hH-QT-IMN" appends="YES" id="w6g-Ca-l9j"/>
                                 </connections>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zwr-1x-XIY">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ck4-3p-nNa" userLabel="greyBar">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
@@ -743,16 +734,11 @@
                             <constraint firstItem="ck4-3p-nNa" firstAttribute="leading" secondItem="HVS-0j-kHb" secondAttribute="leadingMargin" constant="-16" id="CWn-79-cg9"/>
                             <constraint firstItem="xPV-X2-Kyj" firstAttribute="leading" secondItem="ymd-Bg-Eio" secondAttribute="trailing" constant="125" id="DBn-X3-MeV"/>
                             <constraint firstItem="96u-Tu-Aod" firstAttribute="top" secondItem="BES-e1-hd2" secondAttribute="bottom" id="DxX-ka-TW2"/>
-                            <constraint firstItem="zwr-1x-XIY" firstAttribute="leading" secondItem="HVS-0j-kHb" secondAttribute="leadingMargin" constant="50" id="IW0-qp-nzd"/>
                             <constraint firstItem="aOT-jy-Mwo" firstAttribute="top" secondItem="EGw-3n-5FN" secondAttribute="bottom" id="Lrj-xy-cAr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zwr-1x-XIY" secondAttribute="trailing" constant="50" id="P8P-im-9QL"/>
-                            <constraint firstAttribute="centerX" secondItem="zwr-1x-XIY" secondAttribute="centerX" id="QCd-FD-1Df"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EGw-3n-5FN" secondAttribute="trailing" constant="-16" id="SCl-kJ-A8l"/>
                             <constraint firstAttribute="centerX" secondItem="ck4-3p-nNa" secondAttribute="centerX" id="Ufx-zQ-LOT"/>
                             <constraint firstItem="ck4-3p-nNa" firstAttribute="top" secondItem="BES-e1-hd2" secondAttribute="bottom" id="VrF-Ff-zfP"/>
                             <constraint firstItem="EGw-3n-5FN" firstAttribute="top" secondItem="HVS-0j-kHb" secondAttribute="topMargin" id="XwF-rO-pdL"/>
-                            <constraint firstAttribute="centerX" secondItem="zwr-1x-XIY" secondAttribute="centerX" id="aSj-Tv-57a"/>
-                            <constraint firstAttribute="centerY" secondItem="zwr-1x-XIY" secondAttribute="centerY" id="ksg-t5-ea9"/>
                             <constraint firstAttribute="centerX" secondItem="96u-Tu-Aod" secondAttribute="centerX" id="nwJ-Gr-M1k"/>
                             <constraint firstItem="EGw-3n-5FN" firstAttribute="leading" secondItem="HVS-0j-kHb" secondAttribute="leadingMargin" constant="-16" id="qca-FY-Rme"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ck4-3p-nNa" secondAttribute="trailing" constant="-16" id="rtq-WO-ueL"/>
@@ -765,14 +751,10 @@
                                 <exclude reference="AxO-4j-5Uh"/>
                                 <exclude reference="DxX-ka-TW2"/>
                                 <exclude reference="DBn-X3-MeV"/>
-                                <exclude reference="IW0-qp-nzd"/>
-                                <exclude reference="P8P-im-9QL"/>
-                                <exclude reference="aSj-Tv-57a"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="zwr-1x-XIY" id="qRw-fP-4O0"/>
                         <outlet property="backButton" destination="ymd-Bg-Eio" id="O2E-SC-BiS"/>
                         <outlet property="confirmPasswordTextField" destination="VdU-LX-oQr" id="LIs-5k-XNb"/>
                         <outlet property="eMailTextField" destination="ZDZ-p4-sGW" id="NZ3-G4-97c"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PlJ-6E-uV8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PlJ-6E-uV8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -47,7 +47,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="251" height="339"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="&quot;Black + White&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-mI-WlV" userLabel="boardTitle">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Black + White&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-mI-WlV" userLabel="boardTitle">
                                                     <rect key="frame" x="4" y="0.0" width="243" height="29"/>
                                                     <fontDescription key="fontDescription" name="PermanentMarker" family="Permanent Marker" pointSize="20"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -210,17 +210,12 @@
                                     <outlet property="delegate" destination="dRu-wH-jaH" id="zgm-Jw-Rti"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="thx-cs-Mql">
-                                <rect key="frame" x="290" y="234" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="dYZ-OK-NSg" secondAttribute="trailing" constant="-16" id="HXP-9P-bR5"/>
                             <constraint firstItem="dYZ-OK-NSg" firstAttribute="bottom" secondItem="saO-Dp-RxY" secondAttribute="bottomMargin" id="Lnh-Rm-kfb"/>
                             <constraint firstItem="dYZ-OK-NSg" firstAttribute="leading" secondItem="saO-Dp-RxY" secondAttribute="leadingMargin" constant="-16" id="Lqv-qM-2Az"/>
-                            <constraint firstAttribute="centerY" secondItem="thx-cs-Mql" secondAttribute="centerY" id="O8V-u8-NbS"/>
-                            <constraint firstAttribute="centerX" secondItem="thx-cs-Mql" secondAttribute="centerX" id="TgS-CL-RZc"/>
                             <constraint firstItem="dYZ-OK-NSg" firstAttribute="top" secondItem="saO-Dp-RxY" secondAttribute="topMargin" id="Vme-2S-Usm"/>
                         </constraints>
                     </view>
@@ -237,7 +232,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="thx-cs-Mql" id="TCJ-U4-9qh"/>
                         <outlet property="createBoardTableView" destination="dYZ-OK-NSg" id="bqv-x4-wxY"/>
                         <outlet property="doneButton" destination="EkW-2F-OvU" id="Q7r-wX-VXK"/>
                         <segue destination="F2V-C4-aYM" kind="show" identifier="EditTextSegue" id="Y98-t2-F6r"/>
@@ -313,7 +307,7 @@
                                     <action selector="fromAlbumButtonPressed:" destination="GzE-fM-77e" eventType="touchUpInside" id="4yC-Vd-hzC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create Ink" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29V-oQ-wkl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Ink" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29V-oQ-wkl">
                                 <rect key="frame" x="226" y="105" width="149" height="40"/>
                                 <fontDescription key="fontDescription" name="PermanentMarker" family="Permanent Marker" pointSize="28"/>
                                 <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -727,9 +721,6 @@
                                     <outlet property="delegate" destination="PlN-6M-hAE" id="O3Y-Dk-Ux4"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KLu-fP-3kN">
-                                <rect key="frame" x="289" y="266" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -737,8 +728,6 @@
                             <constraint firstItem="kjZ-H5-q78" firstAttribute="leading" secondItem="y1n-ln-Yau" secondAttribute="leadingMargin" constant="-16" id="IRB-Xj-QiR"/>
                             <constraint firstItem="kjZ-H5-q78" firstAttribute="top" secondItem="y1n-ln-Yau" secondAttribute="topMargin" id="PId-7n-atV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kjZ-H5-q78" secondAttribute="trailing" constant="-16" id="PMk-8u-OxH"/>
-                            <constraint firstAttribute="centerX" secondItem="KLu-fP-3kN" secondAttribute="centerX" constant="0.5" id="dSM-8g-EvC"/>
-                            <constraint firstAttribute="centerY" secondItem="KLu-fP-3kN" secondAttribute="centerY" id="hTd-NF-qgM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Ink" id="tn2-PE-wqo">
@@ -757,7 +746,6 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="KLu-fP-3kN" id="cb1-g1-oTt"/>
                         <outlet property="createBarButtonItem" destination="GAF-X2-PKb" id="ZrA-c2-gge"/>
                         <outlet property="createInkTableView" destination="kjZ-H5-q78" id="55F-CL-VmP"/>
                         <outlet property="doneBarButtonItem" destination="k7g-bt-UfU" id="81g-hJ-STH"/>
@@ -1183,7 +1171,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SelectLocalTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3KV-ST-JBN" customClass="SelectLocalTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Usp-S7-UAu">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="sTu-b2-TaO">
@@ -1517,16 +1505,11 @@
                                     <outlet property="delegate" destination="1Wm-X3-uXy" id="FJF-j6-VMl"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aYR-eN-KKa">
-                                <rect key="frame" x="290" y="234" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wMj-bP-I8v" firstAttribute="leading" secondItem="yLa-gP-MZf" secondAttribute="leadingMargin" constant="-16" id="6iO-iA-pQ8"/>
-                            <constraint firstAttribute="centerX" secondItem="aYR-eN-KKa" secondAttribute="centerX" id="7Me-dv-osz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wMj-bP-I8v" secondAttribute="trailing" constant="-16" id="YKA-Ry-A1l"/>
-                            <constraint firstAttribute="centerY" secondItem="aYR-eN-KKa" secondAttribute="centerY" id="j4s-Vs-5zW"/>
                             <constraint firstItem="wMj-bP-I8v" firstAttribute="bottom" secondItem="yLa-gP-MZf" secondAttribute="bottomMargin" id="tTX-YO-1he"/>
                             <constraint firstItem="wMj-bP-I8v" firstAttribute="top" secondItem="yLa-gP-MZf" secondAttribute="topMargin" id="yIe-te-R8C"/>
                         </constraints>
@@ -1534,7 +1517,6 @@
                     <navigationItem key="navigationItem" title="Browse" id="UmG-Rh-AoC"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="aYR-eN-KKa" id="HLs-fS-BVt"/>
                         <outlet property="browseCollectionView" destination="wMj-bP-I8v" id="JVQ-HL-tNq"/>
                         <segue destination="bKf-bq-v39" kind="show" identifier="ViewInkSegue" id="MWx-kR-K4W"/>
                     </connections>
@@ -1797,15 +1779,10 @@
                                     <outlet property="delegate" destination="p1L-EI-LuS" id="wBx-cf-pOH"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-sc-lbo">
-                                <rect key="frame" x="290" y="234" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7DQ-sc-lbo" firstAttribute="centerY" secondItem="fPh-nY-dSR" secondAttribute="centerY" id="8TO-zE-cBp"/>
                             <constraint firstItem="fPh-nY-dSR" firstAttribute="bottom" secondItem="jsV-b8-0HF" secondAttribute="bottomMargin" id="AzD-jH-xtA"/>
-                            <constraint firstItem="7DQ-sc-lbo" firstAttribute="centerX" secondItem="fPh-nY-dSR" secondAttribute="centerX" id="EMh-Kd-aw6"/>
                             <constraint firstItem="fPh-nY-dSR" firstAttribute="top" secondItem="jsV-b8-0HF" secondAttribute="topMargin" id="PBa-qQ-lGX"/>
                             <constraint firstItem="fPh-nY-dSR" firstAttribute="leading" secondItem="jsV-b8-0HF" secondAttribute="leadingMargin" constant="-16" id="Wtc-Wv-DFh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fPh-nY-dSR" secondAttribute="trailing" constant="-16" id="hq0-4z-Qui"/>
@@ -1813,7 +1790,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="bYY-nr-3Sz"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="7DQ-sc-lbo" id="mzY-xp-Zux"/>
                         <outlet property="tableView" destination="fPh-nY-dSR" id="5QK-fn-cMk"/>
                     </connections>
                 </viewController>
@@ -1960,9 +1936,9 @@
         <image name="ViewInks-ReInk" width="7" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MWx-kR-K4W"/>
+        <segue reference="NRZ-KG-SSz"/>
         <segue reference="YiA-aR-fdm"/>
-        <segue reference="eTF-QW-UEi"/>
+        <segue reference="Y98-t2-F6r"/>
         <segue reference="lQ1-q0-po4"/>
         <segue reference="qdy-Zm-66Q"/>
     </inferredMetricsTieBreakers>

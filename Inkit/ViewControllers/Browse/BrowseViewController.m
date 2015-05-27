@@ -13,13 +13,14 @@
 #import "AppDelegate.h"
 #import "InkitTheme.h"
 #import "InkitService.h"
+#import "GAProgressHUDHelper.h"
+
 
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";
 
 
 @interface BrowseViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *browseCollectionView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray* inksArray;
 
 @end
@@ -116,14 +117,12 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 - (void) showActivityIndicator
 {
-    self.activityIndicator.hidden = NO;
-    [self.activityIndicator startAnimating];
+    [GAProgressHUDHelper browseProgressHUD:self.view];
 }
 
 - (void) hideActivityIndicator
 {
-    self.activityIndicator.hidden = YES;
-    [self.activityIndicator stopAnimating];
+    [GAProgressHUD hideHUDForView:self.view animated:true];
 }
 
 #pragma mark - Appearence Methods

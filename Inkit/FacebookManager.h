@@ -22,8 +22,11 @@
 - (void)onUserFriendsRequestComplete:(NSArray *)userFriendInfo;
 - (void)onUserFriendRequestError:(NSError*)fbError;
 - (void)onUserInfoRequestError:(NSError*)fbError;
-- (void)onUserInfoRequestComplete:(NSDictionary *)userInfo;
+- (void)onFacebookUserInfoRequestComplete:(NSDictionary *)userInfo;
+- (void)onInternalLoginError:(NSError *)error;
+- (void)onInternalLoginSuccess;
 @end
+
 
 @interface FacebookManager : NSObject
 + (FacebookManager*)sharedInstance;
@@ -31,7 +34,9 @@
 
 - (void)initializeFacebookSession;
 - (void)requestUserInfo;
-- (void)logInUser;
+- (void)requestUserGraph;
+- (void)sdkLogInUser;
+- (void)internalLogInUser;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DBUser+Management.h"
+#import "FormViewController.h"
 
 @protocol RegisterDelegate <NSObject>
 
@@ -15,7 +16,7 @@
 
 @end
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : FormViewController
 @property (nonatomic, weak) id<RegisterDelegate> delegate;
 @property (strong, nonatomic) NSMutableDictionary* userDictionary;
 @end

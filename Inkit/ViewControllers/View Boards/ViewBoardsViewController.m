@@ -15,6 +15,7 @@
 #import "DBBoard+Management.h"
 #import "InkitTheme.h"
 #import "DataManager.h"
+#import "GAProgressHUDHelper.h"
 
 static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionViewCell";
 
@@ -134,12 +135,14 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 #pragma mark - Actitivy Indicator Methods
 - (void) showActivityIndicator
 {
-    self.activityIndicatorView.hidden = NO;
-    [self.activityIndicatorView startAnimating];
+    [GAProgressHUDHelper standarBlankHUD:self.view];
+//    self.activityIndicatorView.hidden = NO;
+//    [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActitivyIndicator
 {
+    [GAProgressHUDHelper hideProgressHUDinView:self.view];
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
 }

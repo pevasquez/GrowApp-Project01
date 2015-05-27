@@ -12,6 +12,7 @@
 #import "InkitConstants.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
+
 @interface AppDelegate () <TutorialViewControllerDelegate>
 
 @end

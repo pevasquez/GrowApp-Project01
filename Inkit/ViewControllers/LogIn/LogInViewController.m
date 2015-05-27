@@ -1,4 +1,4 @@
-//
+ //
 //  LogInViewController.m
 //  Inkit
 //
@@ -15,6 +15,11 @@
 #import "GoogleManager.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "RoundedCornerButton.h"
+#import "FormViewController.h"
+#import "GAProgressHUDHelper.h"
+#import "Social/Social.h"
+#import <Accounts/Accounts.h>
+
 
 @interface LogInViewController () <RegisterDelegate, UITextFieldDelegate, FacebookManagerDelegate, GoogleManagerDelegate>
 
@@ -23,7 +28,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet RoundedCornerButton *logInButton;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) NSMutableDictionary* userDictionary;
 @property (nonatomic) BOOL userIsEnteringEmail;
 @property (strong, nonatomic) IBOutlet UIView *scrollView;
@@ -40,6 +44,7 @@
     [super viewDidLoad];
     [self hideActivityIndicator];
     [self customizeNavigationBar];
+    self.textFieldsArray = @[self.emailTextField, self.passwordTextField];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,7 +75,6 @@
 
 - (IBAction)logInButtonPressed:(id)sender
 {
-    
     [self login];
 }
 
@@ -81,13 +85,9 @@
 
 - (IBAction)facebookLoginPressed:(id)sender
 {
-    // If the session state is any of the two "open" states when the button is clicked
-    if (FBSession.activeSession.state == FBSessionStateOpen
-        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
-        [FBSession.activeSession closeAndClearTokenInformation];
-    }
     [FacebookManager sharedInstance].delegate = self;
-    [[FacebookManager sharedInstance] logInUser];
+    [[FacebookManager sharedInstance] internalLogInUser];
+
 }
 
 - (IBAction)GoogleSignInButton:(id)sender
@@ -99,7 +99,7 @@
 
 - (IBAction)didTapScreen:(UITapGestureRecognizer *)sender
 {
-    [self hideKeyBoard];
+    [self hideKeyboard];
 }
 
 
@@ -146,7 +146,6 @@
 {
     [self hideActivityIndicator];
     if ([errorMessage isEqualToString:@"Bad credentials"]) {
-        // set register window pero seteando el diccionario de datos
         [self performSegueWithIdentifier:@"RegisterSegue" sender:nil];
     } else {
         [self showAlertForMessage:errorMessage];
@@ -165,20 +164,27 @@
     
 }
 
-- (void)onUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo
-{
+- (void)onInternalLoginSuccess {
+    [[FacebookManager sharedInstance] requestUserGraph];
+}
+
+- (void)onInternalLoginError:(NSError *)error {
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
+        [FBSession.activeSession closeAndClearTokenInformation];
+    }
+    [[FacebookManager sharedInstance] sdkLogInUser];
+}
+
+- (void)onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo {
     self.userDictionary = [[NSMutableDictionary alloc] init];
-    //self.userDictionary[kUserFullName] = userInfo.name;
-    self.userDictionary[kUserFirstName] = userInfo.first_name;
-    self.userDictionary[kUserLastName] = userInfo.last_name;
+    self.userDictionary[kUserFirstName] = userInfo[@"first_name"];
+    self.userDictionary[kUserLastName] = userInfo[@"last_name"];
     if ([userInfo objectForKey:@"email"]) {
         self.userDictionary[kUserEmail] = userInfo[@"email"];
     }
-    self.userDictionary[kUserExternalId] = userInfo.objectID;
+    self.userDictionary[kUserExternalId] = userInfo[@"id"];
     self.userDictionary[kUserSocialNetworkId] = @"1";
-    
-    //NSString* imageURL = [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=large", userInfo.objectID];
-    //self.userDictionary[kUserImageURL] = imageURL;
     
     [self socialLogin];
 }
@@ -186,7 +192,6 @@
 - (void)onPermissionsDeclined:(NSArray *)declinedPermissions
 {
     NSLog(@"declined Permissions");
-    
 }
 
 #pragma mark - Google+ Delegate
@@ -211,6 +216,7 @@
 {
     NSLog(@"Google User Logged Out");
 }
+
 #pragma mark - Register Delegate
 
 - (void)registrationComplete
@@ -221,11 +227,8 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"RegisterSegue"]) {
         RegisterViewController* rvc = [segue destinationViewController];
         rvc.userDictionary = self.userDictionary;
@@ -249,10 +252,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == self.emailTextField)
-    {
-        [self.passwordTextField becomeFirstResponder];
-    }else if (textField == self.passwordTextField){
+    [super textFieldShouldReturn:textField];
+    if ([self isFormValid]){
         [self login];
     }
     return NO;
@@ -300,11 +301,7 @@
     } completion:nil];
 }
 
-- (void)hideKeyBoard
-{
-    [self.emailTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
-}
+
 
 
 #pragma mark - Helper Methods
@@ -321,34 +318,40 @@
     return YES;
 }
 
-- (void)showAlertForMessage:(NSString *)errorMessage
-{
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
-    [alert show];
-}
+//- (void)showAlertForMessage:(NSString *)errorMessage
+//{
+//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+//    [alert show];
+//}
+
 
 #pragma mark - Activity Indicator Methods
 
 - (void) showActivityIndicator
 {
-    [self hideKeyBoard];
-    self.emailTextField.userInteractionEnabled = NO;
-    self.passwordTextField.userInteractionEnabled = NO;
+    [GAProgressHUDHelper loggingInProgressHUDinView:self.view];
+    [self hideKeyboard];
+    [self disableTextFields];
+    
+//    self.emailTextField.userInteractionEnabled = NO;
+//    self.passwordTextField.userInteractionEnabled = NO;
     self.logInButton.userInteractionEnabled = NO;
     self.facebookButton.userInteractionEnabled = NO;
     self.googleButton.userInteractionEnabled = NO;
-    self.activityIndicatorView.hidden = NO;
-    [self.activityIndicatorView startAnimating];
+//    self.activityIndicatorView.hidden = NO;
+//    [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActivityIndicator
 {
+    [GAProgressHUDHelper hideHUDForView:self.view animated:true];
+    [self enableTextFields];
     self.emailTextField.userInteractionEnabled = YES;
     self.passwordTextField.userInteractionEnabled = YES;
     self.logInButton.userInteractionEnabled = YES;
-    self.activityIndicatorView.hidden = YES;
-    
-    [self.activityIndicatorView stopAnimating];
+//    self.activityIndicatorView.hidden = YES;
+//    
+//    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Appearence Methods
