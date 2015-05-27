@@ -63,35 +63,11 @@
 + (NSError *)getBodyPartsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     return [CommonService getBodyPartsWithTarget:target completeAction:completeAction completeError:completeError];
-//    NSError* returnError = nil;
-//    
-//    // Get ManagedObjectContext from AppDelegate
-//    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-//    
-//    // Creat Mock Body Parts
-//    [DBBodyPart createMockBodyPartsInManagedObjectContext:managedObjectContext];
-//    
-//    // Call complete Action
-//    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-//    
-//    return returnError;
 }
 
 + (NSError *)getTattooTypesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     return [CommonService getTattooTypesWithTarget:target completeAction:completeAction completeError:completeError];
-//    NSError* returnError = nil;
-//    
-//    // Get ManagedObjectContext from AppDelegate
-//    NSManagedObjectContext* managedObjectContext = ((AppDelegate*)([[UIApplication sharedApplication] delegate] )).managedObjectContext;
-//    
-//    // Creat Mock Body Parts
-//    [DBTattooType createMockTattooTypesInManagedObjectContext:managedObjectContext];
-//    
-//    // Call complete Action
-//    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-//    
-//    return returnError;
 }
 
 #pragma mark - Inks Service
@@ -140,9 +116,13 @@
     return returnError;
 }
 
-+ (NSError *)getDashboardInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)getDashboardInksForPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
-    return [InkService getDashboardInksWithTarget:target completeAction:completeAction completeError:completeError];
+    return [InkService getDashboardInksForPage:page withTarget:target completeAction:completeAction completeError:completeError];
+}
+
++ (NSError *)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
+    return [InkService getInksForSearchString:searchString andPage:page withTarget:target completeAction:completeAction completeError:completeError];
 }
 
 + (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {

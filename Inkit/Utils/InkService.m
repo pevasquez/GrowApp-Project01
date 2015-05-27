@@ -176,30 +176,30 @@
     return returnError;
 }
 
-+ (NSError *)getDashboardInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)getDashboardInksForPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
     // Create returnError
     NSError* returnError = nil;
     
     // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@=%@",kWebServiceBase,kWebServiceInks,kWebServiceDashboard,kWebServiceAccessToken,[DataManager sharedInstance].activeUser.token];
+   
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@=%@&page=%lu",kWebServiceBase,kWebServiceInks,kWebServiceDashboard,kWebServiceAccessToken,[DataManager sharedInstance].activeUser.token,(unsigned long)page];
     
     // Create URL
     NSURL *registerUserURL = [NSURL URLWithString:stringURL];
     
     // Create and configure URLRequest
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:120.0];
-    
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:120];
+    NSMutableURLRequest *request2 = [NSMutableURLRequest requestWithURL:registerUserURL];
     [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
     
     // Specify that it will be a GET request
-    [request setHTTPMethod:@"GET"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request2 setHTTPMethod:@"GET"];
     
     // Create Asynchronous Request URLConnection
-    [NSURLConnection sendAsynchronousRequest:request
+    [NSURLConnection sendAsynchronousRequest:request2
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
@@ -242,37 +242,30 @@
     return returnError;
 }
 
-+ (NSError *)getInksForSearchString:(NSString *)searchString withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
++ (NSError *)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
 {
+    
     // Create returnError
     NSError* returnError = nil;
     
-    
-    // Convert your data and set your request's HTTPBody property
-    NSDictionary* jsonDataDictionary = @{@"access_token" : [DataManager sharedInstance].activeUser.token,
-                                         @"keywords":searchString};
-    
-    NSString *encodedDictionary = [jsonDataDictionary serializeParams];
-    
     // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@/%@%@",kWebServiceBase,kWebServiceInks,kWebServiceSearch,encodedDictionary];
+    NSString* stringURL = [NSString stringWithFormat:@"http://inkit.digbang.com/api/inks/search?access_token=%@&page=%lu&keywords=%@",[DataManager sharedInstance].activeUser.token, (unsigned long)page,searchString];
     
     // Create URL
     NSURL *registerUserURL = [NSURL URLWithString:stringURL];
     
     // Create and configure URLRequest
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:120.0];
-    
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:120];
+    NSMutableURLRequest *request2 = [NSMutableURLRequest requestWithURL:registerUserURL];
     [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
     
     // Specify that it will be a GET request
-    [request setHTTPMethod:@"GET"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request2 setHTTPMethod:@"GET"];
     
     // Create Asynchronous Request URLConnection
-    [NSURLConnection sendAsynchronousRequest:request
+    [NSURLConnection sendAsynchronousRequest:request2
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
@@ -290,12 +283,13 @@
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
+                     NSMutableArray* inksArray = [[NSMutableArray alloc] init];
                      NSDictionary* dataDictionary = responseDictionary[@"data"];
-                     // Acá va a ir el código para el caso de éxito
+                     
                      for (NSDictionary* inkDictionary in dataDictionary) {
-                         [DBInk fromJson:inkDictionary];
+                         [inksArray addObject:[DBInk fromJson:inkDictionary]];
                      }
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     [target performSelectorOnMainThread:completeAction withObject:inksArray waitUntilDone:NO];
                      break;
                  }
                  default:

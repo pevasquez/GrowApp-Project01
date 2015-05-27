@@ -2,7 +2,7 @@
 //  DBUser.m
 //  Inkit
 //
-//  Created by Cristian Pena on 5/18/15.
+//  Created by Cristian Pena on 5/27/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -58,5 +58,6 @@
 @dynamic profilePicThumbnail;
 @dynamic shops;
 @dynamic tattooTypes;
+@dynamic dashboard;
 
 @end

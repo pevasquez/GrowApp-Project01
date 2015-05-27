@@ -2,7 +2,7 @@
 //  DBInk.m
 //  Inkit
 //
-//  Created by Cristian Pena on 12/5/15.
+//  Created by Cristian Pena on 5/27/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -32,10 +32,11 @@
 @dynamic comments;
 @dynamic fullScreenImage;
 @dynamic image;
+@dynamic likedByUser;
 @dynamic shop;
 @dynamic tattooTypes;
 @dynamic thumbnailImage;
 @dynamic user;
-@dynamic likedByUser;
+@dynamic userDashboard;
 
 @end

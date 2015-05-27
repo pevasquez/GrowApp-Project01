@@ -38,7 +38,8 @@
 // Ink Service
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)updateInk:(DBInk *)ink withDictionary:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-+ (NSError *)getDashboardInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (NSError *)getDashboardInksForPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (NSError *)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
 + (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 

@@ -2,7 +2,7 @@
 //  DBUser.h
 //  Inkit
 //
-//  Created by Cristian Pena on 5/18/15.
+//  Created by Cristian Pena on 5/27/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
@@ -52,6 +52,7 @@
 @property (nonatomic, retain) DBImage *profilePicThumbnail;
 @property (nonatomic, retain) NSSet *shops;
 @property (nonatomic, retain) NSSet *tattooTypes;
+@property (nonatomic, retain) DBInk *dashboard;
 @end
 
 @interface DBUser (CoreDataGeneratedAccessors)

@@ -23,12 +23,12 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>inkit_digbang</string>
+				<string>fb1410385759286626</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>25</string>
+	<string>26</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

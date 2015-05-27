@@ -19,8 +19,6 @@
 		8673CBB11AFBFAD200179FA2 /* TutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAC1AFBFAD200179FA2 /* TutorialPage.m */; };
 		8673CBB21AFBFAD200179FA2 /* TutorialStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAE1AFBFAD200179FA2 /* TutorialStepViewController.m */; };
 		86BF40A51B122999004E9025 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF40A41B122999004E9025 /* FormViewController.m */; };
-		86BF40AA1B123A0A004E9025 /* GAProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF40A71B123A0A004E9025 /* GAProgressHUD.m */; };
-		86BF40AB1B123A0A004E9025 /* GAProgressHUDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF40A91B123A0A004E9025 /* GAProgressHUDHelper.m */; };
 		86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */; };
 		86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C411CC1ACC85DC00463622 /* DBImage+Management.m */; };
 		86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */; };
@@ -70,13 +68,11 @@
 		86EE2E631B14E9F700DC64BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
 		86EE2E641B14E9F700DC64BC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB488541A8BF176009E1789 /* MobileCoreServices.framework */; };
 		86EE2E651B14E9F700DC64BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */; };
-		86EE2E6F1B15E8FD00DC64BC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EE2E6E1B15E8FD00DC64BC /* ImageIO.framework */; };
 		86F8A44F1B00FFB4007955C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A21A83EB1800E05053 /* Main.storyboard */; };
 		86F8A4591B0102FC007955C6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F8A4581B0102FC007955C6 /* NSDate+Extension.m */; };
 		FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */; };
 		FB0711871AAF0318004EBBD1 /* InkService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711861AAF0318004EBBD1 /* InkService.m */; };
 		FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
-		FB0929681B0AAD62005B3902 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0929671B0AAD62005B3902 /* DBUser.m */; };
 		FB09296B1B0AAD63005B3902 /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB09296A1B0AAD63005B3902 /* DBBoard.m */; };
 		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
 		FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB249C311B11077400AE29F2 /* UIImage+Extension.m */; };
@@ -104,6 +100,10 @@
 		FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B85B1AA4C3CC00ED7ECD /* UserService.m */; };
 		FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
 		FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */; };
+		FB5C4FCB1B1638B200B05593 /* GAProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FC81B1638B200B05593 /* GAProgressHUD.m */; };
+		FB5C4FCC1B1638B200B05593 /* GAProgressHUDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FCA1B1638B200B05593 /* GAProgressHUDHelper.m */; };
+		FB5C4FD01B1644B100B05593 /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FCF1B1644B100B05593 /* DBInk.m */; };
+		FB5C4FD31B1644B200B05593 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FD21B1644B200B05593 /* DBUser.m */; };
 		FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */; };
 		FBA038F01B122E5300700D93 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */; };
 		FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */; };
@@ -115,7 +115,6 @@
 		FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384291A893559004C440A /* ProfileImageView.m */; };
 		FBB384341A894168004C440A /* ViewInkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384331A894168004C440A /* ViewInkTableViewCell.m */; };
 		FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB3843D1A89522B004C440A /* DynamicSizeLabel.m */; };
-		FBB384411A895B1D004C440A /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384401A895B1D004C440A /* CameraViewController.m */; };
 		FBB384471A895E7C004C440A /* CreateInkImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384461A895E7C004C440A /* CreateInkImageTableViewCell.m */; };
 		FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384561A8A9818004C440A /* TextViewTableViewCell.m */; };
 		FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB488541A8BF176009E1789 /* MobileCoreServices.framework */; };
@@ -161,7 +160,6 @@
 		FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1D31A83F81500E05053 /* DBBodyPart+Management.m */; };
 		FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E01A84095200E05053 /* DBUser+Management.m */; };
 		FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E31A840C2400E05053 /* LogInViewController.m */; };
-		FBE704601AF6CFB70041DD0E /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE7045F1AF6CFB70041DD0E /* DBInk.m */; };
 		FBE704631AF6CFB80041DD0E /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE704621AF6CFB80041DD0E /* DBImage.m */; };
 		FBF2F8621B037A3F00057A71 /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF2F8611B037A3F00057A71 /* NSData+Extension.m */; };
 		FBF9F9E41B060F0100357F5B /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF9F9E31B060F0100357F5B /* TextFieldTableViewCell.m */; };
@@ -197,10 +195,6 @@
 		8673CBAE1AFBFAD200179FA2 /* TutorialStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialStepViewController.m; path = ViewControllers/Tutorial/TutorialStepViewController.m; sourceTree = "<group>"; };
 		86BF40A31B122999004E9025 /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FormViewController.h; path = ViewControllers/Common/FormViewController.h; sourceTree = "<group>"; };
 		86BF40A41B122999004E9025 /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormViewController.m; path = ViewControllers/Common/FormViewController.m; sourceTree = "<group>"; };
-		86BF40A61B123A0A004E9025 /* GAProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAProgressHUD.h; path = ../../../MisProyectos/GAActivityIndicator/GAActivityIndicator/GAProgressHUD.h; sourceTree = "<group>"; };
-		86BF40A71B123A0A004E9025 /* GAProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GAProgressHUD.m; path = ../../../MisProyectos/GAActivityIndicator/GAActivityIndicator/GAProgressHUD.m; sourceTree = "<group>"; };
-		86BF40A81B123A0A004E9025 /* GAProgressHUDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAProgressHUDHelper.h; path = ../../../MisProyectos/GAActivityIndicator/GAActivityIndicator/GAProgressHUDHelper.h; sourceTree = "<group>"; };
-		86BF40A91B123A0A004E9025 /* GAProgressHUDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GAProgressHUDHelper.m; path = ../../../MisProyectos/GAActivityIndicator/GAActivityIndicator/GAProgressHUDHelper.m; sourceTree = "<group>"; };
 		86C2F62E1AAA4E9F003D58E3 /* DBTattooType+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBTattooType+Management.h"; path = "Data Base/DB Categories/DBTattooType+Management.h"; sourceTree = "<group>"; };
 		86C2F62F1AAA4E9F003D58E3 /* DBTattooType+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBTattooType+Management.m"; path = "Data Base/DB Categories/DBTattooType+Management.m"; sourceTree = "<group>"; };
 		86C411CB1ACC85DC00463622 /* DBImage+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBImage+Management.h"; path = "Data Base/DB Categories/DBImage+Management.h"; sourceTree = "<group>"; };
@@ -238,7 +232,6 @@
 		86EE2E2F1B14A9DA00DC64BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		86EE2E311B14A9F100DC64BC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		86EE2E6E1B15E8FD00DC64BC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = GooglePlus.bundle/ImageIO.framework; sourceTree = "<group>"; };
 		86F8A4571B0102FC007955C6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extension.h"; path = "Utils/NSDate+Extension.h"; sourceTree = "<group>"; };
 		86F8A4581B0102FC007955C6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extension.m"; path = "Utils/NSDate+Extension.m"; sourceTree = "<group>"; };
 		FB0138B91AA8F69E0037D945 /* SelectLocalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectLocalTableViewController.h; path = "ViewControllers/Create Ink/SelectLocalTableViewController.h"; sourceTree = "<group>"; };
@@ -248,8 +241,6 @@
 		FB0711881AAF037F004EBBD1 /* InkitServiceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkitServiceConstants.h; path = Utils/InkitServiceConstants.h; sourceTree = "<group>"; };
 		FB0711891AAF077C004EBBD1 /* BoardService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardService.h; path = Utils/BoardService.h; sourceTree = "<group>"; };
 		FB07118A1AAF077C004EBBD1 /* BoardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardService.m; path = Utils/BoardService.m; sourceTree = "<group>"; };
-		FB0929661B0AAD62005B3902 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
-		FB0929671B0AAD62005B3902 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
 		FB0929691B0AAD63005B3902 /* DBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBBoard.h; path = "Data Base/DB Subclasses/DBBoard.h"; sourceTree = "<group>"; };
 		FB09296A1B0AAD63005B3902 /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
 		FB0A40001A9D255900294F90 /* WaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterfallLayout.h; path = "ViewControllers/View Inks/WaterfallLayout.h"; sourceTree = "<group>"; };
@@ -273,6 +264,15 @@
 		FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FB51B85F1AA5C7AE00ED7ECD /* EditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditImageViewController.h; path = Inkit/ViewControllers/Camera/EditImageViewController.h; sourceTree = "<group>"; };
 		FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditImageViewController.m; path = Inkit/ViewControllers/Camera/EditImageViewController.m; sourceTree = "<group>"; };
+		FB5C4FC71B1638B200B05593 /* GAProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAProgressHUD.h; path = ViewControllers/Common/GAProgressHUD.h; sourceTree = "<group>"; };
+		FB5C4FC81B1638B200B05593 /* GAProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GAProgressHUD.m; path = ViewControllers/Common/GAProgressHUD.m; sourceTree = "<group>"; };
+		FB5C4FC91B1638B200B05593 /* GAProgressHUDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAProgressHUDHelper.h; path = ViewControllers/Common/GAProgressHUDHelper.h; sourceTree = "<group>"; };
+		FB5C4FCA1B1638B200B05593 /* GAProgressHUDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GAProgressHUDHelper.m; path = ViewControllers/Common/GAProgressHUDHelper.m; sourceTree = "<group>"; };
+		FB5C4FCD1B16442700B05593 /* Inkitv3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inkitv3.xcdatamodel; sourceTree = "<group>"; };
+		FB5C4FCE1B1644B100B05593 /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBInk.h; path = "Data Base/DB Subclasses/DBInk.h"; sourceTree = "<group>"; };
+		FB5C4FCF1B1644B100B05593 /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBInk.m; path = "Data Base/DB Subclasses/DBInk.m"; sourceTree = "<group>"; };
+		FB5C4FD11B1644B200B05593 /* DBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBUser.h; path = "Data Base/DB Subclasses/DBUser.h"; sourceTree = "<group>"; };
+		FB5C4FD21B1644B200B05593 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
 		FB76CAAE1AB114E400B68BAD /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowseViewController.h; path = ViewControllers/Browse/BrowseViewController.h; sourceTree = "<group>"; };
 		FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = ViewControllers/Browse/BrowseViewController.m; sourceTree = "<group>"; };
 		FBA038EE1B122E5300700D93 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTableViewCell.h; path = "Custom Classes/ImageTableViewCell.h"; sourceTree = "<group>"; };
@@ -294,8 +294,6 @@
 		FBB384331A894168004C440A /* ViewInkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInkTableViewCell.m; path = "Inkit/ViewControllers/View Ink/ViewInkTableViewCell.m"; sourceTree = "<group>"; };
 		FBB3843C1A89522B004C440A /* DynamicSizeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicSizeLabel.h; path = "Custom Classes/DynamicSizeLabel.h"; sourceTree = "<group>"; };
 		FBB3843D1A89522B004C440A /* DynamicSizeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicSizeLabel.m; path = "Custom Classes/DynamicSizeLabel.m"; sourceTree = "<group>"; };
-		FBB3843F1A895B1D004C440A /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = Inkit/ViewControllers/Camera/CameraViewController.h; sourceTree = "<group>"; };
-		FBB384401A895B1D004C440A /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = Inkit/ViewControllers/Camera/CameraViewController.m; sourceTree = "<group>"; };
 		FBB384451A895E7C004C440A /* CreateInkImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateInkImageTableViewCell.h; path = "ViewControllers/Create Ink/CreateInkImageTableViewCell.h"; sourceTree = "<group>"; };
 		FBB384461A895E7C004C440A /* CreateInkImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateInkImageTableViewCell.m; path = "ViewControllers/Create Ink/CreateInkImageTableViewCell.m"; sourceTree = "<group>"; };
 		FBB384551A8A9818004C440A /* TextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextViewTableViewCell.h; path = "ViewControllers/Custom Classes/TextViewTableViewCell.h"; sourceTree = "<group>"; };
@@ -384,8 +382,6 @@
 		FBDCB1E01A84095200E05053 /* DBUser+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBUser+Management.m"; path = "Data Base/DB Categories/DBUser+Management.m"; sourceTree = "<group>"; };
 		FBDCB1E21A840C2400E05053 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ViewControllers/LogIn/LogInViewController.h; sourceTree = "<group>"; };
 		FBDCB1E31A840C2400E05053 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ViewControllers/LogIn/LogInViewController.m; sourceTree = "<group>"; };
-		FBE7045E1AF6CFB70041DD0E /* DBInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBInk.h; path = "Data Base/DB Subclasses/DBInk.h"; sourceTree = "<group>"; };
-		FBE7045F1AF6CFB70041DD0E /* DBInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBInk.m; path = "Data Base/DB Subclasses/DBInk.m"; sourceTree = "<group>"; };
 		FBE704611AF6CFB80041DD0E /* DBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBImage.h; path = "Data Base/DB Subclasses/DBImage.h"; sourceTree = "<group>"; };
 		FBE704621AF6CFB80041DD0E /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
 		FBF2F8601B037A3F00057A71 /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Extension.h"; path = "Utils/NSData+Extension.h"; sourceTree = "<group>"; };
@@ -407,7 +403,6 @@
 				86EE2DD61B14A06900DC64BC /* Accounts.framework in Frameworks */,
 				86EE2DD41B149EB500DC64BC /* Social.framework in Frameworks */,
 				86DFBC7A1AF5689A000EAF62 /* UIKit.framework in Frameworks */,
-				86EE2E6F1B15E8FD00DC64BC /* ImageIO.framework in Frameworks */,
 				8673CB1B1AFA6F8700179FA2 /* GooglePlus.framework in Frameworks */,
 				86DFBC781AF5688A000EAF62 /* MediaPlayer.framework in Frameworks */,
 				86DFBC761AF56881000EAF62 /* CoreText.framework in Frameworks */,
@@ -485,11 +480,11 @@
 				FB0711861AAF0318004EBBD1 /* InkService.m */,
 				FB0711891AAF077C004EBBD1 /* BoardService.h */,
 				FB07118A1AAF077C004EBBD1 /* BoardService.m */,
-				FB0711881AAF037F004EBBD1 /* InkitServiceConstants.h */,
 				86647CB81AF403830013658A /* FacebookManager.h */,
 				86647CB91AF403830013658A /* FacebookManager.m */,
 				FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */,
 				FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */,
+				FB0711881AAF037F004EBBD1 /* InkitServiceConstants.h */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -497,10 +492,10 @@
 		86BF40AC1B123A14004E9025 /* GAProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				86BF40A61B123A0A004E9025 /* GAProgressHUD.h */,
-				86BF40A71B123A0A004E9025 /* GAProgressHUD.m */,
-				86BF40A81B123A0A004E9025 /* GAProgressHUDHelper.h */,
-				86BF40A91B123A0A004E9025 /* GAProgressHUDHelper.m */,
+				FB5C4FC71B1638B200B05593 /* GAProgressHUD.h */,
+				FB5C4FC81B1638B200B05593 /* GAProgressHUD.m */,
+				FB5C4FC91B1638B200B05593 /* GAProgressHUDHelper.h */,
+				FB5C4FCA1B1638B200B05593 /* GAProgressHUDHelper.m */,
 			);
 			name = GAProgressHUD;
 			sourceTree = "<group>";
@@ -615,8 +610,6 @@
 		FBB384421A895B21004C440A /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				FBB3843F1A895B1D004C440A /* CameraViewController.h */,
-				FBB384401A895B1D004C440A /* CameraViewController.m */,
 				FB51B85F1AA5C7AE00ED7ECD /* EditImageViewController.h */,
 				FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */,
 				FB2989091AA868A0005D7327 /* CropView.h */,
@@ -669,6 +662,14 @@
 		FBC433061A85458500EFAA24 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB249C301B11077400AE29F2 /* UIImage+Extension.h */,
+				FB249C311B11077400AE29F2 /* UIImage+Extension.m */,
+				FBF2F8601B037A3F00057A71 /* NSData+Extension.h */,
+				FBF2F8611B037A3F00057A71 /* NSData+Extension.m */,
+				86F8A4571B0102FC007955C6 /* NSDate+Extension.h */,
+				86F8A4581B0102FC007955C6 /* NSDate+Extension.m */,
+				FB37D06C1B00C88B00F8DFF7 /* UIResponder+FirstResponder.h */,
+				FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */,
 				FBB384551A8A9818004C440A /* TextViewTableViewCell.h */,
 				FBB384561A8A9818004C440A /* TextViewTableViewCell.m */,
 				FBC433031A85457E00EFAA24 /* InkitButton.h */,
@@ -702,7 +703,6 @@
 			isa = PBXGroup;
 			children = (
 				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
-				86EE2E6E1B15E8FD00DC64BC /* ImageIO.framework */,
 				86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */,
 				86EE2E311B14A9F100DC64BC /* MessageUI.framework */,
 				86EE2E2F1B14A9DA00DC64BC /* AudioToolbox.framework */,
@@ -880,14 +880,6 @@
 		FBDCB1C11A83ED3100E05053 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FB249C301B11077400AE29F2 /* UIImage+Extension.h */,
-				FB249C311B11077400AE29F2 /* UIImage+Extension.m */,
-				FBF2F8601B037A3F00057A71 /* NSData+Extension.h */,
-				FBF2F8611B037A3F00057A71 /* NSData+Extension.m */,
-				86F8A4571B0102FC007955C6 /* NSDate+Extension.h */,
-				86F8A4581B0102FC007955C6 /* NSDate+Extension.m */,
-				FB37D06C1B00C88B00F8DFF7 /* UIResponder+FirstResponder.h */,
-				FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */,
 				868A5CA21AA626D6006DD52D /* Service */,
 				FBB696E31AABA7890071D96B /* Theme */,
 				FBC4330B1A85472E00EFAA24 /* Custom Fonts */,
@@ -938,14 +930,14 @@
 		FBDCB1D11A83F7F000E05053 /* DBSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				FB5C4FD11B1644B200B05593 /* DBUser.h */,
+				FB5C4FD21B1644B200B05593 /* DBUser.m */,
+				FB5C4FCE1B1644B100B05593 /* DBInk.h */,
+				FB5C4FCF1B1644B100B05593 /* DBInk.m */,
 				FB0929691B0AAD63005B3902 /* DBBoard.h */,
 				FB09296A1B0AAD63005B3902 /* DBBoard.m */,
-				FB0929661B0AAD62005B3902 /* DBUser.h */,
-				FB0929671B0AAD62005B3902 /* DBUser.m */,
 				FBE704611AF6CFB80041DD0E /* DBImage.h */,
 				FBE704621AF6CFB80041DD0E /* DBImage.m */,
-				FBE7045E1AF6CFB70041DD0E /* DBInk.h */,
-				FBE7045F1AF6CFB70041DD0E /* DBInk.m */,
 				FBD2FEEF1ADB55ED005D1AAE /* DBShop.h */,
 				FBD2FEF01ADB55ED005D1AAE /* DBShop.m */,
 				FBD2FEEC1ADB550F005D1AAE /* DBComment.h */,
@@ -1112,12 +1104,10 @@
 				FBC433171A855C4E00EFAA24 /* DBInk+Management.m in Sources */,
 				FBA038F01B122E5300700D93 /* ImageTableViewCell.m in Sources */,
 				FBF2F8621B037A3F00057A71 /* NSData+Extension.m in Sources */,
-				FB0929681B0AAD62005B3902 /* DBUser.m in Sources */,
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
 				86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
 				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
-				FBE704601AF6CFB70041DD0E /* DBInk.m in Sources */,
 				FB4A23C81AD9AC5D002EE49B /* CommonService.m in Sources */,
 				FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */,
 				FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */,
@@ -1143,7 +1133,6 @@
 				FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */,
 				86647CBA1AF403830013658A /* FacebookManager.m in Sources */,
 				FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */,
-				86BF40AB1B123A0A004E9025 /* GAProgressHUDHelper.m in Sources */,
 				86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */,
 				FBD2FEE81ADB550F005D1AAE /* DBArtist.m in Sources */,
 				FBB696D01AAB841C0071D96B /* DBComment+Management.m in Sources */,
@@ -1161,6 +1150,7 @@
 				FBB384271A893128004C440A /* InkCommentTableViewCell.m in Sources */,
 				FBB384471A895E7C004C440A /* CreateInkImageTableViewCell.m in Sources */,
 				FBC4330E1A85502400EFAA24 /* CreateInkViewController.m in Sources */,
+				FB5C4FD31B1644B200B05593 /* DBUser.m in Sources */,
 				FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */,
 				86BF40A51B122999004E9025 /* FormViewController.m in Sources */,
 				FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */,
@@ -1174,7 +1164,6 @@
 				FBB384241A893102004C440A /* InkActionsTableViewCell.m in Sources */,
 				FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */,
 				FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */,
-				86BF40AA1B123A0A004E9025 /* GAProgressHUD.m in Sources */,
 				FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */,
 				FBB696DC1AAB94C40071D96B /* CommentBarView.m in Sources */,
 				FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */,
@@ -1183,16 +1172,18 @@
 				86DC99101AC9E40100A39C28 /* DBShop+Management.m in Sources */,
 				FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */,
 				FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */,
+				FB5C4FCB1B1638B200B05593 /* GAProgressHUD.m in Sources */,
 				FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */,
+				FB5C4FCC1B1638B200B05593 /* GAProgressHUDHelper.m in Sources */,
 				86DC98DE1AC2E21B00A39C28 /* RegisterViewController.m in Sources */,
 				8673CBB11AFBFAD200179FA2 /* TutorialPage.m in Sources */,
 				FBD2FEF11ADB55ED005D1AAE /* DBShop.m in Sources */,
 				FBD2FEE51ADB550F005D1AAE /* DBTattooType.m in Sources */,
 				FBB696D91AAB945D0071D96B /* CommentsTableView.m in Sources */,
+				FB5C4FD01B1644B100B05593 /* DBInk.m in Sources */,
 				8673CBB21AFBFAD200179FA2 /* TutorialStepViewController.m in Sources */,
 				FBDCB1981A83EB1800E05053 /* main.m in Sources */,
 				FBB384341A894168004C440A /* ViewInkTableViewCell.m in Sources */,
-				FBB384411A895B1D004C440A /* CameraViewController.m in Sources */,
 				FBDCB1C71A83F37D00E05053 /* SplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1313,7 +1304,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1468,10 +1459,11 @@
 		FBDCB19C1A83EB1800E05053 /* Inkit.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				FB5C4FCD1B16442700B05593 /* Inkitv3.xcdatamodel */,
 				FBD86C061AAE29C300FA369C /* Inkitv2.xcdatamodel */,
 				FBDCB19D1A83EB1800E05053 /* Inkit.xcdatamodel */,
 			);
-			currentVersion = FBD86C061AAE29C300FA369C /* Inkitv2.xcdatamodel */;
+			currentVersion = FB5C4FCD1B16442700B05593 /* Inkitv3.xcdatamodel */;
 			path = Inkit.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
