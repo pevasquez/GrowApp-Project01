@@ -503,16 +503,12 @@ typedef enum
     [self.view insertSubview:self.overlayView belowSubview:self.activityIndicatorView];
     self.navigationItem.rightBarButtonItem.enabled = false;
     self.createInkTableView.userInteractionEnabled = false;
-//    self.activityIndicatorView.hidden = NO;
-//    [self.activityIndicatorView startAnimating];
 }
 
 - (void) hideActivityIndicator {
     [GAProgressHUDHelper hideProgressHUDinView:self.view];
     self.navigationItem.rightBarButtonItem.enabled = true;
     self.createInkTableView.userInteractionEnabled = true;
-//    self.activityIndicatorView.hidden = YES;
-//    [self.activityIndicatorView stopAnimating];
     [self.overlayView removeFromSuperview];
 }
 

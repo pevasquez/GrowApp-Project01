@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PlJ-6E-uV8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PlJ-6E-uV8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -47,7 +47,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="251" height="339"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Black + White&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-mI-WlV" userLabel="boardTitle">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="&quot;Black + White&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-mI-WlV" userLabel="boardTitle">
                                                     <rect key="frame" x="4" y="0.0" width="243" height="29"/>
                                                     <fontDescription key="fontDescription" name="PermanentMarker" family="Permanent Marker" pointSize="20"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -307,7 +307,7 @@
                                     <action selector="fromAlbumButtonPressed:" destination="GzE-fM-77e" eventType="touchUpInside" id="4yC-Vd-hzC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Ink" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29V-oQ-wkl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create Ink" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29V-oQ-wkl">
                                 <rect key="frame" x="226" y="105" width="149" height="40"/>
                                 <fontDescription key="fontDescription" name="PermanentMarker" family="Permanent Marker" pointSize="28"/>
                                 <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1518,17 +1518,34 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="browseCollectionView" destination="wMj-bP-I8v" id="JVQ-HL-tNq"/>
+                        <outlet property="searchBar" destination="M0S-cf-eey" id="ge3-QU-RxC"/>
+                        <outlet property="searchButton" destination="E4y-WL-aHi" id="d5C-2S-tlP"/>
+                        <outlet property="titleNavigationItem" destination="UmG-Rh-AoC" id="Qpf-rm-W9g"/>
                         <segue destination="bKf-bq-v39" kind="show" identifier="ViewInkSegue" id="MWx-kR-K4W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fsM-Qs-Fa5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem style="plain" systemItem="search" id="E4y-WL-aHi">
+                    <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="searchButtonPressed:" destination="1Wm-X3-uXy" id="4xK-NX-zuE"/>
+                    </connections>
+                </barButtonItem>
+                <searchBar contentMode="redraw" showsCancelButton="YES" id="M0S-cf-eey">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="1Wm-X3-uXy" id="bb0-yf-zKf"/>
+                    </connections>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="1746" y="3859"/>
         </scene>
         <!--CameraViewController-->
         <scene sceneID="1mW-5p-eSs">
             <objects>
-                <viewController storyboardIdentifier="CameraViewController" title="CameraViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FvC-VZ-Rj8" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraViewController" title="CameraViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FvC-VZ-Rj8" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H0c-8p-Nf5"/>
                         <viewControllerLayoutGuide type="bottom" id="dRM-UE-xkc"/>
@@ -1860,7 +1877,7 @@
         <!--Ink-->
         <scene sceneID="Ni8-P9-Tlk">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QRn-ZG-7OE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CameraNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QRn-ZG-7OE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ink" image="Ink" id="qCD-cy-mdg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CmS-nN-gxT">
@@ -1938,8 +1955,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="qdy-Zm-66Q"/>
         <segue reference="lQ1-q0-po4"/>
-        <segue reference="A8U-Jd-plz"/>
         <segue reference="Y98-t2-F6r"/>
+        <segue reference="MWx-kR-K4W"/>
         <segue reference="YiA-aR-fdm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
