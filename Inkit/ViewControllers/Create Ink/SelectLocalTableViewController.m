@@ -44,6 +44,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     [self hideSearchBar];
 }
 

@@ -15,6 +15,11 @@
 #define KDBTattooType @"DBTattooType"
 #define kDBTattooTypeName @"name"
 
++ (DBTattooType *)newTattooType {
+    DBTattooType* tattooType = (DBTattooType *)[[DataManager sharedInstance] insert:KDBTattooType];
+    return tattooType;
+}
+
 + (DBTattooType *)withID:(NSString *)tattooTypeId
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"tattooTypeId = %@",tattooTypeId];
@@ -27,7 +32,7 @@
     DBTattooType* obj = [DBTattooType withID:tattooTypeID];
     DBTattooType* tattooType = nil;
     if (!obj) {
-        tattooType = (DBTattooType *)[[DataManager sharedInstance] insert:KDBTattooType];
+        tattooType = [DBTattooType newTattooType];
         tattooType.tattooTypeId = tattooTypeID;
     } else {
         tattooType = obj;

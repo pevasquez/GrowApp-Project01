@@ -143,9 +143,8 @@
                      
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:kAccessToken]) {
-                         DBUser* user = [DBUser fromJson:userDictionary];
+                         DBUser* user = [DBUser fromJson:responseDictionary];
                          [user updateWithJson:userDictionary];
-                         [user updateWithJson:responseDictionary];
                          [DataManager sharedInstance].activeUser = user;
                          [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      } else {
@@ -224,7 +223,6 @@
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
-                     
                      // Acá va a ir el código para el caso de éxito
                      if ([responseDictionary objectForKey:kAccessToken]) {
                          DBUser* user = [DBUser fromJson:responseDictionary];

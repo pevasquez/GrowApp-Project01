@@ -44,5 +44,8 @@
 + (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
 + (NSError *)likeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion;
++ (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion;
++ (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
 
 @end

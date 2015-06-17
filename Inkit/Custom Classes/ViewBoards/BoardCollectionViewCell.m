@@ -22,8 +22,8 @@
 @end
 @implementation BoardCollectionViewCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
+    [super awakeFromNib];
     self.backgroundColor = [InkitTheme getBaseColor];
     self.mainImageView.clipsToBounds = YES;
     self.firstThumbnailImageView.clipsToBounds = YES;
@@ -37,8 +37,7 @@
     [self configureForBoard:self.board];
 }
 
-- (void)configureForBoard:(DBBoard *)board
-{
+- (void)configureForBoard:(DBBoard *)board {
     self.boardTitleLabel.text = board.boardTitle;
     NSArray* inks = board.inks.allObjects;
     if ([inks count]) [((DBInk *)inks[0]).thumbnailImage setInImageView:self.mainImageView];

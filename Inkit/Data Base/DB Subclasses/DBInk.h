@@ -14,6 +14,8 @@
 @interface DBInk : NSManagedObject
 
 @property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSNumber * loggedUserLikes;
+@property (nonatomic, retain) NSNumber * loggedUserReInked;
 @property (nonatomic, retain) NSNumber * extraData;
 @property (nonatomic, retain) NSString * inkDescription;
 @property (nonatomic, retain) NSString * inkID;

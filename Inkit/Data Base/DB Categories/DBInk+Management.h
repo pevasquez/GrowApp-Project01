@@ -8,12 +8,15 @@
 
 #import "DBInk.h"
 #import <UIKit/UIKit.h>
+#import "InkitConstants.h"
 
 @interface DBInk (Management)
 + (DBInk *)fromJson:(NSDictionary *)inkData;
 - (void)updateWithJson:(NSDictionary *)inkData;
 + (DBInk *)inkWithInk:(DBInk *)ink;
-+ (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
+
+//+ (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 - (UIImage *)getInkImage;
 

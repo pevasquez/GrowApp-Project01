@@ -16,6 +16,8 @@
 @end
 @implementation GoogleManager
 
+static NSString * const kClientId = @"696055674747-jc3jtik6usp6597ppqvosjh2te294l4o.apps.googleusercontent.com";
+
 + (id)sharedInstance
 {
     static GoogleManager *sharedInstance = nil;
@@ -36,7 +38,7 @@
 
 - (void)initializeGoogleSession {
     GPPSignIn *googleSignIn = [GPPSignIn sharedInstance];
-    googleSignIn.clientID = @"126893056585-fujj1qeei47bholl4fknfbk8rsh4934h.apps.googleusercontent.com";
+    googleSignIn.clientID = kClientId;
     googleSignIn.scopes = @[kGTLAuthScopePlusLogin];
     googleSignIn.shouldFetchGoogleUserEmail = YES;
     googleSignIn.delegate = self;
@@ -54,7 +56,7 @@
     NSLog(@"Received error %@ and auth object %@",error, auth);
     
     if (error) {
-        // Do some error handling here.
+        [self.delegate onGoogleGoogleSessionError:error];
     } else {
         NSLog(@"email %@ ",[NSString stringWithFormat:@"Email: %@",[GPPSignIn sharedInstance].authentication.userEmail]);
         NSLog(@"Received error %@ and auth object %@",error, auth);

@@ -41,6 +41,8 @@
         <attribute name="inkDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inkID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="likesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="loggedUserLikes" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="loggedUserReInked" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="reInksCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="artist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBArtist" inverseName="didInks" inverseEntity="DBArtist" syncable="YES"/>
@@ -117,7 +119,7 @@
         <element name="DBBodyPart" positionX="-288" positionY="144" width="128" height="105"/>
         <element name="DBComment" positionX="196" positionY="108" width="128" height="105"/>
         <element name="DBImage" positionX="27" positionY="90" width="128" height="150"/>
-        <element name="DBInk" positionX="-11" positionY="360" width="128" height="330"/>
+        <element name="DBInk" positionX="-11" positionY="360" width="128" height="360"/>
         <element name="DBShop" positionX="277" positionY="563" width="128" height="120"/>
         <element name="DBTattooType" positionX="243" positionY="437" width="128" height="105"/>
         <element name="DBUser" positionX="-684" positionY="0" width="128" height="645"/>

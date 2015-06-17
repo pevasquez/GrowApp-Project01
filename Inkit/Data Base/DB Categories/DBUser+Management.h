@@ -12,7 +12,6 @@
 @class DBBoard;
 
 @interface DBUser (Management)
-+ (DBUser *)createNewUser;
 + (DBUser *)fromJson:(NSDictionary *)userData;
 - (void)updateWithJson:(NSDictionary *)jsonDictionary;
 

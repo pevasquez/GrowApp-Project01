@@ -20,8 +20,8 @@
 }
 // Override canBecomeFirstResponder
 // to allow this view to be a responder
-- (bool) canBecomeFirstResponder {
-    return true;
+-(BOOL)canBecomeFirstResponder {
+    return YES;
 }
 
 // Override inputAccessoryView to use

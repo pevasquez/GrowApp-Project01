@@ -58,5 +58,10 @@
 #define DBNotificationUserUpdate    @"DBNotificationUserUpdate"
 #define DBNotificationImageUpdate   @"DBNotificationImageUpdate"
 
+typedef void (^ServiceResponse)(id response, NSError* error);
+
+
+
+
 
 #endif

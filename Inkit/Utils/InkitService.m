@@ -134,4 +134,16 @@
 {
     return [InkService likeInk:ink withTarget:target completeAction:completeAction completeError:completeError];
 }
+
++ (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion {
+    [InkService likeInk:ink completion:completion];
+}
+
++ (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion {
+    [InkService unlikeInk:ink completion:completion];
+}
+
++ (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion {
+    [InkService deleteInk:ink completion:completion];
+}
 @end

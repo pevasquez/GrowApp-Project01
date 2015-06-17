@@ -26,6 +26,11 @@
 
 @implementation InkActionsTableViewCell
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self prepareForReuse];
+}
+
 - (void)configureForInk
 {
     DBUser* user = self.ink.user;
@@ -34,7 +39,8 @@
     self.cellHeight = self.bounds.size.height;
     self.reInksLabel.text = [NSString stringWithFormat:@"%@",self.ink.reInksCount];
     self.likesLabel.text = [NSString stringWithFormat:@"%@",self.ink.likesCount];
-    [self setLike:NO];
+    [self setLike:[self.ink.loggedUserLikes boolValue]];
+    [self setReInk:[self.ink.loggedUserReInked boolValue]];
 }
 
 - (void)prepareForReuse
@@ -43,15 +49,27 @@
     self.userNameLabel.text = @"";
     self.reInksLabel.text = @"0";
     self.likesLabel.text = @"0";
+    self.userImageView.image = nil;
 }
 
-- (void)setLike:(BOOL)selected
-{
+- (void)setLike:(BOOL)selected {
     if (selected) {
         self.likeButton.tintColor = [InkitTheme getTintColor];
+        self.likesLabel.textColor = [InkitTheme getTintColor];
     } else {
-        self.likeButton.tintColor = [InkitTheme getBaseColor];
-
+        self.likeButton.tintColor = [InkitTheme getLightBaseColor];
+        self.likesLabel.textColor = [InkitTheme getLightBaseColor];
     }
 }
+
+- (void)setReInk:(BOOL)selected {
+    if (selected) {
+        self.reInkButton.tintColor = [InkitTheme getTintColor];
+        self.reInksLabel.textColor = [InkitTheme getTintColor];
+    } else {
+        self.reInkButton.tintColor = [InkitTheme getLightBaseColor];
+        self.reInksLabel.textColor = [InkitTheme getLightBaseColor];
+    }
+}
+
 @end

@@ -292,11 +292,10 @@
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
                  {
-                     NSMutableArray* boardsArray = [[NSMutableArray alloc] init];
                      NSDictionary* dataDictionary = responseDictionary[@"data"];
                      
                      for (NSDictionary* boardDictionary in dataDictionary) {
-                         [boardsArray addObject:[DBBoard fromJson:boardDictionary]];
+                         [DBBoard fromJson:boardDictionary];
                      }
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;

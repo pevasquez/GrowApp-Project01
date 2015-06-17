@@ -9,9 +9,8 @@
 #import "DBArtist.h"
 
 @interface DBArtist (Management)
-+ (DBArtist *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 // Get Artist
-+ (NSArray *)getArtistSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+//+ (NSArray *)getArtistSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (DBArtist *)fromJson: (NSDictionary *)jsonDictionary;
 @end

@@ -25,16 +25,16 @@
 - (void)onFacebookUserInfoRequestComplete:(NSDictionary *)userInfo;
 - (void)onInternalLoginError:(NSError *)error;
 - (void)onInternalLoginSuccess;
+
+// Nuevo SDK
+- (void)sdkLoginCancelledByUser;
+- (void)sdkLoginError:(NSError *)error;
 @end
 
 
 @interface FacebookManager : NSObject
 + (FacebookManager*)sharedInstance;
 @property (nonatomic, weak) id<FacebookManagerDelegate> delegate;
-
-- (void)initializeFacebookSession;
-- (void)requestUserInfo;
-- (void)requestUserGraph;
 - (void)sdkLogInUser;
 - (void)internalLogInUser;
 

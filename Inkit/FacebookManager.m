@@ -9,6 +9,8 @@
 #import "FacebookManager.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface FacebookManager()
 @property (strong, nonatomic) NSDictionary* userInfo;
@@ -37,176 +39,59 @@
     return self;
 }
 
-- (void)initializeFacebookSession
-{
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
-                                           allowLoginUI:NO
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                          if(!error) {
-                                              [self sessionStateChanged:session state:state error:error];
-                                          } else {
-                                              [self.delegate onFacebookSessionError:error];
-                                          }
-                                      }];
-    } else {
-        [self.delegate onUserLoggedOut];
-    }
-}
-
 - (void)internalLogInUser
 {
     self.accountStore = [[ACAccountStore alloc]init];
-    self.FBaccountType= [self.accountStore accountTypeWithAccountTypeIdentifier:
-                                   ACAccountTypeIdentifierFacebook];
+    self.FBaccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:
+                          ACAccountTypeIdentifierFacebook];
     
-    NSDictionary *dictFB = @{ACFacebookAppIdKey : @"1410385759286626", ACFacebookPermissionsKey : [NSArray arrayWithObject:@"email"] };
-    [self.accountStore requestAccessToAccountsWithType:self.FBaccountType options:dictFB
-                                            completion: ^(BOOL granted, NSError *error) {
-                                                if (granted) {
-                                                    [self requestUserGraph];
-//                                                    [self.delegate onInternalLoginSuccess];
-                                                } else {
-                                                    [self.delegate onInternalLoginError:error];
-                                                } }];
+    NSDictionary *dictFB = @{ACFacebookAppIdKey : @"1410385759286626", ACFacebookPermissionsKey : @[@"email", @"public_profile"] };
+    [self.accountStore requestAccessToAccountsWithType:self.FBaccountType options:dictFB completion: ^(BOOL granted, NSError *error) {
+        
+        if (granted) {
+            NSArray *accounts = [self.accountStore accountsWithAccountType:self.FBaccountType];
+            self.facebookAccount = [accounts lastObject];
+            NSURL *requestURL = [NSURL URLWithString:@"https://graph.facebook.com/me"];
+            SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:requestURL parameters:nil];
+            request.account = self.facebookAccount;
+            [request performRequestWithHandler:^(NSData *data, NSHTTPURLResponse *response, NSError *error) {
+                
+                if(!error) {
+                    NSDictionary *list =[NSJSONSerialization JSONObjectWithData:data
+                                                                        options:kNilOptions error:&error];
+                    [self.delegate onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *)list];
+                } else {
+                    [self.delegate onInternalLoginError:error];
+                }
+                
+            }];
+        } else {
+            [self.delegate onInternalLoginError:error];
+        } }];
 }
 
-- (void)requestUserGraph {
-    
-    NSArray *accounts = [self.accountStore accountsWithAccountType:self.FBaccountType];
-    //it will always be the last object with SSO
-    self.facebookAccount = [accounts lastObject];
-    NSURL *requestURL = [NSURL URLWithString:@"https://graph.facebook.com/me"];
-    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
-                                            requestMethod:SLRequestMethodGET
-                                                      URL:requestURL
-                                               parameters:nil];
-    request.account = self.facebookAccount;
-    [request performRequestWithHandler:^(NSData *data,
-                                         NSHTTPURLResponse *response,
-                                         NSError *error) {
-        
-        if(!error){
-            NSDictionary *list =[NSJSONSerialization JSONObjectWithData:data
-                                                                options:kNilOptions error:&error];
-            NSLog(@"Dictionary contains: %@", list );
-            [self.delegate onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *)list];
-        } else{
-            
-        }
-        
-    }];
-}
 
 - (void)sdkLogInUser {
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session, FBSessionState state, NSError *error) {
-         [self sessionStateChanged:session state:state error:error];
-     }];
     
-}
-
-- (void)closeFBSession:(BOOL)clearToken
-{
-    if (clearToken) {
-        [FBSession.activeSession closeAndClearTokenInformation];
-    } else {
-        [FBSession.activeSession close];
-    }
-}
-
-- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
-{
-    if (state == FBSessionStateClosedLoginFailed) {
-        [session closeAndClearTokenInformation];
-        [self.delegate onUserLoggedOut];
-    } else if (state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended) {
-        if ([self checkIfPermissionsGranted:session]) {
-            [self requestUserInfo];
-//            [self.delegate onUserLoggedIn];
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login logInWithReadPermissions:@[@"email", @"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        if (error) {
+            [self.delegate sdkLoginError:error];
+        } else if (result.isCancelled) {
+            [self.delegate sdkLoginCancelledByUser];
         } else {
-            [self.delegate onPermissionsDeclined:session.declinedPermissions];
-        }
-    } else if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed) {
-        [session closeAndClearTokenInformation];
-        [self.delegate onUserLoggedOut];
-        
-    }
-    
-    // Handle errors
-    if (error){
-        NSLog(@"Error");
-        NSString *alertText;
-        NSString *alertTitle;
-        // If the error requires people using an app to make an action outside of the app in order to recover
-        if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-            alertText = [FBErrorUtility userMessageForError:error];
-        } else {
-            
-            // If the user cancelled login, do nothing
-            if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-                NSLog(@"User cancelled login");
-                
-                // Handle session closures that happen outside of the app
-            } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
-                alertTitle = @"Session Error";
-                alertText = @"Your current session is no longer valid. Please log in again.";
-                NSLog(@"%@%@",alertTitle, alertText);
-            } else {
-                //Get more error information from the error
-                NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
-                
-                // Show the user an error message
-                alertTitle = @"Something went wrong";
-                alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
-                NSLog(@"%@%@",alertTitle, alertText);
+            if ([result.grantedPermissions containsObject:@"email"]) {
+                if ([FBSDKAccessToken currentAccessToken]) {
+                    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+                     startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                         if (!error) {
+                             [self.delegate onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *)result];
+                         }
+                     }];
+                }
             }
         }
-        // Clear this token
-        [FBSession.activeSession closeAndClearTokenInformation];
-        // Show the user the logged-out UI
-        //[self userLoggedOut];
-    }
-}
-
-- (BOOL)isFacebookSessionOpen
-{
-    return FBSession.activeSession.isOpen;
-}
-
-- (BOOL)checkIfPermissionsGranted:(FBSession *)session
-{
-    if ([session.permissions containsObject:@"email"] && [session.permissions containsObject:@"public_profile"]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)requestUserInfo
-{
-    if (FBSession.activeSession.isOpen)
-    {
-        [[FBRequest requestForMe] startWithCompletionHandler:
-         ^(FBRequestConnection *connection,
-           NSDictionary<FBGraphUser> *user,
-           NSError *error) {
-             if (error) {
-                 [self.delegate onUserInfoRequestError:error];
-             } else {
-                 self.userInfo = user;
-                 [self.delegate onFacebookUserInfoRequestComplete:self.userInfo];
-             }
-         }];
-    }
-}
-
-- (NSDictionary *)getCachedUserInfo
-{
-    return self.userInfo;
+    }];
 }
 
 @end

@@ -9,23 +9,23 @@
 #import "InkitTheme.h"
 
 @implementation InkitTheme
-+ (UIColor *)getTintColor
-{
++ (UIColor *)getTintColor {
     return [UIColor colorWithRed:218.0/255.0 green:33.0/255.0 blue:40.0/255.0 alpha:1];
 }
 
-+ (UIColor *)getBaseColor
-{
++ (UIColor *)getBaseColor {
     return [UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:1];
 }
 
-+ (UIColor *)getBackgroundColor
-{
++ (UIColor *)getLightBaseColor {
+    return [UIColor colorWithRed:146.0/255.0 green:146.0/255.0 blue:146.0/255.0 alpha:1];
+}
+
++ (UIColor *)getBackgroundColor {
     return [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1];
 }
 
-+ (void)setUpNavigationBarForViewController:(UIViewController *)viewController;
-{
++ (void)setUpNavigationBarForViewController:(UIViewController *)viewController {
     [viewController.navigationController setNavigationBarHidden:NO animated:NO];
     [viewController.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [viewController.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];

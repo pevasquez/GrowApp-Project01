@@ -30,12 +30,12 @@ static NSString * const InkRemoteTableViewCellIdentifier = @"RemoteIdentifier";
 
 typedef enum
 {
-    kInkImage,
+    kViewInkImage,
     //kInkRemote,
-    kInkDescription,
-    kInkActions,
-    kInkComment,
-    kInkTotalCells
+    kViewInkDescription,
+    kViewInkActions,
+    kViewInkComment,
+    kViewInkTotalCells
 } kViewInkCells;
 
 #define kInkActionsCellHeight   60
@@ -50,8 +50,7 @@ typedef enum
 @end
 
 @implementation ViewInkViewController
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.ink.inkDescription;
     [self customizeNavigationBar];
@@ -78,7 +77,7 @@ typedef enum
 #pragma mark UITableView Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return kInkTotalCells;
+    return kViewInkTotalCells;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,12 +106,12 @@ typedef enum
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case kInkImage:
+        case kViewInkImage:
         {
             return 300.0;
             break;
         }
-        case kInkDescription:
+        case kViewInkDescription:
         {
 //            NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
 //            ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -132,12 +131,12 @@ typedef enum
             return 44.0;
             break;
         }
-        case kInkActions:
+        case kViewInkActions:
         {
             return kInkActionsCellHeight;
             break;
         }
-        case kInkComment:
+        case kViewInkComment:
         {
             return kInkCommentCellHeight;
             break;
@@ -150,7 +149,7 @@ typedef enum
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == kInkComment) {
+    if (indexPath.row == kViewInkComment) {
         return YES;
     } else {
         return NO;
@@ -159,7 +158,7 @@ typedef enum
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == kInkComment) {
+    if (indexPath.row == kViewInkComment) {
         [self performSegueWithIdentifier:@"CommentsSegue" sender:nil];
     }
 }
@@ -169,22 +168,22 @@ typedef enum
 {
     NSString* cellIdentifier = nil;
     switch (indexPath.row) {
-        case kInkImage:
+        case kViewInkImage:
         {
             cellIdentifier = InkImageTableViewCellIdentifier;
             break;
         }
-        case kInkDescription:
+        case kViewInkDescription:
         {
             cellIdentifier = InkDescriptionTableViewCellIdentifier;
             break;
         }
-        case kInkActions:
+        case kViewInkActions:
         {
             cellIdentifier = InkActionsTableViewCellIdentifier;
             break;
         }
-        case kInkComment:
+        case kViewInkComment:
         {
             cellIdentifier = InkCommentTableViewCellIdentifier;
             break;
@@ -247,21 +246,27 @@ typedef enum
 
 - (IBAction)likeButtonPressed:(id)sender
 {
-    [InkitService likeInk:self.ink withTarget:self completeAction:@selector(likeInkComplete) completeError:@selector(likeInkError:)];
-    
-//    [DataManager sharedInstance].activeUser;
-//    
-//    if (user likes ink) {
-//        [self.actionsCell setLike:no]
-//        unlike
-//    } else {
-//        
-//    }
-}
-
-- (void)likeInkComplete
-{
-    [self.actionsCell setLike:true];
+    if ([self.ink.loggedUserLikes boolValue]) {
+        [InkitService unlikeInk:self.ink completion:^(id response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error == nil) {
+                    [self.actionsCell setLike:false];
+                } else {
+                    [self showAlertForMessage:(NSString *)response];
+                }
+            });
+        }];
+    } else {
+        [InkitService likeInk:self.ink completion:^(id response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error == nil) {
+                    [self.actionsCell setLike:true];
+                } else {
+                    [self showAlertForMessage:(NSString *)response];
+                }
+            });
+        }];
+    }
 }
 
 - (void)likeInkError: (NSString*)error
@@ -293,6 +298,11 @@ typedef enum
     [self presentViewController:activityVC animated:YES completion:nil];
     
 }
-    
+
+- (void)showAlertForMessage:(NSString *)errorMessage {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+    [alert show];
+}
+
 
 @end

@@ -26,13 +26,23 @@
 				<string>fb1410385759286626</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.digbang.inkit</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.digbang.inkit</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>26</string>
+	<string>33</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>a02646c584fe01ead4fee4188b2fe52dd0ce9eba</string>
+		<string>eef62bd027724d40ec4a66d157adb8ca6d8db3ec</string>
 		<key>Kits</key>
 		<array>
 			<dict>

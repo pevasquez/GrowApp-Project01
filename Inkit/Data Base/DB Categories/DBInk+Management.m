@@ -95,32 +95,38 @@
     [self.managedObjectContext save:&error];
 }
 
-+ (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBInk];
-    
-    NSError *error;
-    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
-    NSMutableArray* inks = [[NSMutableArray alloc] init];
-    
-    if ([matches count]&&!error) {
-        for (DBInk* ink in matches) {
-            [inks addObject:ink];
-        }
-        return inks;
-    } else {
-        return nil;
-    }
+//+ (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+//{
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBInk];
+//    
+//    NSError *error;
+//    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
+//    NSMutableArray* inks = [[NSMutableArray alloc] init];
+//    
+//    if ([matches count]&&!error) {
+//        for (DBInk* ink in matches) {
+//            [inks addObject:ink];
+//        }
+//        return inks;
+//    } else {
+//        return nil;
+//    }
+//}
+
++ (DBInk *)newInk {
+    DBInk* ink = (DBInk *)[[DataManager sharedInstance] insert:kDBInk];
+    ink.likesCount = @0;
+    ink.reInksCount = @0;
+    ink.inkDescription = @"";
+    return ink;
 }
 
-+ (DBInk *)withID:(NSString *)inkID
-{
++ (DBInk *)withID:(NSString *)inkID {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"inkID = %@",inkID];
     return (DBInk *)[[DataManager sharedInstance] first:kDBInk predicate:predicate sort:nil limit:1];
 }
 
-+ (DBInk *)fromJson:(NSDictionary *)inkData
-{
++ (DBInk *)fromJson:(NSDictionary *)inkData {
     NSString* inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
     DBInk* obj = [DBInk withID:inkID];
     DBInk* ink = nil;
@@ -134,17 +140,7 @@
     return ink;
 }
 
-+ (DBInk *)newInk
-{
-    DBInk* ink = (DBInk *)[[DataManager sharedInstance] insert:kDBInk];
-    ink.likesCount = @0;
-    ink.reInksCount = @0;
-    ink.inkDescription = @"";
-    return ink;
-}
-
-- (void)updateWithJson:(NSDictionary *)inkData
-{
+- (void)updateWithJson:(NSDictionary *)inkData {
     if ([inkData objectForKey:@"id"]) {
         self.inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
     }
@@ -191,9 +187,15 @@
     if ([inkData objectForKey:@"board"]) {
         self.board = [DBBoard fromJson:inkData[@"board"][@"data"]];
     }
-//    if ([inkData objectForKey:@"extra_data"]) {
-//        ink.extraData = inkData[@"extra_data"];
-//    }
+    if ([inkData objectForKey:@"extra_data"]) {
+        NSDictionary* extraData = inkData[@"extra_data"];
+        if ([extraData objectForKey:@"logged_user_likes"]) {
+            self.loggedUserLikes = extraData[@"logged_user_likes"];
+        }
+        if ([extraData objectForKey:@"logged_user_reinked"]) {
+            self.loggedUserReInked = extraData[@"logged_user_reinked"];
+        }
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationInkUpdate object:nil userInfo:@{kDBInk:self}];
 }
 
@@ -213,6 +215,10 @@
     self.shop = ink.shop;
     self.board = ink.board;
     self.user = ink.user;
+}
+
++ (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion {
+    [InkitService deleteInk:ink completion:completion];
 }
 
 - (void)deleteInk

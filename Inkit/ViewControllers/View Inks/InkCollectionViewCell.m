@@ -16,14 +16,13 @@ static NSString * const InkActionsTableViewCellIdentifier = @"InkActionsTableVie
 static NSString * const InkUserTableViewCellIdentifier = @"InkUserTableViewCell";
 
 
-typedef enum
-{
-    kInkImage,
-    kInkDescription,
-    kInkActions,
-    kInkUser,
-    kInkTotalCells
-} kViewInkCells;
+typedef NS_ENUM(NSInteger, InkCells) {
+    kInkCellImage,
+    kInkCellDescription,
+    kInkCellActions,
+    kInkCellUser,
+    kInkCellTotalCells
+} kInkCell;
 
 #define kInkImageCellHeight     239
 #define kInkActionsCellHeight   34
@@ -60,7 +59,7 @@ typedef enum
 #pragma mark UITableView Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger rows = kInkTotalCells;
+    NSInteger rows = kInkCellTotalCells;
     return rows;
 }
 
@@ -76,7 +75,7 @@ typedef enum
 {
     if (self.ink) {
         switch (indexPath.row) {
-            case kInkImage:
+            case kInkCellImage:
             {
 //                NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
 //                ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -102,7 +101,7 @@ typedef enum
                 return kInkImageCellHeight;
                 break;
             }
-            case kInkDescription:
+            case kInkCellDescription:
             {
                 NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
                 ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -125,12 +124,12 @@ typedef enum
                 return height;
                 break;
             }
-            case kInkActions:
+            case kInkCellActions:
             {
                 return kInkActionsCellHeight;
                 break;
             }
-            case kInkUser:
+            case kInkCellUser:
             {
                 return kInkUserCellHeight;
                 break;
@@ -147,22 +146,22 @@ typedef enum
 {
     NSString* cellIdentifier = nil;
     switch (indexPath.row) {
-        case kInkImage:
+        case kInkCellImage:
         {
             cellIdentifier = InkImageTableViewCellIdentifier;
             break;
         }
-        case kInkDescription:
+        case kInkCellDescription:
         {
             cellIdentifier = InkDescriptionTableViewCellIdentifier;
             break;
         }
-        case kInkActions:
+        case kInkCellActions:
         {
             cellIdentifier = InkActionsTableViewCellIdentifier;
             break;
         }
-        case kInkUser:
+        case kInkCellUser:
         {
             cellIdentifier = InkUserTableViewCellIdentifier;
             break;

@@ -17,9 +17,7 @@
 #define kDBUser     @"DBUser"
 
 @implementation DBUser (Management)
-+ (DBUser *)createNewUser
-{
-    
++ (DBUser *)newUser {
     DBUser* user = (DBUser *)[[DataManager sharedInstance] insert:kDBUser];
     user.firstName = @"";
     user.lastName = @"";
@@ -29,19 +27,24 @@
     return user;
 }
 
-+ (DBUser *)withID:(NSString *)userID
-{
++ (DBUser *)withID:(NSString *)userID {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"userID = %@",userID];
-    return (DBUser *)[[DataManager sharedInstance] first:kDBUser predicate:predicate sort:nil limit:1];
+    return (DBUser *)[[DataManager sharedInstance] first:kDBUser predicate:predicate sort:nil limit:20];
 }
 
-+ (DBUser *)fromJson:(NSDictionary *)userData
-{
-    NSString* userID = [NSString stringWithFormat:@"%@",userData[kUserID]] ;
++ (DBUser *)fromJson:(NSDictionary *)userData {
+    NSString* userID = nil;
+    if ([userData objectForKey:kUserID]) {
+        userID = [NSString stringWithFormat:@"%@",userData[kUserID]];
+    } else if ([userData objectForKey:kAccessToken]) {
+        userID = [NSString stringWithFormat:@"%@",userData[kAccessToken]];
+    } else {
+        return nil;
+    }
     DBUser* obj = [DBUser withID:userID];
     DBUser* user = nil;
     if (!obj) {
-        user = (DBUser *)[[DataManager sharedInstance] insert:kDBUser];
+        user = [DBUser newUser];
     } else {
         user = obj;
     }
@@ -50,8 +53,7 @@
     return user;
 }
 
-- (void)updateWithJson:(NSDictionary *)jsonDictionary
-{
+- (void)updateWithJson:(NSDictionary *)jsonDictionary {
     if ([jsonDictionary objectForKey:@"styles"])
         self.styles = jsonDictionary[@"styles"];
     if ([jsonDictionary objectForKey:kUserID])

@@ -507,4 +507,149 @@
     return returnError;
 }
 
++ (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion {
+    NSURL* url = [NSURL URLWithString:@"http://inkit.digbang.com/api/inks/like"];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+
+    NSString *encodedDictionary = [NSString stringWithFormat:@"access_token=%@&ink_id=%@",[DataManager sharedInstance].activeUser.token,ink.inkID];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case 204: {
+                    ink.loggedUserLikes = [NSNumber numberWithBool:true];
+                    completion(nil, nil);
+                    break;
+                }
+                case 400: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
+                }
+                case 401: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
+                }
+                default: {
+                    completion(@"There was a problem",[[NSError alloc] init]);
+                    break;
+                }
+            }
+        } else {
+            completion(@"There was a problem",[[NSError alloc] init]);
+        }
+    }];
+    
+    [task resume];
+}
+
++ (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion {
+    NSURL* url = [NSURL URLWithString:@"http://inkit.digbang.com/api/inks/unlike"];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSString *encodedDictionary = [NSString stringWithFormat:@"access_token=%@&ink_id=%@",[DataManager sharedInstance].activeUser.token,ink.inkID];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case 204: {
+                    ink.loggedUserLikes = [NSNumber numberWithBool:false];
+                    completion(nil, nil);
+                    break;
+                }
+                case 400: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
+                }
+                case 401: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
+                }
+                default: {
+                    completion(@"There was a problem",[[NSError alloc] init]);
+                    break;
+                }
+            }
+        } else {
+            completion(@"There was a problem",[[NSError alloc] init]);
+        }
+    }];
+    
+    [task resume];
+
+}
+
++ (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion {
+
+    NSURL* url = [NSURL URLWithString:@"http://inkit.digbang.com/api/inks/delete"];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"DELETE"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSString *encodedDictionary = [NSString stringWithFormat:@"access_token=%@&ink_id=%@",[DataManager sharedInstance].activeUser.token,ink.inkID];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case kHTTPResponseCodeOK: {
+                    completion(nil, nil);
+                    break;
+                }
+                case 204: {
+                    completion(nil,nil);
+                }
+                case 400: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                }
+                case 401: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                }
+                case 422: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                }
+                default: {
+                    completion(@"There was a problem",[[NSError alloc] init]);
+                    break;
+                }
+            }
+        } else {
+            completion(@"There was a problem",[[NSError alloc] init]);
+        }
+    }];
+    
+    [task resume];
+}
+
 @end

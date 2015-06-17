@@ -13,20 +13,22 @@
 #define kDBBodyPartName @"name"
 
 @implementation DBBodyPart (Management)
++ (DBBodyPart *)newBodyPart {
+    DBBodyPart* bodyPart = (DBBodyPart *)[[DataManager sharedInstance] insert:kDBBodyPart];
+    return bodyPart;
+}
 
-+ (DBBodyPart *)withID:(NSString *)bodyPartId
-{
++ (DBBodyPart *)withID:(NSString *)bodyPartId {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"bodyPartId = %@",bodyPartId];
     return (DBBodyPart *)[[DataManager sharedInstance] first:kDBBodyPart predicate:predicate sort:nil limit:1];
 }
 
-+ (DBBodyPart *)fromJson:(NSDictionary *)bodyPartData
-{
++ (DBBodyPart *)fromJson:(NSDictionary *)bodyPartData {
     NSString* bodyPartID = [NSString stringWithFormat:@"%@",bodyPartData[@"id"]] ;
     DBBodyPart* obj = [DBBodyPart withID:bodyPartID];
     DBBodyPart* bodyPart = nil;
     if (!obj) {
-        bodyPart = (DBBodyPart *)[[DataManager sharedInstance] insert:kDBBodyPart];
+        bodyPart = [DBBodyPart newBodyPart];
         bodyPart.bodyPartId = bodyPartID;
     } else {
         bodyPart = obj;

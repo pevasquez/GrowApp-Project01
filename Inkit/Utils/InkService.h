@@ -23,4 +23,8 @@
 + (NSError *)likeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)unLikeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
++ (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion;
++ (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion;
++ (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
+
 @end

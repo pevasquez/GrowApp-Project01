@@ -39,90 +39,70 @@
 
 #pragma mark - Lifecycle Methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self hideActivityIndicator];
     [self customizeNavigationBar];
     self.textFieldsArray = @[self.emailTextField, self.passwordTextField];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self registerForKeyboardNotifications];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 #pragma mark - Action Methods
 
-- (IBAction)logInButtonPressed:(id)sender
-{
+- (IBAction)logInButtonPressed:(id)sender {
     [self login];
 }
 
-- (IBAction)registerButtonPressed:(id)sender
-{
+- (IBAction)registerButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"RegisterSegue" sender:nil];
 }
 
-- (IBAction)facebookLoginPressed:(id)sender
-{
+- (IBAction)facebookLoginPressed:(id)sender {
+    [self showActivityIndicator];
     [FacebookManager sharedInstance].delegate = self;
     [[FacebookManager sharedInstance] internalLogInUser];
-
 }
 
-- (IBAction)GoogleSignInButton:(id)sender
-{
+- (IBAction)GoogleSignInButton:(id)sender {
+    [self showActivityIndicator];
     [GoogleManager sharedInstance].delegate = self;
     [[GoogleManager sharedInstance] logInUser];
-    [self showActivityIndicator];
 }
 
-- (IBAction)didTapScreen:(UITapGestureRecognizer *)sender
-{
+- (IBAction)didTapScreen:(UITapGestureRecognizer *)sender {
     [self hideKeyboard];
 }
 
 
 #pragma mark - Mail Login
 
-- (void)login
-{
-    if([self verifyTextFields])
-    {
+- (void)login {
+    if([self verifyTextFields]) {
         NSDictionary* userDictionary = @{kUserEmail:self.emailTextField.text,kUserPassword:self.passwordTextField.text};
         [InkitService logInUserDictionary:userDictionary withTarget:self completeAction:@selector(logInUserComplete) completeError:@selector(logInUserError:)];
         [self showActivityIndicator];
     }
 }
 
-- (void)logInUserComplete
-{
+- (void)logInUserComplete {
     [self.delegate logInDidFinishedLoading];
     [self hideActivityIndicator];
 }
 
-- (void)logInUserError:(NSString *)errorMessage
-{
+- (void)logInUserError:(NSString *)errorMessage {
     UIAlertView *alert= [[UIAlertView alloc]initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [self hideActivityIndicator];
@@ -130,20 +110,17 @@
 
 #pragma mark - Social Login
 
-- (void)socialLogin
-{
+- (void)socialLogin {
     [InkitService logInSocialDictionary:self.userDictionary withTarget:self completeAction:@selector(socialLogInUserComplete) completeError:@selector(socialLogInUserError:)];
     [self showActivityIndicator];
 }
 
-- (void)socialLogInUserComplete
-{
+- (void)socialLogInUserComplete {
     [self.delegate logInDidFinishedLoading];
     [self hideActivityIndicator];
 }
 
-- (void)socialLogInUserError:(NSString *)errorMessage
-{
+- (void)socialLogInUserError:(NSString *)errorMessage {
     [self hideActivityIndicator];
     if ([errorMessage isEqualToString:@"Bad credentials"]) {
         [self performSegueWithIdentifier:@"RegisterSegue" sender:nil];
@@ -152,42 +129,51 @@
     }
 }
 
-#pragma mark - FacebookManager Delegate Methods
-
-- (void)onUserLoggedIn
-{
-    [[FacebookManager sharedInstance] requestUserInfo];
-}
-
-- (void)onUserLoggedOut
-{
+- (void)sdkLoginCancelledByUser {
     
 }
 
-- (void)onInternalLoginSuccess {
-    [[FacebookManager sharedInstance] requestUserGraph];
+- (void)sdkLoginError:(NSError *)error {
+    
+}
+
+#pragma mark - FacebookManager Delegate Methods
+- (void)onUserLoggedIn {
+    
+}
+
+- (void)onUserLoggedOut {
+    
 }
 
 - (void)onInternalLoginError:(NSError *)error {
-    if (FBSession.activeSession.state == FBSessionStateOpen
-        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended || FBSession.activeSession.state == FBSessionStateCreatedOpening) {
-        [FBSession.activeSession closeAndClearTokenInformation];
-    }
     [[FacebookManager sharedInstance] sdkLogInUser];
 }
 
+
+// TODO: Revisar Parsing
 - (void)onFacebookUserInfoRequestComplete:(NSDictionary <FBGraphUser> *) userInfo {
     self.userDictionary = [[NSMutableDictionary alloc] init];
-    self.userDictionary[kUserFirstName] = userInfo[@"first_name"];
-    self.userDictionary[kUserLastName] = userInfo[@"last_name"];
+    if([userInfo objectForKey:@"first_name"]) {
+        self.userDictionary[kUserFirstName] = userInfo[@"first_name"];
+    }
+    if([userInfo objectForKey:@"last_name"]) {
+        self.userDictionary[kUserLastName] = userInfo[@"last_name"];
+    }
     if ([userInfo objectForKey:@"email"]) {
         self.userDictionary[kUserEmail] = userInfo[@"email"];
     }
-    self.userDictionary[kUserExternalId] = userInfo[@"id"];
+    if ([userInfo objectForKey:@"id"]) {
+        self.userDictionary[kUserExternalId] = userInfo[@"id"];
+    } else {
+        [self showAlertForMessage:@"We were unable to log you in with Facebook."];
+        return;
+    }
     self.userDictionary[kUserSocialNetworkId] = @"1";
     
     [self socialLogin];
 }
+
 
 - (void)onPermissionsDeclined:(NSArray *)declinedPermissions
 {
@@ -196,8 +182,7 @@
 
 #pragma mark - Google+ Delegate
 
-- (void)onGoogleUserInfoRequestComplete:(NSDictionary *)userInfo
-{
+- (void)onGoogleUserInfoRequestComplete:(NSDictionary *)userInfo {
     self.userDictionary = [[NSMutableDictionary alloc] init];
     self.userDictionary[kUserFirstName] = userInfo[kUserFirstName];
     self.userDictionary[kUserLastName] = userInfo[kUserLastName];
@@ -207,28 +192,24 @@
     [self socialLogin];
 }
 
-- (void)onGoogleUserLoggedIn
-{
+- (void)onGoogleUserLoggedIn {
     NSLog(@"Google User Logged In");
 }
 
-- (void)onGoogleUserLoggedOut
-{
+- (void)onGoogleUserLoggedOut {
     NSLog(@"Google User Logged Out");
 }
 
 #pragma mark - Register Delegate
 
-- (void)registrationComplete
-{
+- (void)registrationComplete {
     [self.delegate logInDidFinishedLoading];
     [self hideActivityIndicator];
 }
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"RegisterSegue"]) {
         RegisterViewController* rvc = [segue destinationViewController];
         rvc.userDictionary = self.userDictionary;
@@ -239,19 +220,16 @@
 
 #pragma mark - TextField Delegate
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.activeTextField = textField;
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     self.activeTextField = nil;
     return YES;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [super textFieldShouldReturn:textField];
     if ([self isFormValid]){
         [self login];
@@ -261,8 +239,7 @@
 
 #pragma mark - Keyboard Notifications
 
-- (void)registerForKeyboardNotifications
-{
+- (void)registerForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
@@ -272,14 +249,12 @@
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)unregisterFromKeyboardNotifications
-{
+- (void)unregisterFromKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWasShown:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGPoint kbOrigin = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
     
@@ -294,8 +269,7 @@
     }
 }
 
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     } completion:nil];
@@ -306,8 +280,7 @@
 
 #pragma mark - Helper Methods
 
-- (BOOL)verifyTextFields
-{
+- (BOOL)verifyTextFields {
     if([self.emailTextField.text isEqualToString:@""]) {
         [self showAlertForMessage:@"Complete Email"];
         return NO;
@@ -318,46 +291,28 @@
     return YES;
 }
 
-//- (void)showAlertForMessage:(NSString *)errorMessage
-//{
-//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
-//    [alert show];
-//}
-
-
 #pragma mark - Activity Indicator Methods
 
-- (void) showActivityIndicator
-{
+- (void) showActivityIndicator {
     [GAProgressHUDHelper loggingInProgressHUDinView:self.view];
     [self hideKeyboard];
     [self disableTextFields];
-    
-//    self.emailTextField.userInteractionEnabled = NO;
-//    self.passwordTextField.userInteractionEnabled = NO;
     self.logInButton.userInteractionEnabled = NO;
     self.facebookButton.userInteractionEnabled = NO;
     self.googleButton.userInteractionEnabled = NO;
-//    self.activityIndicatorView.hidden = NO;
-//    [self.activityIndicatorView startAnimating];
 }
 
-- (void) hideActivityIndicator
-{
+- (void) hideActivityIndicator {
     [GAProgressHUDHelper hideHUDForView:self.view animated:true];
     [self enableTextFields];
     self.emailTextField.userInteractionEnabled = YES;
     self.passwordTextField.userInteractionEnabled = YES;
     self.logInButton.userInteractionEnabled = YES;
-//    self.activityIndicatorView.hidden = YES;
-//    
-//    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Appearence Methods
 
-- (void)customizeNavigationBar
-{
+- (void)customizeNavigationBar {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 

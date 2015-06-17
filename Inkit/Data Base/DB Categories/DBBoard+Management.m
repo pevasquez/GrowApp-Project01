@@ -75,8 +75,12 @@
     [DataManager saveContext];
 }
 
-+ (DBBoard *)withID:(NSString *)boardID
-{
++ (DBBoard *)newBoard {
+    DBBoard* board = (DBBoard *)[[DataManager sharedInstance] insert:kDBBoard];
+    return board;
+}
+
++ (DBBoard *)withID:(NSString *)boardID {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"boardID = %@",boardID];
     return (DBBoard *)[[DataManager sharedInstance] first:kDBBoard predicate:predicate sort:nil limit:1];
 }
@@ -87,7 +91,7 @@
     DBBoard* obj = [DBBoard withID:boardID];
     DBBoard* board = nil;
     if (!obj) {
-        board = (DBBoard *)[[DataManager sharedInstance] insert:kDBBoard];
+        board = [DBBoard newBoard];
     } else {
         board = obj;
     }

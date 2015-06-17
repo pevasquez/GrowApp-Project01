@@ -12,6 +12,7 @@
 @interface InkitTheme : NSObject
 + (UIColor *)getTintColor;
 + (UIColor *)getBaseColor;
++ (UIColor *)getLightBaseColor;
 + (UIColor *)getBackgroundColor;
 + (void)setUpNavigationBarForViewController:(UIViewController *)viewController;
 + (UIColor *)getColorForText;

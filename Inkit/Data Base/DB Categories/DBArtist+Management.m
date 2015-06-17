@@ -14,18 +14,9 @@
 
 #define KDBArtist @"DBArtist"
 #define KDBArtistName @"name"
-+ (DBArtist *)newArtist
-{
++ (DBArtist *)newArtist {
     DBArtist * artist = (DBArtist *)[[DataManager sharedInstance] insert:KDBArtist];
-    // configure artist
     
-    return artist;
-}
-
-+ (DBArtist *)createWithName:(NSString *)name InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    DBArtist* artist = [DBArtist newArtist];
-    artist.name = name;
     return artist;
 }
 
@@ -41,7 +32,7 @@
     DBArtist* obj = [DBArtist withID:artistID];
     DBArtist* artist = nil;
     if (!obj) {
-        artist = (DBArtist *)[[DataManager sharedInstance] insert:KDBArtist];
+        artist = [DBArtist newArtist];
         artist.artistId = artistID;
     } else {
         artist = obj;
@@ -57,14 +48,14 @@
 }
 
 
-+ (NSArray *)getArtistSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:KDBArtist];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:KDBArtistName ascending:YES]];
-    
-    NSError *error;
-    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
-    return matches;
-}
+//+ (NSArray *)getArtistSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+//{
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:KDBArtist];
+//    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:KDBArtistName ascending:YES]];
+//    
+//    NSError *error;
+//    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
+//    return matches;
+//}
 
 @end

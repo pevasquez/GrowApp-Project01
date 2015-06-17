@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */; };
 		86647CBA1AF403830013658A /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86647CB91AF403830013658A /* FacebookManager.m */; };
-		8673CB171AFA6F6D00179FA2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8673CB161AFA6F6D00179FA2 /* FacebookSDK.framework */; };
 		8673CB191AFA6F7A00179FA2 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */; };
 		8673CB1B1AFA6F8700179FA2 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */; };
 		8673CB1D1AFA6F9100179FA2 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */; };
-		8673CB1F1AFA701C00179FA2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8673CB161AFA6F6D00179FA2 /* FacebookSDK.framework */; };
 		8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8673CBA81AFBFAD200179FA2 /* Tutorial.storyboard */; };
 		8673CBB01AFBFAD200179FA2 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAA1AFBFAD200179FA2 /* TutorialViewController.m */; };
 		8673CBB11AFBFAD200179FA2 /* TutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAC1AFBFAD200179FA2 /* TutorialPage.m */; };
@@ -105,6 +103,12 @@
 		FB5C4FD01B1644B100B05593 /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FCF1B1644B100B05593 /* DBInk.m */; };
 		FB5C4FD31B1644B200B05593 /* DBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FD21B1644B200B05593 /* DBUser.m */; };
 		FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */; };
+		FB8825D81B1F7BE500CE0DFF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8825D61B1F7BE500CE0DFF /* FBSDKCoreKit.framework */; };
+		FB8825D91B1F7BE500CE0DFF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8825D61B1F7BE500CE0DFF /* FBSDKCoreKit.framework */; };
+		FB8825DA1B1F7BE500CE0DFF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8825D71B1F7BE500CE0DFF /* FBSDKLoginKit.framework */; };
+		FB8825DB1B1F7BE500CE0DFF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8825D71B1F7BE500CE0DFF /* FBSDKLoginKit.framework */; };
+		FB8826501B2628AD00CE0DFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB88264E1B2628AD00CE0DFF /* Crashlytics.framework */; };
+		FB8826511B2628AD00CE0DFF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB88264F1B2628AD00CE0DFF /* Fabric.framework */; };
 		FBA038F01B122E5300700D93 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */; };
 		FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */; };
 		FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384191A892D92004C440A /* ViewInkViewController.m */; };
@@ -118,6 +122,7 @@
 		FBB384471A895E7C004C440A /* CreateInkImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384461A895E7C004C440A /* CreateInkImageTableViewCell.m */; };
 		FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384561A8A9818004C440A /* TextViewTableViewCell.m */; };
 		FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB488541A8BF176009E1789 /* MobileCoreServices.framework */; };
+		FBB55B7D1B2B6C8200C705F4 /* GADBannerCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB55B7C1B2B6C8200C705F4 /* GADBannerCollectionReusableView.m */; };
 		FBB696D01AAB841C0071D96B /* DBComment+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696CF1AAB841C0071D96B /* DBComment+Management.m */; };
 		FBB696D31AAB86D90071D96B /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696D21AAB86D90071D96B /* CommentsViewController.m */; };
 		FBB696D61AAB88840071D96B /* CommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696D51AAB88840071D96B /* CommentsTableViewCell.m */; };
@@ -144,6 +149,13 @@
 		FBD2FEEB1ADB550F005D1AAE /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEEA1ADB550F005D1AAE /* DBBodyPart.m */; };
 		FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEED1ADB550F005D1AAE /* DBComment.m */; };
 		FBD2FEF11ADB55ED005D1AAE /* DBShop.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEF01ADB55ED005D1AAE /* DBShop.m */; };
+		FBD73CD41B29A5E1005AFCBD /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CD31B29A5E1005AFCBD /* GoogleMobileAds.framework */; };
+		FBD73CDA1B29A675005AFCBD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CD91B29A675005AFCBD /* CoreMedia.framework */; };
+		FBD73CDC1B29A694005AFCBD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CDB1B29A694005AFCBD /* CoreTelephony.framework */; };
+		FBD73CDF1B29A6BB005AFCBD /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CDD1B29A6BB005AFCBD /* EventKit.framework */; };
+		FBD73CE01B29A6BB005AFCBD /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CDE1B29A6BB005AFCBD /* EventKitUI.framework */; };
+		FBD73CE21B29A717005AFCBD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CE11B29A717005AFCBD /* StoreKit.framework */; };
+		FBD73CE51B29AB40005AFCBD /* GADBannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD73CE41B29AB40005AFCBD /* GADBannerCollectionViewCell.m */; };
 		FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */; };
 		FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */; };
 		FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */; };
@@ -182,7 +194,6 @@
 		8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRemoteTableViewController.m; sourceTree = "<group>"; };
 		86647CB81AF403830013658A /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
 		86647CB91AF403830013658A /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
-		8673CB161AFA6F6D00179FA2 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
 		8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
@@ -275,6 +286,10 @@
 		FB5C4FD21B1644B200B05593 /* DBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBUser.m; path = "Data Base/DB Subclasses/DBUser.m"; sourceTree = "<group>"; };
 		FB76CAAE1AB114E400B68BAD /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowseViewController.h; path = ViewControllers/Browse/BrowseViewController.h; sourceTree = "<group>"; };
 		FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = ViewControllers/Browse/BrowseViewController.m; sourceTree = "<group>"; };
+		FB8825D61B1F7BE500CE0DFF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		FB8825D71B1F7BE500CE0DFF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		FB88264E1B2628AD00CE0DFF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		FB88264F1B2628AD00CE0DFF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		FBA038EE1B122E5300700D93 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTableViewCell.h; path = "Custom Classes/ImageTableViewCell.h"; sourceTree = "<group>"; };
 		FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTableViewCell.m; path = "Custom Classes/ImageTableViewCell.m"; sourceTree = "<group>"; };
 		FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageTableViewCell.xib; path = "Custom Classes/ImageTableViewCell.xib"; sourceTree = "<group>"; };
@@ -299,6 +314,8 @@
 		FBB384551A8A9818004C440A /* TextViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextViewTableViewCell.h; path = "ViewControllers/Custom Classes/TextViewTableViewCell.h"; sourceTree = "<group>"; };
 		FBB384561A8A9818004C440A /* TextViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextViewTableViewCell.m; path = "ViewControllers/Custom Classes/TextViewTableViewCell.m"; sourceTree = "<group>"; };
 		FBB488541A8BF176009E1789 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FBB55B7B1B2B6C8200C705F4 /* GADBannerCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerCollectionReusableView.h; path = ViewControllers/Browse/GADBannerCollectionReusableView.h; sourceTree = "<group>"; };
+		FBB55B7C1B2B6C8200C705F4 /* GADBannerCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GADBannerCollectionReusableView.m; path = ViewControllers/Browse/GADBannerCollectionReusableView.m; sourceTree = "<group>"; };
 		FBB696CE1AAB841C0071D96B /* DBComment+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBComment+Management.h"; path = "Data Base/DB Categories/DBComment+Management.h"; sourceTree = "<group>"; };
 		FBB696CF1AAB841C0071D96B /* DBComment+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBComment+Management.m"; path = "Data Base/DB Categories/DBComment+Management.m"; sourceTree = "<group>"; };
 		FBB696D11AAB86D90071D96B /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsViewController.h; path = "Inkit/ViewControllers/View Ink/CommentsViewController.h"; sourceTree = "<group>"; };
@@ -346,6 +363,14 @@
 		FBD2FEED1ADB550F005D1AAE /* DBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBComment.m; path = "Data Base/DB Subclasses/DBComment.m"; sourceTree = "<group>"; };
 		FBD2FEEF1ADB55ED005D1AAE /* DBShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBShop.h; path = "Data Base/DB Subclasses/DBShop.h"; sourceTree = "<group>"; };
 		FBD2FEF01ADB55ED005D1AAE /* DBShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBShop.m; path = "Data Base/DB Subclasses/DBShop.m"; sourceTree = "<group>"; };
+		FBD73CD31B29A5E1005AFCBD /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		FBD73CD91B29A675005AFCBD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		FBD73CDB1B29A694005AFCBD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		FBD73CDD1B29A6BB005AFCBD /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		FBD73CDE1B29A6BB005AFCBD /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		FBD73CE11B29A717005AFCBD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		FBD73CE31B29AB40005AFCBD /* GADBannerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerCollectionViewCell.h; path = ViewControllers/Browse/GADBannerCollectionViewCell.h; sourceTree = "<group>"; };
+		FBD73CE41B29AB40005AFCBD /* GADBannerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GADBannerCollectionViewCell.m; path = ViewControllers/Browse/GADBannerCollectionViewCell.m; sourceTree = "<group>"; };
 		FBD86C061AAE29C300FA369C /* Inkitv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inkitv2.xcdatamodel; sourceTree = "<group>"; };
 		FBD91E0E1A960EDA00B00724 /* BoardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardsCollectionView.h; path = "Custom Classes/ViewBoards/BoardsCollectionView.h"; sourceTree = "<group>"; };
 		FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardsCollectionView.m; path = "Custom Classes/ViewBoards/BoardsCollectionView.m"; sourceTree = "<group>"; };
@@ -396,14 +421,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD73CE21B29A717005AFCBD /* StoreKit.framework in Frameworks */,
+				FBD73CDF1B29A6BB005AFCBD /* EventKit.framework in Frameworks */,
+				FBD73CE01B29A6BB005AFCBD /* EventKitUI.framework in Frameworks */,
+				FBD73CDC1B29A694005AFCBD /* CoreTelephony.framework in Frameworks */,
+				FBD73CDA1B29A675005AFCBD /* CoreMedia.framework in Frameworks */,
 				86EE2E4F1B14C0FE00DC64BC /* QuartzCore.framework in Frameworks */,
 				86EE2E321B14A9F100DC64BC /* MessageUI.framework in Frameworks */,
+				FBD73CD41B29A5E1005AFCBD /* GoogleMobileAds.framework in Frameworks */,
 				86EE2E301B14A9DA00DC64BC /* AudioToolbox.framework in Frameworks */,
+				FB8825D81B1F7BE500CE0DFF /* FBSDKCoreKit.framework in Frameworks */,
 				86EE2E2E1B14A9CB00DC64BC /* AdSupport.framework in Frameworks */,
+				FB8825DA1B1F7BE500CE0DFF /* FBSDKLoginKit.framework in Frameworks */,
 				86EE2DD61B14A06900DC64BC /* Accounts.framework in Frameworks */,
 				86EE2DD41B149EB500DC64BC /* Social.framework in Frameworks */,
 				86DFBC7A1AF5689A000EAF62 /* UIKit.framework in Frameworks */,
 				8673CB1B1AFA6F8700179FA2 /* GooglePlus.framework in Frameworks */,
+				FB8826501B2628AD00CE0DFF /* Crashlytics.framework in Frameworks */,
 				86DFBC781AF5688A000EAF62 /* MediaPlayer.framework in Frameworks */,
 				86DFBC761AF56881000EAF62 /* CoreText.framework in Frameworks */,
 				FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */,
@@ -414,10 +448,10 @@
 				86DFBC6A1AF56071000EAF62 /* Security.framework in Frameworks */,
 				86DFBC681AF554F1000EAF62 /* CoreMotion.framework in Frameworks */,
 				8673CB191AFA6F7A00179FA2 /* GoogleOpenSource.framework in Frameworks */,
+				FB8826511B2628AD00CE0DFF /* Fabric.framework in Frameworks */,
 				86DFBC661AF554DF000EAF62 /* AddressBook.framework in Frameworks */,
 				FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */,
 				FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */,
-				8673CB171AFA6F6D00179FA2 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +462,9 @@
 				86EE2E511B14E9D900DC64BC /* QuartzCore.framework in Frameworks */,
 				86EE2E611B14E9F700DC64BC /* CoreMotion.framework in Frameworks */,
 				86EE2E651B14E9F700DC64BC /* AVFoundation.framework in Frameworks */,
+				FB8825D91B1F7BE500CE0DFF /* FBSDKCoreKit.framework in Frameworks */,
 				86EE2E571B14E9EE00DC64BC /* GooglePlus.framework in Frameworks */,
+				FB8825DB1B1F7BE500CE0DFF /* FBSDKLoginKit.framework in Frameworks */,
 				86EE2E5C1B14E9F700DC64BC /* CoreLocation.framework in Frameworks */,
 				86EE2E541B14E9E600DC64BC /* AdSupport.framework in Frameworks */,
 				86EE2E561B14E9EE00DC64BC /* Social.framework in Frameworks */,
@@ -436,7 +472,6 @@
 				86EE2E5F1B14E9F700DC64BC /* SystemConfiguration.framework in Frameworks */,
 				86EE2E631B14E9F700DC64BC /* CoreGraphics.framework in Frameworks */,
 				86EE2E551B14E9EE00DC64BC /* Accounts.framework in Frameworks */,
-				8673CB1F1AFA701C00179FA2 /* FacebookSDK.framework in Frameworks */,
 				86EE2E5A1B14E9F700DC64BC /* MediaPlayer.framework in Frameworks */,
 				86EE2E5E1B14E9F700DC64BC /* AssetsLibrary.framework in Frameworks */,
 				86EE2E621B14E9F700DC64BC /* AddressBook.framework in Frameworks */,
@@ -480,10 +515,6 @@
 				FB0711861AAF0318004EBBD1 /* InkService.m */,
 				FB0711891AAF077C004EBBD1 /* BoardService.h */,
 				FB07118A1AAF077C004EBBD1 /* BoardService.m */,
-				86647CB81AF403830013658A /* FacebookManager.h */,
-				86647CB91AF403830013658A /* FacebookManager.m */,
-				FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */,
-				FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */,
 				FB0711881AAF037F004EBBD1 /* InkitServiceConstants.h */,
 			);
 			name = Service;
@@ -539,22 +570,28 @@
 			name = "Settings View Controller";
 			sourceTree = "<group>";
 		};
-		FB4A23C51AD963BF002EE49B /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				FB4A23C21AD9630C002EE49B /* NSDictionary+Extensions.h */,
-				FB4A23C31AD9630C002EE49B /* NSDictionary+Extensions.m */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		FB76CAB11AB114E900B68BAD /* Browse */ = {
 			isa = PBXGroup;
 			children = (
 				FB76CAAE1AB114E400B68BAD /* BrowseViewController.h */,
 				FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */,
+				FBD73CE31B29AB40005AFCBD /* GADBannerCollectionViewCell.h */,
+				FBD73CE41B29AB40005AFCBD /* GADBannerCollectionViewCell.m */,
+				FBB55B7B1B2B6C8200C705F4 /* GADBannerCollectionReusableView.h */,
+				FBB55B7C1B2B6C8200C705F4 /* GADBannerCollectionReusableView.m */,
 			);
 			name = Browse;
+			sourceTree = "<group>";
+		};
+		FB8825D51B1F78BF00CE0DFF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				86647CB81AF403830013658A /* FacebookManager.h */,
+				86647CB91AF403830013658A /* FacebookManager.m */,
+				FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */,
+				FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		FBB384171A892D59004C440A /* Create Ink */ = {
@@ -662,6 +699,8 @@
 		FBC433061A85458500EFAA24 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB4A23C21AD9630C002EE49B /* NSDictionary+Extensions.h */,
+				FB4A23C31AD9630C002EE49B /* NSDictionary+Extensions.m */,
 				FB249C301B11077400AE29F2 /* UIImage+Extension.h */,
 				FB249C311B11077400AE29F2 /* UIImage+Extension.m */,
 				FBF2F8601B037A3F00057A71 /* NSData+Extension.h */,
@@ -702,29 +741,10 @@
 		FBC433111A8556B200EFAA24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
-				86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */,
-				86EE2E311B14A9F100DC64BC /* MessageUI.framework */,
-				86EE2E2F1B14A9DA00DC64BC /* AudioToolbox.framework */,
-				86EE2E2D1B14A9CB00DC64BC /* AdSupport.framework */,
-				86EE2DD51B14A06900DC64BC /* Accounts.framework */,
-				86EE2DD31B149EB500DC64BC /* Social.framework */,
-				8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */,
-				8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */,
-				8673CB161AFA6F6D00179FA2 /* FacebookSDK.framework */,
-				86DFBC791AF5689A000EAF62 /* UIKit.framework */,
-				86DFBC771AF5688A000EAF62 /* MediaPlayer.framework */,
-				86DFBC751AF56881000EAF62 /* CoreText.framework */,
-				86DFBC731AF56870000EAF62 /* CoreLocation.framework */,
-				86DFBC711AF56864000EAF62 /* Foundation.framework */,
-				86DFBC6F1AF56858000EAF62 /* AssetsLibrary.framework */,
-				86DFBC6B1AF5607C000EAF62 /* SystemConfiguration.framework */,
-				86DFBC691AF56071000EAF62 /* Security.framework */,
-				86DFBC671AF554F1000EAF62 /* CoreMotion.framework */,
-				86DFBC651AF554DF000EAF62 /* AddressBook.framework */,
-				FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */,
-				FBB488541A8BF176009E1789 /* MobileCoreServices.framework */,
-				FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */,
+				FBD73CD51B29A5EA005AFCBD /* Google */,
+				FBD73CD81B29A611005AFCBD /* Crashlytics */,
+				FBD73CD61B29A5F2005AFCBD /* Facebook */,
+				FBD73CD71B29A608005AFCBD /* Apple */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -732,7 +752,6 @@
 		FBCCAF871A8CE83F0052DCB9 /* View Boards */ = {
 			isa = PBXGroup;
 			children = (
-				FB4A23C51AD963BF002EE49B /* Extensions */,
 				FBCCAF841A8CE8390052DCB9 /* ViewBoardsViewController.h */,
 				FBCCAF851A8CE8390052DCB9 /* ViewBoardsViewController.m */,
 				FBD91E111A960EE400B00724 /* View Boards */,
@@ -776,6 +795,66 @@
 				FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */,
 			);
 			name = "General View Controllers";
+			sourceTree = "<group>";
+		};
+		FBD73CD51B29A5EA005AFCBD /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				FBD73CD31B29A5E1005AFCBD /* GoogleMobileAds.framework */,
+				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
+				8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */,
+				8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */,
+			);
+			name = Google;
+			sourceTree = "<group>";
+		};
+		FBD73CD61B29A5F2005AFCBD /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				FB8825D61B1F7BE500CE0DFF /* FBSDKCoreKit.framework */,
+				FB8825D71B1F7BE500CE0DFF /* FBSDKLoginKit.framework */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		FBD73CD71B29A608005AFCBD /* Apple */ = {
+			isa = PBXGroup;
+			children = (
+				86EE2DD51B14A06900DC64BC /* Accounts.framework */,
+				86DFBC651AF554DF000EAF62 /* AddressBook.framework */,
+				86EE2E2D1B14A9CB00DC64BC /* AdSupport.framework */,
+				86DFBC6F1AF56858000EAF62 /* AssetsLibrary.framework */,
+				86EE2E2F1B14A9DA00DC64BC /* AudioToolbox.framework */,
+				FBC4330F1A8556A700EFAA24 /* AVFoundation.framework */,
+				FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */,
+				86DFBC731AF56870000EAF62 /* CoreLocation.framework */,
+				FBD73CD91B29A675005AFCBD /* CoreMedia.framework */,
+				86DFBC671AF554F1000EAF62 /* CoreMotion.framework */,
+				FBD73CDB1B29A694005AFCBD /* CoreTelephony.framework */,
+				86DFBC751AF56881000EAF62 /* CoreText.framework */,
+				FBD73CDD1B29A6BB005AFCBD /* EventKit.framework */,
+				FBD73CDE1B29A6BB005AFCBD /* EventKitUI.framework */,
+				86DFBC711AF56864000EAF62 /* Foundation.framework */,
+				86EE2E311B14A9F100DC64BC /* MessageUI.framework */,
+				86DFBC771AF5688A000EAF62 /* MediaPlayer.framework */,
+				FBB488541A8BF176009E1789 /* MobileCoreServices.framework */,
+				86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */,
+				86EE2DD31B149EB500DC64BC /* Social.framework */,
+				86DFBC691AF56071000EAF62 /* Security.framework */,
+				FBD73CE11B29A717005AFCBD /* StoreKit.framework */,
+				86DFBC6B1AF5607C000EAF62 /* SystemConfiguration.framework */,
+				86DFBC791AF5689A000EAF62 /* UIKit.framework */,
+			);
+			name = Apple;
+			sourceTree = "<group>";
+		};
+		FBD73CD81B29A611005AFCBD /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				FB88264E1B2628AD00CE0DFF /* Crashlytics.framework */,
+				FB88264F1B2628AD00CE0DFF /* Fabric.framework */,
+			);
+			name = Crashlytics;
 			sourceTree = "<group>";
 		};
 		FBD91E111A960EE400B00724 /* View Boards */ = {
@@ -837,7 +916,6 @@
 				FBDCB1A21A83EB1800E05053 /* Main.storyboard */,
 				FBBC573C1AB2300200FF2219 /* Images.xcassets */,
 				FBDCB1C91A83F38B00E05053 /* ViewControllers */,
-				FBC433061A85458500EFAA24 /* Custom Classes */,
 				FBDCB1C11A83ED3100E05053 /* Utils */,
 				FBDCB1D01A83F7D900E05053 /* Data Base */,
 				FBDCB1A71A83EB1800E05053 /* LaunchScreen.xib */,
@@ -880,9 +958,11 @@
 		FBDCB1C11A83ED3100E05053 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FB8825D51B1F78BF00CE0DFF /* Managers */,
 				868A5CA21AA626D6006DD52D /* Service */,
 				FBB696E31AABA7890071D96B /* Theme */,
 				FBC4330B1A85472E00EFAA24 /* Custom Fonts */,
+				FBC433061A85458500EFAA24 /* Custom Classes */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1000,6 +1080,7 @@
 				FBDCB18E1A83EB1800E05053 /* Sources */,
 				FBDCB18F1A83EB1800E05053 /* Frameworks */,
 				FBDCB1901A83EB1800E05053 /* Resources */,
+				FB8826521B262A5B00CE0DFF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1096,6 +1177,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FB8826521B262A5B00CE0DFF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run eef62bd027724d40ec4a66d157adb8ca6d8db3ec 3f569e7005bef222db672798551612706063d2fdcf416bbbf4171091f2b84eb7";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FBDCB18E1A83EB1800E05053 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1153,9 +1250,11 @@
 				FB5C4FD31B1644B200B05593 /* DBUser.m in Sources */,
 				FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */,
 				86BF40A51B122999004E9025 /* FormViewController.m in Sources */,
+				FBD73CE51B29AB40005AFCBD /* GADBannerCollectionViewCell.m in Sources */,
 				FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */,
 				FB0711871AAF0318004EBBD1 /* InkService.m in Sources */,
 				FBB696D31AAB86D90071D96B /* CommentsViewController.m in Sources */,
+				FBB55B7D1B2B6C8200C705F4 /* GADBannerCollectionReusableView.m in Sources */,
 				FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */,
 				86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */,
 				FBD91E331A9689EE00B00724 /* InkUserTableViewCell.m in Sources */,
@@ -1333,12 +1432,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
-					/Users/cristianpena/Documents/FacebookSDK,
+					/Users/cristianpena/Documents/Mis,
+					"Proyectos/Frameworks/**",
 					"$(PROJECT_DIR)/Inkit",
 					"$(PROJECT_DIR)",
-					/Users/mariaveronicasonzini/Documents/Mis,
 					"Proyectos/GoogleMobileAdsSdkiOS-7.2-2.2",
 					"$(PROJECT_DIR)/Inkit/GooglePlus.bundle",
+					"Proyectos/Frameworks/GoogleMobileAdsSdkiOS-7.3.1",
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1355,17 +1456,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/cristianpena/Downloads/google-plus-ios-sdk-1.7.1",
-					/Users/cristianpena/Documents/FacebookSDK,
+					/Users/cristianpena/Documents/Mis,
+					"Proyectos/Frameworks/**",
 					"$(PROJECT_DIR)/Inkit",
 					"$(PROJECT_DIR)",
-					/Users/mariaveronicasonzini/Documents/Mis,
 					"Proyectos/GoogleMobileAdsSdkiOS-7.2-2.2",
 					"$(PROJECT_DIR)/Inkit/GooglePlus.bundle",
+					"Proyectos/Frameworks/GoogleMobileAdsSdkiOS-7.3.1",
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

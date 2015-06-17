@@ -296,27 +296,40 @@ typedef enum
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]]) {
+        
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
         viewInkViewController.ink = (DBInk *)sender;
+        
     } else if ([[segue destinationViewController] isKindOfClass:[SelectBoardTableViewController class]]) {
+        
         SelectBoardTableViewController* selectBoardTableViewController = [segue destinationViewController];
         selectBoardTableViewController.selectedBoard = self.inkData[kInkBoard];
         selectBoardTableViewController.delegate = self;
+        
     } else if ([[segue destinationViewController] isKindOfClass:[SelectLocalTableViewController class]]) {
+        
         SelectLocalTableViewController* selectLocalTableViewController = [segue destinationViewController];
         selectLocalTableViewController.delegate = self;
         NSIndexPath* indexPath = (NSIndexPath* )sender;
+        
         if (indexPath.row == kCreateInkBodyPartIndex) {
+            
             selectLocalTableViewController.localsArray = [DBBodyPart getBodyPartsSorted];
             selectLocalTableViewController.selectedLocalsArray = [self.inkData[kInkBodyParts] mutableCopy];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Body Parts",nil);
+            
         } else if (indexPath.row == kCreateInkTattooTypeIndex) {
+            
             selectLocalTableViewController.localsArray = [DBTattooType getTattooTypeSorted];
             selectLocalTableViewController.selectedLocalsArray = [self.inkData[kInkTattooTypes] mutableCopy];
             selectLocalTableViewController.title = NSLocalizedString(@"Select Tattoo Types",nil);
+            
         }
+        
     } else if ([[segue destinationViewController] isKindOfClass:[SelectRemoteViewController class]]) {
+        
         SelectRemoteViewController* selectRemoteViewController = [segue destinationViewController];
         selectRemoteViewController.delegate = self;
         NSIndexPath* indexPath = (NSIndexPath* )sender;
@@ -417,7 +430,13 @@ typedef enum
         }
     } else if (alertView == self.deleteAlertView) {
         if (buttonIndex == 0) {
-            [self.editingInk deleteInk];
+            [DBInk deleteInk:self.editingInk completion:^(id response, NSError * error) {
+                
+                
+//            [self.editingInk deleteInk];
+
+                
+            }];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }

@@ -38,6 +38,10 @@
     if (self.BodyPartsGetComplete && self.TattooTypesGetComplete) {
         [self.delegate splashScreenDidFinishedLoading];
     }
+//    else {
+//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"You are not connected to the internet.Try again later." message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//    }
 }
 
 #pragma mark - Inkit Service Actions
@@ -49,7 +53,8 @@
 
 - (void)getBodyPartsError
 {
-    
+    self.BodyPartsGetComplete = NO;
+    [self splashScreenDidFinishedLoading];
 }
 
 - (void)getTattooTypesComplete
@@ -60,7 +65,8 @@
 
 - (void)getTattooTypesError
 {
-    
+    self.TattooTypesGetComplete = NO;
+    [self splashScreenDidFinishedLoading];
 }
 
 #pragma mark - Login
