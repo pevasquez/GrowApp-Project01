@@ -7,6 +7,7 @@
 //
 
 #import "ProfileImageView.h"
+#import "InkitTheme.h"
 
 @implementation ProfileImageView
 
@@ -17,6 +18,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    self.layer.backgroundColor = [InkitTheme getTintColor].CGColor;
     self.layer.cornerRadius = self.bounds.size.width/2;
     self.clipsToBounds = YES;
 }

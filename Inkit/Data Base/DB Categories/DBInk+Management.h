@@ -16,11 +16,8 @@
 + (DBInk *)inkWithInk:(DBInk *)ink;
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
 
-//+ (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 - (UIImage *)getInkImage;
-
-- (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
 - (NSString*)getBodyPartsAsString;
 - (NSString *)getTattooTypesAsString;
@@ -31,6 +28,6 @@
 + (NSDictionary *)emptyDictionary;
 
 // Comment Actions
-- (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user;
-- (void)deleteInk;
+- (NSArray *)getCommentsSorted;
+- (void)updateCommentsWithJson:(NSArray *)commentsArray;
 @end

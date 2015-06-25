@@ -21,5 +21,5 @@
 @property (strong, nonatomic) UIView* commentsView;
 @property (weak, nonatomic) id<CommentsTableViewDelegate> commentsDelegate;
 @property (strong, nonatomic) UITextField* commentsTextField;
-//- (void)showKeyboard;
+- (void)showKeyboard;
 @end

@@ -14,6 +14,16 @@
 #import "NSDate+Extension.h"
 
 #define kDBBoard     @"DBBoard"
+NSString *const JSONBoardID = @"id";
+NSString *const JSONBoardName = @"name";
+NSString *const JSONBoardDescription = @"description";
+NSString *const JSONBoardCreatedAt = @"created_at";
+NSString *const JSONBoardUpdatedAt = @"updated_at";
+NSString *const JSONBoardUser = @"owner";
+NSString *const JSONBoardInksCount = @"inks_count";
+NSString *const JSONBoardFollowersCount = @"followers_count";
+NSString *const JSONBoardPreviewInks = @"preview_inks";
+NSString *const JSONBoardExtraData = @"extra_data";
 
 @implementation DBBoard (Management)
 - (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
@@ -87,7 +97,7 @@
 
 + (DBBoard *)fromJson:(NSDictionary *)boardData
 {
-    NSString* boardID = [NSString stringWithFormat:@"%@",boardData[@"id"]];
+    NSString* boardID = [NSString stringWithFormat:@"%@",boardData[JSONBoardID]];
     DBBoard* obj = [DBBoard withID:boardID];
     DBBoard* board = nil;
     if (!obj) {
@@ -96,48 +106,52 @@
         board = obj;
     }
     [board updateWithJson:boardData];
-    [DataManager saveContext];
     return board;
 }
 
-- (void)updateWithJson:(NSDictionary *)jsonDictionary
+- (void)updateWithJson:(NSDictionary *)boardData
 {
-    if ([jsonDictionary objectForKey:@"id"]) {
-        self.boardID = [NSString stringWithFormat:@"%@",jsonDictionary[@"id"]];
-    }
-    if ([jsonDictionary objectForKey:@"name"]) {
-        self.boardTitle = jsonDictionary[@"name"];
-    }
-    if ([jsonDictionary objectForKey:@"description"]) {
-        self.boardDescription = jsonDictionary[@"description"];
-    }
-    if ([jsonDictionary objectForKey:@"created_at"]) {
-        self.createdAt = [NSDate fromUnixTimeStamp:jsonDictionary[@"created_at"]];
-    }
-    if ([jsonDictionary objectForKey:@"extra_data"]) {
-        //
-    }
-    if ([jsonDictionary objectForKey:@"followers_count"]) {
-        //
-    }
-    if ([jsonDictionary objectForKey:@"inks_count"]) {
-        //
-    }
-    if ([jsonDictionary objectForKey:@"owner"]) {
-        NSDictionary* userDictionary = jsonDictionary[@"owner"][@"data"];
-        self.user = [DBUser fromJson:userDictionary];
-//        DBUser* user = [DBUser fromJson:userDictionary];
-//        [user addBoardsObject:self];
-    }
-    if ([jsonDictionary objectForKey:@"preview_inks"]) {
-        NSDictionary* inksDictionary = jsonDictionary[@"preview_inks"][@"data"];
-        for (NSDictionary* inkDictionary in inksDictionary) {
-            [self addInksObject:[DBInk fromJson:inkDictionary]];
+    [boardData enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        // Ignore the key / value pair if the value is NSNull.
+        if ([value isEqual:[NSNull null]]) {
+            return;
         }
-    }
-    if ([jsonDictionary objectForKey:@"updated_at"]) {
+        
+        if ([key isEqualToString:JSONBoardID]) {
+            self.boardID = [NSString stringWithFormat:@"%@",boardData[JSONBoardID]];
+        }
+        else if ([key isEqualToString:JSONBoardName]) {
+            self.boardTitle = value;
+        }
+        else if ([key isEqualToString:JSONBoardDescription]) {
+            self.boardDescription = value;
+        }
+        else if ([key isEqualToString:JSONBoardCreatedAt]) {
+            self.createdAt = [NSDate fromUnixTimeStamp:value];
+        }
+        else if ([key isEqualToString:JSONBoardUpdatedAt]) {
+            self.updatedAt = [NSDate fromUnixTimeStamp:value];
+        }
+        else if ([key isEqualToString:JSONBoardUser]) {
+            self.user = [DBUser fromJson:value];
+        }
+        else if ([key isEqualToString:JSONBoardInksCount]) {
+            
+        }
+        else if ([key isEqualToString:JSONBoardFollowersCount]) {
+            
+        }
+        else if ([key isEqualToString:JSONBoardPreviewInks]) {
+            NSDictionary* inksDictionary = value[@"data"];
+            for (NSDictionary* inkDictionary in inksDictionary) {
+                [self addInksObject:[DBInk fromJson:inkDictionary]];
+            }
+        }
+        else if ([key isEqualToString:JSONBoardExtraData]) {
+            
+        }
+    }];
 
-    }
     [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationBoardUpdate object:nil userInfo:@{kDBBoard:self}];
 
 }

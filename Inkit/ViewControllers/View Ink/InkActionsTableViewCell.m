@@ -39,6 +39,7 @@
     self.cellHeight = self.bounds.size.height;
     self.reInksLabel.text = [NSString stringWithFormat:@"%@",self.ink.reInksCount];
     self.likesLabel.text = [NSString stringWithFormat:@"%@",self.ink.likesCount];
+    
     [self setLike:[self.ink.loggedUserLikes boolValue]];
     [self setReInk:[self.ink.loggedUserReInked boolValue]];
 }
@@ -53,6 +54,7 @@
 }
 
 - (void)setLike:(BOOL)selected {
+//    self.likeButton.selected = selected;
     if (selected) {
         self.likeButton.tintColor = [InkitTheme getTintColor];
         self.likesLabel.textColor = [InkitTheme getTintColor];

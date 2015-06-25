@@ -17,7 +17,8 @@
 @property (nonatomic, retain) NSString * boardDescription;
 @property (nonatomic, retain) NSString * boardID;
 @property (nonatomic, retain) NSString * boardTitle;
-@property (nonatomic, retain) id createdAt;
+@property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSSet *inks;
 @property (nonatomic, retain) DBUser *user;
 @end

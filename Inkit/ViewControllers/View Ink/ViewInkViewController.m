@@ -233,7 +233,6 @@ typedef enum
 #pragma mark - Edit Text Delegate
 - (void)didFinishEnteringText:(NSString *)text
 {
-    [self.ink addCommentWithText:text forUser:[DataManager sharedInstance].activeUser];
     [self.tableView reloadData];
 }
 
@@ -247,21 +246,21 @@ typedef enum
 - (IBAction)likeButtonPressed:(id)sender
 {
     if ([self.ink.loggedUserLikes boolValue]) {
+        [self.actionsCell setLike:false];
         [InkitService unlikeInk:self.ink completion:^(id response, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (error == nil) {
-                    [self.actionsCell setLike:false];
-                } else {
+                if (error) {
+                    [self.actionsCell setLike:true];
                     [self showAlertForMessage:(NSString *)response];
                 }
             });
         }];
     } else {
+        [self.actionsCell setLike:true];
         [InkitService likeInk:self.ink completion:^(id response, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (error == nil) {
-                    [self.actionsCell setLike:true];
-                } else {
+                if (error) {
+                    [self.actionsCell setLike:false];
                     [self showAlertForMessage:(NSString *)response];
                 }
             });

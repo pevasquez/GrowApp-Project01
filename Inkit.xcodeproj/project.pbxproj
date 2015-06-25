@@ -172,6 +172,7 @@
 		FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1D31A83F81500E05053 /* DBBodyPart+Management.m */; };
 		FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E01A84095200E05053 /* DBUser+Management.m */; };
 		FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E31A840C2400E05053 /* LogInViewController.m */; };
+		FBE5F2EF1B3C4B8100811C4F /* CommentBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE5F2EE1B3C4B8100811C4F /* CommentBarView.xib */; };
 		FBE704631AF6CFB80041DD0E /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE704621AF6CFB80041DD0E /* DBImage.m */; };
 		FBF2F8621B037A3F00057A71 /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF2F8611B037A3F00057A71 /* NSData+Extension.m */; };
 		FBF9F9E41B060F0100357F5B /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF9F9E31B060F0100357F5B /* TextFieldTableViewCell.m */; };
@@ -407,6 +408,7 @@
 		FBDCB1E01A84095200E05053 /* DBUser+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBUser+Management.m"; path = "Data Base/DB Categories/DBUser+Management.m"; sourceTree = "<group>"; };
 		FBDCB1E21A840C2400E05053 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ViewControllers/LogIn/LogInViewController.h; sourceTree = "<group>"; };
 		FBDCB1E31A840C2400E05053 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ViewControllers/LogIn/LogInViewController.m; sourceTree = "<group>"; };
+		FBE5F2EE1B3C4B8100811C4F /* CommentBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentBarView.xib; path = "Inkit/ViewControllers/View Ink/CommentBarView.xib"; sourceTree = "<group>"; };
 		FBE704611AF6CFB80041DD0E /* DBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBImage.h; path = "Data Base/DB Subclasses/DBImage.h"; sourceTree = "<group>"; };
 		FBE704621AF6CFB80041DD0E /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
 		FBF2F8601B037A3F00057A71 /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Extension.h"; path = "Utils/NSData+Extension.h"; sourceTree = "<group>"; };
@@ -663,6 +665,7 @@
 				FBB696D81AAB945D0071D96B /* CommentsTableView.m */,
 				FBB696DA1AAB94C40071D96B /* CommentBarView.h */,
 				FBB696DB1AAB94C40071D96B /* CommentBarView.m */,
+				FBE5F2EE1B3C4B8100811C4F /* CommentBarView.xib */,
 				FBB696D41AAB88840071D96B /* CommentsTableViewCell.h */,
 				FBB696D51AAB88840071D96B /* CommentsTableViewCell.m */,
 			);
@@ -1157,6 +1160,7 @@
 				86C5A6CF1AFFE69900449FA7 /* OnBoarding.storyboard in Resources */,
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
+				FBE5F2EF1B3C4B8100811C4F /* CommentBarView.xib in Resources */,
 				FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,

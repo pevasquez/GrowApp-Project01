@@ -47,5 +47,6 @@
 + (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
-
++ (void)postComment:(NSString *)comment toInk:(DBInk*)ink completion:(ServiceResponse)completion;
++ (void)getCommentsForInk:(DBInk*)ink completion:(ServiceResponse)completion;
 @end

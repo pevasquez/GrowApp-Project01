@@ -14,6 +14,7 @@
 @interface DBComment : NSManagedObject
 
 @property (nonatomic, retain) NSDate * commentDate;
+@property (nonatomic, retain) NSString * commentID;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) DBInk *ink;
 @property (nonatomic, retain) DBUser *user;

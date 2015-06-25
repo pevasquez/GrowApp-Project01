@@ -15,6 +15,7 @@
 @implementation DBComment
 
 @dynamic commentDate;
+@dynamic commentID;
 @dynamic text;
 @dynamic ink;
 @dynamic user;

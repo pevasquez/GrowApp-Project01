@@ -36,6 +36,10 @@
     return _inputAccessoryView;
 }
 
+- (void)showKeyboard {
+    [self.commentsTextField becomeFirstResponder];
+}
+
 #pragma mark - CommentBarView Delegate
 - (void)commentBarView:(CommentBarView *)commentBarView didEnterText:(NSString *)text
 {

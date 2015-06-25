@@ -65,6 +65,13 @@
     hud.labelText = @"Baby come back...";
 }
 
++ (void)postCommentHUDinView:(UIView *)view
+{
+    GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
+    hud.labelText = @"Posting comment...";
+}
+
+
 #pragma mark - Hide Activity Indicator
 + (void)hideProgressHUDinView:(UIView *)view
 {

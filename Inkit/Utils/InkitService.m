@@ -130,11 +130,6 @@
     return [InkService getRemotesForSearchString:searchString type:type withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)likeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    return [InkService likeInk:ink withTarget:target completeAction:completeAction completeError:completeError];
-}
-
 + (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion {
     [InkService likeInk:ink completion:completion];
 }
@@ -146,4 +141,13 @@
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion {
     [InkService deleteInk:ink completion:completion];
 }
+
++ (void)postComment:(NSString *)comment toInk:(DBInk*)ink completion:(ServiceResponse)completion {
+    [InkService postComment:comment toInk:ink completion:completion];
+}
+
++ (void)getCommentsForInk:(DBInk *)ink completion:(ServiceResponse)completion {
+    [InkService getCommentsForInk:ink completion:completion];
+}
+
 @end

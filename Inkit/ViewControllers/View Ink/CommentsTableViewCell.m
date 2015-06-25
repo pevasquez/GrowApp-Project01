@@ -11,6 +11,7 @@
 #import "DBUser+Management.h"
 #import "DynamicSizeLabel.h"
 #import "DBImage+Management.h"
+#import "NSDate+Extension.h"
 
 @interface CommentsTableViewCell()
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImage;
@@ -24,17 +25,18 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [self configureForComment:self.comment];
+    [self configureForComment];
 }
 
-- (void)configureForComment:(DBComment *)comment
+- (void)configureForComment
 {
-    [comment.user.profilePicThumbnail setInImageView:self.userImage];
-    self.userName.text = comment.user.fullName;
-    self.commentLabel.text = comment.text;
+    [self.comment.user.profilePicThumbnail setInImageView:self.userImage];
+    self.userName.text = self.comment.user.fullName.capitalizedString;
+    self.commentLabel.text = self.comment.text;
+    self.commentFromDateLabel.text = [self.comment.commentDate relativeDateString];
     double leading = self.commentLabel.frame.origin.x;
     
-    self.commentLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - leading-8;
+    self.commentLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - leading - 8;
     CGSize size = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     if (!self.cellHeight) {
         self.cellHeight = size.height;

@@ -21,7 +21,7 @@
 + (void)standarBlankHUD:(UIView *)view;
 + (void)creatingInkProgressHUD:(UIView *)view;
 + (void)logOutProgressHUD:(UIView *)view;
-
++ (void)postCommentHUDinView:(UIView *)view;
 + (void)hideProgressHUDinView:(UIView *)view;
 
 @end

@@ -10,7 +10,8 @@
         <attribute name="boardDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="boardID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="boardTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdAt" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="inks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="board" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="boards" inverseEntity="DBUser" syncable="YES"/>
     </entity>
@@ -22,6 +23,7 @@
     </entity>
     <entity name="DBComment" representedClassName="DBComment" syncable="YES">
         <attribute name="commentDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="commentID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBInk" inverseName="comments" inverseEntity="DBInk" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="comments" inverseEntity="DBUser" syncable="YES"/>
@@ -115,9 +117,9 @@
     </entity>
     <elements>
         <element name="DBArtist" positionX="-99" positionY="692" width="128" height="90"/>
-        <element name="DBBoard" positionX="-477" positionY="153" width="128" height="150"/>
+        <element name="DBBoard" positionX="-477" positionY="153" width="128" height="165"/>
         <element name="DBBodyPart" positionX="-288" positionY="144" width="128" height="105"/>
-        <element name="DBComment" positionX="196" positionY="108" width="128" height="105"/>
+        <element name="DBComment" positionX="196" positionY="108" width="128" height="120"/>
         <element name="DBImage" positionX="27" positionY="90" width="128" height="150"/>
         <element name="DBInk" positionX="-11" positionY="360" width="128" height="360"/>
         <element name="DBShop" positionX="277" positionY="563" width="128" height="120"/>

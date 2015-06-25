@@ -627,17 +627,112 @@
                     completion(nil, nil);
                     break;
                 }
-                case 204: {
+                case kHTTPResponseCodeOKNoResponse: {
                     completion(nil,nil);
                 }
-                case 400: {
+                case kTTPResponseCodeBadCredentials: {
                     completion(responseDictionary[@"message"],[[NSError alloc] init]);
                 }
-                case 401: {
+                case kTTPResponseCodeUnauthorized: {
                     completion(responseDictionary[@"message"],[[NSError alloc] init]);
                 }
                 case 422: {
                     completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                }
+                default: {
+                    completion(@"There was a problem",[[NSError alloc] init]);
+                    break;
+                }
+            }
+        } else {
+            completion(@"There was a problem",[[NSError alloc] init]);
+        }
+    }];
+    
+    [task resume];
+}
+
++ (void)postComment:(NSString *)comment toInk:(DBInk*)ink completion:(ServiceResponse)completion {
+    NSURL* url = [NSURL URLWithString:@"http://inkit.digbang.com/api/inks/ink/comments/create"];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary* commentData = @{@"access_token":[DataManager sharedInstance].activeUser.token,
+                                  @"ink_id":ink.inkID,
+                                  @"comment":comment};
+    NSString* encodedDictionary = [commentData serializeParams];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case 201: {
+                    completion(nil, nil);
+                    break;
+                }
+                case 400: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
+                }
+                case 401: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
+                }
+                default: {
+                    completion(@"There was a problem",[[NSError alloc] init]);
+                    break;
+                }
+            }
+        } else {
+            completion(@"There was a problem",[[NSError alloc] init]);
+        }
+    }];
+    
+    [task resume];
+}
+
++ (void)getCommentsForInk:(DBInk*)ink completion:(ServiceResponse)completion {
+    
+    NSDictionary* urlParams = @{@"access_token":[DataManager sharedInstance].activeUser.token,
+                                  @"ink_id":ink.inkID};
+    NSString* urlParamsString = [urlParams serializeParams];
+    
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://inkit.digbang.com/api/inks/ink/comments?%@",urlParamsString]];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case kHTTPResponseCodeOK: {
+                    [ink updateCommentsWithJson:responseDictionary[@"data"]];
+                    completion(nil, nil);
+                    break;
+                }
+                case 400: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
+                }
+                case 401: {
+                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    break;
                 }
                 default: {
                     completion(@"There was a problem",[[NSError alloc] init]);

@@ -44,75 +44,6 @@
     return newInk;
 }
 
-- (UIImage *)getInkImage
-{
-    UIImage* inkImage = [UIImage imageWithData:self.image.imageData];
-    return inkImage;
-}
-
-- (NSString *)getBodyPartsAsString
-{
-    NSString* bodyParts = @"";
-    for (DBBodyPart* bodyPart in self.bodyParts) {
-        bodyParts = [bodyParts stringByAppendingString:[NSString stringWithFormat:@"%@ ",bodyPart.name]];
-    }
-    return bodyParts;
-}
-
-- (NSString *)getTattooTypesAsString
-{
-    NSString* tattooTypes = @"";
-    for (DBTattooType* tattooType in self.tattooTypes) {
-        tattooTypes = [tattooTypes stringByAppendingString:[NSString stringWithFormat:@"%@ ",tattooType.name]];
-    }
-    return tattooTypes;
-}
-
-- (NSString *)getArtistsAsString
-{
-    return self.artist.name;
-}
-
-- (void)postWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    //[InkitService postInk:self WithTarget:target completeAction:completeAction completeError:completeError];
-    [self saveManagedObjectContext];
-}
-
-- (void)addCommentWithText:(NSString *)text forUser:(DBUser *)user
-{
-    DBComment* comment = [DBComment createCommentWithText:text];
-    comment.user = user;
-    [self addCommentsObject:comment];
-
-    [DataManager saveContext];
-}
-
-- (void)saveManagedObjectContext
-{
-    // Save context
-    NSError* error = nil;
-    [self.managedObjectContext save:&error];
-}
-
-//+ (NSArray *)getAllInksInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-//{
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBInk];
-//    
-//    NSError *error;
-//    NSArray *matches = [managedObjectContext executeFetchRequest:request error:&error];
-//    NSMutableArray* inks = [[NSMutableArray alloc] init];
-//    
-//    if ([matches count]&&!error) {
-//        for (DBInk* ink in matches) {
-//            [inks addObject:ink];
-//        }
-//        return inks;
-//    } else {
-//        return nil;
-//    }
-//}
-
 + (DBInk *)newInk {
     DBInk* ink = (DBInk *)[[DataManager sharedInstance] insert:kDBInk];
     ink.likesCount = @0;
@@ -163,8 +94,8 @@
                 break;
         }
         self.image = [DBImage fromURL:imagePath];
-//        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
-//        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
+        //        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
+        //        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
         NSString* thumbnailString = [NSString stringWithFormat:@"%@_160%@.jpg",path,scale];
         self.thumbnailImage = [DBImage fromURL:thumbnailString];
         self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.jpg",path,scale]];
@@ -199,6 +130,36 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationInkUpdate object:nil userInfo:@{kDBInk:self}];
 }
 
+- (UIImage *)getInkImage
+{
+    UIImage* inkImage = [UIImage imageWithData:self.image.imageData];
+    return inkImage;
+}
+
+- (NSString *)getBodyPartsAsString
+{
+    NSString* bodyParts = @"";
+    for (DBBodyPart* bodyPart in self.bodyParts) {
+        bodyParts = [bodyParts stringByAppendingString:[NSString stringWithFormat:@"%@ ",bodyPart.name]];
+    }
+    return bodyParts;
+}
+
+- (NSString *)getTattooTypesAsString
+{
+    NSString* tattooTypes = @"";
+    for (DBTattooType* tattooType in self.tattooTypes) {
+        tattooTypes = [tattooTypes stringByAppendingString:[NSString stringWithFormat:@"%@ ",tattooType.name]];
+    }
+    return tattooTypes;
+}
+
+- (NSString *)getArtistsAsString
+{
+    return self.artist.name;
+}
+
+
 - (void)updateWithInk:(DBInk *)ink
 {
     self.inkID = ink.inkID;
@@ -218,14 +179,25 @@
 }
 
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion {
-    [InkitService deleteInk:ink completion:completion];
+    [InkitService deleteInk:ink completion:^(id response, NSError *error) {
+        if (error == nil) {
+            [[DataManager sharedInstance] deleteObject:ink];
+        }
+        completion(response, error);
+    }];
 }
 
-- (void)deleteInk
-{
-    [self.board removeInksObject:self];
-    [self.managedObjectContext deleteObject:self];
-    [self saveManagedObjectContext];
+- (NSArray *)getCommentsSorted {
+    NSArray* comments = self.comments.allObjects;
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"commentDate" ascending: NO];
+    NSArray *sortedArray = [comments sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    return sortedArray;
+}
+
+- (void)updateCommentsWithJson:(NSArray *)commentsArray {
+    for (NSDictionary* commentDictionary in commentsArray) {
+        [self addCommentsObject:[DBComment fromJson:commentDictionary]];
+    }
 }
 
 - (NSArray *)toArray

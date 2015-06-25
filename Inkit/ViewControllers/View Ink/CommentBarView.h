@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfileImageView.h"
 
 @class CommentBarView;
 
@@ -15,6 +16,7 @@
 @end
 
 @interface CommentBarView : UIView <UITextFieldDelegate>
-@property (strong, nonatomic) UITextField *textField;
 @property (weak, nonatomic) id<CommentBarViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet ProfileImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 @end

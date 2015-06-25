@@ -9,8 +9,9 @@
 #import "CommentsViewController.h"
 #import "CommentsTableViewCell.h"
 #import "CommentsTableView.h"
-#import "DBUser+Management.h"
 #import "DataManager.h"
+#import "InkitService.h"
+#import "GAProgressHUDHelper.h"
 
 static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCell";
 
@@ -20,14 +21,22 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 @property (strong, nonatomic) DBUser* activeUser;
 @end
 @implementation CommentsViewController
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    self.commentsTableView.commentsDelegate = self;
-    [self updateCommentsTableView];
-    self.commentsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.commentsTableView becomeFirstResponder];
+    [self setUpCommentsTableView];
+    [self registerForKeyboardNotifications];
     self.activeUser = [DataManager sharedInstance].activeUser;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self getComments];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.commentsTableView becomeFirstResponder];
+    [self.commentsTableView showKeyboard];
 }
 
 #pragma mark - TableView Data Source
@@ -58,7 +67,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 {
     CommentsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CommentsTableViewCellIdentifier];
     DBComment* comment = self.commentsArray[indexPath.row];
-    cell.comment =comment;
+    cell.comment = comment;
     return cell;
 }
 
@@ -78,8 +87,6 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
     // Get the actual height required for the cell
     CGFloat height = cell.cellHeight;
     
-    // Add an extra point to the height to account for the cell separator, which is added between the bottom
-    // of the cell's contentView and the bottom of the table view cell.
     height += 1;
     
     return height;
@@ -88,17 +95,55 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 #pragma mark - CommentsTableViewDelegate
 - (void)commentsTableView:(CommentsTableView *)commentsTableView didEnterNewComment:(NSString *)comment
 {
-    [self.ink addCommentWithText:comment forUser:self.activeUser];
-    [self updateCommentsTableView];
-    [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:0.5];
+    [GAProgressHUDHelper postCommentHUDinView:self.view];
+    [InkitService postComment:comment toInk:self.ink completion:^(id response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [GAProgressHUDHelper hideProgressHUDinView:self.view];
+            if (error == nil) {
+                [self getComments];
+//                [self performSelector:@selector(dismissViewController) withObject:nil afterDelay:0.5];
+            } else {
+                
+            }
+        });
+    }];
 }
-- (void)dismissViewController
-{
+
+- (void)getComments {
+    [InkitService getCommentsForInk:self.ink completion:^(id response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error == nil) {
+                [self updateCommentsTableView];
+            } else {
+                // show alert
+            }
+        });
+    }];
+}
+
+- (void)dismissViewController {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)updateCommentsTableView
-{
-    self.commentsArray = self.ink.comments.allObjects;
+
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+
+    UIEdgeInsets insets = UIEdgeInsetsMake(self.commentsTableView.contentInset.top, 0, kbSize.height, 0);
+    self.commentsTableView.contentInset = insets;
+}
+
+- (void)setUpCommentsTableView {
+    self.commentsTableView.commentsDelegate = self;
+    self.commentsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)updateCommentsTableView {
+    self.commentsArray = [self.ink getCommentsSorted];
     [self.commentsTableView reloadData];
 }
 @end

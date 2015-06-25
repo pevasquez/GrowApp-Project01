@@ -11,4 +11,5 @@
 
 @interface NSDate (Extension)
 + (NSDate *)fromUnixTimeStamp:(NSString *)timeStamp;
+- (NSString *)relativeDateString;
 @end

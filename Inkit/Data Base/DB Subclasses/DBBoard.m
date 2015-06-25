@@ -18,6 +18,7 @@
 @dynamic boardID;
 @dynamic boardTitle;
 @dynamic createdAt;
+@dynamic updatedAt;
 @dynamic inks;
 @dynamic user;
 
