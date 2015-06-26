@@ -9,8 +9,6 @@
 #import "DBBoard+Management.h"
 #import "InkitService.h"
 #import "DataManager.h"
-#import "InkitServiceConstants.h"
-#import "InkitConstants.h"
 #import "NSDate+Extension.h"
 
 #define kDBBoard     @"DBBoard"
@@ -36,16 +34,16 @@ NSString *const JSONBoardExtraData = @"extra_data";
     [InkitService deleteBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
-- (void)getInksWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
-    if ([self getInksFromBoard]) {
-        [target performSelectorOnMainThread:completeAction withObject:[self getInksFromBoard] waitUntilDone:NO];
+- (void)getInksWithCompletion:(ServiceResponse)completion {
+    if (self.inks.count > 0) {
+        completion(nil,nil);
     }
-    [InkitService getInksFromBoard:self withTarget:target completeAction:completeAction completeError:completeError];
+    [InkitService getInksFromBoard:self withCompletion:completion];
 }
 
 - (NSArray *)getInksFromBoard {
     NSArray* inksArray = [self.inks allObjects];
-    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"inkDescription" ascending:YES];
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:false];
     NSArray* descriptors = [NSArray arrayWithObject:valueDescriptor];
     NSArray* sortedArray = [inksArray sortedArrayUsingDescriptors:descriptors];
     return sortedArray;
@@ -133,7 +131,7 @@ NSString *const JSONBoardExtraData = @"extra_data";
             self.updatedAt = [NSDate fromUnixTimeStamp:value];
         }
         else if ([key isEqualToString:JSONBoardUser]) {
-            self.user = [DBUser fromJson:value];
+            self.user = [DBUser fromJson:value[@"data"]];
         }
         else if ([key isEqualToString:JSONBoardInksCount]) {
             
@@ -151,9 +149,13 @@ NSString *const JSONBoardExtraData = @"extra_data";
             
         }
     }];
+}
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationBoardUpdate object:nil userInfo:@{kDBBoard:self}];
-
+- (void)updateInksWithJson:(NSDictionary *)jsonDictionary {
+    // TODO: ver lógica para actualizar
+    for (NSDictionary* inkDictionary in jsonDictionary) {
+        [self addInksObject:[DBInk fromJson:inkDictionary]];
+    }
 }
 
 @end

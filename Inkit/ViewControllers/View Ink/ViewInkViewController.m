@@ -7,12 +7,14 @@
 //
 
 #import "ViewInkViewController.h"
+#import "ViewInksViewController.h"
 #import "CreateInkViewController.h"
 #import "InkitTabBarController.h"
 #import "InkImageTableViewCell.h"
 #import "InkDescriptionTableViewCell.h"
 #import "InkActionsTableViewCell.h"
 #import "InkCommentTableViewCell.h"
+#import "InkBoardTableViewCell.h"
 #import "ViewInkTableViewCell.h"
 #import "CommentsViewController.h"
 #import "DataManager.h"
@@ -24,6 +26,7 @@
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
 static NSString * const InkActionsTableViewCellIdentifier = @"InkActionsTableViewCell";
+static NSString * const InkBoardTableViewCellIdentifier = @"InkBoardTableViewCell";
 static NSString * const InkCommentTableViewCellIdentifier = @"InkCommentTableViewCell";
 static NSString * const InkRemoteTableViewCellIdentifier = @"RemoteIdentifier";
 
@@ -34,6 +37,7 @@ typedef enum
     //kInkRemote,
     kViewInkDescription,
     kViewInkActions,
+    kViewInkBoard,
     kViewInkComment,
     kViewInkTotalCells
 } kViewInkCells;
@@ -52,8 +56,9 @@ typedef enum
 @implementation ViewInkViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.ink.inkDescription;
     [self customizeNavigationBar];
+    self.title = self.ink.inkDescription;
+    [self.inkTableView registerNib:[UINib nibWithNibName:@"InkBoardTableViewCell" bundle:nil] forCellReuseIdentifier:InkBoardTableViewCellIdentifier];
     self.inkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     UIViewController* parentViewController = [self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-2)];
@@ -68,20 +73,17 @@ typedef enum
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
 #pragma mark UITableView Data Source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return kViewInkTotalCells;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
     if([cellIdentifier isEqualToString:InkRemoteTableViewCellIdentifier])
     {
@@ -103,8 +105,7 @@ typedef enum
 }
 
 #pragma mark - UITableView Delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case kViewInkImage:
         {
@@ -147,19 +148,19 @@ typedef enum
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == kViewInkComment) {
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == kViewInkComment || indexPath.row == kViewInkBoard) {
         return YES;
     } else {
         return NO;
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == kViewInkComment) {
         [self performSegueWithIdentifier:@"CommentsSegue" sender:nil];
+    } else if (indexPath.row == kViewInkBoard) {
+        [self performSegueWithIdentifier:@"ViewBoardSegue" sender:nil];
     }
 }
 
@@ -183,6 +184,11 @@ typedef enum
             cellIdentifier = InkActionsTableViewCellIdentifier;
             break;
         }
+        case kViewInkBoard:
+        {
+            cellIdentifier = InkBoardTableViewCellIdentifier;
+            break;
+        }
         case kViewInkComment:
         {
             cellIdentifier = InkCommentTableViewCellIdentifier;
@@ -199,14 +205,12 @@ typedef enum
 }
 
 #pragma mark - Appearence Methods
-- (void)customizeNavigationBar
-{
+- (void)customizeNavigationBar {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 
 #pragma mark - Navigation Methods
-- (IBAction)doneButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)doneButtonPressed:(UIBarButtonItem *)sender {
     InkitTabBarController* tabBarController = (InkitTabBarController*)self.tabBarController;
     [tabBarController selectDashboard];
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -226,20 +230,21 @@ typedef enum
         CreateInkViewController* createInkViewController = [segue destinationViewController];
         createInkViewController.isReInking = true;
         createInkViewController.editingInk = self.ink;
+    } else if ([segue.identifier isEqualToString:@"ViewBoardSegue"]) {
+        ViewInksViewController* viewInksViewController = [segue destinationViewController];
+        viewInksViewController.board = self.ink.board;
     }
 }
 
 
 #pragma mark - Edit Text Delegate
-- (void)didFinishEnteringText:(NSString *)text
-{
+- (void)didFinishEnteringText:(NSString *)text {
     [self.tableView reloadData];
 }
 
 #pragma mark - Ink Actions Delegate
 
-- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
 }
 

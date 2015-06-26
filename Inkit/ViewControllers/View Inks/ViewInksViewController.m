@@ -10,6 +10,7 @@
 #import "ViewInkViewController.h"
 #import "CreateBoardViewController.h"
 #import "InkCollectionViewCell.h"
+#import "DataManager.h"
 #import "WaterfallLayout.h"
 
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";
@@ -26,8 +27,13 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //self.inksCollectionView.collectionViewLayout = [[WaterfallLayout alloc] init];
+
+    if ([self.board.user.userID isEqualToString:[DataManager sharedInstance].activeUser.userID]) {
+        self.navigationItem.rightBarButtonItem = self.editButton;
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    self.title = self.board.boardTitle;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,59 +43,55 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self getInks];
+}
+
+- (void)getInks {
     if (self.board) {
-        [self.board getInksWithTarget:self completeAction:@selector(getInksComplete:) completeError:@selector(getInksError:)];
-        self.title = self.board.boardTitle;
         [self showActivityIndicator];
+        [self.board getInksWithCompletion:^(id response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActitivyIndicator];
+                if (error == nil) {
+                    self.inksArray = [self.board getInksFromBoard];
+                    [self.inksCollectionView reloadData];
+                } else {
+                    [self showAlertForMessage:response];
+                }
+            });
+        }];
     }
 }
 
-- (void)getInksComplete:(NSArray *)inksArray {
-    [self hideActitivyIndicator];
-    self.inksArray = inksArray;
-    [self.inksCollectionView reloadData];
-}
-
-- (void)getInksError:(NSString *)errorString {
-    [self hideActitivyIndicator];
-    NSLog(@"%@",errorString);
-}
-
 #pragma mark - CollectionView Data Source
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.inksArray count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
     cell.ink = self.inksArray[indexPath.row];
     return cell;
 }
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     double width = (screenBounds.size.width-12)/2;
 
     return CGSizeMake(width, 344);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"ViewInkSegue" sender:indexPath];
 }
 
 #pragma mark - Navigation Methods
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]] && [sender isKindOfClass:[NSIndexPath class]]) {
         NSIndexPath* indexPath = (NSIndexPath *)sender;
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
@@ -101,26 +103,22 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     }
 }
 
-- (IBAction)editButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)editButtonPressed:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"EditBoardSegue" sender:nil];
 }
 
 #pragma mark - Actitivy Indicator Methods
-- (void) showActivityIndicator
-{
+- (void) showActivityIndicator {
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
 }
 
-- (void) hideActitivyIndicator
-{
+- (void) hideActitivyIndicator {
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
 }
 
-- (void)showAlertForMessage:(NSString *)errorMessage
-{
+- (void)showAlertForMessage:(NSString *)errorMessage {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
     [alert show];
 }

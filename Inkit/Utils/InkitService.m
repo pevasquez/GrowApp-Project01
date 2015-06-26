@@ -102,18 +102,8 @@
     return [BoardService getBoardsForUser:user withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)getInksFromBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
-    return [BoardService getInksFromBoard:board withTarget:target completeAction:completeAction completeError:completeError];
-}
-
-+ (NSError *)postComment:(DBComment*)comment withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    NSError* returnError = nil;
-    
-    // Call complete Action
-    [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
-    
-    return returnError;
++ (void)getInksFromBoard:(DBBoard *)board withCompletion:(ServiceResponse)completion {
+    [BoardService getInksFromBoard:board withCompletion:completion];
 }
 
 + (NSError *)getDashboardInksForPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError

@@ -32,8 +32,7 @@
 + (NSError *)updateBoard:(DBBoard *)board withDictionary:(NSDictionary *)boardDictionary target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)deleteBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-+ (NSError *)postComment:(DBComment*)comment withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-+ (NSError *)getInksFromBoard:(DBBoard *)board withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)getInksFromBoard:(DBBoard *)board withCompletion:(ServiceResponse)completion;
 
 // Ink Service
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
@@ -43,7 +42,6 @@
 
 + (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
-+ (NSError *)likeInk:(DBInk *)ink withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;

@@ -22,6 +22,18 @@
 #import "NSDate+Extension.h"
 
 #define kDBInk     @"DBInk"
+NSString *const JSONInkID = @"id";
+NSString *const JSONInkImage = @"image_path";
+NSString *const JSONInkDescription = @"description";
+NSString *const JSONInkCreatedAt = @"created_at";
+NSString *const JSONInkUpdatedAt = @"updated_at";
+NSString *const JSONInkUser = @"user";
+NSString *const JSONInkLikesCount = @"likes_count";
+NSString *const JSONInkReInksCount = @"reinks_count";
+NSString *const JSONInkBoard = @"board";
+NSString *const JSONInkExtraData = @"extra_data";
+NSString *const JSONInkLoggedUserLikes = @"logged_user_likes";
+NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
 
 @implementation DBInk (Management)
 + (DBInk *)inkWithInk:(DBInk *)ink
@@ -58,7 +70,7 @@
 }
 
 + (DBInk *)fromJson:(NSDictionary *)inkData {
-    NSString* inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
+    NSString* inkID = [NSString stringWithFormat:@"%@",inkData[JSONInkID]];
     DBInk* obj = [DBInk withID:inkID];
     DBInk* ink = nil;
     if (!obj) {
@@ -72,61 +84,79 @@
 }
 
 - (void)updateWithJson:(NSDictionary *)inkData {
-    if ([inkData objectForKey:@"id"]) {
-        self.inkID = [NSString stringWithFormat:@"%@",inkData[@"id"]];
-    }
-    if ([inkData objectForKey:@"description"]) {
-        self.inkDescription = inkData[@"description"];
-    }
-    if ([inkData objectForKey:@"image_path"]) {
-        NSString* imagePath = inkData[@"image_path"];
-        NSString* pathExtension = imagePath.pathExtension;
-        NSString* path = [imagePath substringToIndex:(imagePath.length - pathExtension.length - 1)];
-        NSString* scale = @"";
-        switch ((int)[UIScreen mainScreen].scale) {
-            case 2:
-                scale = @"@2x";
-                break;
-            case 3:
-                scale = @"@3x";
-                break;
-            default:
-                break;
+    [inkData enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        // Ignore the key / value pair if the value is NSNull.
+        if ([value isEqual:[NSNull null]]) {
+            return;
         }
-        self.image = [DBImage fromURL:imagePath];
-        //        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
-        //        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
-        NSString* thumbnailString = [NSString stringWithFormat:@"%@_160%@.jpg",path,scale];
-        self.thumbnailImage = [DBImage fromURL:thumbnailString];
-        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.jpg",path,scale]];
-    }
-    if ([inkData objectForKey:@"user"]) {
-        self.user = [DBUser fromJson:inkData[@"user"][@"data"]];
-    }
-    if ([inkData objectForKey:@"created_at"]) {
-        self.createdAt = [NSDate fromUnixTimeStamp:inkData[@"created_at"]];
-    }
-    if ([inkData objectForKey:@"updated_at"]) {
-        self.updatedAt = [NSDate fromUnixTimeStamp:inkData[@"created_at"]];
-    }
-    if ([inkData objectForKey:@"likes_count"] && !([inkData objectForKey:@"likes_count"] == [NSNull null])) {
-        self.likesCount = inkData[@"likes_count"];
-    }
-    if ([inkData objectForKey:@"reinks_count"] && !([inkData objectForKey:@"reinks_count"] == [NSNull null])) {
-        self.reInksCount = inkData[@"reinks_count"];
-    }
-    if ([inkData objectForKey:@"board"]) {
-        self.board = [DBBoard fromJson:inkData[@"board"][@"data"]];
-    }
-    if ([inkData objectForKey:@"extra_data"]) {
-        NSDictionary* extraData = inkData[@"extra_data"];
-        if ([extraData objectForKey:@"logged_user_likes"]) {
-            self.loggedUserLikes = extraData[@"logged_user_likes"];
+        
+        if ([key isEqualToString:JSONInkID]) {
+            self.inkID = [NSString stringWithFormat:@"%@",inkData[JSONInkID]];
         }
-        if ([extraData objectForKey:@"logged_user_reinked"]) {
-            self.loggedUserReInked = extraData[@"logged_user_reinked"];
+        else if ([key isEqualToString:JSONInkDescription]) {
+            self.inkDescription = value;
         }
-    }
+        else if ([key isEqualToString:JSONInkCreatedAt]) {
+            self.createdAt = [NSDate fromUnixTimeStamp:value];
+        }
+        else if ([key isEqualToString:JSONInkUpdatedAt]) {
+            self.updatedAt = [NSDate fromUnixTimeStamp:value];
+        }
+        else if ([key isEqualToString:JSONInkUser]) {
+            self.user = [DBUser fromJson:value[@"data"]];
+        }
+        else if ([key isEqualToString:JSONInkLikesCount]) {
+            self.likesCount = value;
+        }
+        else if ([key isEqualToString:JSONInkReInksCount]) {
+            self.reInksCount = value;
+        }
+        else if ([key isEqualToString:JSONInkExtraData]) {
+            
+        }
+        else if ([key isEqualToString:JSONInkBoard]) {
+            self.board = [DBBoard fromJson:value[@"data"]];
+        }
+        else if ([key isEqualToString:JSONInkImage]) {
+            NSString* imagePath = value;
+            NSString* pathExtension = imagePath.pathExtension;
+            NSString* path = [imagePath substringToIndex:(imagePath.length - pathExtension.length - 1)];
+            NSString* scale = @"";
+            switch ((int)[UIScreen mainScreen].scale) {
+                case 2:
+                    scale = @"@2x";
+                    break;
+                case 3:
+                    scale = @"@3x";
+                    break;
+                default:
+                    break;
+            }
+            self.image = [DBImage fromURL:imagePath];
+            //        self.thumbnailImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_160%@.%@",path,scale,pathExtension]];
+            //        self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.%@",path,scale,pathExtension]];
+            NSString* thumbnailString = [NSString stringWithFormat:@"%@_160%@.jpg",path,scale];
+            self.thumbnailImage = [DBImage fromURL:thumbnailString];
+            self.fullScreenImage = [DBImage fromURL:[NSString stringWithFormat:@"%@_320%@.jpg",path,scale]];
+        }
+        else if ([key isEqualToString:JSONInkExtraData]) {
+            NSDictionary* extraData = (NSDictionary *)value;
+            [extraData enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+                // Ignore the key / value pair if the value is NSNull.
+                if ([value isEqual:[NSNull null]]) {
+                    return;
+                }
+                
+                if ([key isEqualToString:JSONInkLoggedUserLikes]) {
+                    self.loggedUserLikes = value;
+                }
+                else if ([key isEqualToString:JSONInkLoggedUserReInked]) {
+                    self.loggedUserReInked = value;
+                }
+            }];
+        }
+    }];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationInkUpdate object:nil userInfo:@{kDBInk:self}];
 }
 

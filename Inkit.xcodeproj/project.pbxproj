@@ -172,6 +172,8 @@
 		FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1D31A83F81500E05053 /* DBBodyPart+Management.m */; };
 		FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E01A84095200E05053 /* DBUser+Management.m */; };
 		FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1E31A840C2400E05053 /* LogInViewController.m */; };
+		FBE51D261B3D6F790059EB72 /* InkBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE51D241B3D6F790059EB72 /* InkBoardTableViewCell.m */; };
+		FBE51D271B3D6F790059EB72 /* InkBoardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE51D251B3D6F790059EB72 /* InkBoardTableViewCell.xib */; };
 		FBE5F2EF1B3C4B8100811C4F /* CommentBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE5F2EE1B3C4B8100811C4F /* CommentBarView.xib */; };
 		FBE704631AF6CFB80041DD0E /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE704621AF6CFB80041DD0E /* DBImage.m */; };
 		FBF2F8621B037A3F00057A71 /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF2F8611B037A3F00057A71 /* NSData+Extension.m */; };
@@ -408,6 +410,9 @@
 		FBDCB1E01A84095200E05053 /* DBUser+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBUser+Management.m"; path = "Data Base/DB Categories/DBUser+Management.m"; sourceTree = "<group>"; };
 		FBDCB1E21A840C2400E05053 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ViewControllers/LogIn/LogInViewController.h; sourceTree = "<group>"; };
 		FBDCB1E31A840C2400E05053 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ViewControllers/LogIn/LogInViewController.m; sourceTree = "<group>"; };
+		FBE51D231B3D6F790059EB72 /* InkBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkBoardTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkBoardTableViewCell.h"; sourceTree = "<group>"; };
+		FBE51D241B3D6F790059EB72 /* InkBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkBoardTableViewCell.m; path = "Inkit/ViewControllers/View Ink/InkBoardTableViewCell.m"; sourceTree = "<group>"; };
+		FBE51D251B3D6F790059EB72 /* InkBoardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkBoardTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkBoardTableViewCell.xib"; sourceTree = "<group>"; };
 		FBE5F2EE1B3C4B8100811C4F /* CommentBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentBarView.xib; path = "Inkit/ViewControllers/View Ink/CommentBarView.xib"; sourceTree = "<group>"; };
 		FBE704611AF6CFB80041DD0E /* DBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBImage.h; path = "Data Base/DB Subclasses/DBImage.h"; sourceTree = "<group>"; };
 		FBE704621AF6CFB80041DD0E /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
@@ -640,6 +645,9 @@
 				FBB384261A893128004C440A /* InkCommentTableViewCell.m */,
 				FBD91E311A9689EE00B00724 /* InkUserTableViewCell.h */,
 				FBD91E321A9689EE00B00724 /* InkUserTableViewCell.m */,
+				FBE51D231B3D6F790059EB72 /* InkBoardTableViewCell.h */,
+				FBE51D241B3D6F790059EB72 /* InkBoardTableViewCell.m */,
+				FBE51D251B3D6F790059EB72 /* InkBoardTableViewCell.xib */,
 				FBB384321A894168004C440A /* ViewInkTableViewCell.h */,
 				FBB384331A894168004C440A /* ViewInkTableViewCell.m */,
 			);
@@ -1164,6 +1172,7 @@
 				FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
+				FBE51D271B3D6F790059EB72 /* InkBoardTableViewCell.xib in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
 				FBF9F9E61B060F1900357F5B /* TextFieldTableViewCell.xib in Resources */,
 				8673CB1D1AFA6F9100179FA2 /* GooglePlus.bundle in Resources */,
@@ -1253,6 +1262,7 @@
 				FBC4330E1A85502400EFAA24 /* CreateInkViewController.m in Sources */,
 				FB5C4FD31B1644B200B05593 /* DBUser.m in Sources */,
 				FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */,
+				FBE51D261B3D6F790059EB72 /* InkBoardTableViewCell.m in Sources */,
 				86BF40A51B122999004E9025 /* FormViewController.m in Sources */,
 				FBD73CE51B29AB40005AFCBD /* GADBannerCollectionViewCell.m in Sources */,
 				FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */,
