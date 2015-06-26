@@ -1186,7 +1186,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SelectLocalTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3KV-ST-JBN" customClass="SelectLocalTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Usp-S7-UAu">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="sTu-b2-TaO">
@@ -1316,7 +1316,7 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="eV4-pN-ZAc">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="50" height="250"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="4" minY="4" maxX="4" maxY="4"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -1537,35 +1537,9 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BannerCollectionViewCell" id="487-TE-oLU" customClass="GADBannerCollectionReusableView">
-                                    <rect key="frame" x="0.0" y="304" width="600" height="250"/>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GsL-eq-N7I">
+                                    <rect key="frame" x="0.0" y="304" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejs-r0-l4w" customClass="GADBannerView">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="750x500_ehow_images_a04_gm_kl_advertise-advertising-space-800x800" translatesAutoresizingMaskIntoConstraints="NO" id="1vS-kh-avb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="1vS-kh-avb" firstAttribute="leading" secondItem="ejs-r0-l4w" secondAttribute="leading" id="cWu-2w-qsf"/>
-                                                <constraint firstAttribute="trailing" secondItem="1vS-kh-avb" secondAttribute="trailing" id="hMk-ge-jmN"/>
-                                                <constraint firstItem="1vS-kh-avb" firstAttribute="top" secondItem="ejs-r0-l4w" secondAttribute="top" id="oxh-I6-hsT"/>
-                                                <constraint firstAttribute="bottom" secondItem="1vS-kh-avb" secondAttribute="bottom" id="sUM-KV-HZD"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ejs-r0-l4w" firstAttribute="leading" secondItem="487-TE-oLU" secondAttribute="leadingMargin" constant="-8" id="2Aq-NF-Xv3"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ejs-r0-l4w" secondAttribute="bottom" constant="-8" id="Pll-et-prD"/>
-                                        <constraint firstItem="ejs-r0-l4w" firstAttribute="top" secondItem="487-TE-oLU" secondAttribute="topMargin" constant="-8" id="Wih-Rg-C6L"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="ejs-r0-l4w" secondAttribute="trailing" constant="-8" id="khK-Zy-vf0"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="bannerView" destination="ejs-r0-l4w" id="KxN-xi-xXg"/>
-                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="1Wm-X3-uXy" id="vrS-Em-Ger"/>
@@ -2001,7 +1975,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="750x500_ehow_images_a04_gm_kl_advertise-advertising-space-800x800" width="750" height="500"/>
         <image name="APP_home_02" width="240" height="85"/>
         <image name="About" width="25" height="25"/>
         <image name="Account" width="25" height="25"/>
@@ -2021,11 +1994,11 @@
         <image name="ViewInks-ReInk" width="7" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="lQ1-q0-po4"/>
+        <segue reference="FsM-J0-7yu"/>
+        <segue reference="MWx-kR-K4W"/>
         <segue reference="qdy-Zm-66Q"/>
         <segue reference="Fnv-MH-wXq"/>
-        <segue reference="A8U-Jd-plz"/>
-        <segue reference="FsM-J0-7yu"/>
-        <segue reference="lQ1-q0-po4"/>
         <segue reference="eTF-QW-UEi"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

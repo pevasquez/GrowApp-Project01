@@ -25,5 +25,8 @@
 //    [self.bannerView loadRequest:request];
     
 }
+- (IBAction)bannerButtonPressed:(UIButton *)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://inkit.tattoo"]];
+}
 
 @end

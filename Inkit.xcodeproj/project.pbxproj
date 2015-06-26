@@ -73,6 +73,8 @@
 		FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
 		FB09296B1B0AAD63005B3902 /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB09296A1B0AAD63005B3902 /* DBBoard.m */; };
 		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
+		FB1FF59E1B3DA633007572F7 /* GADBannerCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */; };
+		FB1FF5A11B3DACCE007572F7 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */; };
 		FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB249C311B11077400AE29F2 /* UIImage+Extension.m */; };
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
 		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
@@ -259,6 +261,9 @@
 		FB09296A1B0AAD63005B3902 /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
 		FB0A40001A9D255900294F90 /* WaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterfallLayout.h; path = "ViewControllers/View Inks/WaterfallLayout.h"; sourceTree = "<group>"; };
 		FB0A40011A9D255900294F90 /* WaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterfallLayout.m; path = "ViewControllers/View Inks/WaterfallLayout.m"; sourceTree = "<group>"; };
+		FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GADBannerCollectionReusableView.xib; path = ViewControllers/Browse/GADBannerCollectionReusableView.xib; sourceTree = "<group>"; };
+		FB1FF59F1B3DACCE007572F7 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "Utils/UIView+Extension.h"; sourceTree = "<group>"; };
+		FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "Utils/UIView+Extension.m"; sourceTree = "<group>"; };
 		FB249C301B11077400AE29F2 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Extension.h"; path = "Utils/UIImage+Extension.h"; sourceTree = "<group>"; };
 		FB249C311B11077400AE29F2 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Extension.m"; path = "Utils/UIImage+Extension.m"; sourceTree = "<group>"; };
 		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
@@ -586,6 +591,7 @@
 				FBD73CE41B29AB40005AFCBD /* GADBannerCollectionViewCell.m */,
 				FBB55B7B1B2B6C8200C705F4 /* GADBannerCollectionReusableView.h */,
 				FBB55B7C1B2B6C8200C705F4 /* GADBannerCollectionReusableView.m */,
+				FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */,
 			);
 			name = Browse;
 			sourceTree = "<group>";
@@ -710,6 +716,8 @@
 		FBC433061A85458500EFAA24 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB1FF59F1B3DACCE007572F7 /* UIView+Extension.h */,
+				FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */,
 				FB4A23C21AD9630C002EE49B /* NSDictionary+Extensions.h */,
 				FB4A23C31AD9630C002EE49B /* NSDictionary+Extensions.m */,
 				FB249C301B11077400AE29F2 /* UIImage+Extension.h */,
@@ -1170,6 +1178,7 @@
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
 				FBE5F2EF1B3C4B8100811C4F /* CommentBarView.xib in Resources */,
 				FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */,
+				FB1FF59E1B3DA633007572F7 /* GADBannerCollectionReusableView.xib in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
 				FBE51D271B3D6F790059EB72 /* InkBoardTableViewCell.xib in Resources */,
@@ -1257,6 +1266,7 @@
 				FBF9F9E41B060F0100357F5B /* TextFieldTableViewCell.m in Sources */,
 				FBDCB1C41A83F06A00E05053 /* InkitService.m in Sources */,
 				FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */,
+				FB1FF5A11B3DACCE007572F7 /* UIView+Extension.m in Sources */,
 				FBB384271A893128004C440A /* InkCommentTableViewCell.m in Sources */,
 				FBB384471A895E7C004C440A /* CreateInkImageTableViewCell.m in Sources */,
 				FBC4330E1A85502400EFAA24 /* CreateInkViewController.m in Sources */,

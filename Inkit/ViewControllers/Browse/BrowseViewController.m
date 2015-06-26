@@ -16,6 +16,7 @@
 #import "InkitTheme.h"
 #import "InkitService.h"
 #import "GAProgressHUDHelper.h"
+#import "UIView+Extension.h"
 
 #define SECTIONS
 
@@ -25,7 +26,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionViewCell";
 
 
-@interface BrowseViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate> {
+@interface BrowseViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate> {
     NSInteger currentPage;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *browseCollectionView;
@@ -45,7 +46,7 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self customizeNavigationBar];
-    [self setupTableView];
+    [self setupCollectionView];
     [self refreshCollectionViewData];
     [self showActivityIndicator];
 }
@@ -58,12 +59,13 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 }
 
 #pragma mark - Get Ink methods
-- (void)setupTableView {
+- (void)setupCollectionView {
     // Initialize the refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.tintColor = [InkitTheme getTintColor];
     [self.refreshControl addTarget:self action:@selector(refreshCollectionViewData) forControlEvents:UIControlEventValueChanged];
     [self.browseCollectionView addSubview:self.refreshControl];
+    [self.browseCollectionView registerNib:[UINib nibWithNibName:@"GADBannerCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BannerCollectionViewCellIdentifier];
 }
 
 - (void)refreshCollectionViewData {
@@ -160,7 +162,30 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     GADBannerCollectionReusableView* cell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BannerCollectionViewCellIdentifier forIndexPath:indexPath];
     cell.rootViewController = self;
+    if (indexPath.section % 2) {
+        cell.bannerImageView.image = [UIImage imageNamed:@"tcl"];
+    } else {
+        cell.bannerImageView.image = [UIImage imageNamed:@"dior"];
+    }
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    switch ([UIView deviceType]) {
+        case iPhone4:
+        case iPhone5:
+            return CGSizeMake(collectionView.bounds.size.width, 85);
+            break;
+        case iPhone6:
+            return CGSizeMake(collectionView.bounds.size.width, 99);
+            break;
+        case iPhone6Plus:
+            return CGSizeMake(collectionView.bounds.size.width, 109);
+            break;
+        default:
+            return CGSizeMake(collectionView.bounds.size.width, 100);
+            break;
+    }
 }
 
 #pragma mark - CollectionView Delegate
