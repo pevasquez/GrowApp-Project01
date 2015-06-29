@@ -106,13 +106,12 @@
     [BoardService getInksFromBoard:board withCompletion:completion];
 }
 
-+ (NSError *)getDashboardInksForPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    return [InkService getDashboardInksForPage:page withTarget:target completeAction:completeAction completeError:completeError];
++ (void)getDashboardInksForPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
+    [InkService getDashboardInksForPage:page withCompletion:completion];
 }
 
-+ (NSError *)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
-    return [InkService getInksForSearchString:searchString andPage:page withTarget:target completeAction:completeAction completeError:completeError];
++ (void)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
+    [InkService getInksForSearchString:searchString andPage:page withCompletion:completion];
 }
 
 + (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {

@@ -8,15 +8,36 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CropViewDelegate <NSObject>
-- (CGRect)getCanvasForCropView;
-- (BOOL)view:(UIView*)view willPanOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation;
-- (BOOL)view:(UIView*)view willScaleOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation;
+@interface CropView : UIView {
+    BOOL isResizingBottomRight;
+    BOOL isResizingTopLeft;
+    BOOL isResizingTopRight;
+    BOOL isResizingBottomLeft;
+    BOOL isResizingTop;
+    BOOL isResizingBottom;
+    BOOL isResizingLeft;
+    BOOL isResizingRight;
+    CGPoint touchStart;
+    UIView *leftLine;
+    UIView *middleLeftLine;
+    UIView *middleRightLine;
+    UIView *rightLine;
+    UIView *topLine;
+    UIView *middleTopLine;
+    UIView *middleBottomLine;
+    UIView *bottomLine;
+    
+    UIView *leftTopCorner;
+    UIView *topLeftCorner;
+    UIView *leftBottomCorner;
+    UIView *bottomLeftCorner;
+    
+    UIView *rightTopCorner;
+    UIView *topRightCorner;
+    UIView *rightBottomCorner;
+    UIView *bottomRightCorner;
+}
 
-@end
 
-@interface CropView : UIView <UIGestureRecognizerDelegate>
-
-@property (weak, nonatomic) id<CropViewDelegate> delegate;
 
 @end

@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DBInk+Management.h"
-#import "EditTextViewController.h"
 
 
-@interface ViewInkViewController : UITableViewController <EditTextViewDelegate>
+@interface ViewInkViewController : UITableViewController
 @property (strong, nonatomic) DBInk* ink;
 @end

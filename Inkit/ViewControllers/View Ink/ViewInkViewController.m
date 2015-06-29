@@ -109,7 +109,12 @@ typedef enum
     switch (indexPath.row) {
         case kViewInkImage:
         {
-            return 300.0;
+            CGFloat aspectRatio = [self.ink getImageAspectRatio];
+            if (aspectRatio > 0) {
+                return tableView.bounds.size.width/aspectRatio;
+            } else {
+                return 300;
+            }
             break;
         }
         case kViewInkDescription:

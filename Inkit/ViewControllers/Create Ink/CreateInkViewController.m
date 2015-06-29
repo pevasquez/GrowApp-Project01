@@ -11,6 +11,7 @@
 #import "SelectBoardTableViewController.h"
 #import "SelectLocalTableViewController.h"
 #import "SelectRemoteTableViewController.h"
+#import "EditImageViewController.h"
 #import "InkDescriptionTableViewCell.h"
 #import "TextViewTableViewCell.h"
 #import "ViewInkViewController.h"
@@ -49,7 +50,7 @@ typedef enum
     kCreateInkTotal,
 } kCreateInkCells;
 
-@interface CreateInkViewController () <SelectBoardDelegate, SelectLocalDelegate, SelectRemoteDelegate,UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate, TextFieldTableViewCellDelegate, NSURLSessionTaskDelegate>
+@interface CreateInkViewController () <SelectBoardDelegate, SelectLocalDelegate, SelectRemoteDelegate,UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate, TextFieldTableViewCellDelegate, EditImageDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *createInkTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
@@ -226,8 +227,7 @@ typedef enum
 
 
 #pragma mark - TableView Delegte Methods
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         if (indexPath.row == kCreateInkImageIndex) {
             CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
@@ -261,11 +261,17 @@ typedef enum
         return YES;
     }
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         switch (indexPath.row) {
+            case kCreateInkImageIndex:
+            {
+                [self performSegueWithIdentifier:@"EditImageSegue" sender:nil];
+                break;
+            }
             case kCreateInkBoardIndex:
             {
                 [self performSegueWithIdentifier:@"SelectBoardSegue" sender:nil];
@@ -338,6 +344,11 @@ typedef enum
             selectRemoteViewController.selectedRemote = self.inkData[kInkArtist];
             selectRemoteViewController.title = NSLocalizedString(@"Select Artist",nil);
         }
+    } else if ([segue.identifier isEqualToString:@"EditImageSegue"]) {
+        EditImageViewController* editImageViewController = segue.destinationViewController;
+        editImageViewController.imageToEdit = self.inkImage;
+        editImageViewController.isEditing = true;
+        editImageViewController.delegate = self;
     }
 }
 
@@ -431,7 +442,8 @@ typedef enum
     } else if (alertView == self.deleteAlertView) {
         if (buttonIndex == 0) {
             [DBInk deleteInk:self.editingInk completion:^(id response, NSError * error) {
-                
+              
+                // TODO:
                 
 //            [self.editingInk deleteInk];
 
@@ -487,6 +499,12 @@ typedef enum
     }
 }
 
+#pragma mark - EditImage Delegate
+- (void)didEditImage:(UIImage *)image {
+    self.inkImage = image;
+    [self.createInkTableView reloadData];
+}
+
 #pragma mark - Appearence Methods
 - (void)customizeNavigationBar {
     [InkitTheme setUpNavigationBarForViewController:self];
@@ -531,19 +549,5 @@ typedef enum
     [self.overlayView removeFromSuperview];
 }
 
-
-// NSURLSession Task Delegate
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
-    
-
-}
-
-- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler {
-    
-}
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-    
-}
 @end
 

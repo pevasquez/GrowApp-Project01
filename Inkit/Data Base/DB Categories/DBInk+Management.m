@@ -160,14 +160,22 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
     [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationInkUpdate object:nil userInfo:@{kDBInk:self}];
 }
 
-- (UIImage *)getInkImage
-{
+- (UIImage *)getInkImage {
     UIImage* inkImage = [UIImage imageWithData:self.image.imageData];
     return inkImage;
 }
 
-- (NSString *)getBodyPartsAsString
-{
+- (CGFloat)getImageAspectRatio {
+    UIImage* inkImage = [UIImage imageWithData:self.thumbnailImage.imageData];
+    if (inkImage != nil) {
+        CGSize size = inkImage.size;
+        return size.width / size.height;
+    } else {
+        return 0;
+    }
+}
+
+- (NSString *)getBodyPartsAsString {
     NSString* bodyParts = @"";
     for (DBBodyPart* bodyPart in self.bodyParts) {
         bodyParts = [bodyParts stringByAppendingString:[NSString stringWithFormat:@"%@ ",bodyPart.name]];

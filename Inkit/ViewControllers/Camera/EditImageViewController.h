@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CropView.h"
 
-@interface EditImageViewController : UIViewController <UIScrollViewDelegate,CropViewDelegate>
-@property (strong, nonatomic) UIImage* imageToEdit;
+@protocol EditImageDelegate
+- (void)didEditImage:(UIImage *)image;
+@end
 
+@interface EditImageViewController : UIViewController <UIScrollViewDelegate>
+@property (weak, nonatomic) id <EditImageDelegate> delegate;
+@property (strong, nonatomic) UIImage* imageToEdit;
+@property (nonatomic) BOOL isEditing;
 @end

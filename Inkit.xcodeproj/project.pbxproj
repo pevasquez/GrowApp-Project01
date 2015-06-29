@@ -145,7 +145,6 @@
 		FBCCAF861A8CE8390052DCB9 /* ViewBoardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF851A8CE8390052DCB9 /* ViewBoardsViewController.m */; };
 		FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF921A8CF2420052DCB9 /* DBBoard+Management.m */; };
 		FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */; };
-		FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */; };
 		FBD2FEE51ADB550F005D1AAE /* DBTattooType.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEE41ADB550F005D1AAE /* DBTattooType.m */; };
 		FBD2FEE81ADB550F005D1AAE /* DBArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEE71ADB550F005D1AAE /* DBArtist.m */; };
 		FBD2FEEB1ADB550F005D1AAE /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEEA1ADB550F005D1AAE /* DBBodyPart.m */; };
@@ -359,8 +358,6 @@
 		FBCCAF921A8CF2420052DCB9 /* DBBoard+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBBoard+Management.m"; path = "Data Base/DB Categories/DBBoard+Management.m"; sourceTree = "<group>"; };
 		FBCCAF941A8CF5CC0052DCB9 /* CreateBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateBoardViewController.h; path = "ViewControllers/Create Board/CreateBoardViewController.h"; sourceTree = "<group>"; };
 		FBCCAF951A8CF5CC0052DCB9 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = "ViewControllers/Create Board/CreateBoardViewController.m"; sourceTree = "<group>"; };
-		FBCCAF9A1A8CFE4E0052DCB9 /* EditTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTextViewController.h; path = ViewControllers/General/EditTextViewController.h; sourceTree = "<group>"; };
-		FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTextViewController.m; path = ViewControllers/General/EditTextViewController.m; sourceTree = "<group>"; };
 		FBD2FEE31ADB550F005D1AAE /* DBTattooType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBTattooType.h; path = "Data Base/DB Subclasses/DBTattooType.h"; sourceTree = "<group>"; };
 		FBD2FEE41ADB550F005D1AAE /* DBTattooType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBTattooType.m; path = "Data Base/DB Subclasses/DBTattooType.m"; sourceTree = "<group>"; };
 		FBD2FEE61ADB550F005D1AAE /* DBArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBArtist.h; path = "Data Base/DB Subclasses/DBArtist.h"; sourceTree = "<group>"; };
@@ -810,8 +807,6 @@
 		FBCCAF9D1A8CFE540052DCB9 /* General View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FBCCAF9A1A8CFE4E0052DCB9 /* EditTextViewController.h */,
-				FBCCAF9B1A8CFE4E0052DCB9 /* EditTextViewController.m */,
 			);
 			name = "General View Controllers";
 			sourceTree = "<group>";
@@ -1286,7 +1281,6 @@
 				FB4A23C41AD9630C002EE49B /* NSDictionary+Extensions.m in Sources */,
 				FBB384241A893102004C440A /* InkActionsTableViewCell.m in Sources */,
 				FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */,
-				FBCCAF9C1A8CFE4E0052DCB9 /* EditTextViewController.m in Sources */,
 				FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */,
 				FBB696DC1AAB94C40071D96B /* CommentBarView.m in Sources */,
 				FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */,

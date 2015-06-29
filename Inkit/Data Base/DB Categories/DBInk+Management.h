@@ -16,8 +16,8 @@
 + (DBInk *)inkWithInk:(DBInk *)ink;
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
 
-
 - (UIImage *)getInkImage;
+- (CGFloat)getImageAspectRatio;
 
 - (NSString*)getBodyPartsAsString;
 - (NSString *)getTattooTypesAsString;

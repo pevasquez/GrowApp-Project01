@@ -18,8 +18,6 @@
 #import "GAProgressHUDHelper.h"
 #import "UIView+Extension.h"
 
-#define SECTIONS
-
 @import GoogleMobileAds;
 
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";
@@ -48,7 +46,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     [self customizeNavigationBar];
     [self setupCollectionView];
     [self refreshCollectionViewData];
-    [self showActivityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -70,21 +67,42 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 
 - (void)refreshCollectionViewData {
     currentPage = 1;
+    [self showActivityIndicator];
     [self getMoreInks];
 }
 
 - (void)getMoreInks {
     if (self.isSearching) {
-        [InkitService getInksForSearchString:self.searchBar.text andPage:currentPage withTarget:self completeAction:@selector(getInksComplete:) completeError:@selector(getInksError:)];
+        [self showActivityIndicator];
+        [InkitService getInksForSearchString:self.searchBar.text andPage:currentPage withCompletion:^(id response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActivityIndicator];
+                [self.refreshControl endRefreshing];
+                if (!error) {
+                    [self getInksComplete:response];
+                } else {
+                    
+                }
+            });
+        }];
     } else {
-        [InkitService getDashboardInksForPage:currentPage withTarget:self completeAction:@selector(getInksComplete:) completeError:@selector(getInksError:)];
+        [InkitService getDashboardInksForPage:currentPage withCompletion:^(id response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActivityIndicator];
+                [self.refreshControl endRefreshing];
+                if (!error) {
+                    [self getInksComplete:response];
+                } else {
+                    
+                }
+            });
+        }];
     }
 }
 
 - (void)getInksComplete:(NSArray *)inksArray {
     if(inksArray.count > 0) {
         [self.refreshControl endRefreshing];
-#ifdef SECTIONS
         NSMutableArray* newArray = [[NSMutableArray alloc] initWithArray:inksArray];
         if (currentPage == 1) {
             self.inksArray = [[NSMutableArray alloc] init];
@@ -98,65 +116,34 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
             }
         }
         [self.inksArray addObject:newArray];
-#else
-        if (currentPage == 1) {
-            self.inksArray = [[NSMutableArray alloc] init];
-        }
-        [self.inksArray addObjectsFromArray:inksArray];
-        [self.inksArray addObject:@"Banner"];
-#endif
         currentPage++;
         [self.browseCollectionView reloadData];
+    } else {
+        if (currentPage == 1) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Your search did not return any data" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
     }
-    [self hideActivityIndicator];
-}
-
-- (void)getInksError:(NSString *)errorString {
-    [self.refreshControl endRefreshing];
     [self hideActivityIndicator];
 }
 
 #pragma mark - CollectionView DataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#ifdef SECTIONS
     return self.inksArray.count;
-#else
-    return 1;
-#endif
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#ifdef SECTIONS
     return ((NSArray *)self.inksArray[section]).count;
-#else
-    return self.inksArray.count;
-#endif
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-#ifdef SECTIONS
     InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
     cell.ink = self.inksArray[indexPath.section][indexPath.item];
     if (indexPath.item == ((NSArray *)self.inksArray[indexPath.section]).count - 1) {
         [self getMoreInks];
     }
     return cell;
-
-#else
-    if ([self.inksArray[indexPath.item] isKindOfClass:[NSString class]]) {
-        GADBannerCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:BannerCollectionViewCellIdentifier forIndexPath:indexPath];
-        cell.rootViewController = self;
-        return cell;
-    } else {
-        InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
-        cell.ink = self.inksArray[indexPath.item];
-        if (indexPath.item == self.inksArray.count - 2) {
-            [self getMoreInks];
-        }
-        return cell;
-    }
-#endif
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -227,8 +214,7 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     self.isSearching = false;
     [self showActivityIndicator];
     [self refreshCollectionViewData];
-    [UIView animateWithDuration:0.3
-                     animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
                          self.navigationItem.titleView.alpha = 0.0;
                      } completion:^(BOOL finished) {
                          self.navigationItem.rightBarButtonItem = self.searchButton;
@@ -260,11 +246,7 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]] && [sender isKindOfClass:[NSIndexPath class]]) {
         NSIndexPath* indexPath = (NSIndexPath *)sender;
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
-#ifdef SECTIONS
         viewInkViewController.ink = self.inksArray[indexPath.section][indexPath.row];
-#else
-        viewInkViewController.ink = self.inksArray[indexPath.row];
-#endif
     }
 }
 

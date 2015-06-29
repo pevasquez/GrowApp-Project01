@@ -10,9 +10,13 @@
 #import "CreateInkViewController.h"
 
 @interface EditImageViewController ()
+@property (weak, nonatomic) IBOutlet UIView *editContainerView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *customEditImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *cropImageView;
-@property (weak, nonatomic) IBOutlet CropView *cropView;
+@property (strong, nonatomic) CropView *cropView;
+@property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (nonatomic) CGRect imageFrame;
 @end
 
 @implementation EditImageViewController
@@ -20,23 +24,25 @@
 
 
 #pragma mark - Life cycle methods
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.cropView.delegate = self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = YES;
     self.navigationController.navigationBar.hidden = YES;
+    if (self.isEditing) {
+        [self.continueButton setTitle:@"Save" forState:UIControlStateNormal];
+    }
     self.customEditImageView.image = self.imageToEdit;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.imageFrame = [self getFrameOfImageOfImageView:self.customEditImageView];
+}
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
@@ -49,8 +55,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)rotateButtonPressed:(id)sender
-{
+- (IBAction)rotateButtonPressed:(id)sender {
     // Si la orientacion es Top --> Right
     if (self.customEditImageView.image.imageOrientation == UIImageOrientationUp) {
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationRight];
@@ -58,32 +63,35 @@
     } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationRight) {
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationDown];
                                           
-    }else if (self.customEditImageView.image.imageOrientation == UIImageOrientationDown){
+    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationDown){
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationLeft];
                                           
-    }else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft){
+    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft){
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationUp];
     }
 }
 
-- (IBAction)cropButtonPressed:(id)sender
-{
-    
+- (IBAction)cropButtonPressed:(id)sender {
+    self.cropView = [[CropView alloc] initWithFrame:self.imageFrame];
+    [self.editContainerView addSubview:self.cropView];
 }
 
-- (IBAction)cancelButtonPressed:(UIButton *)sender
-{
+- (IBAction)cancelButtonPressed:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)continueButtonPressed:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"CreateInkSegue" sender:nil];
+    if (self.isEditing) {
+        [self.delegate didEditImage:self.customEditImageView.image];
+        [self.navigationController popViewControllerAnimated:true];
+    } else {
+        [self performSegueWithIdentifier:@"CreateInkSegue" sender:nil];
+    }
 }
 
 
 #pragma mark - Crop View Delegate
-- (BOOL)view:(UIView*)view willPanOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation
-{
+- (BOOL)view:(UIView*)view willPanOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation {
     CGPoint viewOrigin = view.frame.origin;
     CGSize viewSize = view.frame.size;
     CGPoint boundsOrigin = rect.origin;
@@ -100,13 +108,11 @@
     return YES;
 }
 
-- (BOOL)view:(UIView*)view willScaleOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation
-{
+- (BOOL)view:(UIView*)view willScaleOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation {
     return NO;
 }
 
-- (CGRect)getCanvasForCropView
-{
+- (CGRect)getCanvasForCropView {
     return [self getFrameOfImageOfImageView:self.customEditImageView];
 }
 
@@ -123,8 +129,7 @@
 }
 
 #pragma mark - helper methods
-- (CGRect)getFrameOfImageOfImageView:(UIImageView *)imageView
-{
+- (CGRect)getFrameOfImageOfImageView:(UIImageView *)imageView {
     CGSize imageSize = imageView.image.size;
     CGFloat imageScale = fminf(CGRectGetWidth(imageView.bounds)/imageSize.width, CGRectGetHeight(imageView.bounds)/imageSize.height);
     CGSize scaledImageSize = CGSizeMake(imageSize.width*imageScale, imageSize.height*imageScale);
