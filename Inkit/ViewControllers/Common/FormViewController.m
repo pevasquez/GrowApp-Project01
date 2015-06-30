@@ -2,7 +2,7 @@
 //  FormViewController.m
 //  Inkit
 //
-//  Created by María Verónica  Sonzini on 24/5/15.
+//  Created by Cristian Pena on 24/5/15.
 //  Copyright (c) 2015 Digbang. All rights reserved.
 //
 

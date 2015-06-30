@@ -2,8 +2,8 @@
 //  GAProgressHUD.h
 //  GAActivityIndicator
 //
-//  Created by María Verónica  Sonzini on 22/5/15.
-//  Copyright (c) 2015 María Verónica Sonzini. All rights reserved.
+//  Created by Cristian Pena on 22/5/15.
+//  Copyright (c) 2015 Digbang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

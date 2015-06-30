@@ -73,7 +73,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 
 - (void)getMoreInks {
     if (self.isSearching) {
-        [self showActivityIndicator];
         [InkitService getInksForSearchString:self.searchBar.text andPage:currentPage withCompletion:^(id response, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self hideActivityIndicator];
@@ -102,7 +101,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 
 - (void)getInksComplete:(NSArray *)inksArray {
     if(inksArray.count > 0) {
-        [self.refreshControl endRefreshing];
         NSMutableArray* newArray = [[NSMutableArray alloc] initWithArray:inksArray];
         if (currentPage == 1) {
             self.inksArray = [[NSMutableArray alloc] init];
@@ -119,12 +117,11 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
         currentPage++;
         [self.browseCollectionView reloadData];
     } else {
-        if (currentPage == 1) {
+        if (currentPage == 1 && self.isSearching) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Your search did not return any data" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         }
     }
-    [self hideActivityIndicator];
 }
 
 #pragma mark - CollectionView DataSource
@@ -212,7 +209,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     
     [self.searchBar resignFirstResponder];
     self.isSearching = false;
-    [self showActivityIndicator];
     [self refreshCollectionViewData];
     [UIView animateWithDuration:0.3 animations:^{
                          self.navigationItem.titleView.alpha = 0.0;
@@ -236,7 +232,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
         cancelButton.enabled = YES;
     }
     self.isSearching = true;
-    [self showActivityIndicator];
     [self refreshCollectionViewData];
 }
 
@@ -252,11 +247,11 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 
 #pragma mark - Activity Indicator Methods
 
-- (void) showActivityIndicator {
+- (void)showActivityIndicator {
     [GAProgressHUDHelper browseProgressHUD:self.view];
 }
 
-- (void) hideActivityIndicator {
+- (void)hideActivityIndicator {
     [GAProgressHUD hideHUDForView:self.view animated:true];
 }
 

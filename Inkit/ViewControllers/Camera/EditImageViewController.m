@@ -11,11 +11,11 @@
 
 @interface EditImageViewController ()
 @property (weak, nonatomic) IBOutlet UIView *editContainerView;
-
 @property (weak, nonatomic) IBOutlet UIImageView *customEditImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *cropImageView;
-@property (strong, nonatomic) CropView *cropView;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
+@property (strong, nonatomic) CropView *cropView;
 @property (nonatomic) CGRect imageFrame;
 @end
 
@@ -34,6 +34,7 @@
     self.navigationController.navigationBar.hidden = YES;
     if (self.isEditing) {
         [self.continueButton setTitle:@"Save" forState:UIControlStateNormal];
+        [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     }
     self.customEditImageView.image = self.imageToEdit;
 }
@@ -72,8 +73,7 @@
 }
 
 - (IBAction)cropButtonPressed:(id)sender {
-    self.cropView = [[CropView alloc] initWithFrame:self.imageFrame];
-    [self.editContainerView addSubview:self.cropView];
+    
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
@@ -116,6 +116,10 @@
     return [self getFrameOfImageOfImageView:self.customEditImageView];
 }
 
+- (void)setupCropView {
+    self.cropView = [[CropView alloc] initWithFrame:self.imageFrame];
+    [self.editContainerView addSubview:self.cropView];
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
