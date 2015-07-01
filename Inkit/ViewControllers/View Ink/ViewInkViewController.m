@@ -22,6 +22,7 @@
 #import "DBImage+Management.h"
 #import "inkitService.h"
 #import "ViewInkTableViewCell.h"
+#import "ViewImageViewController.h"
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
@@ -154,7 +155,7 @@ typedef enum
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == kViewInkComment || indexPath.row == kViewInkBoard) {
+    if (indexPath.row == kViewInkComment || indexPath.row == kViewInkBoard || indexPath.row == kViewInkImage) {
         return YES;
     } else {
         return NO;
@@ -166,6 +167,8 @@ typedef enum
         [self performSegueWithIdentifier:@"CommentsSegue" sender:nil];
     } else if (indexPath.row == kViewInkBoard) {
         [self performSegueWithIdentifier:@"ViewBoardSegue" sender:nil];
+    } else if (indexPath.row == kViewInkImage) {
+        [self performSegueWithIdentifier:@"ZoomImageView" sender:nil];
     }
 }
 
@@ -238,6 +241,9 @@ typedef enum
     } else if ([segue.identifier isEqualToString:@"ViewBoardSegue"]) {
         ViewInksViewController* viewInksViewController = [segue destinationViewController];
         viewInksViewController.board = self.ink.board;
+    } else if ([segue.identifier isEqualToString:@"ZoomImageView"]) {
+        ViewImageViewController* viewImageViewController = [segue destinationViewController];
+        viewImageViewController.inkImage = [self.ink getInkImage];
     }
 }
 
@@ -312,6 +318,7 @@ typedef enum
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
     [alert show];
 }
+
 
 
 @end
