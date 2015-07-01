@@ -38,5 +38,7 @@
 @dynamic thumbnailImage;
 @dynamic user;
 @dynamic userDashboard;
+@dynamic loggedUserLikes;
+@dynamic loggedUserReInked;
 
 @end

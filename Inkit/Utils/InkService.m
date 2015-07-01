@@ -178,7 +178,7 @@
 
 + (void)getDashboardInksForPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
     NSDictionary* urlParams = @{@"access_token":[DataManager sharedInstance].activeUser.token,
-                                @"page":[NSString stringWithFormat:@"%lu",page]};
+                                @"page":[NSString stringWithFormat:@"%lu",(unsigned long)page]};
     NSString* urlParamsString = [urlParams serializeParams];
     
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceInks,kWebServiceDashboard,urlParamsString]];
@@ -229,7 +229,7 @@
 
 + (void)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
     NSDictionary* urlParams = @{@"access_token":[DataManager sharedInstance].activeUser.token,
-                                @"page":[NSString stringWithFormat:@"%lu",page],
+                                @"page":[NSString stringWithFormat:@"%lu",(unsigned long)page],
                                 @"keywords":searchString};
     
     NSString* urlParamsString = [urlParams serializeParams];

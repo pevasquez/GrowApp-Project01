@@ -38,10 +38,6 @@
 		86DFBC761AF56881000EAF62 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC751AF56881000EAF62 /* CoreText.framework */; };
 		86DFBC781AF5688A000EAF62 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC771AF5688A000EAF62 /* MediaPlayer.framework */; };
 		86DFBC7A1AF5689A000EAF62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86DFBC791AF5689A000EAF62 /* UIKit.framework */; };
-		86E14A051B44227E00D3B432 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E14A031B44227E00D3B432 /* FBSDKCoreKit.framework */; };
-		86E14A061B44227E00D3B432 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E14A031B44227E00D3B432 /* FBSDKCoreKit.framework */; };
-		86E14A071B44227E00D3B432 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E14A041B44227E00D3B432 /* FBSDKLoginKit.framework */; };
-		86E14A081B44227E00D3B432 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E14A041B44227E00D3B432 /* FBSDKLoginKit.framework */; };
 		86E14A181B44289300D3B432 /* ViewImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E14A151B44289300D3B432 /* ViewImageViewController.m */; };
 		86E14A191B44289300D3B432 /* ViewImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E14A151B44289300D3B432 /* ViewImageViewController.m */; };
 		86E14A1A1B44289300D3B432 /* CenteredScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E14A171B44289300D3B432 /* CenteredScrollView.m */; };
@@ -115,6 +111,10 @@
 		FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */; };
 		FB8826501B2628AD00CE0DFF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB88264E1B2628AD00CE0DFF /* Crashlytics.framework */; };
 		FB8826511B2628AD00CE0DFF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB88264F1B2628AD00CE0DFF /* Fabric.framework */; };
+		FB8F5D411B44B340008E92C8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8F5D3F1B44B340008E92C8 /* FBSDKCoreKit.framework */; };
+		FB8F5D421B44B341008E92C8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8F5D3F1B44B340008E92C8 /* FBSDKCoreKit.framework */; };
+		FB8F5D431B44B341008E92C8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8F5D401B44B340008E92C8 /* FBSDKLoginKit.framework */; };
+		FB8F5D441B44B341008E92C8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8F5D401B44B340008E92C8 /* FBSDKLoginKit.framework */; };
 		FBA038F01B122E5300700D93 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */; };
 		FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */; };
 		FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384191A892D92004C440A /* ViewInkViewController.m */; };
@@ -245,8 +245,6 @@
 		86DFBC751AF56881000EAF62 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		86DFBC771AF5688A000EAF62 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		86DFBC791AF5689A000EAF62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		86E14A031B44227E00D3B432 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		86E14A041B44227E00D3B432 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		86E14A141B44289300D3B432 /* ViewImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewImageViewController.h; sourceTree = "<group>"; };
 		86E14A151B44289300D3B432 /* ViewImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewImageViewController.m; sourceTree = "<group>"; };
 		86E14A161B44289300D3B432 /* CenteredScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenteredScrollView.h; sourceTree = "<group>"; };
@@ -305,6 +303,8 @@
 		FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = ViewControllers/Browse/BrowseViewController.m; sourceTree = "<group>"; };
 		FB88264E1B2628AD00CE0DFF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		FB88264F1B2628AD00CE0DFF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		FB8F5D3F1B44B340008E92C8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		FB8F5D401B44B340008E92C8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		FBA038EE1B122E5300700D93 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTableViewCell.h; path = "Custom Classes/ImageTableViewCell.h"; sourceTree = "<group>"; };
 		FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTableViewCell.m; path = "Custom Classes/ImageTableViewCell.m"; sourceTree = "<group>"; };
 		FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageTableViewCell.xib; path = "Custom Classes/ImageTableViewCell.xib"; sourceTree = "<group>"; };
@@ -463,11 +463,11 @@
 				86DFBC6A1AF56071000EAF62 /* Security.framework in Frameworks */,
 				86DFBC681AF554F1000EAF62 /* CoreMotion.framework in Frameworks */,
 				8673CB191AFA6F7A00179FA2 /* GoogleOpenSource.framework in Frameworks */,
-				86E14A051B44227E00D3B432 /* FBSDKCoreKit.framework in Frameworks */,
+				FB8F5D411B44B340008E92C8 /* FBSDKCoreKit.framework in Frameworks */,
 				FB8826511B2628AD00CE0DFF /* Fabric.framework in Frameworks */,
 				86DFBC661AF554DF000EAF62 /* AddressBook.framework in Frameworks */,
 				FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */,
-				86E14A071B44227E00D3B432 /* FBSDKLoginKit.framework in Frameworks */,
+				FB8F5D431B44B341008E92C8 /* FBSDKLoginKit.framework in Frameworks */,
 				FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,9 +479,9 @@
 				86EE2E511B14E9D900DC64BC /* QuartzCore.framework in Frameworks */,
 				86EE2E611B14E9F700DC64BC /* CoreMotion.framework in Frameworks */,
 				86EE2E651B14E9F700DC64BC /* AVFoundation.framework in Frameworks */,
-				86E14A061B44227E00D3B432 /* FBSDKCoreKit.framework in Frameworks */,
+				FB8F5D421B44B341008E92C8 /* FBSDKCoreKit.framework in Frameworks */,
 				86EE2E571B14E9EE00DC64BC /* GooglePlus.framework in Frameworks */,
-				86E14A081B44227E00D3B432 /* FBSDKLoginKit.framework in Frameworks */,
+				FB8F5D441B44B341008E92C8 /* FBSDKLoginKit.framework in Frameworks */,
 				86EE2E5C1B14E9F700DC64BC /* CoreLocation.framework in Frameworks */,
 				86EE2E541B14E9E600DC64BC /* AdSupport.framework in Frameworks */,
 				86EE2E561B14E9EE00DC64BC /* Social.framework in Frameworks */,
@@ -846,8 +846,8 @@
 		FBD73CD61B29A5F2005AFCBD /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
-				86E14A031B44227E00D3B432 /* FBSDKCoreKit.framework */,
-				86E14A041B44227E00D3B432 /* FBSDKLoginKit.framework */,
+				FB8F5D3F1B44B340008E92C8 /* FBSDKCoreKit.framework */,
+				FB8F5D401B44B340008E92C8 /* FBSDKLoginKit.framework */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -1470,6 +1470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1484,6 +1485,9 @@
 					Proyectos/FacebookSDK,
 					/Users/mariaveronicasonzini/Documents/Mis,
 					Proyectos/FacebookSDK,
+					/Users/cristianpena/Documents/Mis,
+					Proyectos/Frameworks/FacebookSDK,
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1500,6 +1504,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1514,6 +1519,9 @@
 					Proyectos/FacebookSDK,
 					/Users/mariaveronicasonzini/Documents/Mis,
 					Proyectos/FacebookSDK,
+					/Users/cristianpena/Documents/Mis,
+					Proyectos/Frameworks/FacebookSDK,
+					/Users/cristianpena/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1539,6 +1547,8 @@
 					"$(PROJECT_DIR)",
 					/Users/mariaveronicasonzini/Documents/Mis,
 					Proyectos/FacebookSDK,
+					/Users/cristianpena/Documents/Mis,
+					Proyectos/Frameworks/FacebookSDK,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1566,6 +1576,8 @@
 					"$(PROJECT_DIR)",
 					/Users/mariaveronicasonzini/Documents/Mis,
 					Proyectos/FacebookSDK,
+					/Users/cristianpena/Documents/Mis,
+					Proyectos/Frameworks/FacebookSDK,
 				);
 				INFOPLIST_FILE = InkitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
