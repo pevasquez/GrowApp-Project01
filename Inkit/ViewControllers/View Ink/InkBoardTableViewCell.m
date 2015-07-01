@@ -15,7 +15,7 @@
 }
 
 - (void)configureForInk {
-    self.textLabel.text = self.ink.board.boardTitle;
+    self.textLabel.text = [NSString stringWithFormat:@"Board: %@",self.ink.board.boardTitle];
 }
 
 @end
