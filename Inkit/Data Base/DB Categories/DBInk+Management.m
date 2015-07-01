@@ -161,7 +161,7 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
 }
 
 - (UIImage *)getInkImage {
-    UIImage* inkImage = [UIImage imageWithData:self.image.imageData];
+    UIImage* inkImage = [UIImage imageWithData:self.fullScreenImage.imageData];
     return inkImage;
 }
 
