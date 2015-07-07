@@ -130,11 +130,11 @@
 }
 
 - (void)sdkLoginCancelledByUser {
-    
+    [self hideActivityIndicator];
 }
 
 - (void)sdkLoginError:(NSError *)error {
-    
+    [self hideActivityIndicator];
 }
 
 #pragma mark - FacebookManager Delegate Methods

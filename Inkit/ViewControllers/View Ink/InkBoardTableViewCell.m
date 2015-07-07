@@ -8,6 +8,10 @@
 
 #import "InkBoardTableViewCell.h"
 
+@interface InkBoardTableViewCell()
+@property (weak, nonatomic) IBOutlet UILabel *boardTitleLabel;
+
+@end
 @implementation InkBoardTableViewCell
 
 - (void)awakeFromNib {
@@ -15,7 +19,7 @@
 }
 
 - (void)configureForInk {
-    self.textLabel.text = [NSString stringWithFormat:@"Board: %@",self.ink.board.boardTitle];
+    self.boardTitleLabel.text = [NSString stringWithFormat:@"Board: %@",self.ink.board.boardTitle];
 }
 
 @end

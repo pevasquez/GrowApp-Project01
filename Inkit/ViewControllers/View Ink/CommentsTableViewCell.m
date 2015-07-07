@@ -12,6 +12,7 @@
 #import "DynamicSizeLabel.h"
 #import "DBImage+Management.h"
 #import "NSDate+Extension.h"
+#import "NSString+Extensions.h"
 
 @interface CommentsTableViewCell()
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImage;
@@ -32,7 +33,7 @@
 {
     [self.comment.user.profilePicThumbnail setInImageView:self.userImage];
     self.userName.text = self.comment.user.fullName.capitalizedString;
-    self.commentLabel.text = self.comment.text;
+    self.commentLabel.text = [self.comment.text stringWithSentenceCapitalization];
     self.commentFromDateLabel.text = [self.comment.commentDate relativeDateString];
     double leading = self.commentLabel.frame.origin.x;
     

@@ -267,7 +267,6 @@ typedef enum
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
                     [self.actionsCell setLike:true];
-                    [self showAlertForMessage:(NSString *)response];
                 }
             });
         }];
@@ -277,7 +276,6 @@ typedef enum
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
                     [self.actionsCell setLike:false];
-                    [self showAlertForMessage:(NSString *)response];
                 }
             });
         }];

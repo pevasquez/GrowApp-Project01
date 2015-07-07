@@ -59,7 +59,32 @@
 }
 
 - (void)viewWillLayoutSubviews {
-  [self setZoomScales];
+    [super viewWillLayoutSubviews];
+    [self setZoomScales];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [UIView animateWithDuration:0.2 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.tabBarController.tabBar setAlpha:0];
+        [self.navigationController.navigationBar setAlpha:0];
+        self.scrollView.backgroundColor = [UIColor blackColor];
+    } completion:^(BOOL finished) {
+        [self.tabBarController.tabBar setHidden:YES];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.tabBarController.tabBar setHidden:false];
+    [self.navigationController setNavigationBarHidden:false animated:true];
+    
+    [UIView animateWithDuration:0.2 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.tabBarController.tabBar setAlpha:1];
+        [self.navigationController.navigationBar setAlpha:1];
+        self.scrollView.backgroundColor = [UIColor whiteColor];
+    } completion:nil];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -69,31 +94,12 @@
 }
 
 - (IBAction)tapHideUnhideBar:(id)sender {
-    if (self.navigationController.navigationBar.hidden == NO) {
-        [UIView animateWithDuration:0.2 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self.tabBarController.tabBar setAlpha:0];
-            [self.navigationController.navigationBar setAlpha:0];
-            self.scrollView.backgroundColor = [UIColor blackColor];
-        } completion:^(BOOL finished) {
-            [self.tabBarController.tabBar setHidden:YES];
-            [self.navigationController setNavigationBarHidden:YES animated:NO];
-            NSLog(@"%@", NSStringFromCGRect(self.scrollView.frame));
-            NSLog(@"%@", NSStringFromUIEdgeInsets(self.scrollView.contentInset));
-            NSLog(@"%@", NSStringFromCGPoint(self.scrollView.contentOffset));
-
-        }];
-
-
-    } else if (self.navigationController.navigationBar.hidden == YES) {
-        [UIView animateWithDuration:0.2 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self.tabBarController.tabBar setAlpha:1];
-            [self.navigationController.navigationBar setAlpha:1];
-            self.scrollView.backgroundColor = [UIColor whiteColor];
-        } completion:^(BOOL finished) {
-            [self.tabBarController.tabBar setHidden:NO];
-            [self.navigationController setNavigationBarHidden:NO animated:NO];
-        }];
-    }
+    [self.navigationController popViewControllerAnimated:true];
+//    if (self.navigationController.navigationBar.hidden == NO) {
+//        
+//
+//    } else if (self.navigationController.navigationBar.hidden == YES) {
+//            }
 }
 
 @end

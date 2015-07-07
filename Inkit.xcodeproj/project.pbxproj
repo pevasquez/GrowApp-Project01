@@ -83,6 +83,7 @@
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
 		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
 		FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */; };
+		FB422CA01B4BE62500AA2D6A /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FB422C9F1B4BE62400AA2D6A /* NSString+Extensions.m */; };
 		FB4A23A61AD954FD002EE49B /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
 		FB4A23A71AD95514002EE49B /* DBInk+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC433161A855C4E00EFAA24 /* DBInk+Management.m */; };
 		FB4A23A81AD95514002EE49B /* DBComment+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB696CF1AAB841C0071D96B /* DBComment+Management.m */; };
@@ -279,6 +280,8 @@
 		FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleManager.m; path = Utils/GoogleManager.m; sourceTree = "<group>"; };
 		FB37D06C1B00C88B00F8DFF7 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
 		FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
+		FB422C9E1B4BE62400AA2D6A /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Extensions.h"; path = "Utils/NSString+Extensions.h"; sourceTree = "<group>"; };
+		FB422C9F1B4BE62400AA2D6A /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Extensions.m"; path = "Utils/NSString+Extensions.m"; sourceTree = "<group>"; };
 		FB4A23BA1AD95546002EE49B /* InksServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InksServiceTests.m; sourceTree = "<group>"; };
 		FB4A23BC1AD95560002EE49B /* BoardsServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardsServiceTests.m; sourceTree = "<group>"; };
 		FB4A23C21AD9630C002EE49B /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extensions.h"; path = "Utils/NSDictionary+Extensions.h"; sourceTree = "<group>"; };
@@ -737,6 +740,8 @@
 				FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */,
 				FB4A23C21AD9630C002EE49B /* NSDictionary+Extensions.h */,
 				FB4A23C31AD9630C002EE49B /* NSDictionary+Extensions.m */,
+				FB422C9E1B4BE62400AA2D6A /* NSString+Extensions.h */,
+				FB422C9F1B4BE62400AA2D6A /* NSString+Extensions.m */,
 				FB249C301B11077400AE29F2 /* UIImage+Extension.h */,
 				FB249C311B11077400AE29F2 /* UIImage+Extension.m */,
 				FBF2F8601B037A3F00057A71 /* NSData+Extension.h */,
@@ -1311,6 +1316,7 @@
 				86DC99101AC9E40100A39C28 /* DBShop+Management.m in Sources */,
 				FBDCB1E41A840C2400E05053 /* LogInViewController.m in Sources */,
 				FBB3842A1A893559004C440A /* ProfileImageView.m in Sources */,
+				FB422CA01B4BE62500AA2D6A /* NSString+Extensions.m in Sources */,
 				FB5C4FCB1B1638B200B05593 /* GAProgressHUD.m in Sources */,
 				FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */,
 				FB5C4FCC1B1638B200B05593 /* GAProgressHUDHelper.m in Sources */,
