@@ -961,6 +961,7 @@
                         <segue destination="PlN-6M-hAE" kind="show" identifier="EditInkSegue" id="Fnv-MH-wXq"/>
                         <segue destination="Rt5-cs-ThI" kind="show" identifier="ViewBoardSegue" id="FsM-J0-7yu"/>
                         <segue destination="Y31-Pn-dfa" kind="show" identifier="ZoomImageView" id="KKN-6h-7lc"/>
+                        <segue destination="PlN-6M-hAE" kind="show" identifier="ReInkSegue" id="yMg-3S-jba"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Np-oQ-uze" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1710,13 +1711,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30u-Kl-hdP">
                                 <rect key="frame" x="0.0" y="64" width="600" height="500"/>
                                 <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hKy-7t-t8e">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="od2-5u-R2v">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="od2-5u-R2v" userLabel="Custom Edit Image View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
+                                    </imageView>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hKy-7t-t8e" userLabel="Crop Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S9l-gS-xbz">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
@@ -1762,6 +1763,7 @@
                         <outlet property="cropImageView" destination="hKy-7t-t8e" id="YIb-Gb-apf"/>
                         <outlet property="customEditImageView" destination="od2-5u-R2v" id="PcV-Bw-8nd"/>
                         <outlet property="editContainerView" destination="S9l-gS-xbz" id="3X0-2I-UwO"/>
+                        <outlet property="editingView" destination="30u-Kl-hdP" id="YsL-Yk-nnV"/>
                         <segue destination="PlN-6M-hAE" kind="show" identifier="CreateInkSegue" id="z9d-nC-j9p"/>
                     </connections>
                 </viewController>
@@ -1978,11 +1980,11 @@
         <image name="ViewInks-ReInk" width="7" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lQ1-q0-po4"/>
         <segue reference="FsM-J0-7yu"/>
         <segue reference="NRZ-KG-SSz"/>
-        <segue reference="Fnv-MH-wXq"/>
+        <segue reference="z9d-nC-j9p"/>
         <segue reference="4zW-VL-7OH"/>
+        <segue reference="lQ1-q0-po4"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

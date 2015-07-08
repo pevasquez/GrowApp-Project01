@@ -165,13 +165,24 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
     return inkImage;
 }
 
-- (CGFloat)getImageAspectRatio {
+- (UIImage *)getInkThumbnailImage {
     UIImage* inkImage = [UIImage imageWithData:self.thumbnailImage.imageData];
-    if (inkImage != nil) {
-        CGSize size = inkImage.size;
+    return inkImage;
+}
+
+- (CGFloat)getImageAspectRatio {
+    UIImage* thumbnailImage = [self getInkThumbnailImage];
+    if (thumbnailImage != nil) {
+        CGSize size = thumbnailImage.size;
         return size.width / size.height;
     } else {
-        return 0;
+        UIImage* inkImage = [self getInkImage];
+        if (inkImage != nil) {
+            CGSize size = inkImage.size;
+            return size.width / size.height;
+        } else {
+            return 0;
+        }
     }
 }
 
@@ -261,6 +272,9 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
     }
     if (self.shop) {
         inkData[kInkShop] = self.shop;
+    }
+    if (self.inkID) {
+        inkData[kInkID] = self.inkID;
     }
     return inkData;
 }

@@ -256,4 +256,26 @@
     [self drawGrid];
 }
 
+- (void)updateBounds {
+    CGFloat x = self.frame.origin.x;
+    CGFloat y = self.frame.origin.y;
+    CGFloat width = self.frame.size.width;
+    CGFloat height = self.frame.size.height;
+    CGFloat superviewWidth = self.superview.frame.size.width;
+    CGFloat superviewHeight = self.superview.frame.size.height;
+
+    if (x < 0) {
+        self.frame = CGRectMake(0, y, width + x, height);
+    }
+    if (y < 0) {
+        self.frame = CGRectMake(x, 0, width, height + y);
+    }
+    if (x + width > superviewWidth) {
+        self.frame = CGRectMake(x, y, superviewWidth - x, height);
+    }
+    if (y + height > superviewHeight) {
+        self.frame = CGRectMake(x, y, width, superviewHeight - y);
+    }
+    
+}
 @end

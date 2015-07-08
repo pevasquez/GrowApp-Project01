@@ -225,8 +225,7 @@ typedef enum
 
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue destinationViewController] isKindOfClass:[CommentsViewController class]]) {
         CommentsViewController* commentsViewController = [segue destinationViewController];
         commentsViewController.ink = self.ink;
@@ -282,20 +281,17 @@ typedef enum
     }
 }
 
-- (void)likeInkError: (NSString*)error
-{
+- (void)likeInkError: (NSString*)error {
     UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
 
-- (IBAction)reInkButtonPressed:(id)sender
-{
+- (IBAction)reInkButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"ReInkSegue" sender:nil];
 }
 
 
-- (IBAction)shareButtonPressed:(id)sender
-{
+- (IBAction)shareButtonPressed:(id)sender {
     NSString *message = [NSString stringWithFormat:@"Check out the new Ink %@ I've posted",self.ink.inkDescription];
     
     UIImage *image = [self.ink.image getImage];

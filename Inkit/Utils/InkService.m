@@ -47,6 +47,10 @@
         dataDictionary[@"body_parts"] = [bodyPartsArray copy];
     }
 
+    if (inkDictionary[kInkID]) {
+        dataDictionary[@"parent_id"] = inkDictionary[kInkID];
+    }
+    
     NSString *boundary = @"14737809831466499882746641449";
     NSData* body = [NSData fromDictionary:dataDictionary andBoundary:boundary];
 

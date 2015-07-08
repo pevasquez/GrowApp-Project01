@@ -10,18 +10,16 @@
 #import "CreateInkViewController.h"
 
 @interface EditImageViewController ()
+@property (weak, nonatomic) IBOutlet UIView *editingView;
 @property (weak, nonatomic) IBOutlet UIView *editContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *customEditImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *cropImageView;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (strong, nonatomic) CropView *cropView;
-@property (nonatomic) CGRect imageFrame;
 @end
 
 @implementation EditImageViewController
-
-
 
 #pragma mark - Life cycle methods
 - (void)viewDidLoad {
@@ -36,13 +34,14 @@
         [self.continueButton setTitle:@"Save" forState:UIControlStateNormal];
         [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     }
+    self.editingView.clipsToBounds = true;
     self.customEditImageView.image = self.imageToEdit;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.imageFrame = [self getFrameOfImageOfImageView:self.customEditImageView];
 }
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.tabBarController.tabBar.hidden = NO;
@@ -70,10 +69,16 @@
     } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft){
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationUp];
     }
+    [self updateContainerView];
 }
 
 - (IBAction)cropButtonPressed:(id)sender {
-    
+    if (self.cropView.superview) {
+        [self cropImage];
+        [self removeCropView];
+    } else {
+        [self showCropView];
+    }
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
@@ -89,46 +94,101 @@
     }
 }
 
-
-#pragma mark - Crop View Delegate
-- (BOOL)view:(UIView*)view willPanOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation {
-    CGPoint viewOrigin = view.frame.origin;
-    CGSize viewSize = view.frame.size;
-    CGPoint boundsOrigin = rect.origin;
-    CGSize boundsSize = rect.size;
-    
-    if ((viewOrigin.x + translation.x) < boundsOrigin.x)
-        return NO;
-    else if ((viewOrigin.y + translation.y) < boundsOrigin.y)
-        return NO;
-    else if ((viewSize.width + viewOrigin.x + translation.x) > (boundsOrigin.x + boundsSize.width))
-        return NO;
-    else if ((viewSize.height + viewOrigin.y + translation.y) > (boundsSize.height + boundsOrigin.y))
-        return NO;
-    return YES;
-}
-
-- (BOOL)view:(UIView*)view willScaleOutsideRect:(CGRect)rect withTranslation:(CGPoint)translation {
-    return NO;
-}
-
 - (CGRect)getCanvasForCropView {
     return [self getFrameOfImageOfImageView:self.customEditImageView];
 }
 
-- (void)setupCropView {
-    self.cropView = [[CropView alloc] initWithFrame:self.imageFrame];
-    [self.editContainerView addSubview:self.cropView];
+- (void)updateContainerView {
+    self.editContainerView.frame = [self getCanvasForCropView];
+    [self.cropView updateBounds];
 }
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)showCropView {
+    [self updateContainerView];
+    if (self.cropView) {
+        self.customEditImageView.hidden = false;
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.customEditImageView.alpha = 1;
+        } completion:^(BOOL finished) {
+            self.cropImageView.hidden = true;
+            [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.customEditImageView.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+                self.cropView = [[CropView alloc] initWithFrame:self.editContainerView.bounds];
+                [self.editContainerView addSubview:self.cropView];
+            }];
+        }];
+    } else {
+        self.cropView = [[CropView alloc] initWithFrame:self.editContainerView.bounds];
+        [self.editContainerView addSubview:self.cropView];
+    }
+}
+
+- (void)removeCropView {
+    [self.cropView removeFromSuperview];
+}
+
+- (void)cropImage {
+    UIImage *newImage = nil;
+    
+    CGSize sourceImageSize = self.customEditImageView.image.size;
+    CGSize editSize = self.editContainerView.frame.size;
+    CGFloat scale = sourceImageSize.width/editSize.width;
+    
+    CGSize cropSize = self.cropView.frame.size;
+    CGFloat targetWidth = cropSize.width * scale;
+    CGFloat targetHeight = cropSize.height * scale;
+    CGSize targetSize = CGSizeMake(targetWidth, targetHeight);
+    
+    CGFloat targetOriginX =  - self.cropView.frame.origin.x * scale;
+    CGFloat targetOriginY = - self.cropView.frame.origin.y * scale;
+    CGPoint targetOrigin = CGPointMake(targetOriginX, targetOriginY);
+    
+    UIGraphicsBeginImageContext(targetSize);
+    CGRect targetRect = CGRectZero;
+    targetRect.origin = targetOrigin;
+    targetRect.size = sourceImageSize;
+    
+    [self.customEditImageView.image drawInRect:targetRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if(newImage == nil) NSLog(@"could not scale image");
+
+    self.cropImageView.image = newImage;
+    
+    // Animate transition
+    CGRect cropViewFrame = [self.editingView convertRect:self.cropView.frame fromView:self.editContainerView];
+    CGRect destinyFrame = [self getFrameOfImageOfImageView:self.cropImageView];
+    CGFloat animationScale = MIN(destinyFrame.size.width/cropViewFrame.size.width, destinyFrame.size.height/cropViewFrame.size.height);
+    CGFloat traslationX = - (cropViewFrame.origin.x + cropViewFrame.size.width / 2) + (destinyFrame.origin.x + destinyFrame.size.width / 2);
+    CGFloat traslationY = - (cropViewFrame.origin.y + cropViewFrame.size.height / 2) + (destinyFrame.origin.y + destinyFrame.size.height / 2);
+    
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(animationScale, animationScale);
+        CGAffineTransform traslation = CGAffineTransformMakeTranslation(traslationX*animationScale, traslationY*animationScale);
+        self.customEditImageView.transform = CGAffineTransformConcat(scaleTransform, traslation);
+    } completion:^(BOOL finished) {
+        self.cropImageView.hidden = false;
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.customEditImageView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            self.customEditImageView.hidden = true;
+        }];
+    }];
+    
+}
+
+#pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([[segue destinationViewController] isKindOfClass:[CreateInkViewController class]]) {
         CreateInkViewController* createViewController = [segue destinationViewController];
-        createViewController.inkImage = self.customEditImageView.image;
+        if (self.cropImageView.image) {
+            createViewController.inkImage = self.cropImageView.image;
+        } else {
+            createViewController.inkImage = self.customEditImageView.image;
+        }
     }
 }
 

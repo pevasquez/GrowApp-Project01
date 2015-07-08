@@ -38,6 +38,6 @@
     UIView *bottomRightCorner;
 }
 
-
+- (void)updateBounds;
 
 @end
