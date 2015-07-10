@@ -12,14 +12,15 @@
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
-static NSString * const InkActionsTableViewCellIdentifier = @"InkActionsTableViewCell";
 static NSString * const InkUserTableViewCellIdentifier = @"InkUserTableViewCell";
+static NSString * const InkInfoTableViewCellIdentifier = @"InkInfoTableViewCell";
+
 
 
 typedef NS_ENUM(NSInteger, InkCells) {
     kInkCellImage,
     kInkCellDescription,
-    kInkCellActions,
+    kInkCellInfo,
     kInkCellUser,
     kInkCellTotalCells
 } kInkCell;
@@ -33,10 +34,9 @@ typedef NS_ENUM(NSInteger, InkCells) {
 @end
 
 @implementation InkCollectionViewCell
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    self.inkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self configureTableView];
 }
 
 - (void)layoutSubviews {
@@ -44,60 +44,44 @@ typedef NS_ENUM(NSInteger, InkCells) {
     [self.inkTableView reloadData];
 }
 
-- (double)getCellHeight
-{
+- (double)getCellHeight {
     [self.inkTableView reloadData];
     
     return self.inkTableView.contentSize.height;
 }
 
-- (void)prepareForReuse
-{
+- (void)prepareForReuse {
     self.ink = nil;
 }
 
+- (void)configureTableView {
+    [self.inkTableView registerNib:[UINib nibWithNibName:@"InkImageTableViewCell" bundle:nil] forCellReuseIdentifier:InkImageTableViewCellIdentifier];
+    [self.inkTableView registerNib:[UINib nibWithNibName:@"InkDescriptionTableViewCell" bundle:nil] forCellReuseIdentifier:InkDescriptionTableViewCellIdentifier];
+    [self.inkTableView registerNib:[UINib nibWithNibName:@"InkUserTableViewCell" bundle:nil] forCellReuseIdentifier:InkUserTableViewCellIdentifier];
+    [self.inkTableView registerNib:[UINib nibWithNibName:@"InkInfoTableViewCell" bundle:nil] forCellReuseIdentifier:InkInfoTableViewCellIdentifier];
+    self.inkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.inkTableView.delegate = self;
+    self.inkTableView.dataSource = self;
+}
+
 #pragma mark UITableView Data Source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger rows = kInkCellTotalCells;
     return rows;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
     ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.ink = self.ink;
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.ink) {
         switch (indexPath.row) {
             case kInkCellImage:
-            {
-//                NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
-//                ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//                cell.ink = self.ink;
-//                
-//                // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-//                [cell setNeedsUpdateConstraints];
-//                [cell updateConstraintsIfNeeded];
-//                
-//                [cell setNeedsLayout];
-//                [cell layoutIfNeeded];
-//                
-//                // Get the actual height required for the cell
-//                CGFloat height = cell.cellHeight;
-//                
-//                // Add an extra point to the height to account for the cell separator, which is added between the bottom
-//                // of the cell's contentView and the bottom of the table view cell.
-//                height += 1;
-//                
-//                //return height;
-#pragma mark - warning aca no anda
-                
+            {                
                 return kInkImageCellHeight;
                 break;
             }
@@ -121,10 +105,10 @@ typedef NS_ENUM(NSInteger, InkCells) {
                 // of the cell's contentView and the bottom of the table view cell.
                 height += 1;
                 
-                return height;
+                return MAX(height, 34);
                 break;
             }
-            case kInkCellActions:
+            case kInkCellInfo:
             {
                 return kInkActionsCellHeight;
                 break;
@@ -142,8 +126,7 @@ typedef NS_ENUM(NSInteger, InkCells) {
     return kInkUserCellHeight;
 }
 
-- (NSString *)getInkCellIdentifierForIndexPath:(NSIndexPath *)indexPath
-{
+- (NSString *)getInkCellIdentifierForIndexPath:(NSIndexPath *)indexPath {
     NSString* cellIdentifier = nil;
     switch (indexPath.row) {
         case kInkCellImage:
@@ -156,9 +139,9 @@ typedef NS_ENUM(NSInteger, InkCells) {
             cellIdentifier = InkDescriptionTableViewCellIdentifier;
             break;
         }
-        case kInkCellActions:
+        case kInkCellInfo:
         {
-            cellIdentifier = InkActionsTableViewCellIdentifier;
+            cellIdentifier = InkInfoTableViewCellIdentifier;
             break;
         }
         case kInkCellUser:

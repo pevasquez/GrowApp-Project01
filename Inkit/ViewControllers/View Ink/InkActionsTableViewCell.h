@@ -11,6 +11,6 @@
 #import "DBInk+Management.h"
 
 @interface InkActionsTableViewCell : ViewInkTableViewCell
-- (void)setLike:(BOOL)selected;
-
+- (void)setLike:(BOOL)liked;
+- (void)setReInk:(BOOL)reInked;
 @end

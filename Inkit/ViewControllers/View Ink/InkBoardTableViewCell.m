@@ -14,10 +14,6 @@
 @end
 @implementation InkBoardTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (void)configureForInk {
     self.boardTitleLabel.text = [NSString stringWithFormat:@"Board: %@",self.ink.board.boardTitle];
 }

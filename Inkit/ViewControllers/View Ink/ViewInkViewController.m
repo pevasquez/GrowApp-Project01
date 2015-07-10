@@ -7,7 +7,7 @@
 //
 
 #import "ViewInkViewController.h"
-#import "ViewInksViewController.h"
+#import "BoardViewController.h"
 #import "CreateInkViewController.h"
 #import "InkitTabBarController.h"
 #import "InkImageTableViewCell.h"
@@ -20,17 +20,12 @@
 #import "DataManager.h"
 #import "InkitTheme.h"
 #import "DBImage+Management.h"
-#import "inkitService.h"
+#import "InkitService.h"
 #import "ViewInkTableViewCell.h"
 #import "ViewImageViewController.h"
-
-static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
-static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
-static NSString * const InkActionsTableViewCellIdentifier = @"InkActionsTableViewCell";
-static NSString * const InkBoardTableViewCellIdentifier = @"InkBoardTableViewCell";
-static NSString * const InkCommentTableViewCellIdentifier = @"InkCommentTableViewCell";
-static NSString * const InkRemoteTableViewCellIdentifier = @"RemoteIdentifier";
-
+#import "InkTableView.h"
+#import "ViewInkCollectionReusableView.h"
+#import "UIView+Extension.h"
 
 typedef enum
 {
@@ -46,11 +41,14 @@ typedef enum
 #define kInkActionsCellHeight   60
 #define kInkCommentCellHeight   44
 
-@interface ViewInkViewController()
-@property (weak, nonatomic) IBOutlet UITableView *inkTableView;
+static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkCollectionReusableView";
+
+
+@interface ViewInkViewController() <InkTableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) InkActionsTableViewCell* actionsCell;
+//@property (weak, nonatomic) IBOutlet InkTableView *inkTableView;
 
 @end
 
@@ -59,9 +57,7 @@ typedef enum
     [super viewDidLoad];
     [self customizeNavigationBar];
     self.title = self.ink.inkDescription;
-    [self.inkTableView registerNib:[UINib nibWithNibName:@"InkBoardTableViewCell" bundle:nil] forCellReuseIdentifier:InkBoardTableViewCellIdentifier];
-    self.inkTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    [self.inksCollectionView registerNib:[UINib nibWithNibName:@"ViewInkCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ViewInkCollectionReusableViewIdentifier];
     UIViewController* parentViewController = [self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-2)];
     if ([parentViewController isKindOfClass:[CreateInkViewController class]]) {
         self.navigationItem.hidesBackButton = YES;
@@ -72,144 +68,22 @@ typedef enum
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }
+    [self refreshCollectionViewData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
+- (void)refreshCollectionViewData {
+    currentPage = 1;
+    [self getMoreInks];
 }
 
-#pragma mark UITableView Data Source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return kViewInkTotalCells;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
-    if([cellIdentifier isEqualToString:InkRemoteTableViewCellIdentifier])
-    {
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//        cell.textLabel.text = ;
-        return cell;
-        
-    } else if ([cellIdentifier isEqualToString:InkActionsTableViewCellIdentifier]) {
-        InkActionsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:InkActionsTableViewCellIdentifier];
-       // cell.delegate = self;
-        self.actionsCell = cell;
-        cell.ink = self.ink;
-        return cell;
-    } else {
-        ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        cell.ink = self.ink;
-        return cell;
-    }
-}
-
-#pragma mark - UITableView Delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.row) {
-        case kViewInkImage:
-        {
-            CGFloat aspectRatio = [self.ink getImageAspectRatio];
-            if (aspectRatio > 0) {
-                return tableView.bounds.size.width/aspectRatio;
-            } else {
-                return 300;
-            }
-            break;
-        }
-        case kViewInkDescription:
-        {
-//            NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
-//            ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//            [cell configureForInk:self.ink];
-//            
-//            // Make sure the constraints have been added to this cell, since it may have just been created from scratch
-//            [cell setNeedsUpdateConstraints];
-//            [cell updateConstraintsIfNeeded];
-//            
-//            [cell setNeedsLayout];
-//            [cell layoutIfNeeded];
-//            
-//            // Get the actual height required for the cell
-//            CGFloat height = cell.cellHeight;
-//            height += 1;
-            
-            return 44.0;
-            break;
-        }
-        case kViewInkActions:
-        {
-            return kInkActionsCellHeight;
-            break;
-        }
-        case kViewInkComment:
-        {
-            return kInkCommentCellHeight;
-            break;
-        }
-        default:
-            return 44;
-            break;
-    }
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == kViewInkComment || indexPath.row == kViewInkBoard || indexPath.row == kViewInkImage) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)inkTableView:(InkTableView *)inkTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == kViewInkComment) {
         [self performSegueWithIdentifier:@"CommentsSegue" sender:nil];
     } else if (indexPath.row == kViewInkBoard) {
         [self performSegueWithIdentifier:@"ViewBoardSegue" sender:nil];
     } else if (indexPath.row == kViewInkImage) {
-        [self performSegueWithIdentifier:@"ZoomImageView" sender:nil];
+        [self performSegueWithIdentifier:@"ViewImageSegue" sender:nil];
     }
-}
-
-#pragma mark - Helper Methods
-- (NSString *)getInkCellIdentifierForIndexPath:(NSIndexPath *)indexPath
-{
-    NSString* cellIdentifier = nil;
-    switch (indexPath.row) {
-        case kViewInkImage:
-        {
-            cellIdentifier = InkImageTableViewCellIdentifier;
-            break;
-        }
-        case kViewInkDescription:
-        {
-            cellIdentifier = InkDescriptionTableViewCellIdentifier;
-            break;
-        }
-        case kViewInkActions:
-        {
-            cellIdentifier = InkActionsTableViewCellIdentifier;
-            break;
-        }
-        case kViewInkBoard:
-        {
-            cellIdentifier = InkBoardTableViewCellIdentifier;
-            break;
-        }
-        case kViewInkComment:
-        {
-            cellIdentifier = InkCommentTableViewCellIdentifier;
-            break;
-        }
-//        case kInkRemote:
-//        {
-//            cellIdentifier = InkRemoteTableViewCellIdentifier;
-//        }
-        default:
-            break;
-    }
-    return cellIdentifier;
 }
 
 #pragma mark - Appearence Methods
@@ -238,19 +112,14 @@ typedef enum
         createInkViewController.isReInking = true;
         createInkViewController.editingInk = self.ink;
     } else if ([segue.identifier isEqualToString:@"ViewBoardSegue"]) {
-        ViewInksViewController* viewInksViewController = [segue destinationViewController];
+        BoardViewController* viewInksViewController = [segue destinationViewController];
         viewInksViewController.board = self.ink.board;
-    } else if ([segue.identifier isEqualToString:@"ZoomImageView"]) {
+    } else if ([segue.identifier isEqualToString:@"ViewImageSegue"]) {
         ViewImageViewController* viewImageViewController = [segue destinationViewController];
         viewImageViewController.inkImage = [self.ink getInkImage];
     }
 }
 
-
-#pragma mark - Edit Text Delegate
-- (void)didFinishEnteringText:(NSString *)text {
-    [self.tableView reloadData];
-}
 
 #pragma mark - Ink Actions Delegate
 
@@ -258,8 +127,7 @@ typedef enum
     [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
 }
 
-- (IBAction)likeButtonPressed:(id)sender
-{
+- (IBAction)likeButtonPressed:(id)sender {
     if ([self.ink.loggedUserLikes boolValue]) {
         [self.actionsCell setLike:false];
         [InkitService unlikeInk:self.ink completion:^(id response, NSError *error) {
@@ -313,6 +181,76 @@ typedef enum
     [alert show];
 }
 
+#pragma mark - UICollectionViewDataSource
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        if (indexPath.section == 0) {
+            ViewInkCollectionReusableView* viewInk = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ViewInkCollectionReusableViewIdentifier forIndexPath:indexPath];
+            viewInk.ink = self.ink;
+            viewInk.inkTableView.inkTableViewDelegate = self;
+            return viewInk;
+        }
+    } else {
+        return [super collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
+    }
+    return nil;
+}
 
+#pragma mark - CollectionView Delegate
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    CGFloat height = 0;
+    if (section == 0) {
+        if ([self.ink getImageAspectRatio] > 0) {
+            height = collectionView.bounds.size.width/[self.ink getImageAspectRatio];
+        } else {
+            height = 300;
+        }
+        height += 60;
+        height += 44*3;
+    }
+    return CGSizeMake(collectionView.bounds.size.width, height);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ((indexPath.section == currentPage - 2) && (indexPath.item == ((NSArray *)self.inksArray[indexPath.section]).count - 1) ) {
+        [self getMoreInks];
+    }
+}
+
+- (void)getMoreInks {
+    [InkitService getDashboardInksForPage:currentPage withCompletion:^(id response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self hideActivityIndicator];
+//                [self.refreshControl endRefreshing];
+                if (!error) {
+                    [self getInksComplete:response];
+                } else {
+                    
+                }
+            });
+        }];
+}
+
+- (void)getInksComplete:(NSArray *)inksArray {
+    if(inksArray.count > 0) {
+        NSMutableArray* newArray = [[NSMutableArray alloc] initWithArray:inksArray];
+        if (currentPage == 1) {
+            self.inksArray = [[NSMutableArray alloc] init];
+        } else {
+            NSMutableArray* lastArray = (NSMutableArray *)self.inksArray[currentPage-2];
+            if (lastArray.count % 2) {
+                if (inksArray.count > 0) {
+                    [lastArray addObject:inksArray.firstObject];
+                    [newArray removeObject:newArray.firstObject];
+                }
+            }
+        }
+        [self.inksArray addObject:newArray];
+        currentPage++;
+        [self.inksCollectionView reloadData];
+    } else {
+        
+    }
+}
 
 @end

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InkActionsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0dZ-gE-qaP" customClass="ProfileImageView">
+                    <rect key="frame" x="8" y="8" width="44" height="44"/>
+                    <color key="backgroundColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="ESV-06-vTL"/>
+                        <constraint firstAttribute="width" constant="44" id="KbE-Ev-K3f"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oscar White" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bt-gQ-NIz">
+                    <rect key="frame" x="60" y="19.5" width="99.5" height="20.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcz-M6-IxQ">
+                    <rect key="frame" x="550" y="13" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="34" id="CY6-oq-p6S"/>
+                        <constraint firstAttribute="height" constant="34" id="MYi-wO-3iI"/>
+                    </constraints>
+                    <state key="normal" image="ViewInk-ReInk">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzt-aj-GfQ">
+                    <rect key="frame" x="508" y="13" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="1m6-lt-VUF"/>
+                        <constraint firstAttribute="width" constant="34" id="yxE-Ee-Ipc"/>
+                    </constraints>
+                    <state key="normal" image="ViewInk-Share">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtG-n0-ppu">
+                    <rect key="frame" x="466" y="13" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="PAW-Rv-Crc"/>
+                        <constraint firstAttribute="width" constant="34" id="ZFu-HD-z5D"/>
+                    </constraints>
+                    <state key="normal" image="ViewInk-Liked"/>
+                    <state key="highlighted" image="ViewInk-Liked"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="5bt-gQ-NIz" secondAttribute="centerY" constant="0.25" id="2bv-cA-R1P"/>
+                <constraint firstItem="0dZ-gE-qaP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="J1G-wP-rsI"/>
+                <constraint firstAttribute="centerY" secondItem="0dZ-gE-qaP" secondAttribute="centerY" id="KBS-io-267"/>
+                <constraint firstItem="Rzt-aj-GfQ" firstAttribute="leading" secondItem="XtG-n0-ppu" secondAttribute="trailing" constant="8" id="hi9-85-vum"/>
+                <constraint firstAttribute="centerY" secondItem="Rzt-aj-GfQ" secondAttribute="centerY" id="mOV-oW-TCv"/>
+                <constraint firstItem="Vcz-M6-IxQ" firstAttribute="leading" secondItem="Rzt-aj-GfQ" secondAttribute="trailing" constant="8" id="rZv-n5-G8Z"/>
+                <constraint firstItem="5bt-gQ-NIz" firstAttribute="leading" secondItem="0dZ-gE-qaP" secondAttribute="trailing" constant="8" id="vLB-3O-z23"/>
+                <constraint firstAttribute="centerY" secondItem="Vcz-M6-IxQ" secondAttribute="centerY" id="vZH-me-evi"/>
+                <constraint firstAttribute="trailing" secondItem="Vcz-M6-IxQ" secondAttribute="trailing" constant="16" id="vaZ-qJ-wlc"/>
+                <constraint firstAttribute="centerY" secondItem="XtG-n0-ppu" secondAttribute="centerY" id="wNU-98-ZaE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="likeButton" destination="XtG-n0-ppu" id="da8-DP-47K"/>
+                <outlet property="reInkButton" destination="Vcz-M6-IxQ" id="JCg-ER-iPw"/>
+                <outlet property="shareButton" destination="Rzt-aj-GfQ" id="2fD-vb-iSb"/>
+                <outlet property="userImageView" destination="0dZ-gE-qaP" id="jhS-QG-Kyo"/>
+                <outlet property="userNameLabel" destination="5bt-gQ-NIz" id="TAf-x8-b3e"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="ViewInk-Liked" width="23" height="27"/>
+        <image name="ViewInk-ReInk" width="34" height="34"/>
+        <image name="ViewInk-Share" width="25" height="25"/>
+    </resources>
+</document>

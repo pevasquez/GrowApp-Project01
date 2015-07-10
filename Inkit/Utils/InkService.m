@@ -594,8 +594,11 @@
             completion(@"There was a problem",[[NSError alloc] init]);
         }
     }];
-    
     [task resume];
+}
+
++ (void)getRelatedInksForInk:(DBInk*)ink andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
+    
 }
 
 @end

@@ -15,15 +15,16 @@
 @interface InkService : NSObject
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)updateInk:(DBInk *)ink withDictionary:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
 
 + (void)getDashboardInksForPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
 + (void)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
-
-+ (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-
 + (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)postComment:(NSString *)comment toInk:(DBInk*)ink completion:(ServiceResponse)completion;
 + (void)getCommentsForInk:(DBInk*)ink completion:(ServiceResponse)completion;
++ (void)getRelatedInksForInk:(DBInk*)ink andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
+
 @end

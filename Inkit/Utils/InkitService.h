@@ -48,4 +48,5 @@
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
 + (void)postComment:(NSString *)comment toInk:(DBInk*)ink completion:(ServiceResponse)completion;
 + (void)getCommentsForInk:(DBInk*)ink completion:(ServiceResponse)completion;
++ (void)getRelatedInksForInk:(DBInk*)ink andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
 @end

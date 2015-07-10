@@ -9,7 +9,6 @@
 #import "BrowseViewController.h"
 #import "DBInk+Management.h"
 #import "InkCollectionViewCell.h"
-#import "GADBannerCollectionViewCell.h"
 #import "GADBannerCollectionReusableView.h"
 #import "ViewInkViewController.h"
 #import "AppDelegate.h"
@@ -24,11 +23,9 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
 static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionViewCell";
 
 
-@interface BrowseViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate> {
-    NSInteger currentPage;
-}
-@property (weak, nonatomic) IBOutlet UICollectionView *browseCollectionView;
-@property (strong, nonatomic) NSMutableArray* inksArray;
+@interface BrowseViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
+//@property (weak, nonatomic) IBOutlet UICollectionView *browseCollectionView;
+//@property (strong, nonatomic) NSMutableArray* inksArray;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -51,7 +48,7 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.selectedIndexPath) {
-        [self.browseCollectionView reloadItemsAtIndexPaths:@[self.selectedIndexPath]];
+        [self.inksCollectionView reloadItemsAtIndexPaths:@[self.selectedIndexPath]];
     }
 }
 
@@ -61,8 +58,7 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.tintColor = [InkitTheme getTintColor];
     [self.refreshControl addTarget:self action:@selector(refreshCollectionViewData) forControlEvents:UIControlEventValueChanged];
-    [self.browseCollectionView addSubview:self.refreshControl];
-    [self.browseCollectionView registerNib:[UINib nibWithNibName:@"GADBannerCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BannerCollectionViewCellIdentifier];
+    [self.inksCollectionView addSubview:self.refreshControl];
 }
 
 - (void)refreshCollectionViewData {
@@ -115,7 +111,7 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
         }
         [self.inksArray addObject:newArray];
         currentPage++;
-        [self.browseCollectionView reloadData];
+        [self.inksCollectionView reloadData];
     } else {
         if (currentPage == 1 && self.isSearching) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Your search did not return any data" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -124,67 +120,55 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     }
 }
 
-#pragma mark - CollectionView DataSource
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.inksArray.count;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return ((NSArray *)self.inksArray[section]).count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
-    cell.ink = self.inksArray[indexPath.section][indexPath.item];
-    if (indexPath.item == ((NSArray *)self.inksArray[indexPath.section]).count - 1) {
-        [self getMoreInks];
-    }
-    return cell;
-}
-
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    GADBannerCollectionReusableView* cell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BannerCollectionViewCellIdentifier forIndexPath:indexPath];
-    cell.rootViewController = self;
-    if (indexPath.section % 2) {
-        cell.bannerImageView.image = [UIImage imageNamed:@"tcl"];
-    } else {
-        cell.bannerImageView.image = [UIImage imageNamed:@"dior"];
-    }
-    return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    switch ([UIView deviceType]) {
-        case iPhone4:
-        case iPhone5:
-            return CGSizeMake(collectionView.bounds.size.width, 85);
-            break;
-        case iPhone6:
-            return CGSizeMake(collectionView.bounds.size.width, 99);
-            break;
-        case iPhone6Plus:
-            return CGSizeMake(collectionView.bounds.size.width, 109);
-            break;
-        default:
-            return CGSizeMake(collectionView.bounds.size.width, 100);
-            break;
-    }
-}
-
-#pragma mark - CollectionView Delegate
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    double width = (screenBounds.size.width-12)/2;
-    return CGSizeMake(width, 344);
-}
+//#pragma mark - CollectionView DataSource
+//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//    GADBannerCollectionReusableView* cell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BannerCollectionViewCellIdentifier forIndexPath:indexPath];
+//    cell.rootViewController = self;
+//    if (indexPath.section % 2) {
+//        cell.bannerImageView.image = [UIImage imageNamed:@"tcl"];
+//    } else {
+//        cell.bannerImageView.image = [UIImage imageNamed:@"dior"];
+//    }
+//    return cell;
+//}
+//
+//#pragma mark - CollectionView Delegate
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+//    switch ([UIView deviceType]) {
+//        case iPhone4:
+//        case iPhone5:
+//            return CGSizeMake(collectionView.bounds.size.width, 85);
+//            break;
+//        case iPhone6:
+//            return CGSizeMake(collectionView.bounds.size.width, 99);
+//            break;
+//        case iPhone6Plus:
+//            return CGSizeMake(collectionView.bounds.size.width, 109);
+//            break;
+//        default:
+//            return CGSizeMake(collectionView.bounds.size.width, 100);
+//            break;
+//    }
+//}
+//
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//    double width = (screenBounds.size.width-12)/2;
+//    return CGSizeMake(width, 344);
+//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
     self.selectedIndexPath = indexPath;
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"ViewInkSegue" sender:indexPath];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item == ((NSArray *)self.inksArray[indexPath.section]).count - 1) {
+        [self getMoreInks];
+    }
 }
 
 #pragma mark - Search Methods
@@ -246,7 +230,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 }
 
 #pragma mark - Activity Indicator Methods
-
 - (void)showActivityIndicator {
     [GAProgressHUDHelper browseProgressHUD:self.view];
 }
@@ -256,7 +239,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 }
 
 #pragma mark - Appearence Methods
-
 - (void)customizeNavigationBar {
     self.title = NSLocalizedString(@"Browse",nil);
     self.navigationItem.rightBarButtonItem = self.searchButton;

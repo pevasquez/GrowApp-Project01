@@ -77,6 +77,11 @@
 		FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
 		FB09296B1B0AAD63005B3902 /* DBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB09296A1B0AAD63005B3902 /* DBBoard.m */; };
 		FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A40011A9D255900294F90 /* WaterfallLayout.m */; };
+		FB0A93811B4EA3A600717A0F /* InkTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0A93801B4EA3A600717A0F /* InkTableView.m */; };
+		FB0A93831B4EB0CC00717A0F /* InkImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A93821B4EB0CC00717A0F /* InkImageTableViewCell.xib */; };
+		FB0A93851B4EB44300717A0F /* InkDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A93841B4EB44300717A0F /* InkDescriptionTableViewCell.xib */; };
+		FB0A93871B4ED5B200717A0F /* InkCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A93861B4ED5B200717A0F /* InkCommentTableViewCell.xib */; };
+		FB0A938B1B4ED78100717A0F /* InkActionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A938A1B4ED78100717A0F /* InkActionsTableViewCell.xib */; };
 		FB1FF59E1B3DA633007572F7 /* GADBannerCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */; };
 		FB1FF5A11B3DACCE007572F7 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */; };
 		FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB249C311B11077400AE29F2 /* UIImage+Extension.m */; };
@@ -105,6 +110,12 @@
 		FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B85B1AA4C3CC00ED7ECD /* UserService.m */; };
 		FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
 		FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */; };
+		FB56E22F1B50240700FD39CF /* InkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB56E22E1B50240700FD39CF /* InkCollectionViewCell.xib */; };
+		FB56E2341B50266E00FD39CF /* InkUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB56E2331B50266E00FD39CF /* InkUserTableViewCell.xib */; };
+		FB56E2371B50279E00FD39CF /* InkInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56E2361B50279E00FD39CF /* InkInfoTableViewCell.m */; };
+		FB56E2391B5027D800FD39CF /* InkInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB56E2381B5027D800FD39CF /* InkInfoTableViewCell.xib */; };
+		FB56E23D1B5042A800FD39CF /* ViewInkCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56E23C1B5042A800FD39CF /* ViewInkCollectionReusableView.m */; };
+		FB56E23F1B5042CB00FD39CF /* ViewInkCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB56E23E1B5042CB00FD39CF /* ViewInkCollectionReusableView.xib */; };
 		FB5C4FCB1B1638B200B05593 /* GAProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FC81B1638B200B05593 /* GAProgressHUD.m */; };
 		FB5C4FCC1B1638B200B05593 /* GAProgressHUDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FCA1B1638B200B05593 /* GAProgressHUDHelper.m */; };
 		FB5C4FD01B1644B100B05593 /* DBInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5C4FCF1B1644B100B05593 /* DBInk.m */; };
@@ -118,6 +129,7 @@
 		FB8F5D441B44B341008E92C8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8F5D401B44B340008E92C8 /* FBSDKLoginKit.framework */; };
 		FBA038F01B122E5300700D93 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */; };
 		FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */; };
+		FBA1E9E81B5000D900E67EF1 /* ViewInksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA1E9E71B5000D900E67EF1 /* ViewInksViewController.m */; };
 		FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384191A892D92004C440A /* ViewInkViewController.m */; };
 		FBB3841E1A89308E004C440A /* InkImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB3841D1A89308E004C440A /* InkImageTableViewCell.m */; };
 		FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB384201A8930AD004C440A /* InkDescriptionTableViewCell.m */; };
@@ -161,11 +173,10 @@
 		FBD73CDF1B29A6BB005AFCBD /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CDD1B29A6BB005AFCBD /* EventKit.framework */; };
 		FBD73CE01B29A6BB005AFCBD /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CDE1B29A6BB005AFCBD /* EventKitUI.framework */; };
 		FBD73CE21B29A717005AFCBD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CE11B29A717005AFCBD /* StoreKit.framework */; };
-		FBD73CE51B29AB40005AFCBD /* GADBannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD73CE41B29AB40005AFCBD /* GADBannerCollectionViewCell.m */; };
 		FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */; };
 		FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */; };
 		FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */; };
-		FBD91E2C1A96795800B00724 /* ViewInksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E2B1A96795800B00724 /* ViewInksViewController.m */; };
+		FBD91E2C1A96795800B00724 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E2B1A96795800B00724 /* BoardViewController.m */; };
 		FBD91E301A9687F800B00724 /* InkCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E2F1A9687F800B00724 /* InkCollectionViewCell.m */; };
 		FBD91E331A9689EE00B00724 /* InkUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD91E321A9689EE00B00724 /* InkUserTableViewCell.m */; };
 		FBDCB1981A83EB1800E05053 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCB1971A83EB1800E05053 /* main.m */; };
@@ -269,6 +280,12 @@
 		FB09296A1B0AAD63005B3902 /* DBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBBoard.m; path = "Data Base/DB Subclasses/DBBoard.m"; sourceTree = "<group>"; };
 		FB0A40001A9D255900294F90 /* WaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaterfallLayout.h; path = "ViewControllers/View Inks/WaterfallLayout.h"; sourceTree = "<group>"; };
 		FB0A40011A9D255900294F90 /* WaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaterfallLayout.m; path = "ViewControllers/View Inks/WaterfallLayout.m"; sourceTree = "<group>"; };
+		FB0A937F1B4EA3A600717A0F /* InkTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkTableView.h; path = Inkit/ViewControllers/Common/InkTableView.h; sourceTree = "<group>"; };
+		FB0A93801B4EA3A600717A0F /* InkTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkTableView.m; path = Inkit/ViewControllers/Common/InkTableView.m; sourceTree = "<group>"; };
+		FB0A93821B4EB0CC00717A0F /* InkImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkImageTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.xib"; sourceTree = "<group>"; };
+		FB0A93841B4EB44300717A0F /* InkDescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkDescriptionTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkDescriptionTableViewCell.xib"; sourceTree = "<group>"; };
+		FB0A93861B4ED5B200717A0F /* InkCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkCommentTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkCommentTableViewCell.xib"; sourceTree = "<group>"; };
+		FB0A938A1B4ED78100717A0F /* InkActionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkActionsTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkActionsTableViewCell.xib"; sourceTree = "<group>"; };
 		FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GADBannerCollectionReusableView.xib; path = ViewControllers/Browse/GADBannerCollectionReusableView.xib; sourceTree = "<group>"; };
 		FB1FF59F1B3DACCE007572F7 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "Utils/UIView+Extension.h"; sourceTree = "<group>"; };
 		FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "Utils/UIView+Extension.m"; sourceTree = "<group>"; };
@@ -293,6 +310,14 @@
 		FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FB51B85F1AA5C7AE00ED7ECD /* EditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditImageViewController.h; path = Inkit/ViewControllers/Camera/EditImageViewController.h; sourceTree = "<group>"; };
 		FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditImageViewController.m; path = Inkit/ViewControllers/Camera/EditImageViewController.m; sourceTree = "<group>"; };
+		FB56E22E1B50240700FD39CF /* InkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkCollectionViewCell.xib; path = "ViewControllers/View Inks/InkCollectionViewCell.xib"; sourceTree = "<group>"; };
+		FB56E2331B50266E00FD39CF /* InkUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkUserTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkUserTableViewCell.xib"; sourceTree = "<group>"; };
+		FB56E2351B50279E00FD39CF /* InkInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkInfoTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkInfoTableViewCell.h"; sourceTree = "<group>"; };
+		FB56E2361B50279E00FD39CF /* InkInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkInfoTableViewCell.m; path = "Inkit/ViewControllers/View Ink/InkInfoTableViewCell.m"; sourceTree = "<group>"; };
+		FB56E2381B5027D800FD39CF /* InkInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkInfoTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkInfoTableViewCell.xib"; sourceTree = "<group>"; };
+		FB56E23B1B5042A800FD39CF /* ViewInkCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInkCollectionReusableView.h; path = "Inkit/ViewControllers/View Ink/ViewInkCollectionReusableView.h"; sourceTree = "<group>"; };
+		FB56E23C1B5042A800FD39CF /* ViewInkCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInkCollectionReusableView.m; path = "Inkit/ViewControllers/View Ink/ViewInkCollectionReusableView.m"; sourceTree = "<group>"; };
+		FB56E23E1B5042CB00FD39CF /* ViewInkCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewInkCollectionReusableView.xib; path = "Inkit/ViewControllers/View Ink/ViewInkCollectionReusableView.xib"; sourceTree = "<group>"; };
 		FB5C4FC71B1638B200B05593 /* GAProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAProgressHUD.h; path = ViewControllers/Common/GAProgressHUD.h; sourceTree = "<group>"; };
 		FB5C4FC81B1638B200B05593 /* GAProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GAProgressHUD.m; path = ViewControllers/Common/GAProgressHUD.m; sourceTree = "<group>"; };
 		FB5C4FC91B1638B200B05593 /* GAProgressHUDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAProgressHUDHelper.h; path = ViewControllers/Common/GAProgressHUDHelper.h; sourceTree = "<group>"; };
@@ -311,6 +336,8 @@
 		FBA038EE1B122E5300700D93 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTableViewCell.h; path = "Custom Classes/ImageTableViewCell.h"; sourceTree = "<group>"; };
 		FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTableViewCell.m; path = "Custom Classes/ImageTableViewCell.m"; sourceTree = "<group>"; };
 		FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageTableViewCell.xib; path = "Custom Classes/ImageTableViewCell.xib"; sourceTree = "<group>"; };
+		FBA1E9E61B5000D900E67EF1 /* ViewInksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInksViewController.h; path = ViewControllers/Common/ViewInksViewController.h; sourceTree = "<group>"; };
+		FBA1E9E71B5000D900E67EF1 /* ViewInksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInksViewController.m; path = ViewControllers/Common/ViewInksViewController.m; sourceTree = "<group>"; };
 		FBB384181A892D92004C440A /* ViewInkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInkViewController.h; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.h"; sourceTree = "<group>"; };
 		FBB384191A892D92004C440A /* ViewInkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInkViewController.m; path = "Inkit/ViewControllers/View Ink/ViewInkViewController.m"; sourceTree = "<group>"; };
 		FBB3841C1A89308E004C440A /* InkImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkImageTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.h"; sourceTree = "<group>"; };
@@ -385,8 +412,6 @@
 		FBD73CDD1B29A6BB005AFCBD /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		FBD73CDE1B29A6BB005AFCBD /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		FBD73CE11B29A717005AFCBD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		FBD73CE31B29AB40005AFCBD /* GADBannerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerCollectionViewCell.h; path = ViewControllers/Browse/GADBannerCollectionViewCell.h; sourceTree = "<group>"; };
-		FBD73CE41B29AB40005AFCBD /* GADBannerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GADBannerCollectionViewCell.m; path = ViewControllers/Browse/GADBannerCollectionViewCell.m; sourceTree = "<group>"; };
 		FBD86C061AAE29C300FA369C /* Inkitv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inkitv2.xcdatamodel; sourceTree = "<group>"; };
 		FBD91E0E1A960EDA00B00724 /* BoardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardsCollectionView.h; path = "Custom Classes/ViewBoards/BoardsCollectionView.h"; sourceTree = "<group>"; };
 		FBD91E0F1A960EDA00B00724 /* BoardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardsCollectionView.m; path = "Custom Classes/ViewBoards/BoardsCollectionView.m"; sourceTree = "<group>"; };
@@ -394,8 +419,8 @@
 		FBD91E131A96181600B00724 /* BoardCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardCollectionViewCell.m; path = "Custom Classes/ViewBoards/BoardCollectionViewCell.m"; sourceTree = "<group>"; };
 		FBD91E271A9668C100B00724 /* SelectBoardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectBoardTableViewController.h; path = "ViewControllers/Create Ink/SelectBoardTableViewController.h"; sourceTree = "<group>"; };
 		FBD91E281A9668C100B00724 /* SelectBoardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectBoardTableViewController.m; path = "ViewControllers/Create Ink/SelectBoardTableViewController.m"; sourceTree = "<group>"; };
-		FBD91E2A1A96795800B00724 /* ViewInksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInksViewController.h; path = "ViewControllers/View Inks/ViewInksViewController.h"; sourceTree = "<group>"; };
-		FBD91E2B1A96795800B00724 /* ViewInksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInksViewController.m; path = "ViewControllers/View Inks/ViewInksViewController.m"; sourceTree = "<group>"; };
+		FBD91E2A1A96795800B00724 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardViewController.h; path = "ViewControllers/View Inks/BoardViewController.h"; sourceTree = "<group>"; };
+		FBD91E2B1A96795800B00724 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardViewController.m; path = "ViewControllers/View Inks/BoardViewController.m"; sourceTree = "<group>"; };
 		FBD91E2E1A9687F800B00724 /* InkCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkCollectionViewCell.h; path = "ViewControllers/View Inks/InkCollectionViewCell.h"; sourceTree = "<group>"; };
 		FBD91E2F1A9687F800B00724 /* InkCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InkCollectionViewCell.m; path = "ViewControllers/View Inks/InkCollectionViewCell.m"; sourceTree = "<group>"; };
 		FBD91E311A9689EE00B00724 /* InkUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkUserTableViewCell.h; path = "Inkit/ViewControllers/View Ink/InkUserTableViewCell.h"; sourceTree = "<group>"; };
@@ -602,13 +627,42 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FB0A938C1B4F08C100717A0F /* Ink TableView */ = {
+			isa = PBXGroup;
+			children = (
+				FB0A937F1B4EA3A600717A0F /* InkTableView.h */,
+				FB0A93801B4EA3A600717A0F /* InkTableView.m */,
+				FBB3842B1A893946004C440A /* Ink Table View Cells */,
+			);
+			name = "Ink TableView";
+			sourceTree = "<group>";
+		};
+		FB0A938D1B4F08FC00717A0F /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				FBB696D11AAB86D90071D96B /* CommentsViewController.h */,
+				FBB696D21AAB86D90071D96B /* CommentsViewController.m */,
+				FBB696E21AABA7730071D96B /* Comments */,
+			);
+			name = Comments;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FB56E23A1B50423B00FD39CF /* Ink Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FBD91E2E1A9687F800B00724 /* InkCollectionViewCell.h */,
+				FBD91E2F1A9687F800B00724 /* InkCollectionViewCell.m */,
+				FB56E22E1B50240700FD39CF /* InkCollectionViewCell.xib */,
+			);
+			name = "Ink Collection View Cell";
+			sourceTree = "<group>";
+		};
 		FB76CAB11AB114E900B68BAD /* Browse */ = {
 			isa = PBXGroup;
 			children = (
 				FB76CAAE1AB114E400B68BAD /* BrowseViewController.h */,
 				FB76CAAF1AB114E400B68BAD /* BrowseViewController.m */,
-				FBD73CE31B29AB40005AFCBD /* GADBannerCollectionViewCell.h */,
-				FBD73CE41B29AB40005AFCBD /* GADBannerCollectionViewCell.m */,
 				FBB55B7B1B2B6C8200C705F4 /* GADBannerCollectionReusableView.h */,
 				FBB55B7C1B2B6C8200C705F4 /* GADBannerCollectionReusableView.m */,
 				FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */,
@@ -625,6 +679,18 @@
 				FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		FBA1E9E51B50009E00E67EF1 /* View Inks Collection View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FBA1E9E61B5000D900E67EF1 /* ViewInksViewController.h */,
+				FBA1E9E71B5000D900E67EF1 /* ViewInksViewController.m */,
+				FB56E23A1B50423B00FD39CF /* Ink Collection View Cell */,
+				FB0A40001A9D255900294F90 /* WaterfallLayout.h */,
+				FB0A40011A9D255900294F90 /* WaterfallLayout.m */,
+			);
+			name = "View Inks Collection View Controller";
 			sourceTree = "<group>";
 		};
 		FBB384171A892D59004C440A /* Create Ink */ = {
@@ -649,35 +715,43 @@
 			children = (
 				FBB384181A892D92004C440A /* ViewInkViewController.h */,
 				FBB384191A892D92004C440A /* ViewInkViewController.m */,
-				FBB3842B1A893946004C440A /* View Ink Table View Cells */,
-				FBB696D11AAB86D90071D96B /* CommentsViewController.h */,
-				FBB696D21AAB86D90071D96B /* CommentsViewController.m */,
-				FBB696E21AABA7730071D96B /* Comments */,
+				FB56E23B1B5042A800FD39CF /* ViewInkCollectionReusableView.h */,
+				FB56E23C1B5042A800FD39CF /* ViewInkCollectionReusableView.m */,
+				FB56E23E1B5042CB00FD39CF /* ViewInkCollectionReusableView.xib */,
+				FB0A938C1B4F08C100717A0F /* Ink TableView */,
 			);
 			name = "View Ink";
 			path = ..;
 			sourceTree = "<group>";
 		};
-		FBB3842B1A893946004C440A /* View Ink Table View Cells */ = {
+		FBB3842B1A893946004C440A /* Ink Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
 				FBB3841C1A89308E004C440A /* InkImageTableViewCell.h */,
 				FBB3841D1A89308E004C440A /* InkImageTableViewCell.m */,
+				FB0A93821B4EB0CC00717A0F /* InkImageTableViewCell.xib */,
 				FBB3841F1A8930AD004C440A /* InkDescriptionTableViewCell.h */,
 				FBB384201A8930AD004C440A /* InkDescriptionTableViewCell.m */,
+				FB0A93841B4EB44300717A0F /* InkDescriptionTableViewCell.xib */,
 				FBB384221A893102004C440A /* InkActionsTableViewCell.h */,
 				FBB384231A893102004C440A /* InkActionsTableViewCell.m */,
+				FB0A938A1B4ED78100717A0F /* InkActionsTableViewCell.xib */,
 				FBB384251A893128004C440A /* InkCommentTableViewCell.h */,
 				FBB384261A893128004C440A /* InkCommentTableViewCell.m */,
+				FB0A93861B4ED5B200717A0F /* InkCommentTableViewCell.xib */,
 				FBD91E311A9689EE00B00724 /* InkUserTableViewCell.h */,
 				FBD91E321A9689EE00B00724 /* InkUserTableViewCell.m */,
+				FB56E2331B50266E00FD39CF /* InkUserTableViewCell.xib */,
 				FBE51D231B3D6F790059EB72 /* InkBoardTableViewCell.h */,
 				FBE51D241B3D6F790059EB72 /* InkBoardTableViewCell.m */,
 				FBE51D251B3D6F790059EB72 /* InkBoardTableViewCell.xib */,
+				FB56E2351B50279E00FD39CF /* InkInfoTableViewCell.h */,
+				FB56E2361B50279E00FD39CF /* InkInfoTableViewCell.m */,
+				FB56E2381B5027D800FD39CF /* InkInfoTableViewCell.xib */,
 				FBB384321A894168004C440A /* ViewInkTableViewCell.h */,
 				FBB384331A894168004C440A /* ViewInkTableViewCell.m */,
 			);
-			name = "View Ink Table View Cells";
+			name = "Ink Table View Cells";
 			sourceTree = "<group>";
 		};
 		FBB384421A895B21004C440A /* Camera */ = {
@@ -816,6 +890,7 @@
 				FBB384421A895B21004C440A /* Camera */,
 				FBB384171A892D59004C440A /* Create Ink */,
 				FBB3841B1A892D9A004C440A /* View Ink */,
+				FB0A938D1B4F08FC00717A0F /* Comments */,
 				86E14A1C1B44289D00D3B432 /* ZoomScrollView */,
 			);
 			name = Inks;
@@ -916,17 +991,13 @@
 			name = "Temp Images";
 			sourceTree = "<group>";
 		};
-		FBD91E2D1A96795C00B00724 /* View Inks */ = {
+		FBD91E2D1A96795C00B00724 /* Board View Contorller */ = {
 			isa = PBXGroup;
 			children = (
-				FBD91E2A1A96795800B00724 /* ViewInksViewController.h */,
-				FBD91E2B1A96795800B00724 /* ViewInksViewController.m */,
-				FBD91E2E1A9687F800B00724 /* InkCollectionViewCell.h */,
-				FBD91E2F1A9687F800B00724 /* InkCollectionViewCell.m */,
-				FB0A40001A9D255900294F90 /* WaterfallLayout.h */,
-				FB0A40011A9D255900294F90 /* WaterfallLayout.m */,
+				FBD91E2A1A96795800B00724 /* BoardViewController.h */,
+				FBD91E2B1A96795800B00724 /* BoardViewController.m */,
 			);
-			name = "View Inks";
+			name = "Board View Contorller";
 			sourceTree = "<group>";
 		};
 		FBDCB1891A83EB1700E05053 = {
@@ -1030,7 +1101,8 @@
 				FB76CAB11AB114E900B68BAD /* Browse */,
 				FBCCAF981A8CF6630052DCB9 /* Inks */,
 				FBCCAF991A8CF69D0052DCB9 /* Boards */,
-				FBD91E2D1A96795C00B00724 /* View Inks */,
+				FBD91E2D1A96795C00B00724 /* Board View Contorller */,
+				FBA1E9E51B50009E00E67EF1 /* View Inks Collection View Controller */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1193,17 +1265,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB56E22F1B50240700FD39CF /* InkCollectionViewCell.xib in Resources */,
 				86F8A44F1B00FFB4007955C6 /* Main.storyboard in Resources */,
 				86C5A6CF1AFFE69900449FA7 /* OnBoarding.storyboard in Resources */,
+				FB56E23F1B5042CB00FD39CF /* ViewInkCollectionReusableView.xib in Resources */,
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
+				FB0A93831B4EB0CC00717A0F /* InkImageTableViewCell.xib in Resources */,
+				FB56E2341B50266E00FD39CF /* InkUserTableViewCell.xib in Resources */,
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
+				FB56E2391B5027D800FD39CF /* InkInfoTableViewCell.xib in Resources */,
 				FBE5F2EF1B3C4B8100811C4F /* CommentBarView.xib in Resources */,
 				FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */,
 				FB1FF59E1B3DA633007572F7 /* GADBannerCollectionReusableView.xib in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
+				FB0A93851B4EB44300717A0F /* InkDescriptionTableViewCell.xib in Resources */,
+				FB0A93871B4ED5B200717A0F /* InkCommentTableViewCell.xib in Resources */,
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
 				FBE51D271B3D6F790059EB72 /* InkBoardTableViewCell.xib in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
+				FB0A938B1B4ED78100717A0F /* InkActionsTableViewCell.xib in Resources */,
 				FBF9F9E61B060F1900357F5B /* TextFieldTableViewCell.xib in Resources */,
 				8673CB1D1AFA6F9100179FA2 /* GooglePlus.bundle in Resources */,
 				FBC4330A1A85472200EFAA24 /* PermanentMarker.ttf in Resources */,
@@ -1267,14 +1347,17 @@
 				FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */,
 				86DC98F81AC4955700A39C28 /* DataManager.m in Sources */,
 				86DC990D1AC9E3E400A39C28 /* DBArtist+Management.m in Sources */,
+				FBA1E9E81B5000D900E67EF1 /* ViewInksViewController.m in Sources */,
 				FBB696DF1AAB9D4F0071D96B /* UserNameLabel.m in Sources */,
 				FBE704631AF6CFB80041DD0E /* DBImage.m in Sources */,
 				FBC432FD1A853BC500EFAA24 /* InkitTabBarController.m in Sources */,
-				FBD91E2C1A96795800B00724 /* ViewInksViewController.m in Sources */,
+				FB56E23D1B5042A800FD39CF /* ViewInkCollectionReusableView.m in Sources */,
+				FBD91E2C1A96795800B00724 /* BoardViewController.m in Sources */,
 				FBCCAF931A8CF2420052DCB9 /* DBBoard+Management.m in Sources */,
 				86647CBA1AF403830013658A /* FacebookManager.m in Sources */,
 				FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */,
 				86DC98E91AC32E3200A39C28 /* UserTypeViewController.m in Sources */,
+				FB0A93811B4EA3A600717A0F /* InkTableView.m in Sources */,
 				FBD2FEE81ADB550F005D1AAE /* DBArtist.m in Sources */,
 				FBB696D01AAB841C0071D96B /* DBComment+Management.m in Sources */,
 				FBB3841A1A892D92004C440A /* ViewInkViewController.m in Sources */,
@@ -1295,8 +1378,8 @@
 				FB5C4FD31B1644B200B05593 /* DBUser.m in Sources */,
 				FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */,
 				FBE51D261B3D6F790059EB72 /* InkBoardTableViewCell.m in Sources */,
+				FB56E2371B50279E00FD39CF /* InkInfoTableViewCell.m in Sources */,
 				86BF40A51B122999004E9025 /* FormViewController.m in Sources */,
-				FBD73CE51B29AB40005AFCBD /* GADBannerCollectionViewCell.m in Sources */,
 				FB76CAB01AB114E400B68BAD /* BrowseViewController.m in Sources */,
 				FB0711871AAF0318004EBBD1 /* InkService.m in Sources */,
 				FBB696D31AAB86D90071D96B /* CommentsViewController.m in Sources */,

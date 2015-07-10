@@ -8,6 +8,7 @@
 
 #import "ViewInkTableViewCell.h"
 
+
 @implementation ViewInkTableViewCell
 
 - (void)layoutSubviews {

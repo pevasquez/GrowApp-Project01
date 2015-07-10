@@ -139,4 +139,7 @@
     [InkService getCommentsForInk:ink completion:completion];
 }
 
++ (void)getRelatedInksForInk:(DBInk*)ink andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
+    [InkService getRelatedInksForInk:ink andPage:page withCompletion:completion];
+}
 @end

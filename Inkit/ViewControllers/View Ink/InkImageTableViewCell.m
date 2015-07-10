@@ -14,13 +14,11 @@
 @end
 
 @implementation InkImageTableViewCell
-- (void)configureForInk:(DBInk *)ink
-{
+- (void)configureForInk:(DBInk *)ink {
     self.ink = ink;
 }
 
-- (void)configureForInk
-{
+- (void)configureForInk {
     if (self.bounds.size.width < [UIScreen mainScreen].bounds.size.width/2) {
         [self.ink.thumbnailImage setInImageView:self.inkImageView];
     } else {
@@ -29,14 +27,22 @@
     self.inkImageView.clipsToBounds = YES;
 }
 
-- (void)prepareForReuse
-{
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (self.bounds.size.width < [UIScreen mainScreen].bounds.size.width/2) {
+        [self.ink.thumbnailImage setInImageView:self.inkImageView];
+    } else {
+        [self.ink.fullScreenImage setInImageView:self.inkImageView];
+    }
+    self.inkImageView.clipsToBounds = YES;
+}
+
+- (void)prepareForReuse {
     [super prepareForReuse];
     self.inkImageView.image = nil;
 }
 
-- (double)getInkImageHeightForImage:(UIImage *)inkImage
-{
+- (double)getInkImageHeightForImage:(UIImage *)inkImage {
     CGSize inkImageSize = inkImage.size;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     double newInkImageHeight = inkImageSize.height * screenSize.width / inkImageSize.width;

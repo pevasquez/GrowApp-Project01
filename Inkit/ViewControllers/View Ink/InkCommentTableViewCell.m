@@ -15,13 +15,23 @@
 
 @implementation InkCommentTableViewCell
 
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    [self configureForInk];
-//}
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if ([self.ink.comments count] > 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comments", (unsigned long)[self.ink.comments count]];
+    } else if ([self.ink.comments count] == 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comment", (unsigned long)[self.ink.comments count]];
+    } else {
+        self.commentLabel.text = @"Add Comment";
+    }
+}
 
-- (void)configureForInk
-{
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.commentLabel.text = @"";
+}
+
+- (void)configureForInk {
     if ([self.ink.comments count] > 1) {
         self.commentLabel.text = [NSString stringWithFormat:@"%lu Comments", (unsigned long)[self.ink.comments count]];
     } else if ([self.ink.comments count] == 1) {

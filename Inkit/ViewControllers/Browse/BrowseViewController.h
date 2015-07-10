@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewInksViewController.h"
 
-@interface BrowseViewController : UIViewController
+@interface BrowseViewController : ViewInksViewController
 
 @end

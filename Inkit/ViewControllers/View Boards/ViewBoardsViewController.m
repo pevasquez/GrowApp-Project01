@@ -7,7 +7,7 @@
 //
 
 #import "ViewBoardsViewController.h"
-#import "ViewInksViewController.h"
+#import "BoardViewController.h"
 #import "CreateBoardViewController.h"
 #import "BoardsCollectionView.h"
 #import "BoardCollectionViewCell.h"
@@ -111,9 +111,9 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 #pragma mark - Navigation Methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue destinationViewController] isKindOfClass:[ViewInksViewController class]] && [sender isKindOfClass:[NSIndexPath class]]) {
+    if ([[segue destinationViewController] isKindOfClass:[BoardViewController class]] && [sender isKindOfClass:[NSIndexPath class]]) {
         NSIndexPath* indexPath = (NSIndexPath *)sender;
-        ViewInksViewController* viewInksViewController = [segue destinationViewController];
+        BoardViewController* viewInksViewController = [segue destinationViewController];
         DBBoard* board = self.boardsArray[indexPath.row];
         viewInksViewController.inksArray = [board getInksFromBoard];
         viewInksViewController.title = board.boardTitle;

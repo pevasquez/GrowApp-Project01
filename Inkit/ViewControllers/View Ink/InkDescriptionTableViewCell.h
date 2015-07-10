@@ -11,5 +11,5 @@
 #import "DBInk+Management.h"
 
 @interface InkDescriptionTableViewCell : ViewInkTableViewCell
-- (void)configureForDescription:(NSString *)description;
+//- (void)configureForDescription:(NSString *)description;
 @end
