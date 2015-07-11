@@ -17,10 +17,10 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if ([self.ink.comments count] > 1) {
-        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comments", (unsigned long)[self.ink.comments count]];
-    } else if ([self.ink.comments count] == 1) {
-        self.commentLabel.text = [NSString stringWithFormat:@"%lu Comment", (unsigned long)[self.ink.comments count]];
+    if (self.ink.commentsCount.integerValue > 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%@ Comments", self.ink.commentsCount];
+    } else if (self.ink.commentsCount.integerValue == 1) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%@ Comment", self.ink.commentsCount];
     } else {
         self.commentLabel.text = @"Add Comment";
     }

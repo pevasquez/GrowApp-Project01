@@ -115,7 +115,7 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
         NSIndexPath* indexPath = (NSIndexPath *)sender;
         BoardViewController* viewInksViewController = [segue destinationViewController];
         DBBoard* board = self.boardsArray[indexPath.row];
-        viewInksViewController.inksArray = [board getInksFromBoard];
+//        viewInksViewController.inksArray = [board getInksFromBoard];
         viewInksViewController.title = board.boardTitle;
         viewInksViewController.board = board;
     }

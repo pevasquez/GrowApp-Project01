@@ -47,9 +47,7 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
 @interface ViewInkViewController() <InkTableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (strong, nonatomic) InkActionsTableViewCell* actionsCell;
-//@property (weak, nonatomic) IBOutlet InkTableView *inkTableView;
-
+@property (strong, nonatomic) InkTableView* inkTableView;
 @end
 
 @implementation ViewInkViewController
@@ -127,53 +125,46 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
     [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
 }
 
-- (IBAction)likeButtonPressed:(id)sender {
+- (void)likeButtonPressedForInkTableView:(InkTableView *)inkTableView {
     if ([self.ink.loggedUserLikes boolValue]) {
-        [self.actionsCell setLike:false];
+        [self.inkTableView setLike:false];
         [InkitService unlikeInk:self.ink completion:^(id response, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
-                    [self.actionsCell setLike:true];
+                    [self.inkTableView setLike:true];
                 }
             });
         }];
     } else {
-        [self.actionsCell setLike:true];
+        [self.inkTableView setLike:true];
         [InkitService likeInk:self.ink completion:^(id response, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
-                    [self.actionsCell setLike:false];
+                    [self.inkTableView setLike:false];
                 }
             });
         }];
     }
 }
 
-- (void)likeInkError: (NSString*)error {
-    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-}
-
-- (IBAction)reInkButtonPressed:(id)sender {
+- (void)reInkButtonPressedForInkTableView:(InkTableView *)inkTableView {
     [self performSegueWithIdentifier:@"ReInkSegue" sender:nil];
 }
 
-
-- (IBAction)shareButtonPressed:(id)sender {
+- (void)shareButtonPressedForInkTableView:(InkTableView *)inkTableView {
     NSString *message = [NSString stringWithFormat:@"Check out the new Ink %@ I've posted",self.ink.inkDescription];
     
     UIImage *image = [self.ink.image getImage];
     
     NSArray *shareItems = nil;
     if (image) {
-       shareItems = @[message, image];
+        shareItems = @[message, image];
     } else {
         shareItems = @[message];
     }
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:shareItems
                                                                              applicationActivities:nil];
     [self presentViewController:activityVC animated:YES completion:nil];
-    
 }
 
 - (void)showAlertForMessage:(NSString *)errorMessage {
@@ -188,6 +179,7 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
             ViewInkCollectionReusableView* viewInk = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ViewInkCollectionReusableViewIdentifier forIndexPath:indexPath];
             viewInk.ink = self.ink;
             viewInk.inkTableView.inkTableViewDelegate = self;
+            self.inkTableView = viewInk.inkTableView;
             return viewInk;
         }
     } else {
@@ -222,7 +214,7 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
             dispatch_async(dispatch_get_main_queue(), ^{
 //                [self hideActivityIndicator];
 //                [self.refreshControl endRefreshing];
-                if (!error) {
+                if (error == nil) {
                     [self getInksComplete:response];
                 } else {
                     

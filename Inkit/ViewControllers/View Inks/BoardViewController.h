@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewInksViewController.h"
 #import "DBBoard+Management.h"
 
-@interface BoardViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
-@property (strong, nonatomic) NSArray* inksArray;
+@interface BoardViewController : ViewInksViewController
 @property (strong, nonatomic) DBBoard* board;
 @end

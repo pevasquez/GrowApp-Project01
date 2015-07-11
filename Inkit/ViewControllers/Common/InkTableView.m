@@ -9,6 +9,7 @@
 #import "InkTableView.h"
 #import "ViewInkTableViewCell.h"
 #import "DBInk+Management.h"
+#import "InkActionsTableViewCell.h"
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
@@ -30,8 +31,8 @@ typedef enum {
 #define kInkActionsCellHeight   60
 #define kInkCommentCellHeight   44
 
-@interface InkTableView()
-
+@interface InkTableView() <InkActionsDelegate>
+@property (strong, nonatomic) InkActionsTableViewCell* inkActionsTableViewCell;
 @end
 
 @implementation InkTableView
@@ -92,6 +93,10 @@ typedef enum {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
     ViewInkTableViewCell* cell = [self dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.ink = self.ink;
+    if ([cell isKindOfClass:[InkActionsTableViewCell class]]) {
+        ((InkActionsTableViewCell *)cell).delegate = self;
+        self.inkActionsTableViewCell = (InkActionsTableViewCell *)cell;
+    }
     return cell;
 }
 
@@ -139,7 +144,9 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-    [self.inkTableViewDelegate inkTableView:self didSelectRowAtIndexPath:indexPath];
+    if ([self.inkTableViewDelegate respondsToSelector:@selector(inkTableView:didSelectRowAtIndexPath:)]) {
+        [self.inkTableViewDelegate inkTableView:self didSelectRowAtIndexPath:indexPath];
+    }
 }
 
 #pragma mark - Helper Methods
@@ -181,4 +188,26 @@ typedef enum {
     return cellIdentifier;
 }
 
+#pragma mark - Ink Actions Delegate
+- (void)shareButtonPressedForInkActionsTableViewCell:(InkActionsTableViewCell *)inkActionsTableViewCell {
+    if ([self.inkTableViewDelegate respondsToSelector:@selector(shareButtonPressedForInkTableView:)]) {
+        [self.inkTableViewDelegate shareButtonPressedForInkTableView:self];
+    }
+}
+
+- (void)likeButtonPressedForInkActionsTableViewCell:(InkActionsTableViewCell *)inkActionsTableViewCell {
+    if ([self.inkTableViewDelegate respondsToSelector:@selector(likeButtonPressedForInkTableView:)]) {
+        [self.inkTableViewDelegate likeButtonPressedForInkTableView:self];
+    }
+}
+
+- (void)reInkButtonPressedForInkActionsTableViewCell:(InkActionsTableViewCell *)inkActionsTableViewCell {
+    if ([self.inkTableViewDelegate respondsToSelector:@selector(reInkButtonPressedForInkTableView:)]) {
+        [self.inkTableViewDelegate reInkButtonPressedForInkTableView:self];
+    }
+}
+
+- (void)setLike:(BOOL)selected {
+    [self.inkActionsTableViewCell setLike:selected];
+}
 @end

@@ -76,4 +76,24 @@
     }
 }
 
+#pragma mark - Actions
+- (IBAction)likeButtonPressed:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(likeButtonPressedForInkActionsTableViewCell:)]) {
+        [self.delegate likeButtonPressedForInkActionsTableViewCell:self];
+    }
+}
+
+- (IBAction)shareButtonPressed:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(shareButtonPressedForInkActionsTableViewCell:)]) {
+        [self.delegate shareButtonPressedForInkActionsTableViewCell:self];
+    }
+}
+
+- (IBAction)reInkButtonPressed:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(reInkButtonPressedForInkActionsTableViewCell:)]) {
+        [self.delegate reInkButtonPressedForInkActionsTableViewCell:self];
+    }
+}
+
+
 @end

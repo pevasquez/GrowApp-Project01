@@ -23,6 +23,7 @@
 @dynamic extraData;
 @dynamic inkDescription;
 @dynamic inkID;
+@dynamic commentsCount;
 @dynamic likesCount;
 @dynamic reInksCount;
 @dynamic updatedAt;

@@ -33,6 +33,9 @@
                     <state key="normal" image="ViewInk-ReInk">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="reInkButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="lna-Mp-LCR"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzt-aj-GfQ">
                     <rect key="frame" x="508" y="13" width="34" height="34"/>
@@ -43,6 +46,9 @@
                     <state key="normal" image="ViewInk-Share">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="shareButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Q5W-Zo-VcR"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtG-n0-ppu">
                     <rect key="frame" x="466" y="13" width="34" height="34"/>
@@ -52,6 +58,9 @@
                     </constraints>
                     <state key="normal" image="ViewInk-Liked"/>
                     <state key="highlighted" image="ViewInk-Liked"/>
+                    <connections>
+                        <action selector="likeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="QZb-vL-XfW"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

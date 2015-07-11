@@ -28,6 +28,7 @@ NSString *const JSONInkDescription = @"description";
 NSString *const JSONInkCreatedAt = @"created_at";
 NSString *const JSONInkUpdatedAt = @"updated_at";
 NSString *const JSONInkUser = @"user";
+NSString *const JSONInkCommentsCount = @"comments_count";
 NSString *const JSONInkLikesCount = @"likes_count";
 NSString *const JSONInkReInksCount = @"reinks_count";
 NSString *const JSONInkBoard = @"board";
@@ -111,8 +112,8 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
         else if ([key isEqualToString:JSONInkReInksCount]) {
             self.reInksCount = value;
         }
-        else if ([key isEqualToString:JSONInkExtraData]) {
-            
+        else if ([key isEqualToString:JSONInkCommentsCount]) {
+            self.commentsCount = value;
         }
         else if ([key isEqualToString:JSONInkBoard]) {
             self.board = [DBBoard fromJson:value[@"data"]];

@@ -16,7 +16,7 @@
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";
 
 @interface BoardViewController ()
-@property (weak, nonatomic) IBOutlet UICollectionView *inksCollectionView;
+//@property (weak, nonatomic) IBOutlet UICollectionView *inksCollectionView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -34,6 +34,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
         self.navigationItem.rightBarButtonItem = nil;
     }
     self.title = self.board.boardTitle;
+    self.inksArray = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,7 +49,8 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self hideActitivyIndicator];
                 if (error == nil) {
-                    self.inksArray = [self.board getInksFromBoard];
+//                    [self getInksComplete:response];
+                    [self.inksArray addObject:[self.board getInksFromBoard]];
                     [self.inksCollectionView reloadData];
                 } else {
                     [self showAlertForMessage:response];
@@ -58,28 +60,29 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     }
 }
 
-#pragma mark - CollectionView Data Source
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+- (void)getInksComplete:(NSArray *)inksArray {
+    if(inksArray.count > 0) {
+        NSMutableArray* newArray = [[NSMutableArray alloc] initWithArray:inksArray];
+        if (currentPage == 1) {
+            self.inksArray = [[NSMutableArray alloc] init];
+        } else {
+            NSMutableArray* lastArray = (NSMutableArray *)self.inksArray[currentPage-2];
+            if (lastArray.count % 2) {
+                if (inksArray.count > 0) {
+                    [lastArray addObject:inksArray.firstObject];
+                    [newArray removeObject:newArray.firstObject];
+                }
+            }
+        }
+        [self.inksArray addObject:newArray];
+        currentPage++;
+        [self.inksCollectionView reloadData];
+    } else {
+        
+    }
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.inksArray count];
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
-    cell.ink = self.inksArray[indexPath.row];
-    return cell;
-}
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    double width = (screenBounds.size.width-12)/2;
-
-    return CGSizeMake(width, 344);
-}
-
+#pragma mark - UICollectionView Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"ViewInkSegue" sender:indexPath];
@@ -90,7 +93,7 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     if ([[segue destinationViewController] isKindOfClass:[ViewInkViewController class]] && [sender isKindOfClass:[NSIndexPath class]]) {
         NSIndexPath* indexPath = (NSIndexPath *)sender;
         ViewInkViewController* viewInkViewController = [segue destinationViewController];
-        viewInkViewController.ink = self.inksArray[indexPath.row];;
+        viewInkViewController.ink = self.inksArray[indexPath.section][indexPath.row];
     } else if ([[segue destinationViewController] isKindOfClass:[CreateBoardViewController class]]) {
         CreateBoardViewController* createBoardViewController = [segue destinationViewController];
         createBoardViewController.board = self.board;
