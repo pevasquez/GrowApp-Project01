@@ -11,6 +11,27 @@
 #import "DBImage+Management.h"
 
 #define kDBUser     @"DBUser"
+NSString *const JSONUserStyles = @"styles";
+NSString *const JSONUserCountry = @"country";
+NSString *const JSONUserGender = @"gender";
+NSString *const JSONUserCity = @"city";
+NSString *const JSONUserEmail = @"email";
+NSString *const JSONUserProfilePic = @"profile_pic";
+NSString *const JSONUserProfilePicThumbnail = @"profile_pic_thumbnail";
+NSString *const JSONUserFirstName = @"first_name";
+NSString *const JSONUserLastName = @"last_name";
+NSString *const JSONUserFullName = @"full_name";
+NSString *const JSONUserName = @"name";
+NSString *const JSONUserProfileUrl = @"profile_url";
+NSString *const JSONUserCreatedAt = @"created_at";
+NSString *const JSONUserUpdatedAt = @"updated_at";
+NSString *const JSONUserDefaultLanguage = @"default_language";
+NSString *const JSONUserArtistShopData = @"artist_shop_data";
+NSString *const JSONUserInksLikedCounts = @"inks_liked_counts";
+NSString *const JSONUserFollowersCount = @"followers_count";
+NSString *const JSONUserBoardsCount = @"boards_count";
+NSString *const JSONUserSocialNetworks = @"social_networks";
+NSString *const JSONUserAccessToken = @"access_token";
 
 @implementation DBUser (Management)
 + (DBUser *)newUser {
@@ -48,59 +69,80 @@
     return user;
 }
 
-- (void)updateWithJson:(NSDictionary *)jsonDictionary {
-    if ([jsonDictionary objectForKey:@"styles"])
-        self.styles = jsonDictionary[@"styles"];
-    if ([jsonDictionary objectForKey:kUserID])
-        self.userID = [NSString stringWithFormat:@"%@",jsonDictionary[kUserID]];
-    if ([jsonDictionary objectForKey:@"country"])
-        self.country = jsonDictionary[@"country"];
-    if ([jsonDictionary objectForKey:@"gender"])
-        self.gender = jsonDictionary[@"gender"];
-    if ([jsonDictionary objectForKey:@"city"])
-        self.city = jsonDictionary[@"city"];
-    if ([jsonDictionary objectForKey:@"email"])
-        self.email = jsonDictionary[@"email"];
-    if ([jsonDictionary objectForKey:@"profile_pic"])
-        self.profilePic = [DBImage fromURL:jsonDictionary[@"profile_pic"]];
-    if ([jsonDictionary objectForKey:@"profile_pic_thumbnail"])
-        self.profilePicThumbnail = [DBImage fromURL:jsonDictionary[@"profile_pic_thumbnail"]];
-    if ([jsonDictionary objectForKey:@"first_name"])
-        self.firstName = jsonDictionary[@"first_name"];
-    if ([jsonDictionary objectForKey:@"last_name"])
-        self.lastName = jsonDictionary[@"last_name"];
-    if ([jsonDictionary objectForKey:@"full_name"])
-        self.fullName = jsonDictionary[@"full_name"];
-    if ([jsonDictionary objectForKey:@"name"])
-        self.fullName = jsonDictionary[@"name"];
-    if ([jsonDictionary objectForKey:@"profile_url"])
-        self.profileURL = jsonDictionary[@"profile_url"];
-    if ([jsonDictionary objectForKey:@"created_at"])
-        self.createdAt = [NSDate fromUnixTimeStamp:jsonDictionary[@"created_at"]];
-    if ([jsonDictionary objectForKey:@"updated_at"])
-        self.updatedAt = [NSDate fromUnixTimeStamp:jsonDictionary[@"created_at"]];
-    if ([jsonDictionary objectForKey:@"default_language"])
-        self.defaultLanguage = jsonDictionary[@"default_language"];
-    if ([jsonDictionary objectForKey:@"artist_shop_data"])
-        self.artistShopData = jsonDictionary[@"artist_shop_data"];
-    if ([jsonDictionary objectForKey:@"inks_liked_counts"])
-        self.inksLikedCount = jsonDictionary[@"inks_liked_counts"];
-    if ([jsonDictionary objectForKey:@"followers_count"])
-        self.followersCount = jsonDictionary[@"followers_count"];
-    if ([jsonDictionary objectForKey:@"boards_count"])
-        self.boardsCount = jsonDictionary[@"boards_count"];
-    if ([jsonDictionary objectForKey:@"social_networks"])
-        self.socialNetworks = jsonDictionary[@"social_networks"];
-    if ([jsonDictionary objectForKey:kAccessToken]) {
-        self.token = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
-        self.userID = [NSString stringWithFormat:@"%@",[jsonDictionary objectForKey:kAccessToken]];
-    }
-//    if ([jsonDictionary objectForKey:@"artists"])
-//        self.artists = jsonDictionary[@"artists"];
-//    if ([jsonDictionary objectForKey:@"shops"])
-//        self.shops = jsonDictionary[@"shops"];
-//    if ([jsonDictionary objectForKey:@"tattoo_types"])
-//        self.tattooTypes = jsonDictionary[@"tattoo_types"];
+- (void)updateWithJson:(NSDictionary *)JSONUserDictionary {
+    [JSONUserDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        // Ignore the key / value pair if the value is NSNull.
+
+        if ([value isEqual:[NSNull null]]) {
+            return;
+        }
+        
+        if ([key isEqualToString:JSONUserStyles]) {
+            self.styles = value;
+        }
+        else if ([key isEqualToString:JSONUserCountry]) {
+            self.country = value;
+        }
+        else if ([key isEqualToString:JSONUserGender]) {
+            self.gender = value;
+        }
+        else if ([key isEqualToString:JSONUserCity]) {
+            self.city = value;
+        }
+        else if ([key isEqualToString:JSONUserEmail]) {
+            self.email = value;
+        }
+        else if ([key isEqualToString:JSONUserProfilePic]) {
+            self.profilePic = [DBImage fromURL:JSONUserDictionary[@"profile_pic"]];
+        }
+        else if ([key isEqualToString:JSONUserProfilePicThumbnail]) {
+            self.profilePicThumbnail = [DBImage fromURL:JSONUserDictionary[@"profile_pic_thumbnail"]];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserFirstName]) {
+            self.firstName = value;
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserLastName]) {
+            self.lastName = value;
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserFullName]) {
+            self.fullName = value;
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserName]) {
+            self.name = value;
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserProfileUrl]) {
+            self.profileURL = JSONUserDictionary[@"profile_url"];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserCreatedAt]) {
+            self.createdAt = [NSDate fromUnixTimeStamp:JSONUserDictionary[@"created_at"]];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserUpdatedAt]) {
+            self.updatedAt = [NSDate fromUnixTimeStamp:JSONUserDictionary[@"created_at"]];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserDefaultLanguage]) {
+            self.defaultLanguage = JSONUserDictionary[@"default_language"];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserArtistShopData]) {
+            self.artistShopData = JSONUserDictionary[@"artist_shop_data"];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserInksLikedCounts]) {
+            self.inksLikedCount = JSONUserDictionary[@"inks_liked_counts"];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserFollowersCount]) {
+            self.followersCount = JSONUserDictionary[@"followers_count"];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserBoardsCount]) {
+            self.boardsCount = JSONUserDictionary[@"boards_count"];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserSocialNetworks]) {
+            self.socialNetworks = JSONUserDictionary[@"social_networks"];
+        }
+        else if ([JSONUserDictionary objectForKey:JSONUserAccessToken]) {
+            self.token = [NSString stringWithFormat:@"%@",[JSONUserDictionary objectForKey:kAccessToken]];
+            self.userID = [NSString stringWithFormat:@"%@",[JSONUserDictionary objectForKey:kAccessToken]];
+        }
+    }];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationUserUpdate object:nil userInfo:@{kDBUser:self}];
 }
 
