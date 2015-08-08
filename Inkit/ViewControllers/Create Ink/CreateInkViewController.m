@@ -22,13 +22,8 @@
 #import "DBTattooType+Management.h"
 #import "DBImage+Management.h"
 #import "DBArtist+Management.h"
-#import "InkitConstants.h"
-#import "DataManager.h"
-#import "InkitTheme.h"
-#import "InkitService.h"
 #import "TextFieldTableViewCell.h"
-#import "UIImage+Extension.h"
-#import "GAProgressHUDHelper.h"
+
 
 static NSString * const CreateInkImageTableViewCellIdentifier = @"CreateInkImageTableViewCell";
 static NSString * const CreateInkTableViewCellIdentifier = @"CreateInkInkTableViewCell";
@@ -38,8 +33,7 @@ static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescription
 
 #define kCreateInkCellHeight            44
 #define kCreateInkTextFieldCellHeight   90
-typedef enum
-{
+typedef enum {
     kCreateInkImageIndex,
     kCreateInkDescriptionIndex,
     kCreateInkBoardIndex,
@@ -71,8 +65,7 @@ typedef enum
 
 #pragma mark - Life cycle methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Create Ink",nil);
     
@@ -115,8 +108,7 @@ typedef enum
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
@@ -124,8 +116,7 @@ typedef enum
 }
 
 #pragma mark - TableView Data Source Methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.isEditingInk) {
         return 2;
     } else {
@@ -133,8 +124,7 @@ typedef enum
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return kCreateInkTotal;
     } else {
@@ -142,15 +132,14 @@ typedef enum
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = nil;
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case kCreateInkImageIndex:
             {
                 CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
-                [imageCell configureForImage:self.inkImage];
+                imageCell.inkImage = self.inkImage;
                 cell = imageCell;
                 break;
             }
@@ -231,7 +220,7 @@ typedef enum
     if(indexPath.section == 0) {
         if (indexPath.row == kCreateInkImageIndex) {
             CreateInkImageTableViewCell* imageCell = [tableView dequeueReusableCellWithIdentifier:CreateInkImageTableViewCellIdentifier];
-            [imageCell configureForImage:self.inkImage];
+            imageCell.inkImage = self.inkImage;
             
             // Make sure the constraints have been added to this cell, since it may have just been created from scratch
             [imageCell setNeedsUpdateConstraints];
@@ -245,7 +234,7 @@ typedef enum
             
             double maxHeight = tableView.frame.size.height - kCreateInkTotal*kCreateInkCellHeight;
             
-            return MAX(maxHeight, height);
+            return MIN(maxHeight, height);
         } else {
             return kCreateInkCellHeight;
         }
@@ -262,8 +251,7 @@ typedef enum
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         switch (indexPath.row) {
@@ -354,8 +342,7 @@ typedef enum
 
 #pragma mark -  Actions
 
-- (IBAction)doneButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)doneButtonPressed:(UIBarButtonItem *)sender {
     NSIndexPath* oldIndexPath = self.selectedIndexPath;
     self.selectedIndexPath = nil;
     [self.view endEditing:YES];
@@ -365,8 +352,7 @@ typedef enum
     self.navigationItem.rightBarButtonItem = nil;
 }
 
-- (IBAction)createInkButtonPressed:(UIBarButtonItem *)sender
-{    
+- (IBAction)createInkButtonPressed:(UIBarButtonItem *)sender {    
     if ([self verifyCells]) {
         if (self.isEditingInk) {
             [self showActivityIndicator];
@@ -381,28 +367,24 @@ typedef enum
     }
 }
 
-- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender {
     self.cancelAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"All data will be lost", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Accept", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
     [self.cancelAlertView show];
 }
 
-- (void)postInkCompleteAction:(DBInk *)ink
-{
+- (void)postInkCompleteAction:(DBInk *)ink {
     [self hideActivityIndicator];
     [self performSegueWithIdentifier:@"ViewInkSegue" sender:ink];
 }
 
-- (void)postInkCompleteError:(NSString *)error
-{
+- (void)postInkCompleteError:(NSString *)error {
     [self hideActivityIndicator];
     [self showAlertForMessage:error];
 }
 
 #pragma mark - Keyboard Notifications
 
-- (void)registerForKeyboardNotifications
-{
+- (void)registerForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
@@ -413,8 +395,7 @@ typedef enum
     
 }
 
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWasShown:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
@@ -423,8 +404,7 @@ typedef enum
     [self.createInkTableView scrollToRowAtIndexPath:self.selectedIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     self.createInkTableView.contentInset = UIEdgeInsetsMake(self.createInkTableView.contentInset.top, 0, 0, 0);
 }
 

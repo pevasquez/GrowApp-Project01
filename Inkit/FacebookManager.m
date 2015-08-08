@@ -22,8 +22,7 @@
 
 @implementation FacebookManager
 
-+ (id)sharedInstance
-{
++ (id)sharedInstance {
     static FacebookManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^ {
@@ -39,8 +38,7 @@
     return self;
 }
 
-- (void)internalLogInUser
-{
+- (void)internalLogInUser {
     self.accountStore = [[ACAccountStore alloc]init];
     self.FBaccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:
                           ACAccountTypeIdentifierFacebook];
@@ -73,8 +71,9 @@
 
 - (void)sdkLogInUser {
     
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login logInWithReadPermissions:@[@"email", @"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
+    [loginManager logInWithReadPermissions:@[@"email", @"public_profile"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         if (error) {
             [self.delegate sdkLoginError:error];
         } else if (result.isCancelled) {
@@ -94,4 +93,8 @@
     }];
 }
 
+- (void)logOutUser {
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
+}
 @end

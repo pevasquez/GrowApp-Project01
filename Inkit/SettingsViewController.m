@@ -7,11 +7,7 @@
 //
 
 #import "SettingsViewController.h"
-#import "InkitService.h"
-#import "InkitTheme.h"
-#import "DataManager.h"
 #import "AppDelegate.h"
-#import "GAProgressHUDHelper.h"
 
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,8 +18,7 @@
 
 @implementation SettingsViewController
 
--(id)init
-{
+- (id)init {
     self = [super init];
     return self;
 }
@@ -32,8 +27,7 @@ static NSString *cellIdentifier;
 
 #pragma marks - Lifecycle Methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self hideActivityIndicator];
     
@@ -48,8 +42,7 @@ static NSString *cellIdentifier;
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -57,18 +50,15 @@ static NSString *cellIdentifier;
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.data count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.textLabel.text = [self.data objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -77,65 +67,42 @@ static NSString *cellIdentifier;
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.delegate didSelectSettings:self.data[indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
     
-    
-    if (indexPath.row == 0)
-    {
+    if (indexPath.row == 0) {
         [self showActivityIndicator];
-        [InkitService logOutUser:[DataManager sharedInstance].activeUser WithTarget:self completeAction:@selector(logOutUserComplete) completeError:@selector(logOutUserError:)];
+        [InkitService logOutUser:[DataManager sharedInstance].activeUser withCompletion:^(id response, NSError *error) {
+            [self hideActivityIndicator];
+            if (error) {
+                UIAlertView *alert= [[UIAlertView alloc]initWithTitle:response message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+            } else {
+                AppDelegate* appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [appDelegate userLoggedOut];
+            }
+        }];
     }
 }
 
-- (void)customizeTableView
-{
+- (void)customizeTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-}
-
-#pragma mark - Logout
-
-- (void)logOutUserComplete
-{
-    AppDelegate* appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate userLoggedOut];
-    [self hideActivityIndicator];
-}
-
-- (void)logOutUserError:(NSString *)errorMessage
-{
-    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [self hideActivityIndicator];
-
 }
 
 #pragma mark - Activity Indicator Methods
 
-- (void) showActivityIndicator
-{
+- (void) showActivityIndicator {
     [GAProgressHUDHelper standarBlankHUD:self.view];
-//    self.activityIndicatorView.hidden = NO;
-//    
-//    [self.activityIndicatorView startAnimating];
 }
 
-- (void) hideActivityIndicator
-{
+- (void) hideActivityIndicator {
     [GAProgressHUDHelper hideProgressHUDinView:self.view];
-//    self.activityIndicatorView.hidden = YES;
-//    
-//    [self.activityIndicatorView stopAnimating];
 }
 
 #pragma mark - Appearence Methods
-
-- (void)customizeNavigationBar
-{
+- (void)customizeNavigationBar {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 

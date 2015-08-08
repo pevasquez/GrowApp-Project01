@@ -7,11 +7,11 @@
 //
 
 #import "RoundedCornerButton.h"
-#import "InkitTheme.h"
 
 @implementation RoundedCornerButton
-- (void)awakeFromNib
-{
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
     self.layer.cornerRadius = 4;
 }
 

@@ -12,7 +12,9 @@
 
 // Delegate
 @protocol LogInViewControllerDelegate
+
 - (void)logInDidFinishedLoading;
+
 @end
 
 @interface LogInViewController : FormViewController

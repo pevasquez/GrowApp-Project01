@@ -18,8 +18,7 @@
     return date;
 }
 
-- (NSString *)relativeDateString
-{
+- (NSString *)relativeDateString {
     NSCalendarUnit units = NSCalendarUnitDay | NSCalendarUnitWeekOfYear |
     NSCalendarUnitMonth | NSCalendarUnitYear;
     

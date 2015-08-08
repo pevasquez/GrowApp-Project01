@@ -48,7 +48,6 @@
 #define kClientID           @"clientID"
 #define kSeenTutorial       @"Seen Tutorial"
 
-
 // Database
 #define kDBImage            @"DBImage"
 #define kDBShop             @"DBShop"
@@ -57,11 +56,5 @@
 #define DBNotificationBoardUpdate   @"DBNotificationBoardUpdate"
 #define DBNotificationUserUpdate    @"DBNotificationUserUpdate"
 #define DBNotificationImageUpdate   @"DBNotificationImageUpdate"
-
-typedef void (^ServiceResponse)(id response, NSError* error);
-
-
-
-
 
 #endif

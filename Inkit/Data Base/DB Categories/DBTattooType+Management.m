@@ -7,8 +7,6 @@
 //
 
 #import "DBTattooType+Management.h"
-#import "DataManager.h"
-#import "InkitConstants.h"
 
 @implementation DBTattooType (Management)
 
@@ -20,14 +18,12 @@
     return tattooType;
 }
 
-+ (DBTattooType *)withID:(NSString *)tattooTypeId
-{
++ (DBTattooType *)withID:(NSString *)tattooTypeId {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"tattooTypeId = %@",tattooTypeId];
     return (DBTattooType *)[[DataManager sharedInstance] first:KDBTattooType predicate:predicate sort:nil limit:1];
 }
 
-+ (DBTattooType *)fromJson:(NSDictionary *)tattooTypeData
-{
++ (DBTattooType *)fromJson:(NSDictionary *)tattooTypeData {
     NSString* tattooTypeID = [NSString stringWithFormat:@"%@",tattooTypeData[@"id"]] ;
     DBTattooType* obj = [DBTattooType withID:tattooTypeID];
     DBTattooType* tattooType = nil;

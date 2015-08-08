@@ -69,8 +69,7 @@
     return vc.page.index;
 }
 // MARK:- TutorialStepViewControllerDelegate
-- (void)didFinishTutorial
-{
+- (void)didFinishTutorial {
     [self.tutorialDelegate didFinishTutorial];
 }
 @end

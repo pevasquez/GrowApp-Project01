@@ -9,7 +9,6 @@
 #import "DBBoard.h"
 #import <UIKit/UIKit.h>
 #import "InkitServiceConstants.h"
-#import "InkitConstants.h"
 
 @interface DBBoard (Management)
 + (DBBoard *)fromJson:(NSDictionary *)boardData;

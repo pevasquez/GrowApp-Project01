@@ -15,8 +15,7 @@
 #define kBorderWidth 2
 @implementation CropView
 
-- (id)initWithFrame:(CGRect)aRect
-{
+- (id)initWithFrame:(CGRect)aRect {
     self = [super initWithFrame:aRect];
     
     if (self)
@@ -27,8 +26,7 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder*)aDecoder
-{
+- (id)initWithCoder:(NSCoder*)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self)
     {

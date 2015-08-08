@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FormTextField : UITextField
-@property UIColor *blueColor;
-
 
 @end

@@ -9,5 +9,7 @@
 #import "DBComment.h"
 
 @interface DBComment (Management)
+
 + (DBComment *)fromJson:(NSDictionary *)commentDiccionary;
+
 @end

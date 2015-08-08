@@ -10,11 +10,14 @@
 
 // Delegate
 @protocol UserTypeDelegate
+
 - (void)didSelectUserType:(NSString *)userType;
+
 @end
 
 @interface UserTypeViewController : UIViewController
 
 @property (nonatomic, weak) id<UserTypeDelegate> delegate;
 @property (nonatomic, strong) NSString* selectedString;
+
 @end

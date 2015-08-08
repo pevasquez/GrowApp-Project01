@@ -18,8 +18,7 @@
 @end
 @implementation InkUserTableViewCell
 
-- (void)configureForInk
-{
+- (void)configureForInk {
     self.userNameLabel.text = self.ink.user.fullName;
     [self.ink.user.profilePicThumbnail setInImageView:self.userImageView];
 }

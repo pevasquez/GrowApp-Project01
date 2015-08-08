@@ -200,15 +200,14 @@
 
 + (BOOL)hideHUDForView:(UIView *)view animated:(BOOL)animated {
     UIView *viewToRemove = nil;
-    for (UIView *v in [view subviews]) {
-        if ([v isKindOfClass:[GAProgressHUD class]]) {
-            viewToRemove = v;
+    for (UIView *viewToRemove in [view subviews]) {
+        if ([viewToRemove isKindOfClass:[GAProgressHUD class]]) {
+            GAProgressHUD *HUD = (GAProgressHUD *)viewToRemove;
+            HUD.removeFromSuperViewOnHide = YES;
+            [HUD hide:animated];
         }
     }
     if (viewToRemove != nil) {
-        GAProgressHUD *HUD = (GAProgressHUD *)viewToRemove;
-        HUD.removeFromSuperViewOnHide = YES;
-        [HUD hide:animated];
         return YES;
     } else {
         return NO;

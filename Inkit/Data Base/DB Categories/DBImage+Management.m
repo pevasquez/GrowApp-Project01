@@ -7,26 +7,20 @@
 //
 
 #import "DBImage+Management.h"
-#import "InkitTheme.h"
-#import "DataManager.h"
-#import "InkitConstants.h"
 
 @implementation DBImage (Management)
-+ (DBImage *)newImage
-{
++ (DBImage *)newImage {
     DBImage* image = (DBImage *)[[DataManager sharedInstance] insert:kDBImage];
     // configure image
     return image;
 }
 
-+ (DBImage *)withURL:(NSString *)imageURL
-{
++ (DBImage *)withURL:(NSString *)imageURL {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"imageURL = %@",imageURL];
     return (DBImage *)[[DataManager sharedInstance] first:kDBImage predicate:predicate sort:nil limit:1];
 }
 
-+ (DBImage *)fromURL:(NSString *)URLString
-{
++ (DBImage *)fromURL:(NSString *)URLString {
     DBImage* obj = [DBImage withURL:URLString];
     DBImage* image = nil;
     if (!obj) {
@@ -38,16 +32,14 @@
     return image;
 }
 
-+ (DBImage *)fromUIImage:(UIImage *)image
-{
++ (DBImage *)fromUIImage:(UIImage *)image {
     DBImage *inkImage = [DBImage newImage];
     inkImage.imageData = UIImagePNGRepresentation(image);
     return inkImage;
 }
 
 
-- (void)setInImageView:(UIImageView *)imageView
-{
+- (void)setInImageView:(UIImageView *)imageView {
     if (self.imageData) {
         imageView.image = [UIImage imageWithData:self.imageData];
     } else {
@@ -73,8 +65,7 @@
     }
 }
 
-- (void)setInImage:(UIImage *)image
-{
+- (void)setInImage:(UIImage *)image {
     __block UIImage *localImage = image;
     if (self.imageData) {
         image = [UIImage imageWithData:self.imageData];
@@ -91,8 +82,7 @@
     }
 }
 
-- (UIImage *)getImage
-{
+- (UIImage *)getImage {
     return [UIImage imageWithData:self.imageData];
 }
 @end

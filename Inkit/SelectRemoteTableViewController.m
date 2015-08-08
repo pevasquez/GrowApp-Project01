@@ -8,10 +8,7 @@
 
 #import "SelectRemoteTableViewController.h"
 #import "DBArtist+Management.h"
-#import "InkitService.h"
-#import "InkService.h"
 #import "DBShop+Management.h"
-#import "InkitTheme.h"
 
 static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 
@@ -27,8 +24,7 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 @implementation SelectRemoteViewController
 
 #pragma mark - Life cycle methods 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self searchForSearchString:@""];
     [self hideActivityIndicator];
@@ -36,21 +32,18 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [self.filteredRemotesArray count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:RemoteTableViewCellIdentifier];
     
     NSManagedObject* remote = [self.filteredRemotesArray objectAtIndex:indexPath.row];
@@ -69,16 +62,14 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
     [alert show];
 }
 
 #pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject* remote = self.filteredRemotesArray[indexPath.row];
     
     if ([self.selectedRemote isEqual:remote]) {
@@ -92,40 +83,34 @@ static NSString * const RemoteTableViewCellIdentifier = @"SelectRemoteCell";
 }
 
 #pragma mark - Search Bar Methods
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self searchForSearchString:searchText];
 }
 
-- (void)searchForSearchString:(NSString *)string
-{
+- (void)searchForSearchString:(NSString *)string {
     [InkitService getRemotesForSearchString:string type:self.type withTarget:self completeAction:@selector(getRemotesComplete:) completeError:@selector(getRemotesError:)];
     [self showActivityIndicator];
 }
 
-- (void)getRemotesError:(NSString *)stringError
-{
+- (void)getRemotesError:(NSString *)stringError {
     UIAlertView *alert= [[UIAlertView alloc]initWithTitle:@"Message" message:@"Term not found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
     [self hideActivityIndicator];
 }
 
-- (void)getRemotesComplete:(NSArray *)remotesArray
-{
+- (void)getRemotesComplete:(NSArray *)remotesArray {
     self.filteredRemotesArray = remotesArray;
     [self.remoteTableView reloadData];
     [self hideActivityIndicator];
 }
 
 #pragma mark - Activity Indicator Methods
-- (void) showActivityIndicator
-{
+- (void) showActivityIndicator {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
 }
 
-- (void) hideActivityIndicator
-{
+- (void) hideActivityIndicator {
     self.activityIndicator.hidden = YES;
     [self.activityIndicator stopAnimating];
 }

@@ -7,12 +7,10 @@
 //
 
 #import "ProfileImageView.h"
-#import "InkitTheme.h"
 
 @implementation ProfileImageView
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
 }
 

@@ -7,8 +7,6 @@
 //
 
 #import "CommentBarView.h"
-#import "InkitTheme.h"
-#import "DataManager.h"
 #import "DBImage+Management.h"
 
 @implementation CommentBarView
@@ -29,16 +27,6 @@
     return self;
 }
 
-//- (void)didMoveToSuperview {
-//    [super didMoveToSuperview];
-//    [self.textField becomeFirstResponder];
-//}
-
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    [self.textField becomeFirstResponder];
-//}
-
 - (void)customizeView {
     self.backgroundColor = [UIColor whiteColor];
     self.textField.backgroundColor = [InkitTheme getBackgroundColor];
@@ -52,8 +40,8 @@
     [[DataManager sharedInstance].activeUser.profilePicThumbnail setInImageView:self.profileImageView];
 
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.delegate commentBarView:self didEnterText:textField.text];
     self.textField.text = @"";
     return NO;

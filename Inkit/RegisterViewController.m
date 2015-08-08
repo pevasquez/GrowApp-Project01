@@ -8,14 +8,9 @@
 
 #import "RegisterViewController.h"
 #import "UserTypeViewController.h"
-#import "InkitTheme.h"
-#import "InkitService.h"
-#import "InkitConstants.h"
-#import "UIResponder+FirstResponder.h"
-#import "GAProgressHUDHelper.h"
+#import "AppDelegate.h"
 
-@interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate >
-{
+@interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate > {
     NSString* name;
 }
 @property (strong, nonatomic) IBOutlet UITextField *eMailTextField;
@@ -24,7 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *userType;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIView *scrollView;
 @property (strong, nonatomic) UITextField* activeTextField;
@@ -36,16 +30,14 @@
 
 #pragma mark - Lifecycle Methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self hideActivityIndicator];
     [self loadUserData];
     self.textFieldsArray = @[self.firstNameTextField, self.lastNameTextField,self.eMailTextField, self.passwordTextfield, self.confirmPasswordTextField];
 }
 
-- (void)loadUserData
-{
+- (void)loadUserData {
     if (!self.userDictionary) {
         self.userDictionary = [[NSMutableDictionary alloc] init];
     }
@@ -63,43 +55,39 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self registerForKeyboardNotifications];
 }
-- (void)viewWillAppear:(BOOL)animated
-{
+
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
 
 #pragma mark - Actions
 
-- (IBAction)userTypeTextFieldClicked:(id)sender
-{
+- (IBAction)userTypeTextFieldClicked:(id)sender {
     //[self performSegueWithIdentifier:@"UserType" sender:nil];
 }
 
-- (IBAction)registerButtonPressed:(id)sender
-{
+- (IBAction)registerButtonPressed:(id)sender {
     [self hideKeyboard];
     [self registerUser];
 }
 
-- (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender
-{
+- (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
     [self hideKeyboard];
 }
 
-- (IBAction)backButtonPressed:(id)sender
-{
+- (IBAction)backButtonPressed:(id)sender {
     [self hideKeyboard];
+    AppDelegate* appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate userLoggedOut];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -116,23 +104,18 @@
         
         [self showActivityIndicator];
         [self hideKeyboard];
-        [InkitService registerUserDictionary:self.userDictionary WithTarget:self completeAction:@selector(registerUserComplete) completeError:@selector(registerUserError:)];
+        [InkitService registerUserDictionary:self.userDictionary withCompletion:^(id response, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideActivityIndicator];
+                if (!error) {
+                    [self.delegate registrationComplete];
+                } else {
+                    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:response message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                }
+            });
+        }];
     }
-}
-
-
-- (void)registerUserError:(NSString *)errorMessage {
-    [self hideActivityIndicator];
-    // TODO: mostrar errores en caso de mail ya tomado, etc.
-    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-}
-
-
-- (void)registerUserComplete {
-    [self hideActivityIndicator];
-    [self.delegate registrationComplete];
-
 }
 
 #pragma mark - TextField Delegate
@@ -145,8 +128,7 @@
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.activeTextField = textField;
     
 }
@@ -158,49 +140,37 @@
 
 #pragma mark - Verify Text Fields
 
-- (BOOL)verifyTextFields
-{
+- (BOOL)verifyTextFields {
     //verificar campos para que esté completo.
-    
     if(![self.passwordTextfield.text isEqualToString:self.confirmPasswordTextField.text]) {
-        
         [self showAlertForMessage:@"Password don't match"];
-        
+        return false;
     } else if ([self.eMailTextField.text isEqualToString:@""]) {
-        
         [self showAlertForMessage:@"Complete Email"];
-        
+        return false;
     } else if ([self.firstNameTextField.text isEqualToString:@""]) {
-        
         [self showAlertForMessage:@"Complete Email"];
-        
+        return false;
     } else if ([self.lastNameTextField.text isEqualToString:@""]) {
-        
         [self showAlertForMessage:@"Complete Email"];
-        
+        return false;
     } else if ([self.passwordTextfield.text isEqualToString:@""]) {
-        
         [self showAlertForMessage:@"Complete Password"];
-        
+        return false;
     } else if ([self.userType.text isEqualToString:@""]) {
-        
         [self showAlertForMessage:@"Complete User Type"];
-
-        return NO;
+        return false;
     }
-    
-    return YES;
+    return true;
 }
 
 // usertype delegate
-- (void)didSelectUserType:(NSString *)userType
-{
+- (void)didSelectUserType:(NSString *)userType {
     self.userType.text = userType;
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self hideKeyboard];
     if ([[segue destinationViewController] isKindOfClass:[UserTypeViewController class]]) {
         UserTypeViewController* utvc = [segue destinationViewController];
@@ -211,48 +181,20 @@
 
 
 #pragma mark - Activity Indicator Methods
-
-- (void) showActivityIndicator
-{
+- (void) showActivityIndicator {
     [GAProgressHUDHelper registeringProgressHUDinView:self.view];
-    [self disableTextFields];
+    [self setTextFieldsEnabled:false];
     [self hideKeyboard];
-//    self.eMailTextField.userInteractionEnabled = NO;
-//    self.passwordTextfield.userInteractionEnabled = NO;
-//    self.confirmPasswordTextField.userInteractionEnabled = NO;
-//    self.firstNameTextField.userInteractionEnabled = NO;
-//    self.lastNameTextField.userInteractionEnabled = NO;
-//    self.userType.userInteractionEnabled = NO;
-    self.activityIndicatorView.hidden = NO;
-    [self.activityIndicatorView startAnimating];
-    [self.eMailTextField resignFirstResponder];
-    [self.passwordTextfield resignFirstResponder];
-    [self.confirmPasswordTextField resignFirstResponder];
-    [self.firstNameTextField resignFirstResponder];
-    [self.lastNameTextField resignFirstResponder];
-    [self.userType resignFirstResponder];
 }
 
-- (void) hideActivityIndicator
-{
+- (void) hideActivityIndicator {
     [GAProgressHUDHelper hideProgressHUDinView:self.view];
-//    self.eMailTextField.userInteractionEnabled = YES;
-//    self.passwordTextfield.userInteractionEnabled = YES;
-//    self.confirmPasswordTextField.userInteractionEnabled = YES;
-//    self.firstNameTextField.userInteractionEnabled = YES;
-//    self.lastNameTextField.userInteractionEnabled = YES;
-//    self.userType.userInteractionEnabled = YES;
-    self.activityIndicatorView.hidden = YES;
-
-    [self.activityIndicatorView stopAnimating];
+    [self setTextFieldsEnabled:true];
 }
-
 
 
 #pragma mark - Keyboard Notifications
-
-- (void)registerForKeyboardNotifications
-{
+- (void)registerForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
@@ -262,14 +204,12 @@
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)unregisterFromKeyboardNotifications
-{
+- (void)unregisterFromKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWasShown:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGPoint kbOrigin = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
     
@@ -285,8 +225,7 @@
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     } completion:nil];
@@ -295,13 +234,11 @@
 
 #pragma mark - Appearence Methods
 
-- (void)customizeNavigationBar
-{
+- (void)customizeNavigationBar {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [super textFieldShouldReturn:textField];
     if ([self isFormValid]){
         [self registerUser];
@@ -309,12 +246,4 @@
     return NO;
 }
 
-
-#pragma mark - Helper Methods
-
-//- (void)showAlertForMessage:(NSString *)errorMessage
-//{
-//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
-//    [alert show];
-//}
 @end

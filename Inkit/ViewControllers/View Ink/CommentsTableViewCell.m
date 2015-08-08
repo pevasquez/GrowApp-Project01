@@ -11,26 +11,24 @@
 #import "DBUser+Management.h"
 #import "DynamicSizeLabel.h"
 #import "DBImage+Management.h"
-#import "NSDate+Extension.h"
-#import "NSString+Extensions.h"
 
 @interface CommentsTableViewCell()
+
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet DynamicSizeLabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentFromDateLabel;
 
 @end
+
 @implementation CommentsTableViewCell
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     [self configureForComment];
 }
 
-- (void)configureForComment
-{
+- (void)configureForComment {
     [self.comment.user.profilePicThumbnail setInImageView:self.userImage];
     self.userName.text = self.comment.user.fullName.capitalizedString;
     self.commentLabel.text = [self.comment.text stringWithSentenceCapitalization];
@@ -43,4 +41,5 @@
         self.cellHeight = size.height;
     }
 }
+
 @end

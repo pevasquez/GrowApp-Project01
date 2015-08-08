@@ -37,6 +37,6 @@
 @property (nonatomic, weak) id<FacebookManagerDelegate> delegate;
 - (void)sdkLogInUser;
 - (void)internalLogInUser;
-
+- (void)logOutUser;
 @end
 

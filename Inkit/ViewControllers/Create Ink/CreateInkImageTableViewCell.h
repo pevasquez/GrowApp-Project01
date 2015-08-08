@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateInkImageTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *inkImageView;
+@property (strong, nonatomic) UIImage *inkImage;
 @property (nonatomic)double cellHeight;
 - (void)configureForImage:(UIImage *)image;
+
 @end

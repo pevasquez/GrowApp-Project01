@@ -12,69 +12,58 @@
 
 #pragma mark - Activity Indicator Methods
 
-+ (void)showSendingDataProgressHUDinView:(UIView *)view
-{
++ (void)showSendingDataProgressHUDinView:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Sending Data...";
 }
 
-+ (void)showDownloadingDataProgressHUDinView:(UIView *)view
-{
++ (void)showDownloadingDataProgressHUDinView:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Downloading Data...";
 }
 
-+ (void)showUploadingDataProgressHUDinView:(UIView *)view
-{
++ (void)showUploadingDataProgressHUDinView:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Uploading Data...";
 }
 
-+ (void)loggingInProgressHUDinView:(UIView *)view
-{
++ (void)loggingInProgressHUDinView:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
-    hud.labelText = @"Loggin in...";
+    hud.labelText = @"Logging in...";
 }
 
-+ (void)registeringProgressHUDinView:(UIView *)view
-{
++ (void)registeringProgressHUDinView:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Registering...";
 }
 
-+ (void)creatingInkProgressHUD:(UIView *)view
-{
++ (void)creatingInkProgressHUD:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Creating Ink...";
 }
 
-+ (void)browseProgressHUD:(UIView *)view
-{
++ (void)browseProgressHUD:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Browsing...";
 }
 
-+ (void)standarBlankHUD:(UIView *)view
-{
++ (void)standarBlankHUD:(UIView *)view {
     [GAProgressHUD showHUDAddedTo:view animated:YES];
 }
 
-+ (void)logOutProgressHUD:(UIView *)view
-{
++ (void)logOutProgressHUD:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Baby come back...";
 }
 
-+ (void)postCommentHUDinView:(UIView *)view
-{
++ (void)postCommentHUDinView:(UIView *)view {
     GAProgressHUD* hud = [GAProgressHUD showHUDAddedTo:view animated:YES];
     hud.labelText = @"Posting comment...";
 }
 
 
 #pragma mark - Hide Activity Indicator
-+ (void)hideProgressHUDinView:(UIView *)view
-{
++ (void)hideProgressHUDinView:(UIView *)view {
     [GAProgressHUD hideHUDForView:view animated:true];
 }
 

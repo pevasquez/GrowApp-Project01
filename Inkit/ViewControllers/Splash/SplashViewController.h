@@ -10,11 +10,14 @@
 
 // Delegate
 @protocol SplashViewControllerDelegate
+
 - (void)splashScreenDidFinishedLoading;
 - (void)splashScreenDidFailToLogUser;
+
 @end
 
 @interface SplashViewController : UIViewController
+
 @property (nonatomic, weak) id<SplashViewControllerDelegate> delegate;
 
 @end

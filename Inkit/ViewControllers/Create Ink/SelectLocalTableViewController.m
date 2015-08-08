@@ -9,8 +9,6 @@
 #import "SelectLocalTableViewController.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
-#import "InkitConstants.h"
-#import "InkitTheme.h"
 
 static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 
@@ -25,8 +23,7 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
 @implementation SelectLocalTableViewController
 
 #pragma Life cycle methods
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self customizeNavigationBar];
     [self customizeTableView];
@@ -36,21 +33,18 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self hideSearchBar];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self hideSearchBar];
 }
 
 #pragma mark - TableView Data Source
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LocalTableViewCellIdentifier];
     
     NSManagedObject* local = self.filteredLocalsArray[indexPath.row];
@@ -74,14 +68,12 @@ static NSString * const LocalTableViewCellIdentifier = @"SelectLocalCell";
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.filteredLocalsArray count];
 }
 
 #pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject* local = self.filteredLocalsArray[indexPath.row];
     
     if ([local isKindOfClass:[DBBodyPart class]]) {

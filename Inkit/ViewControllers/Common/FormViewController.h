@@ -13,8 +13,7 @@
 @property (strong, nonatomic) NSArray *textFieldsArray;
 
 - (void)hideKeyboard;
-- (void)disableTextFields;
-- (void)enableTextFields;
+- (void)setTextFieldsEnabled:(BOOL)enabled;
 - (BOOL)isFormValid;
 - (void)showAlertForMessage:(NSString *)errorMessage;
 @end

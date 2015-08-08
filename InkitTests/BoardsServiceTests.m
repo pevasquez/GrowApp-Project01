@@ -95,8 +95,7 @@
     [self.expectation fulfill];
 }
 
-- (void)serviceError:(NSString *)stringError
-{
+- (void)serviceError:(NSString *)stringError {
     NSLog(@"error is: %@", stringError);
     [self.expectation fulfill];
 }

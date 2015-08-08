@@ -9,9 +9,6 @@
 #import "CommentsViewController.h"
 #import "CommentsTableViewCell.h"
 #import "CommentsTableView.h"
-#import "DataManager.h"
-#import "InkitService.h"
-#import "GAProgressHUDHelper.h"
 
 static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCell";
 
@@ -40,8 +37,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 }
 
 #pragma mark - TableView Data Source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([self.commentsArray count]) {
         self.commentsTableView.backgroundView = nil;
         return 1;
@@ -58,13 +54,11 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.commentsArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommentsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CommentsTableViewCellIdentifier];
     DBComment* comment = self.commentsArray[indexPath.row];
     cell.comment = comment;
@@ -72,8 +66,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 }
 
 #pragma mark - TableView Delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommentsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CommentsTableViewCellIdentifier];
     cell.comment = self.commentsArray[indexPath.row];
     
@@ -93,8 +86,7 @@ static NSString * const CommentsTableViewCellIdentifier = @"CommentsTableViewCel
 }
 
 #pragma mark - CommentsTableViewDelegate
-- (void)commentsTableView:(CommentsTableView *)commentsTableView didEnterNewComment:(NSString *)comment
-{
+- (void)commentsTableView:(CommentsTableView *)commentsTableView didEnterNewComment:(NSString *)comment {
     [GAProgressHUDHelper postCommentHUDinView:self.view];
     [InkitService postComment:comment toInk:self.ink completion:^(id response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{

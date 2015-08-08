@@ -8,35 +8,29 @@
 
 #import "DBShop+Management.h"
 #import "DBUser+Management.h"
-#import "DataManager.h"
-#import "InkitConstants.h"
 
 @implementation DBShop (Management)
 
 
 #define kDBShopName @"name"
-+ (DBShop *)newShop
-{
++ (DBShop *)newShop {
     DBShop* shop = (DBShop *)[[DataManager sharedInstance] insert:kDBShop];
     shop.name = @"";
     return shop;
 }
 
-+ (DBShop *)fromJson:(NSDictionary *)jsonDictionary
-{
++ (DBShop *)fromJson:(NSDictionary *)jsonDictionary {
     DBShop* shop = [DBShop newShop];
     [shop updateWithJson:jsonDictionary];
     return shop;
 }
 
-- (void)updateWithJson:(NSDictionary *)jsonDictionary
-{
+- (void)updateWithJson:(NSDictionary *)jsonDictionary {
     [super updateWithJson:jsonDictionary];
 }
 
 
-+ (NSArray *)getShopSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
++ (NSArray *)getShopSortedInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kDBShop];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:kDBShopName ascending:YES]];
     

@@ -7,25 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBInk+Management.h"
-#import "DBUser+Management.h"
+#import "InkitServiceConstants.h"
 
-@class DBUser, DBBoard;
+@class DBUser, DBBoard, DBInk;
+
 @interface InkitService : NSObject
 
-+ (NSError *)logInUserDictionary:(NSDictionary *)userDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+// User Methods
++ (void)logInUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
 
-+ (NSError *)logInSocialDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)logInSocialDictionary:(NSDictionary *)facebookDictionary withCompletion:(ServiceResponse)completion;
 
-+ (NSError *)logOutUser:(DBUser *)user WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)logOutUser:(DBUser *)user withCompletion:(ServiceResponse)completion;
 
-// Register DBUser to Inkit
-+ (NSError *)registerUserDictionary:(NSDictionary *)userDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)registerUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
 
-+ (NSError *)logInUserWithToken:(NSString *)token WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+// Common Methods
++ (void)getBodyPartsWithCompletion:(ServiceResponse)completion;
 
-+ (NSError *)getBodyPartsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-+ (NSError *)getTattooTypesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)getTattooTypesWithCompletion:(ServiceResponse)completion;
 
 // Board Service
 + (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
@@ -37,16 +37,22 @@
 // Ink Service
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)updateInk:(DBInk *)ink withDictionary:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-
-+ (void)getDashboardInksForPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
-+ (void)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
-
 + (NSError *)getRemotesForSearchString:(NSString *)searchString type:(NSString *)type withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 
++ (void)getDashboardInksForPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
+
++ (void)getInksForSearchString:(NSString *)searchString andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
+
 + (void)likeInk:(DBInk *)ink completion:(ServiceResponse)completion;
+
 + (void)unlikeInk:(DBInk *)ink completion:(ServiceResponse)completion;
+
 + (void)deleteInk:(DBInk *)ink completion:(ServiceResponse)completion;
+
 + (void)postComment:(NSString *)comment toInk:(DBInk*)ink completion:(ServiceResponse)completion;
+
 + (void)getCommentsForInk:(DBInk*)ink completion:(ServiceResponse)completion;
+
 + (void)getRelatedInksForInk:(DBInk*)ink andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion;
+
 @end

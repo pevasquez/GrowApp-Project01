@@ -17,6 +17,8 @@
 @end
 
 @interface RegisterViewController : FormViewController
+
 @property (nonatomic, weak) id<RegisterDelegate> delegate;
 @property (strong, nonatomic) NSMutableDictionary* userDictionary;
+
 @end

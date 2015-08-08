@@ -9,8 +9,6 @@
 #import "ViewInksViewController.h"
 #import "GADBannerCollectionReusableView.h"
 #import "InkCollectionViewCell.h"
-#import "InkitTheme.h"
-#import "UIView+Extension.h"
 
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";
 static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionViewCell";

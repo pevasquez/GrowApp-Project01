@@ -10,10 +10,11 @@
 @import GoogleMobileAds;
 
 @interface GADBannerCollectionReusableView()
+
 @property (weak, nonatomic) IBOutlet GADBannerView *bannerView;
 
-
 @end
+
 @implementation GADBannerCollectionReusableView
 
 - (void)layoutSubviews {
@@ -25,6 +26,7 @@
 //    [self.bannerView loadRequest:request];
     
 }
+
 - (IBAction)bannerButtonPressed:(UIButton *)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://inkit.tattoo"]];
 }

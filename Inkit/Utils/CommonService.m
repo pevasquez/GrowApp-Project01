@@ -8,13 +8,10 @@
 
 #import "CommonService.h"
 #import "InkitServiceConstants.h"
-#import "DataManager.h"
 
 @implementation CommonService
-+ (NSError *)getBodyPartsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{    
-    // Create returnError
-    NSError* returnError = nil;
+
++ (void)getBodyPartsWithCompletion:(ServiceResponse)completion {
     
     // Create String URL
     NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceStatics,kWebServiceBodyParts];
@@ -32,12 +29,9 @@
     // Specify that it will be a POST request
     [request setHTTPMethod:@"GET"];
     
-    // Create Asynchronous Request URLConnection
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-     {
-         if (!connectionError)
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+         if (!error)
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -54,45 +48,36 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      [DataManager loadBodyPartsFromJson:responseDictionary];
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         completion(nil, nil);
+                     });
                      break;
                  }
-                 case kTTPResponseCodeCreateUserFailed:
-                 {
-                     NSDictionary* errorsDictionary = responseDictionary[@"errors"];
-                     NSString* errorsString = [NSString stringWithFormat:@"%@", errorsDictionary];
-                     [target performSelectorOnMainThread:completeError withObject:errorsString  waitUntilDone:NO];
-                     break;
-                 }
-                 default:
+                default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     NSString* stringError = [NSString stringWithFormat:@"%@",statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:stringError waitUntilDone:NO];
+                     NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         completion(errorString,[[NSError alloc] init]);
+                     });
                      break;
                  }
              }
          } else {
-             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 completion(NSLocalizedString(@"No connection", nil),[[NSError alloc] init]);
+             });
          }
-         
      }];
     
-    return returnError;
+    [task resume];
 }
 
-+ (NSError *)getTattooStylesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    NSError* returnError = nil;
-
-    return returnError;
++ (void)getTattooStylesWithCompletion:(ServiceResponse)completion {
 
 }
 
-+ (NSError *)getTattooTypesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
-    // Create returnError
-    NSError* returnError = nil;
++ (void)getTattooTypesWithCompletion:(ServiceResponse)completion {
     
     // Create String URL
     NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceStatics,kWebServiceTattooTypes];
@@ -110,12 +95,9 @@
     // Specify that it will be a POST request
     [request setHTTPMethod:@"GET"];
     
-    // Create Asynchronous Request URLConnection
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-     {
-         if (!connectionError)
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+         if (!error)
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -131,31 +113,29 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      [DataManager loadTattooTypesFromJson:responseDictionary];
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         completion(nil, nil);
+                     });
                      break;
                  }
-                 case kTTPResponseCodeCreateUserFailed:
-                 {
-                     NSDictionary* errorsDictionary = responseDictionary[@"errors"];
-                     NSString* errorsString = [NSString stringWithFormat:@"%@", errorsDictionary];
-                     [target performSelectorOnMainThread:completeError withObject:errorsString  waitUntilDone:NO];
-                     break;
-                 }
-                 default:
+                default:
                  {
                      NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     NSString* stringError = [NSString stringWithFormat:@"%@",statusCode];
-                     [target performSelectorOnMainThread:completeError withObject:stringError waitUntilDone:NO];
+                     NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         completion(errorString,[[NSError alloc] init]);
+                     });
                      break;
                  }
              }
          } else {
-             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 completion(NSLocalizedString(@"No connection", nil),[[NSError alloc] init]);
+             });
          }
-         
      }];
     
-    return returnError;
+    [task resume];
 }
 
 @end

@@ -8,8 +8,6 @@
 
 #import "SelectBoardTableViewController.h"
 #import "DBBoard+Management.h"
-#import "InkitTheme.h"
-#import "DataManager.h"
 
 static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 
@@ -23,8 +21,7 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 
 
 #pragma mark - Life cycle methods
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Select Board",nil);
     self.activeUser = [DataManager sharedInstance].activeUser;
@@ -32,8 +29,7 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
     [self customizeTableView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self getMyBoards];
 }

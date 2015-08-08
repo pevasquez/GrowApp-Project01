@@ -27,20 +27,17 @@
 
 #pragma mark - Life cycle methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpButtons];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
--(void)setUpButtons
-{
+-(void)setUpButtons {
     [self.fromCameraButton setTitle: NSLocalizedString(@"From\nCamera", nil) forState: UIControlStateNormal];
     [self.fromAlbumButton setTitle: NSLocalizedString(@"From\nAlbum",nil) forState: UIControlStateNormal];
     
@@ -56,13 +53,11 @@
 
 #pragma mark - Actions
 
-- (IBAction)fromCameraButtonPressed:(UIButton *)sender
-{
+- (IBAction)fromCameraButtonPressed:(UIButton *)sender {
     [self startCameraControllerForPhoto];
 }
 
-- (IBAction)fromAlbumButtonPressed:(UIButton *)sender
-{
+- (IBAction)fromAlbumButtonPressed:(UIButton *)sender {
     [self startMediaBrowser];
 }
 
@@ -83,8 +78,7 @@
 }
 
 #pragma mark - Image Browser Methods
--(void)startMediaBrowser
-{
+-(void)startMediaBrowser {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",nil)
@@ -105,8 +99,7 @@
 
 #pragma mark - Image Taking Methods
 
-- (void)startCameraControllerForPhoto
-{
+- (void)startCameraControllerForPhoto {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",nil)

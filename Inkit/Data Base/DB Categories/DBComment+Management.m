@@ -7,9 +7,6 @@
 //
 
 #import "DBComment+Management.h"
-#import "NSDate+Extension.h"
-#import "DataManager.h"
-
 
 #define kDBComment     @"DBComment"
 NSString *const JSONCommentID = @"id";

@@ -7,17 +7,17 @@
 //
 
 #import "CommentsTableView.h"
-#import "InkitTheme.h"
 
 @interface CommentsTableView()
 @property (nonatomic, readwrite, retain) UIView *inputAccessoryView;
 @end
 @implementation CommentsTableView
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
+    [super awakeFromNib];
     self.backgroundColor = [InkitTheme getBackgroundColor];
 }
+
 // Override canBecomeFirstResponder
 // to allow this view to be a responder
 -(BOOL)canBecomeFirstResponder {
@@ -41,8 +41,7 @@
 }
 
 #pragma mark - CommentBarView Delegate
-- (void)commentBarView:(CommentBarView *)commentBarView didEnterText:(NSString *)text
-{
+- (void)commentBarView:(CommentBarView *)commentBarView didEnterText:(NSString *)text {
     [self.commentsDelegate commentsTableView:self didEnterNewComment:text];
 }
 

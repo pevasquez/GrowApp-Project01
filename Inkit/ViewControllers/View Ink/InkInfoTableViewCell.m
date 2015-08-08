@@ -7,7 +7,6 @@
 //
 
 #import "InkInfoTableViewCell.h"
-#import "InkitTheme.h"
 #import "DBUser+Management.h"
 
 @interface InkInfoTableViewCell()

@@ -10,26 +10,16 @@
 
 @implementation FormViewController
 
-- (void)hideKeyboard
-{
+- (void)hideKeyboard {
     for (UITextField *textField in self.textFieldsArray) {
         [textField resignFirstResponder];
     }
 }
 
-- (void) setTextFieldsEnabled:(BOOL)enabled
-{
+- (void) setTextFieldsEnabled:(BOOL)enabled {
     for (UITextField *textField in self.textFieldsArray) {
         textField.enabled = enabled;
     }
-}
-
-- (void)enableTextFields {
-    [self setTextFieldsEnabled:true];
-}
-
-- (void)disableTextFields {
-    [self setTextFieldsEnabled:false];
 }
 
 #pragma mark - UITextField Delegate
@@ -61,8 +51,7 @@
 
 #pragma mark - AlertView
 
-- (void)showAlertForMessage:(NSString *)errorMessage
-{
+- (void)showAlertForMessage:(NSString *)errorMessage {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
     [alert show];
 }

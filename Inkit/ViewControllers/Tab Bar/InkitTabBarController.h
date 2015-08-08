@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface InkitTabBarController : UITabBarController
+
 - (void)selectLastSelectedItem;
 - (void)selectDashboard;
+
 @end

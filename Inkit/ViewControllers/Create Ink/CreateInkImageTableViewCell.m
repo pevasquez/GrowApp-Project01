@@ -9,14 +9,19 @@
 #import "CreateInkImageTableViewCell.h"
 
 @implementation CreateInkImageTableViewCell
-- (void)configureForImage:(UIImage *)image
-{
+
+- (void)setInkImage:(UIImage *)inkImage {
+    _inkImage = inkImage;
+    self.inkImageView.image = inkImage;
+    self.cellHeight = [self getInkImageHeightForImage:inkImage];
+}
+
+- (void)configureForImage:(UIImage *)image {
     self.inkImageView.image = image;
     self.cellHeight = [self getInkImageHeightForImage:image];
 }
 
-- (double)getInkImageHeightForImage:(UIImage *)inkImage
-{
+- (double)getInkImageHeightForImage:(UIImage *)inkImage {
     CGSize inkImageSize = inkImage.size;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     double newInkImageHeight = inkImageSize.height * screenSize.width / inkImageSize.width;

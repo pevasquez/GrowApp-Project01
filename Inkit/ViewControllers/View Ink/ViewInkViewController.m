@@ -17,18 +17,13 @@
 #import "InkBoardTableViewCell.h"
 #import "ViewInkTableViewCell.h"
 #import "CommentsViewController.h"
-#import "DataManager.h"
-#import "InkitTheme.h"
 #import "DBImage+Management.h"
-#import "InkitService.h"
 #import "ViewInkTableViewCell.h"
 #import "ViewImageViewController.h"
 #import "InkTableView.h"
 #import "ViewInkCollectionReusableView.h"
-#import "UIView+Extension.h"
 
-typedef enum
-{
+typedef enum {
     kViewInkImage,
     //kInkRemote,
     kViewInkDescription,
@@ -45,9 +40,11 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
 
 
 @interface ViewInkViewController() <InkTableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) InkTableView* inkTableView;
+
 @end
 
 @implementation ViewInkViewController
@@ -57,6 +54,7 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
     self.title = self.ink.inkDescription;
     [self.inksCollectionView registerNib:[UINib nibWithNibName:@"ViewInkCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ViewInkCollectionReusableViewIdentifier];
     UIViewController* parentViewController = [self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-2)];
+    
     if ([parentViewController isKindOfClass:[CreateInkViewController class]]) {
         self.navigationItem.hidesBackButton = YES;
     }

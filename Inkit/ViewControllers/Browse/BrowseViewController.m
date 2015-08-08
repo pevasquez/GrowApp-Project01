@@ -12,10 +12,6 @@
 #import "GADBannerCollectionReusableView.h"
 #import "ViewInkViewController.h"
 #import "AppDelegate.h"
-#import "InkitTheme.h"
-#import "InkitService.h"
-#import "GAProgressHUDHelper.h"
-#import "UIView+Extension.h"
 
 @import GoogleMobileAds;
 

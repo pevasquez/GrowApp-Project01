@@ -7,12 +7,11 @@
 //
 
 #import "UserNameLabel.h"
-#import "InkitTheme.h"
 
 @implementation UserNameLabel
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
+    [super awakeFromNib];
     self.font = [InkitTheme getFontForUserName];
 }
 

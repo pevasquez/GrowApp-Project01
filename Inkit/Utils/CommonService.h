@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface CommonService : NSObject
-+ (NSError *)getBodyPartsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-+ (NSError *)getTattooTypesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-+ (NSError *)getTattooStylesWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
++ (void)getBodyPartsWithCompletion:(ServiceResponse)completion;
+
++ (void)getTattooTypesWithCompletion:(ServiceResponse)completion;
+
++ (void)getTattooStylesWithCompletion:(ServiceResponse)completion;
+
 @end

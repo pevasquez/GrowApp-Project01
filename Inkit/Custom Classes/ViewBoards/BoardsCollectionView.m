@@ -7,7 +7,6 @@
 //
 
 #import "BoardsCollectionView.h"
-#import "InkitTheme.h"
 
 @implementation BoardsCollectionView
 
@@ -19,8 +18,8 @@
 }
 */
 
--(void)awakeFromNib
-{
+-(void)awakeFromNib {
+    [super awakeFromNib];
     self.backgroundColor = [InkitTheme getBackgroundColor];
 }
 @end

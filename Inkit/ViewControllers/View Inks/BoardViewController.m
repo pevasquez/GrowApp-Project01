@@ -10,7 +10,6 @@
 #import "ViewInkViewController.h"
 #import "CreateBoardViewController.h"
 #import "InkCollectionViewCell.h"
-#import "DataManager.h"
 #import "WaterfallLayout.h"
 
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";

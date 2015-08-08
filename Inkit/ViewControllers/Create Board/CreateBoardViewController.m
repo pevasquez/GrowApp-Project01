@@ -11,13 +11,8 @@
 #import "InkDescriptionTableViewCell.h"
 #import "DBBoard+Management.h"
 #import "AppDelegate.h"
-#import "DataManager.h"
-#import "InkitTheme.h"
-#import "InkitConstants.h"
-#import "GAProgressHUDHelper.h"
 
-typedef enum
-{
+typedef enum {
     kCreateBoardTitleIndex,
     kCreateBoardDescriptionIndex,
     kCreateBoardTotalCells
@@ -65,8 +60,7 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
 }
 
 #pragma mark - TableView Data Source Methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.isEditing) {
         return 2;
     } else {
@@ -74,8 +68,7 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return kCreateBoardTotalCells;
     } else {
@@ -83,8 +76,7 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = nil;
 
     if (indexPath.section == 0) {
@@ -103,13 +95,11 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
 }
 
 #pragma mark - TableView Delegte Methods
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kCreateBoardCellHeight;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to delete this board", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Delete", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil) ,nil];
@@ -119,8 +109,7 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
 }
 
 #pragma mark - Action Methods
-- (IBAction)doneButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)doneButtonPressed:(UIBarButtonItem *)sender {
     if ([self.stringsArray[kCreateBoardTitleIndex] isEqualToString:@""] ||
         [self.stringsArray[kCreateBoardDescriptionIndex] isEqualToString:@""]) {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Complete the title and description to continue", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
@@ -137,34 +126,29 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
     }
 }
 
-- (void)boardCreateComplete:(DBBoard *)board
-{
+- (void)boardCreateComplete:(DBBoard *)board {
     [self.delegate boardCreated:board];
     [self.navigationController popViewControllerAnimated:YES];
     [self hideActivityIndicator];
 }
 
-- (void)boardUpdateComplete
-{
+- (void)boardUpdateComplete {
     [self.navigationController popViewControllerAnimated:YES];
     [self hideActivityIndicator];
 }
 
-- (void)deleteBoardComplete
-{
+- (void)deleteBoardComplete {
     [self.navigationController popToRootViewControllerAnimated:YES];
     [self hideActivityIndicator];
 }
 
-- (void)boardServiceError:(NSString *)errorString
-{
+- (void)boardServiceError:(NSString *)errorString {
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:errorString message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil];
     [alertView show];
     [self hideActivityIndicator];
 }
 
-- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -183,21 +167,18 @@ static NSString * const TextFieldTableViewCellIdentifier = @"TextFieldTableViewC
 }
 
 #pragma mark - UIAlertView Delegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [self.board deleteWithTarget:self completeAction:@selector(deleteBoardComplete) completeError:@selector(boardServiceError:)];
     }
 }
 
 #pragma mark - Activity Indicator Methods
-- (void) showActivityIndicator
-{
+- (void) showActivityIndicator {
     [GAProgressHUDHelper standarBlankHUD:self.view];
 }
 
-- (void) hideActivityIndicator
-{
+- (void) hideActivityIndicator {
     [GAProgressHUDHelper hideProgressHUDinView:self.view];
 }
 

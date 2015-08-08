@@ -7,7 +7,6 @@
 //
 
 #import "DBArtist+Management.h"
-#import "DataManager.h"
 #import "DBUser+Management.h"
 
 @implementation DBArtist (Management)
@@ -20,14 +19,12 @@
     return artist;
 }
 
-+ (DBArtist *)withID:(NSString *)artistId
-{
++ (DBArtist *)withID:(NSString *)artistId {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"artistId = %@",artistId];
     return (DBArtist *)[[DataManager sharedInstance] first:KDBArtist predicate:predicate sort:nil limit:1];
 }
 
-+ (DBArtist *)fromJson:(NSDictionary *)artistData
-{
++ (DBArtist *)fromJson:(NSDictionary *)artistData {
     NSString* artistID = [NSString stringWithFormat:@"%@",artistData[@"id"]];
     DBArtist* obj = [DBArtist withID:artistID];
     DBArtist* artist = nil;
@@ -42,8 +39,7 @@
     return artist;
 }
 
-- (void)updateWithJson:(NSDictionary *)jsonDictionary
-{
+- (void)updateWithJson:(NSDictionary *)jsonDictionary {
     [super updateWithJson:jsonDictionary];
 }
 

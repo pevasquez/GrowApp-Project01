@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GADBannerCollectionReusableView : UICollectionReusableView
+
 @property (strong, nonatomic) UIViewController* rootViewController;
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;
 

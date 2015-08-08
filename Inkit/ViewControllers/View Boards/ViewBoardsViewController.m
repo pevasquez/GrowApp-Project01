@@ -13,9 +13,6 @@
 #import "BoardCollectionViewCell.h"
 #import "AppDelegate.h"
 #import "DBBoard+Management.h"
-#import "InkitTheme.h"
-#import "DataManager.h"
-#import "GAProgressHUDHelper.h"
 
 static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionViewCell";
 
@@ -29,8 +26,7 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 @implementation ViewBoardsViewController
 
 #pragma mark - Lifecycle Methods
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"My Boards",nil);
@@ -38,15 +34,13 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
     [self customizeNavigationBar];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self getBoards];
 }
 
 #pragma mark - CollectionView Data Source
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     if ([self.boardsArray count]) {
         self.boardsCollectionView.backgroundView = nil;
         return 1;
@@ -62,13 +56,11 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
     }
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.boardsArray count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:BoardCollectionViewCellIdentifier forIndexPath:indexPath];
     cell.board = self.boardsArray[indexPath.row];
     return cell;
@@ -83,34 +75,29 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
     return CGSizeMake(width, mainImageViewOrigin + mainImageViewHeight + thumbnailsHeight + 8);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"ViewInksSegue" sender:indexPath];
 }
 
 #pragma mark - Get Data Methods
-- (void)getBoards
-{
+- (void)getBoards {
     [self showActivityIndicator];
     [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction) completeError:@selector(getBoardsCompleteError:)];
 }
 
-- (void)getBoardsCompleteAction
-{
+- (void)getBoardsCompleteAction {
     [self hideActitivyIndicator];
     self.boardsArray = [self.activeUser getSortedBoards];
     [self.boardsCollectionView reloadData];
 }
 
-- (void)getBoardsCompleteError:(NSString *)errorString
-{
+- (void)getBoardsCompleteError:(NSString *)errorString {
     [self hideActitivyIndicator];
     [self showAlertForMessage:errorString];
 }
 
 #pragma mark - Navigation Methods
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue destinationViewController] isKindOfClass:[BoardViewController class]] && [sender isKindOfClass:[NSIndexPath class]]) {
         NSIndexPath* indexPath = (NSIndexPath *)sender;
         BoardViewController* viewInksViewController = [segue destinationViewController];
@@ -121,34 +108,29 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
     }
 }
 
-- (IBAction)createBoardButtonPressed:(UIBarButtonItem *)sender
-{
+- (IBAction)createBoardButtonPressed:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"CreateBoardSegue" sender:nil];
 }
 
 #pragma mark - Appearence Methods
-- (void)customizeNavigationBar
-{
+- (void)customizeNavigationBar {
     [InkitTheme setUpNavigationBarForViewController:self];
 }
 
 #pragma mark - Actitivy Indicator Methods
-- (void) showActivityIndicator
-{
+- (void) showActivityIndicator {
     [GAProgressHUDHelper standarBlankHUD:self.view];
 //    self.activityIndicatorView.hidden = NO;
 //    [self.activityIndicatorView startAnimating];
 }
 
-- (void) hideActitivyIndicator
-{
+- (void) hideActitivyIndicator {
     [GAProgressHUDHelper hideProgressHUDinView:self.view];
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
 }
 
-- (void)showAlertForMessage:(NSString *)errorMessage
-{
+- (void)showAlertForMessage:(NSString *)errorMessage {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
     [alert show];
 }

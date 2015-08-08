@@ -7,7 +7,6 @@
 //
 
 #import "DBBodyPart+Management.h"
-#import "DataManager.h"
 
 #define kDBBodyPart     @"DBBodyPart"
 #define kDBBodyPartName @"name"
@@ -38,8 +37,7 @@
     return bodyPart;
 }
 
-- (void)updateWithJson:(NSDictionary *)bodyPartDictionary
-{
+- (void)updateWithJson:(NSDictionary *)bodyPartDictionary {
     if ([bodyPartDictionary objectForKey:@"name"]) {
         self.name = [bodyPartDictionary objectForKey:@"name"];
     }

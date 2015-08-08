@@ -37,8 +37,7 @@ typedef enum {
 
 @implementation InkTableView
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self configureTableView];
@@ -47,8 +46,7 @@ typedef enum {
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
+- (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
         [self configureTableView];
@@ -56,8 +54,7 @@ typedef enum {
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self configureTableView];

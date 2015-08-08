@@ -9,7 +9,6 @@
 #import "GoogleManager.h"
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
-#import "InkitConstants.h"
 
 @interface GoogleManager() <GPPSignInDelegate>
 @property (strong, nonatomic) NSMutableDictionary* userInfo;
@@ -18,8 +17,7 @@
 
 static NSString * const kClientId = @"696055674747-jc3jtik6usp6597ppqvosjh2te294l4o.apps.googleusercontent.com";
 
-+ (id)sharedInstance
-{
++ (id)sharedInstance {
     static GoogleManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^ {
@@ -43,16 +41,14 @@ static NSString * const kClientId = @"696055674747-jc3jtik6usp6597ppqvosjh2te294
     googleSignIn.shouldFetchGoogleUserEmail = YES;
     googleSignIn.delegate = self;
     
-    [[GPPSignIn sharedInstance]trySilentAuthentication];
+//    [[GPPSignIn sharedInstance]trySilentAuthentication];
 }
 
 - (void)logInUser {
     [[GPPSignIn sharedInstance] authenticate];
 }
 
-- (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
-                   error: (NSError *) error
-{
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error: (NSError *) error {
     NSLog(@"Received error %@ and auth object %@",error, auth);
     
     if (error) {
@@ -109,8 +105,7 @@ static NSString * const kClientId = @"696055674747-jc3jtik6usp6597ppqvosjh2te294
     }
 }
 
-- (NSDictionary *)getCachedUserInfo
-{
+- (NSDictionary *)getCachedUserInfo {
     return self.userInfo;
 }
 

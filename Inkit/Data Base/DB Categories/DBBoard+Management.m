@@ -7,9 +7,7 @@
 //
 
 #import "DBBoard+Management.h"
-#import "InkitService.h"
-#import "DataManager.h"
-#import "NSDate+Extension.h"
+#import "DBInk+Management.h"
 
 #define kDBBoard     @"DBBoard"
 NSString *const JSONBoardID = @"id";
@@ -24,13 +22,11 @@ NSString *const JSONBoardPreviewInks = @"preview_inks";
 NSString *const JSONBoardExtraData = @"extra_data";
 
 @implementation DBBoard (Management)
-- (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
+- (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     [InkitService updateBoard:self withDictionary:boardDictionary target:target completeAction:completeAction completeError:completeError];
 }
 
-- (void)deleteWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
+- (void)deleteWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     [InkitService deleteBoard:self WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
@@ -49,36 +45,31 @@ NSString *const JSONBoardExtraData = @"extra_data";
     return sortedArray;
 }
 
-- (void)addInkToBoard:(DBInk *)ink
-{
+- (void)addInkToBoard:(DBInk *)ink {
     [self addInksObject:ink];
     [DataManager saveContext];
 }
 
-- (void)addInksToBoard:(NSArray *)inksArray
-{
+- (void)addInksToBoard:(NSArray *)inksArray {
     for (DBInk* ink in inksArray) {
         [self addInkToBoard:ink];
     }
     [DataManager saveContext];
 }
 
-- (void)removeInkFromBoard:(DBInk *)ink
-{
+- (void)removeInkFromBoard:(DBInk *)ink {
     [self removeInksObject:ink];
     [DataManager saveContext];
 }
 
-- (void)removeInksFromBoard:(NSArray *)inksArray
-{
+- (void)removeInksFromBoard:(NSArray *)inksArray {
     for (DBInk* ink in inksArray) {
         [self removeInkFromBoard:ink];
     }
     [DataManager saveContext];
 }
 
-- (void)deleteBoard
-{
+- (void)deleteBoard {
     [[DataManager sharedInstance] deleteObject:self];
     [DataManager saveContext];
 }
@@ -93,8 +84,7 @@ NSString *const JSONBoardExtraData = @"extra_data";
     return (DBBoard *)[[DataManager sharedInstance] first:kDBBoard predicate:predicate sort:nil limit:1];
 }
 
-+ (DBBoard *)fromJson:(NSDictionary *)boardData
-{
++ (DBBoard *)fromJson:(NSDictionary *)boardData {
     NSString* boardID = [NSString stringWithFormat:@"%@",boardData[JSONBoardID]];
     DBBoard* obj = [DBBoard withID:boardID];
     DBBoard* board = nil;
@@ -107,8 +97,7 @@ NSString *const JSONBoardExtraData = @"extra_data";
     return board;
 }
 
-- (void)updateWithJson:(NSDictionary *)boardData
-{
+- (void)updateWithJson:(NSDictionary *)boardData {
     [boardData enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
         // Ignore the key / value pair if the value is NSNull.
         if ([value isEqual:[NSNull null]]) {

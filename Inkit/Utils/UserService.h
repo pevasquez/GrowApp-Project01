@@ -11,13 +11,12 @@
 
 @interface UserService : NSObject
 
-+ (NSError *)logInUserDictionary:(NSDictionary *)userDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)logInUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
 
-+ (NSError *)logInSocialDictionary:(NSDictionary *)facebookDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)logInSocialDictionary:(NSDictionary *)facebookDictionary withCompletion:(ServiceResponse)completion;
 
-+ (NSError *)registerUserDictionary:(NSDictionary *)userDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
++ (void)registerUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
 
-+ (NSError *)logOutUser:(DBUser *)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-
++ (void)logOutUser:(DBUser *)user withCompletion:(ServiceResponse)completion;
 
 @end

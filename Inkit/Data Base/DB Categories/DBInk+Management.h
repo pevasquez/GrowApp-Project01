@@ -7,8 +7,8 @@
 //
 
 #import "DBInk.h"
+#import "InkitServiceConstants.h"
 #import <UIKit/UIKit.h>
-#import "InkitConstants.h"
 
 @interface DBInk (Management)
 + (DBInk *)fromJson:(NSDictionary *)inkData;

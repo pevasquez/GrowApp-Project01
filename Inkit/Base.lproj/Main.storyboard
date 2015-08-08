@@ -486,30 +486,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextFieldTableViewCell" rowHeight="90" id="xRg-9L-xrP" customClass="TextViewTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xRg-9L-xrP" id="FpW-Wt-21B">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUL-C9-djc">
-                                                    <rect key="frame" x="8" y="8" width="584" height="73"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="sUL-C9-djc" secondAttribute="trailing" id="2oQ-H9-4Um"/>
-                                                <constraint firstItem="sUL-C9-djc" firstAttribute="leading" secondItem="FpW-Wt-21B" secondAttribute="leadingMargin" id="Uyj-fW-dE4"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="sUL-C9-djc" secondAttribute="bottom" id="Wzt-wY-ekR"/>
-                                                <constraint firstItem="sUL-C9-djc" firstAttribute="top" secondItem="FpW-Wt-21B" secondAttribute="topMargin" id="bHg-2Z-COb"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="textView" destination="sUL-C9-djc" id="F78-ty-THN"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="PlN-6M-hAE" id="Fyb-jN-rFS"/>
@@ -600,10 +576,15 @@
                     <navigationItem key="navigationItem" title="View Ink" id="3F2-iK-rEK">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Si9-K9-AmI">
                             <color key="tintColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="lo4-b3-aBR" id="HS8-AW-fTo"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="doneButton" destination="Si9-K9-AmI" id="ViA-aX-oVv"/>
+                        <outlet property="editButton" destination="rLs-RY-4Ng" id="BtO-1s-a4c"/>
                         <outlet property="inksCollectionView" destination="Ph3-F0-jLU" id="tX2-32-95E"/>
                         <segue destination="Rt5-cs-ThI" kind="show" identifier="ViewBoardSegue" id="fuA-Ra-Shr"/>
                         <segue destination="PlN-6M-hAE" kind="show" identifier="EditInkSegue" id="Jz9-mo-WFQ"/>
@@ -613,6 +594,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Noc-wR-szi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem systemItem="edit" id="rLs-RY-4Ng" userLabel="EditButton">
+                    <connections>
+                        <action selector="editButtonPressed:" destination="lo4-b3-aBR" id="Dxs-4x-ijO"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="2404" y="3859"/>
         </scene>
@@ -802,7 +788,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SelectLocalTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3KV-ST-JBN" customClass="SelectLocalTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Usp-S7-UAu">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="sTu-b2-TaO">
@@ -1093,7 +1079,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-1G-0nL">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-1G-0nL">
                                 <rect key="frame" x="16" y="20" width="49" height="30"/>
                                 <state key="normal" title="Repeat">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1103,7 +1089,7 @@
                                     <action selector="cancelButtonPressed:" destination="GPq-Xs-E6E" eventType="touchUpInside" id="mwR-48-uzE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zoi-bG-k00">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zoi-bG-k00">
                                 <rect key="frame" x="105" y="20" width="25" height="25"/>
                                 <state key="normal" image="Rotate">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1113,7 +1099,7 @@
                                     <action selector="rotateButtonPressed:" destination="GPq-Xs-E6E" eventType="touchUpInside" id="vfj-fL-SvN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzj-KR-srk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzj-KR-srk">
                                 <rect key="frame" x="170" y="20" width="25" height="25"/>
                                 <state key="normal" image="Crop">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1123,7 +1109,7 @@
                                     <action selector="cropButtonPressed:" destination="GPq-Xs-E6E" eventType="touchUpInside" id="2jg-3O-7V5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EJ-lo-vex">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EJ-lo-vex">
                                 <rect key="frame" x="522" y="20" width="62" height="30"/>
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1400,11 +1386,11 @@
         <image name="TakePhotoButton" width="51" height="51"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PMK-EJ-OUB"/>
-        <segue reference="lQ1-q0-po4"/>
-        <segue reference="wiw-FZ-qXc"/>
-        <segue reference="Jfs-eb-Rhc"/>
         <segue reference="4zW-VL-7OH"/>
+        <segue reference="Jfs-eb-Rhc"/>
+        <segue reference="JDq-03-SiX"/>
+        <segue reference="fuA-Ra-Shr"/>
+        <segue reference="lQ1-q0-po4"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.85490196078431369" green="0.12941176470588237" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

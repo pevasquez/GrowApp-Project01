@@ -10,9 +10,9 @@
 #import "ProfileImageView.h"
 #import "DBUser+Management.h"
 #import "DBImage+Management.h"
-#import "InkitTheme.h"
 
 @interface InkActionsTableViewCell()
+
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *reInkButton;

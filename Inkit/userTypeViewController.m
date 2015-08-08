@@ -21,8 +21,7 @@
 @implementation UserTypeViewController
 
 
--(id)init
-{
+-(id)init {
     self = [super init];
     return self;
 }
@@ -31,8 +30,7 @@ static NSString *cellIdentifier;
 
 #pragma mark - Life cycle methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.data = @[@"User",
@@ -54,18 +52,15 @@ static NSString *cellIdentifier;
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.data count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.textLabel.text = [self.data objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -84,13 +79,11 @@ static NSString *cellIdentifier;
     
 }
 
-- (void)customizeTableView
-{
+- (void)customizeTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate didSelectUserType:self.data[indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
 }

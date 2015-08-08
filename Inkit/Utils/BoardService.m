@@ -7,14 +7,9 @@
 //
 
 #import "BoardService.h"
-#import "DataManager.h"
-#import "InkitServiceConstants.h"
-#import "InkitConstants.h"
-#import "NSDictionary+Extensions.h"
 
 @implementation BoardService
-+ (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
++ (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     // Create returnError
     NSError* returnError = nil;
     
@@ -95,8 +90,7 @@
     return returnError;
 }
 
-+ (NSError *)updateBoard:(DBBoard *)board withDictionary:(NSDictionary *)boardDictionary target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-{
++ (NSError *)updateBoard:(DBBoard *)board withDictionary:(NSDictionary *)boardDictionary target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError; {
     // Create returnError
     NSError* returnError = nil;
     
@@ -170,8 +164,7 @@
     return returnError;
 }
 
-+ (NSError *)deleteBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
++ (NSError *)deleteBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     // Create returnError
     NSError* returnError = nil;
     
@@ -241,8 +234,7 @@
     return returnError;
 }
 
-+ (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
++ (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     // Create returnError
     NSError* returnError = nil;
     

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Extension)
+
 - (UIImage *)getSmallImage;
 - (UIImage *)getMediumImage;
 - (UIImage *)getLargeImage;
+
 @end

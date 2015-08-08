@@ -7,20 +7,14 @@
 //
 
 #import "InkService.h"
-#import "InkitServiceConstants.h"
-#import "DataManager.h"
 #import "DBArtist+Management.h"
 #import "DBShop+Management.h"
-#import "InkitConstants.h"
-#import "NSDictionary+Extensions.h"
-#import "NSData+Extension.h"
 #import "DBTattooType+Management.h"
 #import "DBBodyPart+Management.h"
 
 @implementation InkService
 
-+ (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
++ (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     NSError* returnError = nil;
 
     DBBoard* board = inkDictionary[kInkBoard];
@@ -106,8 +100,7 @@
     return returnError;
 }
 
-+ (NSError *)updateInk:(DBInk *)ink withDictionary:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
++ (NSError *)updateInk:(DBInk *)ink withDictionary:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     NSError* returnError = nil;
     
     // Create String URL

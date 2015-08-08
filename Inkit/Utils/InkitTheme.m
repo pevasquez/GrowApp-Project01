@@ -10,19 +10,19 @@
 
 @implementation InkitTheme
 + (UIColor *)getTintColor {
-    return [UIColor colorWithRed:218.0/255.0 green:33.0/255.0 blue:40.0/255.0 alpha:1];
+    return [UIColor IKRed];
 }
 
 + (UIColor *)getBaseColor {
-    return [UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:1];
+    return [UIColor IKGrayDark];
 }
 
 + (UIColor *)getLightBaseColor {
-    return [UIColor colorWithRed:146.0/255.0 green:146.0/255.0 blue:146.0/255.0 alpha:1];
+    return [UIColor IKGray];
 }
 
 + (UIColor *)getBackgroundColor {
-    return [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1];
+    return [UIColor IKGrayLight];
 }
 
 + (void)setUpNavigationBarForViewController:(UIViewController *)viewController {
@@ -35,23 +35,19 @@
     viewController.navigationController.navigationBar.titleTextAttributes = attributesDictionary;
 }
 
-+ (UIColor *)getColorForText
-{
++ (UIColor *)getColorForText {
     return [UIColor blackColor];
 }
 
-+ (UIColor *)getColorForPlaceHolderText
-{
++ (UIColor *)getColorForPlaceHolderText {
     return [UIColor grayColor];
 }
 
-+ (UIFont *)getFontForUserName
-{
++ (UIFont *)getFontForUserName {
     return [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
 }
 
-+ (UIFont *)getFontForComments
-{
++ (UIFont *)getFontForComments {
     return [UIFont fontWithName:@"HelveticaNeue-Light" size:16.0f];
 }
 @end

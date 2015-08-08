@@ -14,8 +14,7 @@
 @end
 @implementation InkitButton
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
     self.layer.cornerRadius = 4;
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -28,13 +27,11 @@
     }
 }
 
-- (void)setIconImage:(UIImage *)iconImage
-{
+- (void)setIconImage:(UIImage *)iconImage {
     self.iconImageView.image = iconImage;
 }
 
--(void)layoutSubviews
-{
+-(void)layoutSubviews {
     [super layoutSubviews];
     self.iconImageView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2 + 45);
 }

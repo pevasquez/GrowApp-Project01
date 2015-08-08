@@ -52,4 +52,9 @@
 // Ink JSON Constants
 #define kInkDescription                 @"description"
 
+typedef void (^ServiceResponseError)(NSError *error);
+typedef void (^ServiceResponse)(id response, NSError* error);
+typedef void (^ServiceResponseArray)(NSArray *response, NSError *error);
+typedef void (^ServiceResponseDictionary)(NSDictionary *response, NSError *error);
+
 #endif

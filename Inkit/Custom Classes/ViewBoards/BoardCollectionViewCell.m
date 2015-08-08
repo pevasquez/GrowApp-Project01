@@ -8,7 +8,6 @@
 
 #import "BoardCollectionViewCell.h"
 #import "DBInk+Management.h"
-#import "InkitTheme.h"
 #import "DBImage+Management.h"
 
 @interface BoardCollectionViewCell ()
@@ -56,8 +55,7 @@
     self.fourthThumbnailImageView.image = nil;
 }
 
-- (CGSize)getSizeForBounds:(CGRect)screenBounds
-{
+- (CGSize)getSizeForBounds:(CGRect)screenBounds {
     double width = (screenBounds.size.width-12)/2;
     double titleOrigin = 8;
     double titleHeight = 32;

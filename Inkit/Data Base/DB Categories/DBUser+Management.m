@@ -9,10 +9,6 @@
 #import "DBUser+Management.h"
 #import "DBBoard+Management.h"
 #import "DBImage+Management.h"
-#import "InkitService.h"
-#import "InkitConstants.h"
-#import "DataManager.h"
-#import "NSDate+Extension.h"
 
 #define kDBUser     @"DBUser"
 
@@ -49,7 +45,6 @@
         user = obj;
     }
     [user updateWithJson:userData];
-    [DataManager saveContext];
     return user;
 }
 
@@ -109,23 +104,20 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationUserUpdate object:nil userInfo:@{kDBUser:self}];
 }
 
-- (DBBoard *)createBoardFromJson:(NSDictionary *)boardDictionary
-{
+- (DBBoard *)createBoardFromJson:(NSDictionary *)boardDictionary {
     DBBoard* board = [DBBoard fromJson:boardDictionary];
     board.user = self;
     return board;
 }
 
-- (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError
-{
+- (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     if ([self getSortedBoards]) {
         [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
     }
     [InkitService getBoardsForUser:self withTarget:target completeAction:completeAction completeError:completeError];
 }
 
-- (NSArray *)getSortedBoards
-{
+- (NSArray *)getSortedBoards {
     NSArray* boardsArray = [self.boards.array copy];
     NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"boardTitle" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     NSArray* descriptors = [NSArray arrayWithObject:valueDescriptor];

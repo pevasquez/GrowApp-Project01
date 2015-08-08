@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "DBUser+Management.h"
 #import "DBBoard+Management.h"
-#import "InkitService.h"
 
 @protocol CreateBoardDelegate <NSObject>
 

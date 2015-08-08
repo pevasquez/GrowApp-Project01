@@ -21,8 +21,7 @@
 @end
 
 @implementation DataManager
-+ (id)sharedInstance
-{
++ (id)sharedInstance {
     static DataManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^ {
@@ -38,20 +37,17 @@
     return self;
 }
 
-+ (void)saveContext
-{
++ (void)saveContext {
     // Save context
     NSError* error = nil;
     [[DataManager sharedInstance].managedObjectContext save:&error];
 }
 
-+ (void)loadBodyPartsFromJson:(NSDictionary *)jsonDictionary
-{
++ (void)loadBodyPartsFromJson:(NSDictionary *)jsonDictionary {
     [[DataManager sharedInstance] loadBodyPartsFromJson:jsonDictionary];
 }
 
-- (void)loadBodyPartsFromJson:(NSDictionary *)jsonDictionary
-{
+- (void)loadBodyPartsFromJson:(NSDictionary *)jsonDictionary {
     if ([jsonDictionary objectForKey:@"meta"]) {
         if ([jsonDictionary[@"meta"] objectForKey:@"last_version"]) {
            // NSNumber* lastVersion = [NSNumber numberWithLong:[jsonDictionary[@"last_version"] longValue]];
@@ -65,13 +61,11 @@
     }
 }
 
-+ (void)loadTattooTypesFromJson:(NSDictionary *)jsonDictionary
-{
++ (void)loadTattooTypesFromJson:(NSDictionary *)jsonDictionary {
     [[DataManager sharedInstance] loadTattooTypesFromJson:jsonDictionary];
 }
 
-- (void)loadTattooTypesFromJson:(NSDictionary *)jsonDictionary
-{
+- (void)loadTattooTypesFromJson:(NSDictionary *)jsonDictionary {
     if ([jsonDictionary objectForKey:@"meta"]) {
         if ([jsonDictionary[@"meta"] objectForKey:@"last_version"]) {
 //            NSNumber* lastVersion = [NSNumber numberWithInteger:[(NSString *)jsonDictionary[@"last_version"] integerValue]] ;
@@ -88,8 +82,7 @@
 #pragma mark - Active User Management
 @synthesize activeUser;
 
-- (void)obtainCurrentUser
-{
+- (void)obtainCurrentUser {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSData* userData = [userDefaults objectForKey:kActiveUser];
     if (userData) {
@@ -129,8 +122,7 @@
 }
 
 
-- (void)setActiveUser:(DBUser *)user
-{
+- (void)setActiveUser:(DBUser *)user {
     activeUser = user;
     
     NSError* error = nil;
@@ -148,8 +140,7 @@
     [userDefaults synchronize];
 }
 
-- (DBUser *)activeUser
-{
+- (DBUser *)activeUser {
     if (!activeUser) {
         [self obtainCurrentUser];
     }

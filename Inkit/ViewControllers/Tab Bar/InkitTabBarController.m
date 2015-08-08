@@ -7,7 +7,6 @@
 //
 
 #import "InkitTabBarController.h"
-#import "InkitTheme.h"
 
 @interface InkitTabBarController ()
 @property (nonatomic) NSUInteger lastSelectedItem;
@@ -24,8 +23,7 @@ typedef enum {
 
 #pragma mark - Life cycle methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.tintColor = [InkitTheme getTintColor];
     self.selectedIndex = kBrowse;
@@ -45,18 +43,15 @@ typedef enum {
 }
 
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     self.lastSelectedItem = self.selectedIndex;
 }
 
-- (void)selectLastSelectedItem
-{
+- (void)selectLastSelectedItem {
     self.selectedIndex = self.lastSelectedItem;
 }
 
-- (void)selectDashboard
-{
+- (void)selectDashboard {
     self.selectedIndex = kBrowse;
 }
 /*

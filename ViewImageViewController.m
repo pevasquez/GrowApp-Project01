@@ -18,8 +18,7 @@
 
 @implementation ViewImageViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.imageView = [[UIImageView alloc] initWithImage:self.inkImage];
     [self.navigationController.navigationBar setTranslucent:YES];

@@ -38,35 +38,26 @@
     self.customEditImageView.image = self.imageToEdit;
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Actions
 
 - (IBAction)rotateButtonPressed:(id)sender {
-    // Si la orientacion es Top --> Right
+    // Si la orientacion es Top --> Left
     if (self.customEditImageView.image.imageOrientation == UIImageOrientationUp) {
-        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationRight];
+        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationLeft];
         
-    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationRight) {
+    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft) {
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationDown];
                                           
     } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationDown){
-        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationLeft];
+        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationRight];
                                           
-    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft){
+    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationRight){
         self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationUp];
     }
     [self updateContainerView];

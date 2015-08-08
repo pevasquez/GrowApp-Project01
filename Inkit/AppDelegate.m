@@ -7,15 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "DataManager.h"
 #import "DBInk+Management.h"
-#import "InkitConstants.h"
 #import <GoogleOpenSource/GoogleOpenSource.h>
 #import <GooglePlus/GooglePlus.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
+#import "FacebookManager.h"
+#import "GoogleManager.h"
 
 @interface AppDelegate () <TutorialViewControllerDelegate>
 
@@ -24,20 +23,19 @@
 @implementation AppDelegate
 #pragma mark - User LogInMethods
 // Show the user the logged-out UI
-- (void)userLoggedOut
-{
+- (void)userLoggedOut {
+    [[FacebookManager sharedInstance] logOutUser];
+    [[GoogleManager sharedInstance] logOutUser];
     [self setLogInViewController];
 }
 
 // Show the user the logged-in UI
-- (void)userLoggedIn
-{
+- (void)userLoggedIn {
     [self setInitialViewController];
 }
 
 #pragma mark - ViewControllers
-- (void)setLogInViewController
-{
+- (void)setLogInViewController {
     LogInViewController* logInViewController = [[UIStoryboard storyboardWithName:@"OnBoarding" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInViewController"];
     logInViewController.delegate = self;
     UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:logInViewController];
@@ -46,8 +44,7 @@
     [self.window makeKeyAndVisible];
 }
 
-- (void)setSplashViewController
-{
+- (void)setSplashViewController {
     SplashViewController* splashViewController = [[UIStoryboard storyboardWithName:@"OnBoarding" bundle:nil] instantiateViewControllerWithIdentifier:@"SplashViewController"];
     splashViewController.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -55,16 +52,14 @@
     [self.window makeKeyAndVisible];
 }
 
-- (void)setInitialViewController
-{
+- (void)setInitialViewController {
     InkitTabBarController* inkitTabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InkitTabBarController"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = inkitTabBarController;
     [self.window makeKeyAndVisible];
 }
 
-- (void)setTutorialViewController
-{
+- (void)setTutorialViewController {
     TutorialViewController *tutorialViewController = [[UIStoryboard storyboardWithName:@"Tutorial" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PageViewController"];
     tutorialViewController.tutorialDelegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -74,25 +69,21 @@
 
 
 #pragma mark - Splash Screen Delegate Methods
-- (void)splashScreenDidFinishedLoading
-{
+- (void)splashScreenDidFinishedLoading {
     [self setInitialViewController];
 }
 
-- (void)splashScreenDidFailToLogUser
-{
+- (void)splashScreenDidFailToLogUser {
     [self setLogInViewController];
 }
 
 #pragma mark - LogIn Delegate Methods
-- (void)logInDidFinishedLoading
-{
+- (void)logInDidFinishedLoading {
     [self setSplashViewController];
 }
 
 #pragma mark - Tutorial Delegate
-- (void)didFinishTutorial
-{
+- (void)didFinishTutorial {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSNumber numberWithBool:true] forKey:kSeenTutorial];
     [self setLogInViewController];

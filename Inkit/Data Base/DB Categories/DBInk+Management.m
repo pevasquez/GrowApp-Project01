@@ -7,8 +7,6 @@
 //
 
 #import "DBInk+Management.h"
-#import "DataManager.h"
-#import "InkitService.h"
 #import "DBBodyPart+Management.h"
 #import "DBBoard+Management.h"
 #import "DBTattooType+Management.h"
@@ -16,10 +14,6 @@
 #import "DBArtist+Management.h"
 #import "DBImage+Management.h"
 #import "DBShop+Management.h"
-#import "DataManager.h"
-#import "InkitServiceConstants.h"
-#import "InkitConstants.h"
-#import "NSDate+Extension.h"
 
 #define kDBInk     @"DBInk"
 NSString *const JSONInkID = @"id";
@@ -37,8 +31,7 @@ NSString *const JSONInkLoggedUserLikes = @"logged_user_likes";
 NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
 
 @implementation DBInk (Management)
-+ (DBInk *)inkWithInk:(DBInk *)ink
-{
++ (DBInk *)inkWithInk:(DBInk *)ink {
     DBInk* newInk = [DBInk newInk];
     newInk.inkID = ink.inkID;
     newInk.likesCount = ink.likesCount;
@@ -195,8 +188,7 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
     return bodyParts;
 }
 
-- (NSString *)getTattooTypesAsString
-{
+- (NSString *)getTattooTypesAsString {
     NSString* tattooTypes = @"";
     for (DBTattooType* tattooType in self.tattooTypes) {
         tattooTypes = [tattooTypes stringByAppendingString:[NSString stringWithFormat:@"%@ ",tattooType.name]];
@@ -204,14 +196,12 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
     return tattooTypes;
 }
 
-- (NSString *)getArtistsAsString
-{
+- (NSString *)getArtistsAsString {
     return self.artist.name;
 }
 
 
-- (void)updateWithInk:(DBInk *)ink
-{
+- (void)updateWithInk:(DBInk *)ink {
     self.inkID = ink.inkID;
     self.likesCount = ink.likesCount;
     self.createdAt = ink.createdAt;
@@ -250,13 +240,11 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
     }
 }
 
-- (NSArray *)toArray
-{
+- (NSArray *)toArray {
     return @[];
 }
 
-- (NSDictionary *)toDictionary
-{
+- (NSDictionary *)toDictionary {
     NSArray* bodyParts = self.bodyParts.allObjects;
     NSArray* tattooTypes = self.tattooTypes.allObjects;
     NSMutableDictionary* inkData = [@{kInkDescription:self.inkDescription,
@@ -280,8 +268,7 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
     return inkData;
 }
 
-+ (NSDictionary *)emptyDictionary
-{
++ (NSDictionary *)emptyDictionary {
     return @{kInkDescription:@"",
              kInkBoard:@"",
              kInkImage:@"",

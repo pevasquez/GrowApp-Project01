@@ -1,0 +1,30 @@
+//
+//  InkitHeader.pch
+//  Inkit
+//
+//  Created by Cristian Pena on 8/8/15.
+//  Copyright (c) 2015 Digbang. All rights reserved.
+//
+
+#ifndef Inkit_InkitHeader_pch
+#define Inkit_InkitHeader_pch
+
+#import "UIView+Extension.h"
+#import "UIImage+Extension.h"
+#import "UIResponder+FirstResponder.h"
+#import "UIColor+Extension.h"
+
+#import "NSDictionary+Extensions.h"
+#import "NSString+Extensions.h"
+#import "NSData+Extension.h"
+#import "NSDate+Extension.h"
+
+#import "InkitTheme.h"
+#import "InkitService.h"
+#import "InkitConstants.h"
+
+#import "DataManager.h"
+
+#import "GAProgressHUDHelper.h"
+
+#endif
