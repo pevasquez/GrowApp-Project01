@@ -10,9 +10,14 @@
 #import "UserTypeViewController.h"
 #import "AppDelegate.h"
 
+extern NSString * const UserTypeUser;
+extern NSString * const UserTypeArtist;
+extern NSString * const UserTypeShop;
+
 @interface RegisterViewController () <UITextFieldDelegate, UserTypeDelegate > {
     NSString* name;
 }
+
 @property (strong, nonatomic) IBOutlet UITextField *eMailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
@@ -105,16 +110,38 @@
         [self showActivityIndicator];
         [self hideKeyboard];
         [InkitService registerUserDictionary:self.userDictionary withCompletion:^(id response, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self hideActivityIndicator];
-                if (!error) {
-                    [self.delegate registrationComplete];
-                } else {
-                    UIAlertView *alert= [[UIAlertView alloc]initWithTitle:response message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                    [alert show];
-                }
-            });
+            [self hideActivityIndicator];
+            [self processResponse:response andError:error];
         }];
+        
+        // TODO: definir UI para registrar a los 3 tipos de usuarios
+
+//        NSString *userType = self.userDictionary[kUserType];
+//        if ([userType isEqualToString:UserTypeUser]) {
+//            [InkitService registerUserDictionary:self.userDictionary withCompletion:^(id response, NSError *error) {
+//                [self hideActivityIndicator];
+//                [self processResponse:response andError:error];
+//            }];
+//        } else if ([userType isEqualToString:UserTypeShop]) {
+//            [InkitService registerShopDictionary:self.userDictionary withCompletion:^(id response, NSError *error) {
+//                [self hideActivityIndicator];
+//                [self processResponse:response andError:error];
+//            }];
+//        } else if ([userType isEqualToString:UserTypeArtist]) {
+//            [InkitService registerArtistDictionary:self.userDictionary withCompletion:^(id response, NSError *error) {
+//                [self hideActivityIndicator];
+//                [self processResponse:response andError:error];
+//            }];
+//        }
+    }
+}
+
+- (void)processResponse:(id)response andError:(NSError *)error {
+    if (!error) {
+        [self.delegate registrationComplete];
+    } else {
+        UIAlertView *alert= [[UIAlertView alloc]initWithTitle:response message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
     }
 }
 
@@ -130,7 +157,6 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.activeTextField = textField;
-    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -167,8 +193,8 @@
 // usertype delegate
 - (void)didSelectUserType:(NSString *)userType {
     self.userType.text = userType;
+    self.userDictionary[kUserType] = userType;
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self hideKeyboard];
@@ -178,7 +204,6 @@
         utvc.selectedString = self.userType.text;
     }
 }
-
 
 #pragma mark - Activity Indicator Methods
 - (void) showActivityIndicator {
@@ -224,7 +249,6 @@
     }
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);

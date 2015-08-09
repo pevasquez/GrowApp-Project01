@@ -17,6 +17,10 @@
 
 + (void)registerUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
 
++ (void)registerArtistDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
+
++ (void)registerShopDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
+
 + (void)logOutUser:(DBUser *)user withCompletion:(ServiceResponse)completion;
 
 @end

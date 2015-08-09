@@ -43,6 +43,7 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     InkCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:InkCollectionViewCellIdentifier forIndexPath:indexPath];
     cell.ink = self.inksArray[indexPath.section][indexPath.item];
+    cell.indexPath = indexPath;
     return cell;
 }
 

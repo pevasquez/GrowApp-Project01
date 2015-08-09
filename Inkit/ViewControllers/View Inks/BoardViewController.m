@@ -41,20 +41,19 @@ static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCel
     [self getInks];
 }
 
+// TODO: agregar paginación a los inks del board
 - (void)getInks {
     if (self.board) {
         [self showActivityIndicator];
         [self.board getInksWithCompletion:^(id response, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self hideActitivyIndicator];
-                if (error == nil) {
-//                    [self getInksComplete:response];
-                    [self.inksArray addObject:[self.board getInksFromBoard]];
-                    [self.inksCollectionView reloadData];
-                } else {
-                    [self showAlertForMessage:response];
-                }
-            });
+            [self hideActitivyIndicator];
+            if (error == nil) {
+//                [self getInksComplete:[self.board getInksFromBoard]];
+                self.inksArray[0] = [self.board getInksFromBoard];
+                [self.inksCollectionView reloadData];
+            } else {
+                [self showAlertForMessage:response];
+            }
         }];
     }
 }

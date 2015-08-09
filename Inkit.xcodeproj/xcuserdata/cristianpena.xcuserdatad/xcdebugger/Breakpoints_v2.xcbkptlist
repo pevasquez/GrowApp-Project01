@@ -67,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.m"
-            timestampString = "458161273.867211"
+            filePath = "Inkit/Utils/UserService.m"
+            timestampString = "460849860.879005"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-getInkImageHeightForImage:"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "+registerShopDictionary:withCompletion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

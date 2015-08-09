@@ -10,6 +10,7 @@
 #import "CreateInkViewController.h"
 
 @interface EditImageViewController ()
+
 @property (weak, nonatomic) IBOutlet UIView *editingView;
 @property (weak, nonatomic) IBOutlet UIView *editContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *customEditImageView;
@@ -17,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (strong, nonatomic) CropView *cropView;
+@property (nonatomic) BOOL isCropping;
+
 @end
 
 @implementation EditImageViewController
@@ -47,29 +50,11 @@
 #pragma mark - Actions
 
 - (IBAction)rotateButtonPressed:(id)sender {
-    // Si la orientacion es Top --> Left
-    if (self.customEditImageView.image.imageOrientation == UIImageOrientationUp) {
-        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationLeft];
-        
-    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft) {
-        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationDown];
-                                          
-    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationDown){
-        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationRight];
-                                          
-    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationRight){
-        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationUp];
-    }
-    [self updateContainerView];
+    [self rotate];
 }
 
 - (IBAction)cropButtonPressed:(id)sender {
-    if (self.cropView.superview) {
-        [self cropImage];
-        [self removeCropView];
-    } else {
-        [self showCropView];
-    }
+    [self crop];
 }
 
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
@@ -77,8 +62,11 @@
 }
 
 - (IBAction)continueButtonPressed:(UIButton *)sender {
+    if (self.cropView.superview) {
+        [self cropImage];
+    }
     if (self.isEditing) {
-        [self.delegate didEditImage:self.customEditImageView.image];
+        [self.delegate didEditImage:[self getEditedImage]];
         [self.navigationController popViewControllerAnimated:true];
     } else {
         [self performSegueWithIdentifier:@"CreateInkSegue" sender:nil];
@@ -92,6 +80,37 @@
 - (void)updateContainerView {
     self.editContainerView.frame = [self getCanvasForCropView];
     [self.cropView updateBounds];
+}
+
+- (void)rotate {
+    // Si la orientacion es Top --> Left
+    if (self.customEditImageView.image.imageOrientation == UIImageOrientationUp) {
+        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationLeft];
+        self.cropImageView.image = [UIImage imageWithCGImage:self.cropImageView.image.CGImage scale:1 orientation:UIImageOrientationLeft];
+    
+    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationLeft) {
+        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationDown];
+        self.cropImageView.image = [UIImage imageWithCGImage:self.cropImageView.image.CGImage scale:1 orientation:UIImageOrientationDown];
+        
+    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationDown){
+        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationRight];
+        self.cropImageView.image = [UIImage imageWithCGImage:self.cropImageView.image.CGImage scale:1 orientation:UIImageOrientationRight];
+        
+    } else if (self.customEditImageView.image.imageOrientation == UIImageOrientationRight){
+        self.customEditImageView.image = [UIImage imageWithCGImage:self.customEditImageView.image.CGImage scale:1 orientation:UIImageOrientationUp];
+        self.cropImageView.image = [UIImage imageWithCGImage:self.cropImageView.image.CGImage scale:1 orientation:UIImageOrientationUp];
+
+    }
+    [self updateContainerView];
+}
+
+- (void)crop {
+    if (self.cropView.superview) {
+        [self cropImage];
+        [self removeCropView];
+    } else {
+        [self showCropView];
+    }
 }
 
 - (void)showCropView {
@@ -168,18 +187,21 @@
             self.customEditImageView.hidden = true;
         }];
     }];
-    
+}
+
+- (UIImage *)getEditedImage {
+    if (self.cropImageView.image) {
+        return self.cropImageView.image;
+    } else {
+        return self.customEditImageView.image;
+    }
 }
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue destinationViewController] isKindOfClass:[CreateInkViewController class]]) {
         CreateInkViewController* createViewController = [segue destinationViewController];
-        if (self.cropImageView.image) {
-            createViewController.inkImage = self.cropImageView.image;
-        } else {
-            createViewController.inkImage = self.customEditImageView.image;
-        }
+        createViewController.inkImage = [self getEditedImage];
     }
 }
 

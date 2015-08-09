@@ -35,7 +35,6 @@
         artist = obj;
     }
     [artist updateWithJson:artistData];
-    [DataManager saveContext];
     return artist;
 }
 

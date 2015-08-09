@@ -424,10 +424,7 @@ typedef enum {
             [DBInk deleteInk:self.editingInk completion:^(id response, NSError * error) {
               
                 // TODO:
-                
 //            [self.editingInk deleteInk];
-
-                
             }];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }

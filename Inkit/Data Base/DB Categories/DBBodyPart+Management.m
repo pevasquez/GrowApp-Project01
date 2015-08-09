@@ -33,7 +33,6 @@
         bodyPart = obj;
     }
     [bodyPart updateWithJson:bodyPartData];
-    [DataManager saveContext];
     return bodyPart;
 }
 

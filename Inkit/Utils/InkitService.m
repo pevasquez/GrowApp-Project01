@@ -31,6 +31,14 @@
     [UserService registerUserDictionary:userDictionary withCompletion:completion];
 }
 
++ (void)registerArtistDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    [UserService registerArtistDictionary:userDictionary withCompletion:completion];
+}
+
++ (void)registerShopDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    [UserService registerShopDictionary:userDictionary withCompletion:completion];
+}
+
 + (void)logInSocialDictionary:(NSDictionary *)facebookDictionary withCompletion:(ServiceResponse)completion {
     [UserService logInSocialDictionary:facebookDictionary withCompletion:completion];
 }

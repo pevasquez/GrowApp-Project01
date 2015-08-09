@@ -11,4 +11,5 @@
 #import "DBInk+Management.h"
 
 @interface InkImageTableViewCell : ViewInkTableViewCell
+
 @end

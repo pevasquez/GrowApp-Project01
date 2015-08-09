@@ -9,6 +9,9 @@
 #import "UserTypeViewController.h"
 #import "userTypeTableView.h"
 
+NSString * const UserTypeUser = @"User";
+NSString * const UserTypeArtist = @"Artist";
+NSString * const UserTypeShop = @"Shop";
 
 @interface UserTypeViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -33,22 +36,13 @@ static NSString *cellIdentifier;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.data = @[@"User",
-                 @"Shop",
-                 @"Artist"];
+    self.data = @[UserTypeUser, UserTypeShop, UserTypeArtist];
     
     cellIdentifier = @"rowCell";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     
     [self customizeTableView];
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Table View
 
@@ -66,14 +60,10 @@ static NSString *cellIdentifier;
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
     
-        if ([self.selectedString isEqualToString:[self.data objectAtIndex:indexPath.row]])
-        {
+        if ([self.selectedString isEqualToString:[self.data objectAtIndex:indexPath.row]]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else
-        {
+        } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
-            
         }
         return cell;
     
@@ -88,15 +78,8 @@ static NSString *cellIdentifier;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)backButtonPressed:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:true];
 }
-*/
 
 @end

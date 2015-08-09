@@ -9,12 +9,15 @@
 #import "DBImage.h"
 #import <UIKit/UIKit.h>
 
+typedef void (^ImageCompletion)(UIImage *image);
+
 @interface DBImage (Management)
 //+ (DBImage *)fromJson:(NSDictionary *)imageData;
 + (DBImage *)fromURL:(NSString *)URLString;
 + (DBImage *)fromUIImage:(UIImage *)image;
 - (void)setInImageView:(UIImageView *)imageView;
 - (void)setInImage:(UIImage *)image;
+- (void)getImageWithCompletion:(ImageCompletion)completion;
 - (UIImage *)getImage;
 
 @end

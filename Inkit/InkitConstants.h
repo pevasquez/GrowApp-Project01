@@ -14,6 +14,7 @@
 #define kUserID             @"id"
 #define kUserEmail          @"email"
 #define kUserPassword       @"password"
+#define kUserType           @"type"
 
 #define kBoardTitle         @"name"
 #define kBoardDescription   @"description"

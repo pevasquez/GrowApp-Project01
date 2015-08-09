@@ -11,16 +11,21 @@
 @class DBInk, InkTableView;
 
 @protocol InkTableViewDelegate <NSObject>
+
 @optional
 - (void)inkTableView:(InkTableView *)inkTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)likeButtonPressedForInkTableView:(InkTableView *)inkTableView;
 - (void)reInkButtonPressedForInkTableView:(InkTableView *)inkTableView;
 - (void)shareButtonPressedForInkTableView:(InkTableView *)inkTableView;
+
 @end
 
 @interface InkTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
+
 @property (strong, nonatomic) DBInk* ink;
 @property (weak, nonatomic) id <InkTableViewDelegate> inkTableViewDelegate;
 
 - (void)setLike:(BOOL)selected;
+@property (strong, nonatomic) NSIndexPath *indexPath;
+
 @end

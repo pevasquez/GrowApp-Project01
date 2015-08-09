@@ -48,6 +48,7 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      [DataManager loadBodyPartsFromJson:responseDictionary];
+                     [DataManager saveContext];
                      dispatch_async(dispatch_get_main_queue(), ^{
                          completion(nil, nil);
                      });
@@ -113,6 +114,7 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      [DataManager loadTattooTypesFromJson:responseDictionary];
+                     [DataManager saveContext];
                      dispatch_async(dispatch_get_main_queue(), ^{
                          completion(nil, nil);
                      });

@@ -10,6 +10,9 @@
 #import "DBInk+Management.h"
 
 @interface ViewInkTableViewCell : UITableViewCell
+
 @property (nonatomic)double cellHeight;
 @property (strong, nonatomic) DBInk* ink;
+@property (strong, nonatomic) NSIndexPath *indexPath;
+
 @end

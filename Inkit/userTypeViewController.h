@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const UserTypeUser;
+extern NSString * const UserTypeArtist;
+extern NSString * const UserTypeShop;
+
+
 // Delegate
 @protocol UserTypeDelegate
 

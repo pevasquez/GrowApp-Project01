@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DBInk+Management.h"
 
-@interface InkCollectionViewCell : UICollectionViewCell 
+@interface InkCollectionViewCell : UICollectionViewCell
+
 @property (strong, nonatomic) DBInk* ink;
+@property (strong, nonatomic) NSIndexPath *indexPath;
 - (double)getCellHeight;
+
 @end

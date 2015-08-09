@@ -32,7 +32,9 @@ NSString *const JSONBoardExtraData = @"extra_data";
 
 - (void)getInksWithCompletion:(ServiceResponse)completion {
     if (self.inks.count > 0) {
-        completion(nil,nil);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil,nil);
+        });
     }
     [InkitService getInksFromBoard:self withCompletion:completion];
 }

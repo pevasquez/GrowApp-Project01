@@ -9,6 +9,7 @@
 #import "InkCollectionViewCell.h"
 #import "DBInk+Management.h"
 #import "ViewInkTableViewCell.h"
+#import "InkTableView.h"
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";
 static NSString * const InkDescriptionTableViewCellIdentifier = @"InkDescriptionTableViewCell";
@@ -30,7 +31,9 @@ typedef NS_ENUM(NSInteger, InkCells) {
 #define kInkUserCellHeight      40
 
 @interface InkCollectionViewCell () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *inkTableView;
+
+@property (weak, nonatomic) IBOutlet InkTableView *inkTableView;
+
 @end
 
 @implementation InkCollectionViewCell
@@ -64,6 +67,11 @@ typedef NS_ENUM(NSInteger, InkCells) {
     self.inkTableView.dataSource = self;
 }
 
+- (void)setIndexPath:(NSIndexPath *)indexPath {
+    _indexPath = indexPath;
+    self.inkTableView.indexPath = indexPath;
+}
+
 #pragma mark UITableView Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger rows = kInkCellTotalCells;
@@ -74,6 +82,7 @@ typedef NS_ENUM(NSInteger, InkCells) {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
     ViewInkTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.ink = self.ink;
+    cell.indexPath = self.indexPath;
     return cell;
 }
 

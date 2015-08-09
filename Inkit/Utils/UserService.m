@@ -9,6 +9,8 @@
 #import "UserService.h"
 #import "DBBoard+Management.h"
 #import "DBUser+Management.h"
+#import "DBShop+Management.h"
+#import "DBArtist+Management.h"
 #import "DBInk+Management.h"
 #import "InkitServiceConstants.h"
 
@@ -49,28 +51,186 @@
                     [user updateWithJson:userDictionary];
                     [DataManager sharedInstance].activeUser = user;
                     [DataManager saveContext];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
+                    break;
+                }
+                case kTTPResponseCodeCreateUserFailed: {
+                    if (responseDictionary[@"errors"]) {
+                        if (responseDictionary[@"errors"][@"email"]) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completion(((NSArray *)(responseDictionary[@"errors"][@"email"])).firstObject,[[NSError alloc] init]);
+                            });
+                        } else {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                               completion(NSLocalizedString(@"Could not create new user.", nil),[[NSError alloc] init]);
+                            });
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                           completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                        });
+                    }
+                    break;
+                }
+                default: {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
+                    break;
+                }
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
+        }
+    }];
+    
+    [task resume];
+}
+
++ (void)registerArtistDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceAuthorization,kWebServiceRegister,kWebServiceArtist];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a POST request
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSError *error = nil;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    [request setHTTPBody: jsonData];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case kHTTPResponseCodeOK: {
+                    // Acá va a ir el código para el caso de éxito
+                    DBArtist* artist = [DBArtist fromJson:responseDictionary];
+                    [artist updateWithJson:userDictionary];
+                    [DataManager sharedInstance].activeUser = artist;
+                    [DataManager saveContext];
                     completion(nil, nil);
                     break;
                 }
                 case kTTPResponseCodeCreateUserFailed: {
                     if (responseDictionary[@"errors"]) {
                         if (responseDictionary[@"errors"][@"email"]) {
-                            completion(((NSArray *)(responseDictionary[@"errors"][@"email"])).firstObject,[[NSError alloc] init]);
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completion(((NSArray *)(responseDictionary[@"errors"][@"email"])).firstObject,[[NSError alloc] init]);
+                            });
                         } else {
-                            completion(@"Could not create new user.",[[NSError alloc] init]);
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completion(NSLocalizedString(@"Could not create new user.", nil),[[NSError alloc] init]);
+                            });
                         }
                     } else {
-                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                        });
                     }
                     break;
                 }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
                     break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
+        }
+    }];
+    
+    [task resume];
+}
+
++ (void)registerShopDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceAuthorization,kWebServiceRegister,kWebServiceShop];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a POST request
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSError *error = nil;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    [request setHTTPBody: jsonData];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case kHTTPResponseCodeOK: {
+                    // Acá va a ir el código para el caso de éxito
+                    DBShop* shop = [DBShop fromJson:responseDictionary];
+                    [shop updateWithJson:userDictionary];
+                    [DataManager sharedInstance].activeUser = shop;
+                    [DataManager saveContext];
+                    completion(nil, nil);
+                    break;
+                }
+                case kTTPResponseCodeCreateUserFailed: {
+                    if (responseDictionary[@"errors"]) {
+                        if (responseDictionary[@"errors"][@"email"]) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completion(((NSArray *)(responseDictionary[@"errors"][@"email"])).firstObject,[[NSError alloc] init]);
+                            });
+                        } else {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                completion(NSLocalizedString(@"Could not create new user.", nil),[[NSError alloc] init]);
+                            });
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                        });
+                    }
+                    break;
+                }
+                default: {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
+                    break;
+                }
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     
@@ -123,6 +283,7 @@
                          DBUser* user = [DBUser fromJson:responseDictionary];
                          [user updateWithJson:userDictionary];
                          [DataManager sharedInstance].activeUser = user;
+                         [DataManager saveContext];
                          dispatch_async(dispatch_get_main_queue(), ^{
                              completion(nil, nil);
                          });
@@ -209,6 +370,7 @@
                          DBUser* user = [DBUser fromJson:responseDictionary];
                          [user updateWithJson:responseDictionary];
                          [DataManager sharedInstance].activeUser = user;
+                         [DataManager saveContext];
                          dispatch_async(dispatch_get_main_queue(), ^{
                              completion(nil,nil);
                          });

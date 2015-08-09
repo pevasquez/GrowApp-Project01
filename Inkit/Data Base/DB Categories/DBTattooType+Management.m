@@ -34,7 +34,6 @@
         tattooType = obj;
     }
     [tattooType updateWithJson:tattooTypeData];
-    [DataManager saveContext];
     return tattooType;
 }
 

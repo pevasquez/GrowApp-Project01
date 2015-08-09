@@ -68,6 +68,7 @@
 		FB4A23C41AD9630C002EE49B /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4A23C31AD9630C002EE49B /* NSDictionary+Extensions.m */; };
 		FB4A23C81AD9AC5D002EE49B /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4A23C71AD9AC5D002EE49B /* CommonService.m */; };
 		FB4AB25A1B765FFC00F7ACB6 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4AB2591B765FFC00F7ACB6 /* UIColor+Extension.m */; };
+		FB4AB25D1B769FA000F7ACB6 /* InksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4AB25C1B769FA000F7ACB6 /* InksManager.m */; };
 		FB51B85C1AA4C3CC00ED7ECD /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B85B1AA4C3CC00ED7ECD /* UserService.m */; };
 		FB51B85E1AA50EC800ED7ECD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */; };
 		FB51B8611AA5C7AE00ED7ECD /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51B8601AA5C7AE00ED7ECD /* EditImageViewController.m */; };
@@ -159,8 +160,8 @@
 /* Begin PBXFileReference section */
 		8647F6DF1ACD6FA500BD93E7 /* SelectRemoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRemoteTableViewController.h; sourceTree = "<group>"; };
 		8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRemoteTableViewController.m; sourceTree = "<group>"; };
-		86647CB81AF403830013658A /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManager.h; sourceTree = "<group>"; };
-		86647CB91AF403830013658A /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
+		86647CB81AF403830013658A /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookManager.h; path = Utils/Managers/FacebookManager.h; sourceTree = "<group>"; };
+		86647CB91AF403830013658A /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookManager.m; path = Utils/Managers/FacebookManager.m; sourceTree = "<group>"; };
 		8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
 		8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
@@ -240,8 +241,8 @@
 		FB249C311B11077400AE29F2 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Extension.m"; path = "Utils/UIImage+Extension.m"; sourceTree = "<group>"; };
 		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
 		FB29890A1AA868A0005D7327 /* CropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropView.m; path = Inkit/ViewControllers/Camera/CropView.m; sourceTree = "<group>"; };
-		FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleManager.h; path = Utils/GoogleManager.h; sourceTree = "<group>"; };
-		FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleManager.m; path = Utils/GoogleManager.m; sourceTree = "<group>"; };
+		FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleManager.h; path = Utils/Managers/GoogleManager.h; sourceTree = "<group>"; };
+		FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleManager.m; path = Utils/Managers/GoogleManager.m; sourceTree = "<group>"; };
 		FB37D06C1B00C88B00F8DFF7 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
 		FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
 		FB422C9E1B4BE62400AA2D6A /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Extensions.h"; path = "Utils/NSString+Extensions.h"; sourceTree = "<group>"; };
@@ -255,6 +256,8 @@
 		FB4AB2571B765E5100F7ACB6 /* InkitHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InkitHeader.pch; sourceTree = "<group>"; };
 		FB4AB2581B765FFC00F7ACB6 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Extension.h"; path = "Utils/UIColor+Extension.h"; sourceTree = "<group>"; };
 		FB4AB2591B765FFC00F7ACB6 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Extension.m"; path = "Utils/UIColor+Extension.m"; sourceTree = "<group>"; };
+		FB4AB25B1B769FA000F7ACB6 /* InksManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InksManager.h; path = Utils/Managers/InksManager.h; sourceTree = "<group>"; };
+		FB4AB25C1B769FA000F7ACB6 /* InksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InksManager.m; path = Utils/Managers/InksManager.m; sourceTree = "<group>"; };
 		FB51B85A1AA4C3CC00ED7ECD /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserService.h; path = Utils/UserService.h; sourceTree = "<group>"; };
 		FB51B85B1AA4C3CC00ED7ECD /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserService.m; path = Utils/UserService.m; sourceTree = "<group>"; };
 		FB51B85D1AA50EC800ED7ECD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -501,6 +504,7 @@
 				86C5A6CE1AFFE69900449FA7 /* OnBoarding.storyboard */,
 				FBDCB1E51A840C2D00E05053 /* LogIn View Controller */,
 				86DC98DF1AC2E24900A39C28 /* Register View Controllers */,
+				86DC98EA1AC32E3900A39C28 /* User Type View Controllers */,
 			);
 			name = OnBoarding;
 			sourceTree = "<group>";
@@ -641,6 +645,8 @@
 				86647CB91AF403830013658A /* FacebookManager.m */,
 				FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */,
 				FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */,
+				FB4AB25B1B769FA000F7ACB6 /* InksManager.h */,
+				FB4AB25C1B769FA000F7ACB6 /* InksManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1037,7 +1043,6 @@
 				86C5A6C31AFE948900449FA7 /* OnBoarding */,
 				86DC98EF1AC48BAB00A39C28 /* Settings View Controller */,
 				FBDCB1C81A83F38100E05053 /* Splash View Controller */,
-				86DC98EA1AC32E3900A39C28 /* User Type View Controllers */,
 				FBC432FE1A853BCD00EFAA24 /* Inkit Tab Bar Controller */,
 				FB76CAB11AB114E900B68BAD /* Browse */,
 				FBCCAF981A8CF6630052DCB9 /* Inks */,
@@ -1294,6 +1299,7 @@
 				86C2F6301AAA4E9F003D58E3 /* DBTattooType+Management.m in Sources */,
 				FBD91E331A9689EE00B00724 /* InkUserTableViewCell.m in Sources */,
 				FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */,
+				FB4AB25D1B769FA000F7ACB6 /* InksManager.m in Sources */,
 				FB4A23C41AD9630C002EE49B /* NSDictionary+Extensions.m in Sources */,
 				FBB384241A893102004C440A /* InkActionsTableViewCell.m in Sources */,
 				FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */,

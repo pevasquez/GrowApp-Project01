@@ -73,7 +73,6 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
         ink = obj;
     }
     [ink updateWithJson:inkData];
-    [DataManager saveContext];
     return ink;
 }
 

@@ -38,7 +38,22 @@
     return inkImage;
 }
 
+- (void)getImageWithCompletion:(ImageCompletion)completion {
+    if (self.imageData) {
+        completion([UIImage imageWithData:self.imageData]);
+    } else {
+        dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
+        dispatch_async(downloadQueue, ^{
+            NSURL* url = [NSURL URLWithString:self.imageURL];
+            NSData * imageData = [NSData dataWithContentsOfURL:url];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.imageData = imageData;
+                completion([UIImage imageWithData:self.imageData]);
+            });
+        });
+    }
 
+}
 - (void)setInImageView:(UIImageView *)imageView {
     if (self.imageData) {
         imageView.image = [UIImage imageWithData:self.imageData];

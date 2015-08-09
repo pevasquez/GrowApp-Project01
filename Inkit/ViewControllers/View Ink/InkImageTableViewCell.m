@@ -10,7 +10,11 @@
 #import "DBImage+Management.h"
 
 @interface InkImageTableViewCell()
+
 @property (weak, nonatomic) IBOutlet UIImageView *inkImageView;
+
+@property (strong, nonatomic) NSIndexPath *temporalIndexPath;
+
 @end
 
 @implementation InkImageTableViewCell
@@ -19,27 +23,41 @@
 }
 
 - (void)configureForInk {
+    self.temporalIndexPath = self.indexPath;
     if (self.bounds.size.width < [UIScreen mainScreen].bounds.size.width/2) {
-        [self.ink.thumbnailImage setInImageView:self.inkImageView];
+        [self.ink.thumbnailImage getImageWithCompletion:^(UIImage *image) {
+            if (self.temporalIndexPath == self.indexPath) {
+                self.inkImageView.image = image;
+            }
+        }];
     } else {
-        [self.ink.fullScreenImage setInImageView:self.inkImageView];
+        [self.ink.fullScreenImage getImageWithCompletion:^(UIImage *image) {
+            if (self.temporalIndexPath == self.indexPath) {
+                self.inkImageView.image = image;
+            }
+        }];
     }
     self.inkImageView.clipsToBounds = YES;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (self.bounds.size.width < [UIScreen mainScreen].bounds.size.width/2) {
-        [self.ink.thumbnailImage setInImageView:self.inkImageView];
-    } else {
-        [self.ink.fullScreenImage setInImageView:self.inkImageView];
-    }
-    self.inkImageView.clipsToBounds = YES;
+//    if (self.bounds.size.width < [UIScreen mainScreen].bounds.size.width/2) {
+//        [self.ink.thumbnailImage getImageWithCompletion:^(UIImage *image) {
+//            self.inkImageView.image = image;
+//        }];
+//    } else {
+//        [self.ink.fullScreenImage getImageWithCompletion:^(UIImage *image) {
+//            self.inkImageView.image = image;
+//        }];
+//    }
+//    self.inkImageView.clipsToBounds = YES;
 }
 
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.inkImageView.image = nil;
+    self.temporalIndexPath = nil;
 }
 
 - (double)getInkImageHeightForImage:(UIImage *)inkImage {

@@ -90,10 +90,13 @@ typedef enum {
     NSString* cellIdentifier = [self getInkCellIdentifierForIndexPath:indexPath];
     ViewInkTableViewCell* cell = [self dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.ink = self.ink;
+    cell.indexPath = self.indexPath;
+    
     if ([cell isKindOfClass:[InkActionsTableViewCell class]]) {
         ((InkActionsTableViewCell *)cell).delegate = self;
         self.inkActionsTableViewCell = (InkActionsTableViewCell *)cell;
     }
+    
     return cell;
 }
 

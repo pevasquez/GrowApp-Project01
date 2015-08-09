@@ -78,7 +78,7 @@
                     NSDictionary* inkDictionary = responseDictionary[@"data"];
                     // Acá va a ir el código para el caso de éxito
                     DBInk* ink = [DBInk fromJson:inkDictionary];
-                    
+                    [DataManager saveContext];
                     [target performSelectorOnMainThread:completeAction withObject:ink waitUntilDone:NO];
                     break;
                 }
@@ -200,24 +200,35 @@
                     for (NSDictionary* inkDictionary in dataDictionary) {
                         [inksArray addObject:[DBInk fromJson:inkDictionary]];
                     }
-                    completion(inksArray, nil);
+                    [DataManager saveContext];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(inksArray, nil);
+                    });
                     break;
                 }
                 case 400: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 case 401: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
                     break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     
@@ -253,24 +264,35 @@
                     for (NSDictionary* inkDictionary in dataDictionary) {
                         [inksArray addObject:[DBInk fromJson:inkDictionary]];
                     }
-                    completion(inksArray, nil);
+                    [DataManager saveContext];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(inksArray, nil);
+                    });
                     break;
                 }
                 case 400: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 case 401: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
                     break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     
@@ -373,24 +395,33 @@
             switch (httpResponse.statusCode) {
                 case 204: {
                     ink.loggedUserLikes = [NSNumber numberWithBool:true];
-                    completion(nil, nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
                     break;
                 }
                 case 400: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 case 401: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
-                    break;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });                    break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     
@@ -419,24 +450,34 @@
             switch (httpResponse.statusCode) {
                 case 204: {
                     ink.loggedUserLikes = [NSNumber numberWithBool:false];
-                    completion(nil, nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
                     break;
                 }
                 case 400: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 case 401: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
                     break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     
@@ -468,28 +509,43 @@
             // Check Response's StatusCode
             switch (httpResponse.statusCode) {
                 case kHTTPResponseCodeOK: {
-                    completion(nil, nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
                     break;
                 }
                 case kHTTPResponseCodeOKNoResponse: {
-                    completion(nil,nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
                 }
                 case kTTPResponseCodeBadCredentials: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
+                    break;
                 }
                 case kTTPResponseCodeUnauthorized: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
-                }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
+                    break;                }
                 case 422: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
-                }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
+                    break;                }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
                     break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     
@@ -520,24 +576,34 @@
             // Check Response's StatusCode
             switch (httpResponse.statusCode) {
                 case 201: {
-                    completion(nil, nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
                     break;
                 }
                 case 400: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 case 401: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
                     break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     
@@ -567,24 +633,35 @@
             switch (httpResponse.statusCode) {
                 case kHTTPResponseCodeOK: {
                     [ink updateCommentsWithJson:responseDictionary[@"data"]];
-                    completion(nil, nil);
+                    [DataManager saveContext];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
                     break;
                 }
                 case 400: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 case 401: {
-                    completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                    });
                     break;
                 }
                 default: {
-                    completion(@"There was a problem",[[NSError alloc] init]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                    });
                     break;
                 }
             }
         } else {
-            completion(@"There was a problem",[[NSError alloc] init]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+            });
         }
     }];
     [task resume];

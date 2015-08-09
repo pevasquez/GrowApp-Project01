@@ -98,48 +98,48 @@ NSString *const JSONUserAccessToken = @"access_token";
         else if ([key isEqualToString:JSONUserProfilePicThumbnail]) {
             self.profilePicThumbnail = [DBImage fromURL:JSONUserDictionary[@"profile_pic_thumbnail"]];
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserFirstName]) {
+        else if ([key isEqualToString:JSONUserFirstName]) {
             self.firstName = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserLastName]) {
+        else if ([key isEqualToString:JSONUserLastName]) {
             self.lastName = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserFullName]) {
+        else if ([key isEqualToString:JSONUserFullName]) {
             self.fullName = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserName]) {
+        else if ([key isEqualToString:JSONUserName]) {
             self.name = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserProfileUrl]) {
-            self.profileURL = JSONUserDictionary[@"profile_url"];
+        else if ([key isEqualToString:JSONUserProfileUrl]) {
+            self.profileURL = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserCreatedAt]) {
-            self.createdAt = [NSDate fromUnixTimeStamp:JSONUserDictionary[@"created_at"]];
+        else if ([key isEqualToString:JSONUserCreatedAt]) {
+            self.createdAt = [NSDate fromUnixTimeStamp:value];
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserUpdatedAt]) {
-            self.updatedAt = [NSDate fromUnixTimeStamp:JSONUserDictionary[@"created_at"]];
+        else if ([key isEqualToString:JSONUserUpdatedAt]) {
+            self.updatedAt = [NSDate fromUnixTimeStamp:value];
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserDefaultLanguage]) {
-            self.defaultLanguage = JSONUserDictionary[@"default_language"];
+        else if ([key isEqualToString:JSONUserDefaultLanguage]) {
+            self.defaultLanguage = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserArtistShopData]) {
-            self.artistShopData = JSONUserDictionary[@"artist_shop_data"];
+        else if ([key isEqualToString:JSONUserArtistShopData]) {
+            self.artistShopData = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserInksLikedCounts]) {
-            self.inksLikedCount = JSONUserDictionary[@"inks_liked_counts"];
+        else if ([key isEqualToString:JSONUserInksLikedCounts]) {
+            self.inksLikedCount = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserFollowersCount]) {
-            self.followersCount = JSONUserDictionary[@"followers_count"];
+        else if ([key isEqualToString:JSONUserFollowersCount]) {
+            self.followersCount = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserBoardsCount]) {
-            self.boardsCount = JSONUserDictionary[@"boards_count"];
+        else if ([key isEqualToString:JSONUserBoardsCount]) {
+            self.boardsCount = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserSocialNetworks]) {
-            self.socialNetworks = JSONUserDictionary[@"social_networks"];
+        else if ([key isEqualToString:JSONUserSocialNetworks]) {
+            self.socialNetworks = value;
         }
-        else if ([JSONUserDictionary objectForKey:JSONUserAccessToken]) {
-            self.token = [NSString stringWithFormat:@"%@",[JSONUserDictionary objectForKey:kAccessToken]];
-            self.userID = [NSString stringWithFormat:@"%@",[JSONUserDictionary objectForKey:kAccessToken]];
+        else if ([key isEqualToString:JSONUserAccessToken]) {
+            self.token = [NSString stringWithFormat:@"%@",value];
+            self.userID = [NSString stringWithFormat:@"%@",value];
         }
     }];
     

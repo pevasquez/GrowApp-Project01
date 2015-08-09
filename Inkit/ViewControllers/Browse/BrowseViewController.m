@@ -66,27 +66,23 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
 - (void)getMoreInks {
     if (self.isSearching) {
         [InkitService getInksForSearchString:self.searchBar.text andPage:currentPage withCompletion:^(id response, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self hideActivityIndicator];
-                [self.refreshControl endRefreshing];
-                if (!error) {
-                    [self getInksComplete:response];
-                } else {
-                    
-                }
-            });
+            [self hideActivityIndicator];
+            [self.refreshControl endRefreshing];
+            if (!error) {
+                [self getInksComplete:response];
+            } else {
+                
+            }
         }];
     } else {
         [InkitService getDashboardInksForPage:currentPage withCompletion:^(id response, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self hideActivityIndicator];
-                [self.refreshControl endRefreshing];
-                if (!error) {
-                    [self getInksComplete:response];
-                } else {
-                    
-                }
-            });
+            [self hideActivityIndicator];
+            [self.refreshControl endRefreshing];
+            if (!error) {
+                [self getInksComplete:response];
+            } else {
+                
+            }
         }];
     }
 }
@@ -115,44 +111,6 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
         }
     }
 }
-
-//#pragma mark - CollectionView DataSource
-//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    GADBannerCollectionReusableView* cell = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:BannerCollectionViewCellIdentifier forIndexPath:indexPath];
-//    cell.rootViewController = self;
-//    if (indexPath.section % 2) {
-//        cell.bannerImageView.image = [UIImage imageNamed:@"tcl"];
-//    } else {
-//        cell.bannerImageView.image = [UIImage imageNamed:@"dior"];
-//    }
-//    return cell;
-//}
-//
-//#pragma mark - CollectionView Delegate
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-//    switch ([UIView deviceType]) {
-//        case iPhone4:
-//        case iPhone5:
-//            return CGSizeMake(collectionView.bounds.size.width, 85);
-//            break;
-//        case iPhone6:
-//            return CGSizeMake(collectionView.bounds.size.width, 99);
-//            break;
-//        case iPhone6Plus:
-//            return CGSizeMake(collectionView.bounds.size.width, 109);
-//            break;
-//        default:
-//            return CGSizeMake(collectionView.bounds.size.width, 100);
-//            break;
-//    }
-//}
-//
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//    double width = (screenBounds.size.width-12)/2;
-//    return CGSizeMake(width, 344);
-//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];

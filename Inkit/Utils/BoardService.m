@@ -62,6 +62,7 @@
                      if ([responseDictionary objectForKey:@"data"]) {
                          DBBoard* board = [[DataManager sharedInstance].activeUser createBoardFromJson:responseDictionary[@"data"]];
                          [board updateWithJson:boardDictionary];
+                         [DataManager saveContext];
                          [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
                      }
                      break;
@@ -137,6 +138,7 @@
                  case kHTTPResponseCodeOKNoResponse:
                  {
                      [board updateWithJson:boardDictionary];
+                     [DataManager saveContext];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
@@ -214,6 +216,7 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      [board deleteBoard];
+                     [DataManager saveContext];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
@@ -277,9 +280,7 @@
              NSError *error = nil;
              
              // Parse JSON Response
-             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                options:NSJSONReadingMutableContainers
-                                                                                  error:&error];
+             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
              // Check Response's StatusCode
              switch (httpResponse.statusCode) {
                  case kHTTPResponseCodeOK:
@@ -289,6 +290,7 @@
                      for (NSDictionary* boardDictionary in dataDictionary) {
                          [DBBoard fromJson:boardDictionary];
                      }
+                     [DataManager saveContext];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }

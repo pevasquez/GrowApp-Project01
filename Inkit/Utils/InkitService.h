@@ -22,6 +22,10 @@
 
 + (void)registerUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
 
++ (void)registerArtistDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
+
++ (void)registerShopDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion;
+
 // Common Methods
 + (void)getBodyPartsWithCompletion:(ServiceResponse)completion;
 
