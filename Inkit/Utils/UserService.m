@@ -33,12 +33,18 @@
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+//    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 
+    
+//    NSError *error = nil;
+//    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
+//    [request setHTTPBody: jsonData];
+
+    NSString *encodedDictionary = [userDictionary serializeParams];
+    
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
     NSURLSession* session = [NSURLSession sharedSession];
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
@@ -59,28 +65,20 @@
                     });
                     break;
                 }
-                case kTTPResponseCodeCreateUserFailed: {
-                    if (responseDictionary[@"errors"]) {
-                        if (responseDictionary[@"errors"][@"email"]) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                completion(((NSArray *)(responseDictionary[@"errors"][@"email"])).firstObject,[[NSError alloc] init]);
-                            });
-                        } else {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                               completion(NSLocalizedString(@"Could not create new user.", nil),[[NSError alloc] init]);
-                            });
-                        }
-                    } else {
+                default:
+                {
+                    [DataManager sharedInstance].activeUser = nil;
+                    if ([responseDictionary objectForKey:@"message"]) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                           completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                            completion([responseDictionary objectForKey:@"message"],[[NSError alloc] init]);
+                        });
+                    } else {
+                        NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                        NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completion(errorString,[[NSError alloc] init]);
                         });
                     }
-                    break;
-                }
-                default: {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
-                    });
                     break;
                 }
             }
@@ -278,12 +276,11 @@
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
-
-    [request setHTTPBody: jsonData];
+    NSString *encodedDictionary = [userDictionary serializeParams];
+    
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSession* session = [NSURLSession sharedSession];
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
