@@ -42,6 +42,13 @@
 #define kWebServiceAccessToken          @"access_token"
 #define kWebServiceSocialLogin          @"/social-network"
 
+#define kWebServiceGrantType            @"grant_type"
+#define kWebServiceGrantTypePassword    @"password"
+#define kWebServiceGrantTypeSocial      @"social_network"
+#define kWebServiceClientId             @"client_id"
+#define kWebServiceClientSecret         @"client_secret"
+#define kWebServiceClientIdConstant     @"iGjQNtRDDyfC81HE"
+#define kWebServiceClientSecretConstant @"TZSCAiYPKN2GsI7TyrX94SAi8ZVZNyhm"
 
 // Respuestas de los WS
 #define kHTTPResponseCodeOK                 200

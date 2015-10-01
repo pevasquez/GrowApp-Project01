@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * artistShopData;
 @property (nonatomic, retain) NSString * birthday;
 @property (nonatomic, retain) NSNumber * boardsCount;
+@property (nonatomic, retain) NSNumber * expiresIn;
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSDate * createdAt;
@@ -37,6 +38,7 @@
 @property (nonatomic, retain) NSString * styles;
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * token;
+@property (nonatomic, retain) NSString * tokenType;
 @property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * updatedTime;
 @property (nonatomic, retain) NSString * userID;

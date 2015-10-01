@@ -32,6 +32,8 @@ NSString *const JSONUserFollowersCount = @"followers_count";
 NSString *const JSONUserBoardsCount = @"boards_count";
 NSString *const JSONUserSocialNetworks = @"social_networks";
 NSString *const JSONUserAccessToken = @"access_token";
+NSString *const JSONUserAccessTokenType = @"token_type";
+NSString *const JSONUserAccessTokenExpiresIn = @"expires_in";
 
 @implementation DBUser (Management)
 + (DBUser *)newUser {
@@ -140,6 +142,12 @@ NSString *const JSONUserAccessToken = @"access_token";
         else if ([key isEqualToString:JSONUserAccessToken]) {
             self.token = [NSString stringWithFormat:@"%@",value];
             self.userID = [NSString stringWithFormat:@"%@",value];
+        }
+        else if ([key isEqualToString:JSONUserAccessTokenType]) {
+            self.tokenType = value;
+        }
+        else if ([key isEqualToString:JSONUserAccessTokenExpiresIn]) {
+            self.expiresIn = value;
         }
     }];
     

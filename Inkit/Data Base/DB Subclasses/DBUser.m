@@ -43,6 +43,7 @@
 @dynamic styles;
 @dynamic timezone;
 @dynamic token;
+@dynamic tokenType;
 @dynamic updatedAt;
 @dynamic updatedTime;
 @dynamic userID;
@@ -59,5 +60,6 @@
 @dynamic shops;
 @dynamic tattooTypes;
 @dynamic dashboard;
+@dynamic expiresIn;
 
 @end

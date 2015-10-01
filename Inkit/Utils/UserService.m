@@ -17,8 +17,11 @@
 @implementation UserService
 
 + (void)registerUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    
+    userDictionary = [UserService addPasswordCredentialsToDictionary:userDictionary];
+
     // Create String URL
-    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceAuthorization,kWebServiceRegister,kWebServiceUser ];
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceAuthorization,kWebServiceRegister,kWebServiceUser];
     
     // Create URL
     NSURL *registerUserURL = [NSURL URLWithString:stringURL];
@@ -237,7 +240,28 @@
     [task resume];
 }
 
++ (NSDictionary *)addSocialCredentialsToDictionary:(NSDictionary *)dicitionary {
+    NSMutableDictionary *newDictionary = [[UserService addClientCredentialsToDictionary:dicitionary] mutableCopy];
+    newDictionary[kWebServiceGrantType] = kWebServiceGrantTypeSocial;
+    return newDictionary;
+}
+
++ (NSDictionary *)addPasswordCredentialsToDictionary:(NSDictionary *)dicitionary {
+    NSMutableDictionary *newDictionary = [[UserService addClientCredentialsToDictionary:dicitionary] mutableCopy];
+    newDictionary[kWebServiceGrantType] = kWebServiceGrantTypePassword;
+    return newDictionary;
+}
+
++ (NSDictionary *)addClientCredentialsToDictionary:(NSDictionary *)dicitionary {
+    NSMutableDictionary *newDictionary = [dicitionary mutableCopy];
+    newDictionary[kWebServiceClientId] = kWebServiceClientIdConstant;
+    newDictionary[kWebServiceClientSecret] = kWebServiceClientSecretConstant;
+    return newDictionary;
+}
+
 + (void)logInUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    
+    userDictionary = [UserService addPasswordCredentialsToDictionary:userDictionary];
     
     // Create String URL
     NSString* stringURL = [NSString stringWithFormat:@"%@%@%@",kWebServiceBase,kWebServiceAuthorization,kWebServiceLogin];
@@ -344,6 +368,8 @@
     NSDictionary* loginDictionary = @{@"social_network_id":facebookDictionary[@"social_network_id"],
                                       @"external_id":facebookDictionary[@"external_id"]};
     
+    loginDictionary = [UserService addSocialCredentialsToDictionary:loginDictionary];
+
     NSError *error = nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:loginDictionary options:NSJSONWritingPrettyPrinted error:&error];
     
