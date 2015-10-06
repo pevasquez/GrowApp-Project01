@@ -77,8 +77,8 @@
     return [BoardService deleteBoard:board WithTarget:target completeAction:completeAction completeError:completeError];
 }
 
-+ (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
-    return [BoardService getBoardsForUser:user withTarget:target completeAction:completeAction completeError:completeError];
++ (void)getBoardsForUser:(DBUser*)user withCompletionHandler:(ServiceResponse)completion {
+    [BoardService getBoardsForUser:user withCompletionHandler:completion];
 }
 
 + (void)getInksFromBoard:(DBBoard *)board withCompletion:(ServiceResponse)completion {

@@ -78,16 +78,14 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
 
 #pragma mark - Get Data Methods
 - (void)getMyBoards {
-    [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction) completeError:@selector(getBoardsCompleteError)];
-}
-
-- (void)getBoardsCompleteAction {
-    self.boardsArray = [self.activeUser getSortedBoards];
-    [self.boardsTableView reloadData];
-}
-
-- (void)getBoardsCompleteError {
-    
+    [self.activeUser getBoardsWithCompletionHandler:^(id response, NSError *error) {
+        if (error) {
+            [self showAlertForMessage:(NSString *)response];
+        } else {
+            self.boardsArray = (NSArray *)response;
+            [self.boardsTableView reloadData];
+        }
+    }];
 }
 
 #pragma mark - Create Board Delegate
@@ -119,5 +117,9 @@ static NSString * const BoardTableViewCellIdentifier = @"BoardTableViewCell";
     self.boardsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
+- (void)showAlertForMessage:(NSString *)errorMessage {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:errorMessage message:nil delegate:nil cancelButtonTitle:@"Accept" otherButtonTitles: nil];
+    [alert show];
+}
 
 @end

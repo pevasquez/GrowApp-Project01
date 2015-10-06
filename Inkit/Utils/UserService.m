@@ -29,23 +29,25 @@
     // Create and configure URLRequest
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
     
-    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+//    NSString *boundary = @"14737809831466499882746641449";
+//    NSData* body = [NSData fromDictionary:userDictionary andBoundary:boundary];
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
-//    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+//    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+//    [request setHTTPBody:body];
     
-//    NSError *error = nil;
-//    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
-//    [request setHTTPBody: jsonData];
-
-    NSString *encodedDictionary = [userDictionary serializeParams];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    NSError *error = nil;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    [request setHTTPBody: jsonData];
     
-    NSURLSession* session = [NSURLSession sharedSession];
+    // Setup the session
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfiguration.timeoutIntervalForRequest = 10;
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if (!error) {
@@ -238,25 +240,6 @@
     [task resume];
 }
 
-+ (NSDictionary *)addSocialCredentialsToDictionary:(NSDictionary *)dicitionary {
-    NSMutableDictionary *newDictionary = [[UserService addClientCredentialsToDictionary:dicitionary] mutableCopy];
-    newDictionary[kWebServiceGrantType] = kWebServiceGrantTypeSocial;
-    return newDictionary;
-}
-
-+ (NSDictionary *)addPasswordCredentialsToDictionary:(NSDictionary *)dicitionary {
-    NSMutableDictionary *newDictionary = [[UserService addClientCredentialsToDictionary:dicitionary] mutableCopy];
-    newDictionary[kWebServiceGrantType] = kWebServiceGrantTypePassword;
-    return newDictionary;
-}
-
-+ (NSDictionary *)addClientCredentialsToDictionary:(NSDictionary *)dicitionary {
-    NSMutableDictionary *newDictionary = [dicitionary mutableCopy];
-    newDictionary[kWebServiceClientId] = kWebServiceClientIdConstant;
-    newDictionary[kWebServiceClientSecret] = kWebServiceClientSecretConstant;
-    return newDictionary;
-}
-
 + (void)logInUserDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
     
     userDictionary = [UserService addPasswordCredentialsToDictionary:userDictionary];
@@ -360,17 +343,21 @@
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    NSDictionary* loginDictionary = @{@"social_network_id":facebookDictionary[@"social_network_id"],
+    NSDictionary* userDictionary = @{@"social_network_id":facebookDictionary[@"social_network_id"],
                                       @"external_id":facebookDictionary[@"external_id"]};
     
-    loginDictionary = [UserService addSocialCredentialsToDictionary:loginDictionary];
+    userDictionary = [UserService addSocialCredentialsToDictionary:userDictionary];
 
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:loginDictionary options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *encodedDictionary = [userDictionary serializeParams];
     
-    [request setHTTPBody: jsonData];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+//    NSError *error = nil;
+//    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:loginDictionary options:NSJSONWritingPrettyPrinted error:&error];
+//    
+//    [request setHTTPBody: jsonData];
     
     NSURLSession* session = [NSURLSession sharedSession];
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -489,6 +476,27 @@
      }];
     
     [task resume];
+}
+
+#pragma mark - Helper Methods
+
++ (NSDictionary *)addSocialCredentialsToDictionary:(NSDictionary *)dicitionary {
+    NSMutableDictionary *newDictionary = [[UserService addClientCredentialsToDictionary:dicitionary] mutableCopy];
+    newDictionary[kWebServiceGrantType] = kWebServiceGrantTypeSocial;
+    return newDictionary;
+}
+
++ (NSDictionary *)addPasswordCredentialsToDictionary:(NSDictionary *)dicitionary {
+    NSMutableDictionary *newDictionary = [[UserService addClientCredentialsToDictionary:dicitionary] mutableCopy];
+    newDictionary[kWebServiceGrantType] = kWebServiceGrantTypePassword;
+    return newDictionary;
+}
+
++ (NSDictionary *)addClientCredentialsToDictionary:(NSDictionary *)dicitionary {
+    NSMutableDictionary *newDictionary = [dicitionary mutableCopy];
+    newDictionary[kWebServiceClientId] = kWebServiceClientIdConstant;
+    newDictionary[kWebServiceClientSecret] = kWebServiceClientSecretConstant;
+    return newDictionary;
 }
 
 @end

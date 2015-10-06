@@ -160,11 +160,14 @@ NSString *const JSONUserAccessTokenExpiresIn = @"expires_in";
     return board;
 }
 
-- (void)getBoardsWithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
-    if ([self getSortedBoards]) {
-        [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+- (void)getBoardsWithCompletionHandler:(ServiceResponse)completion {
+    NSArray *boardsArray = [self getSortedBoards];
+    if (boardsArray.count > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(boardsArray,nil);            
+        });
     }
-    [InkitService getBoardsForUser:self withTarget:target completeAction:completeAction completeError:completeError];
+    [InkitService getBoardsForUser:self withCompletionHandler:completion];
 }
 
 - (NSArray *)getSortedBoards {

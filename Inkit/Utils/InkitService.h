@@ -35,7 +35,9 @@
 + (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)updateBoard:(DBBoard *)board withDictionary:(NSDictionary *)boardDictionary target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)deleteBoard:(DBBoard *)board WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
-+ (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
+
++ (void)getBoardsForUser:(DBUser*)user withCompletionHandler:(ServiceResponse)completion;
+
 + (void)getInksFromBoard:(DBBoard *)board withCompletion:(ServiceResponse)completion;
 
 // Ink Service

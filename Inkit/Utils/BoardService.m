@@ -237,10 +237,8 @@
     return returnError;
 }
 
-+ (NSError *)getBoardsForUser:(DBUser*)user withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
-    // Create returnError
-    NSError* returnError = nil;
-    
++ (void)getBoardsForUser:(DBUser*)user withCompletionHandler:(ServiceResponse)completion {
+
     // Convert your data and set your request's HTTPBody property
     NSMutableDictionary* jsonDataDictionary = [@{@"access_token" : [DataManager sharedInstance].activeUser.token} mutableCopy ];
     if (!(user == [DataManager sharedInstance].activeUser)) {
@@ -265,15 +263,9 @@
     // Specify that it will be a POST request
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    
-    
-    
-    // Create Asynchronous Request URLConnection
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-     {
-         if (!connectionError)
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+         if (!error)
          {
              // Cast Response
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -287,29 +279,45 @@
                  {
                      NSDictionary* dataDictionary = responseDictionary[@"data"];
                      
+                     NSMutableArray * boardsArray = [NSMutableArray new];
                      for (NSDictionary* boardDictionary in dataDictionary) {
-                         [DBBoard fromJson:boardDictionary];
+                         DBBoard * board = [DBBoard fromJson:boardDictionary];
+                         if (board) {
+                             [boardsArray addObject:board];
+                         }
                      }
                      [DataManager saveContext];
-                     [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         completion(boardsArray, nil);
+                     });
                      break;
                  }
                  default:
                  {
-                     NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
-                     NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
-                     NSLog(@"%@",responseDictionary);
-                     [target performSelectorOnMainThread:completeError withObject:errorString waitUntilDone:NO];
+                     [DataManager sharedInstance].activeUser = nil;
+                     if ([responseDictionary objectForKey:@"message"]) {
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             completion([responseDictionary objectForKey:@"message"],[[NSError alloc] init]);
+                         });
+                     } else {
+                         NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                         NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             completion(errorString,[[NSError alloc] init]);
+                         });
+                     }
                      break;
                  }
              }
          } else {
-             [target performSelectorOnMainThread:completeError withObject:@"No estás conectado a Internet" waitUntilDone:NO];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 completion(NSLocalizedString(@"No connection", nil),[[NSError alloc] init]);
+             });
          }
          
      }];
     
-    return returnError;
+    [task resume];
 }
 
 + (void)getInksFromBoard:(DBBoard *)board withCompletion:(ServiceResponse)completion {

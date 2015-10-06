@@ -82,18 +82,15 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
 #pragma mark - Get Data Methods
 - (void)getBoards {
     [self showActivityIndicator];
-    [self.activeUser getBoardsWithTarget:self completeAction:@selector(getBoardsCompleteAction) completeError:@selector(getBoardsCompleteError:)];
-}
-
-- (void)getBoardsCompleteAction {
-    [self hideActitivyIndicator];
-    self.boardsArray = [self.activeUser getSortedBoards];
-    [self.boardsCollectionView reloadData];
-}
-
-- (void)getBoardsCompleteError:(NSString *)errorString {
-    [self hideActitivyIndicator];
-    [self showAlertForMessage:errorString];
+    [self.activeUser getBoardsWithCompletionHandler:^(id response, NSError *error) {
+        [self hideActitivyIndicator];
+        if (error) {
+            [self showAlertForMessage:(NSString *)response];
+        } else {
+            self.boardsArray = (NSArray *)response;
+            [self.boardsCollectionView reloadData];
+        }
+    }];
 }
 
 #pragma mark - Navigation Methods
