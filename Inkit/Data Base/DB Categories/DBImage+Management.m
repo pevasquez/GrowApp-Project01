@@ -7,6 +7,7 @@
 //
 
 #import "DBImage+Management.h"
+#include <SDWebImage/UIImageView+WebCache.h>
 
 @implementation DBImage (Management)
 + (DBImage *)newImage {
@@ -55,29 +56,31 @@
 
 }
 - (void)setInImageView:(UIImageView *)imageView {
-    if (self.imageData) {
-        imageView.image = [UIImage imageWithData:self.imageData];
-    } else {
-        [imageView layoutIfNeeded];
-        UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
-        
-        activityIndicator.center = imageView.center;
-        activityIndicator.color = [InkitTheme getTintColor];
-        [imageView addSubview:activityIndicator];
-        [activityIndicator startAnimating];
-        dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
-        dispatch_async(downloadQueue, ^{
-            NSURL* url = [NSURL URLWithString:self.imageURL];
-            NSData * imageData = [NSData dataWithContentsOfURL:url];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [activityIndicator stopAnimating];
-                [activityIndicator removeFromSuperview];
-                self.imageData = imageData;
-                imageView.image = [UIImage imageWithData:self.imageData];
-                [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationImageUpdate object:nil userInfo:@{kDBImage:self}];
-            });
-        });
-    }
+    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageURL]];
+    
+//    if (self.imageData) {
+//        imageView.image = [UIImage imageWithData:self.imageData];
+//    } else {
+//        [imageView layoutIfNeeded];
+//        UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] init];
+//        
+//        activityIndicator.center = imageView.center;
+//        activityIndicator.color = [InkitTheme getTintColor];
+//        [imageView addSubview:activityIndicator];
+//        [activityIndicator startAnimating];
+//        dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
+//        dispatch_async(downloadQueue, ^{
+//            NSURL* url = [NSURL URLWithString:self.imageURL];
+//            NSData * imageData = [NSData dataWithContentsOfURL:url];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [activityIndicator stopAnimating];
+//                [activityIndicator removeFromSuperview];
+//                self.imageData = imageData;
+//                imageView.image = [UIImage imageWithData:self.imageData];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationImageUpdate object:nil userInfo:@{kDBImage:self}];
+//            });
+//        });
+//    }
 }
 
 - (void)setInImage:(UIImage *)image {

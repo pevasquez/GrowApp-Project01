@@ -48,6 +48,7 @@
 		86EE2E4F1B14C0FE00DC64BC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */; };
 		86F8A44F1B00FFB4007955C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBDCB1A21A83EB1800E05053 /* Main.storyboard */; };
 		86F8A4591B0102FC007955C6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F8A4581B0102FC007955C6 /* NSDate+Extension.m */; };
+		8DE1CC2920454BC3DC8EB607 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD9F00270760290FDCD2521 /* libPods.a */; };
 		FB0138BB1AA8F69E0037D945 /* SelectLocalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */; };
 		FB0711871AAF0318004EBBD1 /* InkService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0711861AAF0318004EBBD1 /* InkService.m */; };
 		FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07118A1AAF077C004EBBD1 /* BoardService.m */; };
@@ -158,6 +159,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4DD9F00270760290FDCD2521 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7834A4F9272B19BB9428D183 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8647F6DF1ACD6FA500BD93E7 /* SelectRemoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRemoteTableViewController.h; sourceTree = "<group>"; };
 		8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRemoteTableViewController.m; sourceTree = "<group>"; };
 		86647CB81AF403830013658A /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookManager.h; path = Utils/Managers/FacebookManager.h; sourceTree = "<group>"; };
@@ -217,6 +220,7 @@
 		86EE2E4E1B14C0FE00DC64BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		86F8A4571B0102FC007955C6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extension.h"; path = "Utils/NSDate+Extension.h"; sourceTree = "<group>"; };
 		86F8A4581B0102FC007955C6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extension.m"; path = "Utils/NSDate+Extension.m"; sourceTree = "<group>"; };
+		EC1D118577AB47081E308920 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FB0138B91AA8F69E0037D945 /* SelectLocalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectLocalTableViewController.h; path = "ViewControllers/Create Ink/SelectLocalTableViewController.h"; sourceTree = "<group>"; };
 		FB0138BA1AA8F69E0037D945 /* SelectLocalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectLocalTableViewController.m; path = "ViewControllers/Create Ink/SelectLocalTableViewController.m"; sourceTree = "<group>"; };
 		FB0711851AAF0318004EBBD1 /* InkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InkService.h; path = Utils/InkService.h; sourceTree = "<group>"; };
@@ -449,12 +453,21 @@
 				FBB488551A8BF176009E1789 /* MobileCoreServices.framework in Frameworks */,
 				FB8F5D431B44B341008E92C8 /* FBSDKLoginKit.framework in Frameworks */,
 				FBC433101A8556A700EFAA24 /* AVFoundation.framework in Frameworks */,
+				8DE1CC2920454BC3DC8EB607 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7322CF9C125B978F957EB5E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4DD9F00270760290FDCD2521 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8673CBB31AFBFAD900179FA2 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -955,6 +968,8 @@
 				FBDCB1941A83EB1800E05053 /* Inkit */,
 				FBDCB1B11A83EB1800E05053 /* InkitTests */,
 				FBDCB1931A83EB1800E05053 /* Products */,
+				FC7D0D7A1F8A5661406AEE36 /* Pods */,
+				7322CF9C125B978F957EB5E5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1124,6 +1139,15 @@
 			name = "LogIn View Controller";
 			sourceTree = "<group>";
 		};
+		FC7D0D7A1F8A5661406AEE36 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC1D118577AB47081E308920 /* Pods.debug.xcconfig */,
+				7834A4F9272B19BB9428D183 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1131,10 +1155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBDCB1B81A83EB1800E05053 /* Build configuration list for PBXNativeTarget "Inkit" */;
 			buildPhases = (
+				840938B742B8804E87D2906A /* Check Pods Manifest.lock */,
 				FBDCB18E1A83EB1800E05053 /* Sources */,
 				FBDCB18F1A83EB1800E05053 /* Frameworks */,
 				FBDCB1901A83EB1800E05053 /* Resources */,
 				FB8826521B262A5B00CE0DFF /* ShellScript */,
+				F3B8592DF19E41FC8A9D8FBF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1211,6 +1237,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		840938B742B8804E87D2906A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F3B8592DF19E41FC8A9D8FBF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FB8826521B262A5B00CE0DFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1433,6 +1489,7 @@
 		};
 		FBDCB1B91A83EB1800E05053 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC1D118577AB47081E308920 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1459,7 +1516,7 @@
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1468,6 +1525,7 @@
 		};
 		FBDCB1BA1A83EB1800E05053 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7834A4F9272B19BB9428D183 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1494,7 +1552,7 @@
 				INFOPLIST_FILE = Inkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
