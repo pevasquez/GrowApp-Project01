@@ -245,100 +245,100 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
 
 
 #pragma mark - Cover Buttons
-
-- (void)createOptionsAndShareButtons {
-    
-    UIBarButtonItem *moreOptionsItem = [[UIBarButtonItem alloc] initWithOriginalImageNamed:@"profile-menu"
-                                                                                     style:UIBarButtonItemStylePlain
-                                                                                    target:self action:@selector(channelMoreOptions:)];
-    
-    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithOriginalImageNamed:@"icon_share.png"
-                                                                               style:UIBarButtonItemStylePlain
-                                                                              target:self action:@selector(shareButtonAction)];
-    moreOptionsItem.imageInsets = UIEdgeInsetsMake(0, -50, 0, 0);
-    
-    self.navigationItem.rightBarButtonItems = @[moreOptionsItem, shareItem];
-}
-
-- (void)addChannelOptionsButtons {
-    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"suggest_question", nil)];
-    [self loadChannelOptionsWithId:NSLocalizedString(@"suggest_question", nil) andValue:PRCChannelSuggestQuestion];
-    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"translate_questions", nil)];
-    [self loadChannelOptionsWithId:NSLocalizedString(@"translate_questions", nil) andValue:PRCChannelTranslateQuestion];
-    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"rate_questions", nil)];
-    [self loadChannelOptionsWithId:NSLocalizedString(@"rate_questions", nil) andValue:PRCChannelRateQuestion];
-    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"report_channel", nil)];
-    [self loadChannelOptionsWithId:NSLocalizedString(@"report_channel", nil) andValue:PRCChannelReportChannel];
-}
-
-
-
-- (void)createActionSheet {
-    
-    if (self.channelOptionsActionSheet) {
-        [self.channelOptionsActionSheet removeFromSuperview];
-        self.channelOptionsActionSheet = nil;
-    }
-    
-    self.channelOptionsActionSheet = [[UIActionSheet alloc] initWithTitle:self.channel.name
-                                                                 delegate:self
-                                                        cancelButtonTitle:nil
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:nil];
-    if (self.arrOptions) {
-        [self.arrOptions removeAllObjects];
-    }
-    
-    [self addChannelOptionsButtons];
-    
-    self.channelOptionsActionSheet.cancelButtonIndex = self.arrOptions.count;
-    
-    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"cancel", nil)];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-    if (buttonIndex != actionSheet.cancelButtonIndex) {
-        [AGObj(AGAudioManager) playSoundWithKey:@"ProfileButtonClick"];
-    }
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    PRCFriendActionSheet optionType = [self channelOptionsType:buttonIndex];
-    
-    switch (optionType) {
-        case PRCChannelSuggestQuestion:
-            [self showSuggestQuestions];
-            break;
-        case PRCChannelRateQuestion:
-            [self showRateQuestions];
-            break;
-        case PRCChannelTranslateQuestion:
-            [self showTranslateQuestion];
-            break;
-        case PRCChannelAddLanguage:
-            [self showAddLanguage];
-            break;
-        case PRCChannelChangeLanguage:
-            [self showLanguageView];
-            break;
-        case PRCChannelDeleteLanguage:
-            [self showDeleteLanguage];
-            break;
-        case PRCChannelDisableAction:
-            [self showDisableAction];
-            break;
-        case PRCChannelReportChannel:
-            [self presentChannelReport];
-            break;
-        case PRCChannelSeeReports:
-            [self showChannelReports];
-            break;
-        default:
-            break;
-    }
-    
-}
+//
+//- (void)createOptionsAndShareButtons {
+//    
+//    UIBarButtonItem *moreOptionsItem = [[UIBarButtonItem alloc] initWithOriginalImageNamed:@"profile-menu"
+//                                                                                     style:UIBarButtonItemStylePlain
+//                                                                                    target:self action:@selector(channelMoreOptions:)];
+//    
+//    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithOriginalImageNamed:@"icon_share.png"
+//                                                                               style:UIBarButtonItemStylePlain
+//                                                                              target:self action:@selector(shareButtonAction)];
+//    moreOptionsItem.imageInsets = UIEdgeInsetsMake(0, -50, 0, 0);
+//    
+//    self.navigationItem.rightBarButtonItems = @[moreOptionsItem, shareItem];
+//}
+//
+//- (void)addChannelOptionsButtons {
+//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"suggest_question", nil)];
+//    [self loadChannelOptionsWithId:NSLocalizedString(@"suggest_question", nil) andValue:PRCChannelSuggestQuestion];
+//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"translate_questions", nil)];
+//    [self loadChannelOptionsWithId:NSLocalizedString(@"translate_questions", nil) andValue:PRCChannelTranslateQuestion];
+//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"rate_questions", nil)];
+//    [self loadChannelOptionsWithId:NSLocalizedString(@"rate_questions", nil) andValue:PRCChannelRateQuestion];
+//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"report_channel", nil)];
+//    [self loadChannelOptionsWithId:NSLocalizedString(@"report_channel", nil) andValue:PRCChannelReportChannel];
+//}
+//
+//
+//
+//- (void)createActionSheet {
+//    
+//    if (self.channelOptionsActionSheet) {
+//        [self.channelOptionsActionSheet removeFromSuperview];
+//        self.channelOptionsActionSheet = nil;
+//    }
+//    
+//    self.channelOptionsActionSheet = [[UIActionSheet alloc] initWithTitle:self.channel.name
+//                                                                 delegate:self
+//                                                        cancelButtonTitle:nil
+//                                                   destructiveButtonTitle:nil
+//                                                        otherButtonTitles:nil];
+//    if (self.arrOptions) {
+//        [self.arrOptions removeAllObjects];
+//    }
+//    
+//    [self addChannelOptionsButtons];
+//    
+//    self.channelOptionsActionSheet.cancelButtonIndex = self.arrOptions.count;
+//    
+//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"cancel", nil)];
+//}
+//
+//- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+//    self.navigationItem.rightBarButtonItem.enabled = YES;
+//    if (buttonIndex != actionSheet.cancelButtonIndex) {
+//        [AGObj(AGAudioManager) playSoundWithKey:@"ProfileButtonClick"];
+//    }
+//}
+//
+//- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+//    PRCFriendActionSheet optionType = [self channelOptionsType:buttonIndex];
+//    
+//    switch (optionType) {
+//        case PRCChannelSuggestQuestion:
+//            [self showSuggestQuestions];
+//            break;
+//        case PRCChannelRateQuestion:
+//            [self showRateQuestions];
+//            break;
+//        case PRCChannelTranslateQuestion:
+//            [self showTranslateQuestion];
+//            break;
+//        case PRCChannelAddLanguage:
+//            [self showAddLanguage];
+//            break;
+//        case PRCChannelChangeLanguage:
+//            [self showLanguageView];
+//            break;
+//        case PRCChannelDeleteLanguage:
+//            [self showDeleteLanguage];
+//            break;
+//        case PRCChannelDisableAction:
+//            [self showDisableAction];
+//            break;
+//        case PRCChannelReportChannel:
+//            [self presentChannelReport];
+//            break;
+//        case PRCChannelSeeReports:
+//            [self showChannelReports];
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//}
 
 
 @end
