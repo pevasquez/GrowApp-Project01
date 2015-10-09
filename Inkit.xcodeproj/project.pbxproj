@@ -63,6 +63,9 @@
 		FB1FF5A11B3DACCE007572F7 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */; };
 		FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB249C311B11077400AE29F2 /* UIImage+Extension.m */; };
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
+		FB3266621BC7343600D74A7E /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3266611BC7343600D74A7E /* ReportViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FB3266681BC7379A00D74A7E /* DBReportReason.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3266661BC7379A00D74A7E /* DBReportReason.m */; settings = {ASSET_TAGS = (); }; };
+		FB32666B1BC7389A00D74A7E /* DBReportReason+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FB32666A1BC7389A00D74A7E /* DBReportReason+Management.m */; settings = {ASSET_TAGS = (); }; };
 		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
 		FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */; };
 		FB422CA01B4BE62500AA2D6A /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FB422C9F1B4BE62400AA2D6A /* NSString+Extensions.m */; };
@@ -245,6 +248,12 @@
 		FB249C311B11077400AE29F2 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Extension.m"; path = "Utils/UIImage+Extension.m"; sourceTree = "<group>"; };
 		FB2989091AA868A0005D7327 /* CropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropView.h; path = Inkit/ViewControllers/Camera/CropView.h; sourceTree = "<group>"; };
 		FB29890A1AA868A0005D7327 /* CropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropView.m; path = Inkit/ViewControllers/Camera/CropView.m; sourceTree = "<group>"; };
+		FB3266601BC7343600D74A7E /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportViewController.h; path = ViewControllers/Report/ReportViewController.h; sourceTree = "<group>"; };
+		FB3266611BC7343600D74A7E /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportViewController.m; path = ViewControllers/Report/ReportViewController.m; sourceTree = "<group>"; };
+		FB3266651BC7379A00D74A7E /* DBReportReason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBReportReason.h; path = "Data Base/DB Subclasses/DBReportReason.h"; sourceTree = "<group>"; };
+		FB3266661BC7379A00D74A7E /* DBReportReason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBReportReason.m; path = "Data Base/DB Subclasses/DBReportReason.m"; sourceTree = "<group>"; };
+		FB3266691BC7389A00D74A7E /* DBReportReason+Management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBReportReason+Management.h"; path = "Data Base/DB Categories/DBReportReason+Management.h"; sourceTree = "<group>"; };
+		FB32666A1BC7389A00D74A7E /* DBReportReason+Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBReportReason+Management.m"; path = "Data Base/DB Categories/DBReportReason+Management.m"; sourceTree = "<group>"; };
 		FB37D0691B00BDCB00F8DFF7 /* GoogleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleManager.h; path = Utils/Managers/GoogleManager.h; sourceTree = "<group>"; };
 		FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleManager.m; path = Utils/Managers/GoogleManager.m; sourceTree = "<group>"; };
 		FB37D06C1B00C88B00F8DFF7 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
@@ -582,6 +591,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FB32665F1BC733D800D74A7E /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				FB3266601BC7343600D74A7E /* ReportViewController.h */,
+				FB3266611BC7343600D74A7E /* ReportViewController.m */,
+			);
+			name = Report;
+			sourceTree = "<group>";
+		};
 		FB4AB2541B76570600F7ACB6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,6 +878,7 @@
 				FBB384171A892D59004C440A /* Create Ink */,
 				FBB3841B1A892D9A004C440A /* View Ink */,
 				FB0A938D1B4F08FC00717A0F /* Comments */,
+				FB32665F1BC733D800D74A7E /* Report */,
 				86E14A1C1B44289D00D3B432 /* ZoomScrollView */,
 			);
 			name = Inks;
@@ -1083,6 +1102,8 @@
 		FBDCB1D11A83F7F000E05053 /* DBSubclasses */ = {
 			isa = PBXGroup;
 			children = (
+				FB3266651BC7379A00D74A7E /* DBReportReason.h */,
+				FB3266661BC7379A00D74A7E /* DBReportReason.m */,
 				FB5C4FD11B1644B200B05593 /* DBUser.h */,
 				FB5C4FD21B1644B200B05593 /* DBUser.m */,
 				FB5C4FCE1B1644B100B05593 /* DBInk.h */,
@@ -1126,6 +1147,8 @@
 				86DC990F1AC9E40100A39C28 /* DBShop+Management.m */,
 				86C411CB1ACC85DC00463622 /* DBImage+Management.h */,
 				86C411CC1ACC85DC00463622 /* DBImage+Management.m */,
+				FB3266691BC7389A00D74A7E /* DBReportReason+Management.h */,
+				FB32666A1BC7389A00D74A7E /* DBReportReason+Management.m */,
 			);
 			name = DBCategories;
 			sourceTree = "<group>";
@@ -1311,6 +1334,7 @@
 				FBB3841E1A89308E004C440A /* InkImageTableViewCell.m in Sources */,
 				FBD91E101A960EDA00B00724 /* BoardsCollectionView.m in Sources */,
 				FBD91E301A9687F800B00724 /* InkCollectionViewCell.m in Sources */,
+				FB32666B1BC7389A00D74A7E /* DBReportReason+Management.m in Sources */,
 				FBB384571A8A9818004C440A /* TextViewTableViewCell.m in Sources */,
 				86DC98F81AC4955700A39C28 /* DataManager.m in Sources */,
 				86DC990D1AC9E3E400A39C28 /* DBArtist+Management.m in Sources */,
@@ -1331,11 +1355,13 @@
 				FBD2FEEB1ADB550F005D1AAE /* DBBodyPart.m in Sources */,
 				FB0A40021A9D255900294F90 /* WaterfallLayout.m in Sources */,
 				FBB696D61AAB88840071D96B /* CommentsTableViewCell.m in Sources */,
+				FB3266621BC7343600D74A7E /* ReportViewController.m in Sources */,
 				FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */,
 				86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */,
 				FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */,
 				FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */,
 				FBF9F9E41B060F0100357F5B /* TextFieldTableViewCell.m in Sources */,
+				FB3266681BC7379A00D74A7E /* DBReportReason.m in Sources */,
 				FBDCB1C41A83F06A00E05053 /* InkitService.m in Sources */,
 				FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */,
 				FB1FF5A11B3DACCE007572F7 /* UIView+Extension.m in Sources */,

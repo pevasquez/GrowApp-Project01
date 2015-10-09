@@ -10,14 +10,17 @@
 #import "DBUser+Management.h"
 #import "DBBodyPart+Management.h"
 #import "DBTattooType+Management.h"
+#import "DBReportReason+Management.h"
 #import "AppDelegate.h"
 
 #define kActiveUser         @"kActiveUser"
 
 @interface DataManager()
+
 @property (strong, nonatomic) NSNumber* tattooStylesLastVersion;
 @property (strong, nonatomic) NSNumber* tattooTypesLastVersion;
 @property (strong, nonatomic) NSNumber* bodyPartsLastVersion;
+
 @end
 
 @implementation DataManager
@@ -78,6 +81,16 @@
         }
     }
 }
+
++ (void)loadReportReasonsFromJson:(NSDictionary *)jsonDictionary {
+    [[DataManager sharedInstance] loadReportReasonsFromJson:jsonDictionary];
+}
+
+- (void)loadReportReasonsFromJson:(NSDictionary *)jsonDictionary {
+    for (NSDictionary* reportReasonDictionary in jsonDictionary[@"data"]) {
+        [DBReportReason fromJson:reportReasonDictionary];
+    }
+ }
 
 #pragma mark - Active User Management
 @synthesize activeUser;

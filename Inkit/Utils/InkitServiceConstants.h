@@ -41,6 +41,7 @@
 #define kWebServiceTattooStyles         @"tattoo-styles"
 #define kWebServiceAccessToken          @"access_token"
 #define kWebServiceSocialLogin          @"/social-network"
+#define kWebServiceReportReason         @"statics/flag-reasons"
 
 #define kWebServiceGrantType            @"grant_type"
 #define kWebServiceGrantTypePassword    @"password"

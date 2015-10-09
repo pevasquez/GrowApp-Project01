@@ -20,6 +20,7 @@
 
 + (void)loadBodyPartsFromJson:(NSDictionary *)jsonDictionary;
 + (void)loadTattooTypesFromJson:(NSDictionary *)jsonDictionary;
++ (void)loadReportReasonsFromJson:(NSDictionary *)jsonDictionary;
 
 - (void)saveContext;
 - (NSManagedObject *)insert:(NSString *)type;

@@ -17,7 +17,6 @@ typedef void (^ImageCompletion)(UIImage *image);
 + (DBImage *)fromUIImage:(UIImage *)image;
 - (void)setInImageView:(UIImageView *)imageView;
 - (void)setInImage:(UIImage *)image;
-- (void)getImageWithCompletion:(ImageCompletion)completion;
 - (UIImage *)getImage;
 
 @end

@@ -31,6 +31,8 @@
 
 + (void)getTattooTypesWithCompletion:(ServiceResponse)completion;
 
++ (void)getReportReasons:(ServiceResponse)completion;
+
 // Board Service
 + (NSError *)postBoard:(NSDictionary *)boardDictionary WithTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;
 + (NSError *)updateBoard:(DBBoard *)board withDictionary:(NSDictionary *)boardDictionary target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError;

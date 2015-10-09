@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Automatic">
     <entity name="DBArtist" representedClassName="DBArtist" parentEntity="DBUser" syncable="YES">
         <attribute name="artistId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="didInks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBInk" inverseName="artist" inverseEntity="DBInk" syncable="YES"/>
@@ -60,6 +60,10 @@
         <relationship name="thumbnailImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBImage" inverseName="thumbnailInk" inverseEntity="DBImage" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="inks" inverseEntity="DBUser" syncable="YES"/>
         <relationship name="userDashboard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBUser" inverseName="dashboard" inverseEntity="DBUser" syncable="YES"/>
+    </entity>
+    <entity name="DBReportReason" representedClassName="DBReportReason" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reportReasonId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="DBShop" representedClassName="DBShop" parentEntity="DBUser" syncable="YES">
         <attribute name="defaultLaguage" optional="YES" attributeType="String" syncable="YES"/>
@@ -128,5 +132,6 @@
         <element name="DBShop" positionX="277" positionY="563" width="128" height="120"/>
         <element name="DBTattooType" positionX="243" positionY="437" width="128" height="105"/>
         <element name="DBUser" positionX="-684" positionY="0" width="128" height="675"/>
+        <element name="DBReportReason" positionX="-477" positionY="153" width="128" height="75"/>
     </elements>
 </model>

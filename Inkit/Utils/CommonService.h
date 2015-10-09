@@ -16,4 +16,6 @@
 
 + (void)getTattooStylesWithCompletion:(ServiceResponse)completion;
 
++ (void)getReportReasons:(ServiceResponse)completion;
+
 @end

@@ -55,6 +55,10 @@
     [CommonService getTattooTypesWithCompletion:completion];
 }
 
++ (void)getReportReasons:(ServiceResponse)completion {
+    [CommonService getReportReasons:completion];
+}
+
 #pragma mark - Inks Service
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
     return [InkService createInk:inkDictionary withTarget:target completeAction:completeAction completeError:completeError];

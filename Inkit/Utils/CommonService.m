@@ -140,4 +140,67 @@
     [task resume];
 }
 
++ (void)getReportReasons:(ServiceResponse)completion {
+    
+    // Create String URL
+    NSString* stringURL = [NSString stringWithFormat:@"%@%@",kWebServiceBase,kWebServiceReportReason];
+    
+    // Create URL
+    NSURL *registerUserURL = [NSURL URLWithString:stringURL];
+    
+    // Create and configure URLRequest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:120.0];
+    
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    
+    // Specify that it will be a POST request
+    [request setHTTPMethod:@"GET"];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error)
+        {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            
+            NSError *error = nil;
+            
+            // Parse JSON Response
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                               options:NSJSONReadingMutableContainers
+                                                                                 error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case kHTTPResponseCodeOK:
+                {
+                    // Acá va a ir el código para el caso de éxito
+                    [DataManager loadReportReasonsFromJson:responseDictionary];
+                    [DataManager saveContext];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
+                    break;
+                }
+                default:
+                {
+                    NSNumber* statusCode = [NSNumber numberWithLong:httpResponse.statusCode];
+                    NSString* errorString = [NSString stringWithFormat:@"%@",statusCode];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(errorString,[[NSError alloc] init]);
+                    });
+                    break;
+                }
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(NSLocalizedString(@"No connection", nil),[[NSError alloc] init]);
+            });
+        }
+    }];
+    
+    [task resume];
+}
+
 @end
