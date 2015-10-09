@@ -10,6 +10,6 @@
 
 @interface ViewImageViewController : UIViewController
 
-@property (strong, nonatomic)UIImage *inkImage;
+@property (strong, nonatomic) UIImage *inkImage;
 
 @end

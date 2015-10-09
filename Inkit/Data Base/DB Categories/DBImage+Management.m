@@ -40,8 +40,9 @@
 }
 
 - (void)setInImageView:(UIImageView *)imageView {
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageURL]];
-    
+    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.imageData = UIImagePNGRepresentation(image);
+    }];
 //    if (self.imageData) {
 //        imageView.image = [UIImage imageWithData:self.imageData];
 //    } else {

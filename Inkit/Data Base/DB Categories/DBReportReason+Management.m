@@ -11,7 +11,7 @@
 @implementation DBReportReason (Management)
 
 #define KDBReportReason @"DBReportReason"
-#define kDBReportReasonName @"name"
+#define kDBReportReasonId @"reportReasonId"
 
 + (DBReportReason *)newReportReason {
     DBReportReason* reportReason = (DBReportReason *)[[DataManager sharedInstance] insert:KDBReportReason];
@@ -46,7 +46,7 @@
 
 + (NSArray *)getReportReasonsSorted {
     
-    return [[DataManager sharedInstance] fetch:KDBReportReason predicate:nil sort:@[[NSSortDescriptor sortDescriptorWithKey:kDBReportReasonName ascending:YES]] limit:0];
+    return [[DataManager sharedInstance] fetch:KDBReportReason predicate:nil sort:@[[NSSortDescriptor sortDescriptorWithKey:kDBReportReasonId ascending:YES]] limit:0];
 }
 
 @end

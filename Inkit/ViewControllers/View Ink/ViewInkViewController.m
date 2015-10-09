@@ -20,10 +20,11 @@
 #import "DBImage+Management.h"
 #import "ViewInkTableViewCell.h"
 #import "ViewImageViewController.h"
+#import "ReportViewController.h"
 #import "InkTableView.h"
 #import "ViewInkCollectionReusableView.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, IKViewInkCells) {
     kViewInkImage,
     //kInkRemote,
     kViewInkDescription,
@@ -31,7 +32,13 @@ typedef enum {
     kViewInkBoard,
     kViewInkComment,
     kViewInkTotalCells
-} kViewInkCells;
+} kInkCell;
+
+typedef NS_ENUM(NSInteger, IKOptionsActionSheet) {
+    IKOptionsReportInk,
+    IKOptionsEditInk,
+    IKOptionsCancel
+} IKOptionActionSheet;
 
 #define kInkActionsCellHeight   60
 #define kInkCommentCellHeight   44
@@ -39,11 +46,12 @@ typedef enum {
 static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkCollectionReusableView";
 
 
-@interface ViewInkViewController() <InkTableViewDelegate>
+@interface ViewInkViewController() <InkTableViewDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (strong, nonatomic) InkTableView* inkTableView;
+@property (strong, nonatomic) UIActionSheet *inkOptionsActionSheet;
 
 @end
 
@@ -59,11 +67,8 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
         self.navigationItem.hidesBackButton = YES;
     }
     
-    if ([self.ink.user.userID isEqualToString:[DataManager sharedInstance].activeUser.userID]) {
-        self.navigationItem.rightBarButtonItem = self.editButton;
-    } else {
-        self.navigationItem.rightBarButtonItem = nil;
-    }
+    self.navigationItem.rightBarButtonItem = self.editButton;
+
     [self refreshCollectionViewData];
 }
 
@@ -74,11 +79,11 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
 
 - (void)inkTableView:(InkTableView *)inkTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == kViewInkComment) {
-        [self performSegueWithIdentifier:@"CommentsSegue" sender:nil];
+        [self showCommentInk];
     } else if (indexPath.row == kViewInkBoard) {
-        [self performSegueWithIdentifier:@"ViewBoardSegue" sender:nil];
+        [self showViewBoard];
     } else if (indexPath.row == kViewInkImage) {
-        [self performSegueWithIdentifier:@"ViewImageSegue" sender:nil];
+        [self showViewImage];
     }
 }
 
@@ -113,6 +118,9 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
     } else if ([segue.identifier isEqualToString:@"ViewImageSegue"]) {
         ViewImageViewController* viewImageViewController = [segue destinationViewController];
         viewImageViewController.inkImage = [self.ink getInkImage];
+    } else if ([segue.identifier isEqualToString:@"showReportSegue"]) {
+        ReportViewController *reportViewController = [segue destinationViewController];
+        reportViewController.ink = self.ink;
     }
 }
 
@@ -120,7 +128,10 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
 #pragma mark - Ink Actions Delegate
 
 - (IBAction)editButtonPressed:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
+    
+    [self.inkOptionsActionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)likeButtonPressedForInkTableView:(InkTableView *)inkTableView {
@@ -146,7 +157,7 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
 }
 
 - (void)reInkButtonPressedForInkTableView:(InkTableView *)inkTableView {
-    [self performSegueWithIdentifier:@"ReInkSegue" sender:nil];
+    [self showReInk];
 }
 
 - (void)shareButtonPressedForInkTableView:(InkTableView *)inkTableView {
@@ -243,102 +254,77 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
     }
 }
 
-
 #pragma mark - Cover Buttons
-//
-//- (void)createOptionsAndShareButtons {
-//    
-//    UIBarButtonItem *moreOptionsItem = [[UIBarButtonItem alloc] initWithOriginalImageNamed:@"profile-menu"
-//                                                                                     style:UIBarButtonItemStylePlain
-//                                                                                    target:self action:@selector(channelMoreOptions:)];
-//    
-//    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithOriginalImageNamed:@"icon_share.png"
-//                                                                               style:UIBarButtonItemStylePlain
-//                                                                              target:self action:@selector(shareButtonAction)];
-//    moreOptionsItem.imageInsets = UIEdgeInsetsMake(0, -50, 0, 0);
-//    
-//    self.navigationItem.rightBarButtonItems = @[moreOptionsItem, shareItem];
-//}
-//
-//- (void)addChannelOptionsButtons {
-//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"suggest_question", nil)];
-//    [self loadChannelOptionsWithId:NSLocalizedString(@"suggest_question", nil) andValue:PRCChannelSuggestQuestion];
-//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"translate_questions", nil)];
-//    [self loadChannelOptionsWithId:NSLocalizedString(@"translate_questions", nil) andValue:PRCChannelTranslateQuestion];
-//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"rate_questions", nil)];
-//    [self loadChannelOptionsWithId:NSLocalizedString(@"rate_questions", nil) andValue:PRCChannelRateQuestion];
-//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"report_channel", nil)];
-//    [self loadChannelOptionsWithId:NSLocalizedString(@"report_channel", nil) andValue:PRCChannelReportChannel];
-//}
-//
-//
-//
-//- (void)createActionSheet {
-//    
-//    if (self.channelOptionsActionSheet) {
-//        [self.channelOptionsActionSheet removeFromSuperview];
-//        self.channelOptionsActionSheet = nil;
-//    }
-//    
-//    self.channelOptionsActionSheet = [[UIActionSheet alloc] initWithTitle:self.channel.name
-//                                                                 delegate:self
-//                                                        cancelButtonTitle:nil
-//                                                   destructiveButtonTitle:nil
-//                                                        otherButtonTitles:nil];
-//    if (self.arrOptions) {
-//        [self.arrOptions removeAllObjects];
-//    }
-//    
-//    [self addChannelOptionsButtons];
-//    
-//    self.channelOptionsActionSheet.cancelButtonIndex = self.arrOptions.count;
-//    
-//    [self.channelOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"cancel", nil)];
-//}
-//
-//- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
-//    self.navigationItem.rightBarButtonItem.enabled = YES;
-//    if (buttonIndex != actionSheet.cancelButtonIndex) {
-//        [AGObj(AGAudioManager) playSoundWithKey:@"ProfileButtonClick"];
-//    }
-//}
-//
-//- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-//    PRCFriendActionSheet optionType = [self channelOptionsType:buttonIndex];
-//    
-//    switch (optionType) {
-//        case PRCChannelSuggestQuestion:
-//            [self showSuggestQuestions];
-//            break;
-//        case PRCChannelRateQuestion:
-//            [self showRateQuestions];
-//            break;
-//        case PRCChannelTranslateQuestion:
-//            [self showTranslateQuestion];
-//            break;
-//        case PRCChannelAddLanguage:
-//            [self showAddLanguage];
-//            break;
-//        case PRCChannelChangeLanguage:
-//            [self showLanguageView];
-//            break;
-//        case PRCChannelDeleteLanguage:
-//            [self showDeleteLanguage];
-//            break;
-//        case PRCChannelDisableAction:
-//            [self showDisableAction];
-//            break;
-//        case PRCChannelReportChannel:
-//            [self presentChannelReport];
-//            break;
-//        case PRCChannelSeeReports:
-//            [self showChannelReports];
-//            break;
-//        default:
-//            break;
-//    }
-//    
-//}
+- (UIActionSheet *)inkOptionsActionSheet {
+    if (!_inkOptionsActionSheet) {
+        
+        _inkOptionsActionSheet =  [[UIActionSheet alloc] initWithTitle:nil
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedString(@"cancel", nil)
+                                                destructiveButtonTitle:nil
+                                                     otherButtonTitles:nil];
+        
+        if ([self.ink.user.userID isEqualToString:[DataManager sharedInstance].activeUser.userID]) {
+            [_inkOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"edit", nil)];
+        } else {
+            [_inkOptionsActionSheet addButtonWithTitle:NSLocalizedString(@"report", nil)];
+        }
+    }
+    return _inkOptionsActionSheet;
+}
 
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    IKOptionsActionSheet optionType = [self getOptionTypeForIndex:buttonIndex];
+    
+    switch (optionType) {
+        case IKOptionsReportInk:
+            [self showReportInk];
+            break;
+        case IKOptionsEditInk:
+            [self showEditInk];
+            break;
+        case IKOptionsCancel:
+            break;
+    }
+}
+
+- (IKOptionsActionSheet)getOptionTypeForIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        return IKOptionsCancel;
+    } else {
+        if ([self.ink.user.userID isEqualToString:[DataManager sharedInstance].activeUser.userID]) {
+            return IKOptionsEditInk;
+        } else {
+            return IKOptionsReportInk;
+        }
+    }
+}
+- (void)showReportInk {
+    [self performSegueWithIdentifier:@"ReportInkSegue" sender:nil];
+}
+
+- (void)showEditInk {
+    [self performSegueWithIdentifier:@"EditInkSegue" sender:nil];
+}
+
+- (void)showReInk {
+    [self performSegueWithIdentifier:@"ReInkSegue" sender:nil];
+}
+
+- (void)showCommentInk {
+    [self performSegueWithIdentifier:@"CommentsSegue" sender:nil];
+}
+
+- (void)showViewBoard {
+    [self performSegueWithIdentifier:@"ViewBoardSegue" sender:nil];
+}
+
+- (void)showViewImage {
+    [self performSegueWithIdentifier:@"ViewImageSegue" sender:nil];
+}
 
 @end

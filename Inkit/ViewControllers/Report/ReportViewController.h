@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBInk+Management.h"
 
 @interface ReportViewController : UIViewController
+
+@property (strong, nonatomic) DBInk *ink;
 
 @end
