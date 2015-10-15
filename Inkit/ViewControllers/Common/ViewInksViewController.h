@@ -20,5 +20,7 @@
 }
 
 @property (strong, nonatomic) NSMutableArray* inksArray;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *inksCollectionView;
+
 @end

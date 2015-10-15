@@ -87,7 +87,7 @@ static NSString * const BoardCollectionViewCellIdentifier = @"BoardCollectionVie
         if (error) {
             [self showAlertForMessage:(NSString *)response];
         } else {
-            self.boardsArray = (NSArray *)response;
+            self.boardsArray = [self.activeUser getSortedBoards];
             [self.boardsCollectionView reloadData];
         }
     }];

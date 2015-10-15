@@ -11,6 +11,7 @@
 #import "DBShop+Management.h"
 #import "DBTattooType+Management.h"
 #import "DBBodyPart+Management.h"
+#import "DBReportReason+Management.h"
 
 @implementation InkService
 
@@ -669,6 +670,75 @@
 
 + (void)getRelatedInksForInk:(DBInk*)ink andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
     
+}
+
++ (void)reportInk:(DBInk *)ink withReason:(DBReportReason *)reportReason completion:(ServiceResponse)completion {
+    NSURL* url = [NSURL URLWithString:@"http://inkit.digbang.com/api/inks/report"];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary* reportData = @{@"access_token":[DataManager sharedInstance].activeUser.token,
+                                  @"ink_id":ink.inkID,
+                                  @"reason_id":reportReason.reportReasonId};
+    
+    NSString* encodedDictionary = [reportData serializeParams];
+    [request setHTTPBody:[encodedDictionary dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            // Cast Response
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            // Check Response's StatusCode
+            switch (httpResponse.statusCode) {
+                case 204: {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (completion) {
+                            completion(nil, nil);
+                        }
+                    });
+                    break;
+                }
+                case 400: {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (completion) {
+                            completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                        }
+                    });
+                    break;
+                }
+                case 401: {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (completion) {
+                            completion(responseDictionary[@"message"],[[NSError alloc] init]);
+                        }
+                    });
+                    break;
+                }
+                default: {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (completion) {
+                            completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                        }
+                    });
+                    break;
+                }
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) {
+                    completion(NSLocalizedString(@"There was a problem", nil),[[NSError alloc] init]);
+                }
+            });
+        }
+    }];
+    
+    [task resume];
 }
 
 @end

@@ -44,17 +44,37 @@
     DBReportReason *reportReason = self.reportReasonsArray[indexPath.row];
     cell.textLabel.text = reportReason.name;
     
+    if (self.selectedIndexPath == indexPath) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-    if (self.selectedIndexPath) {
-        [[tableView cellForRowAtIndexPath:self.selectedIndexPath] setAccessoryType:UITableViewCellAccessoryNone];
+    NSIndexPath *previousIndexPath = self.selectedIndexPath;
+    
+    if (self.selectedIndexPath == indexPath) {
+        self.selectedIndexPath = nil;
+    } else {
+        self.selectedIndexPath = indexPath;
     }
-    [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    self.selectedIndexPath = indexPath;
+    
+    if (previousIndexPath) {
+        [tableView reloadRowsAtIndexPaths:@[indexPath, previousIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (IBAction)okButtonPressed:(UIBarButtonItem *)sender {
+    if (self.selectedIndexPath) {
+        [InkitService reportInk:self.ink withReason:self.reportReasonsArray[self.selectedIndexPath.row] completion:nil];
+    }
+    
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 @end

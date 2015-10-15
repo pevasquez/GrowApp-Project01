@@ -118,7 +118,7 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
     } else if ([segue.identifier isEqualToString:@"ViewImageSegue"]) {
         ViewImageViewController* viewImageViewController = [segue destinationViewController];
         viewImageViewController.inkImage = [self.ink getInkImage];
-    } else if ([segue.identifier isEqualToString:@"showReportSegue"]) {
+    } else if ([segue.identifier isEqualToString:@"ReportInkSegue"]) {
         ReportViewController *reportViewController = [segue destinationViewController];
         reportViewController.ink = self.ink;
     }
@@ -216,6 +216,11 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
     if ((indexPath.section == currentPage - 2) && (indexPath.item == ((NSArray *)self.inksArray[indexPath.section]).count - 1) ) {
         [self getMoreInks];
     }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+    [self showRelatedInkForIndexPath:indexPath];
 }
 
 - (void)getMoreInks {
@@ -327,4 +332,11 @@ static NSString * const ViewInkCollectionReusableViewIdentifier = @"ViewInkColle
     [self performSegueWithIdentifier:@"ViewImageSegue" sender:nil];
 }
 
+- (void)showRelatedInkForIndexPath:(NSIndexPath *)indexPath {
+    
+    ViewInkViewController *relatedInkViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewInkViewController"];
+    relatedInkViewController.ink = self.inksArray[indexPath.section][indexPath.item];
+
+    [self.navigationController pushViewController:relatedInkViewController animated:true];
+}
 @end

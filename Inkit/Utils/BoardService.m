@@ -345,7 +345,9 @@
                 case kHTTPResponseCodeOK: {
                     [board updateInksWithJson:responseDictionary[@"data"]];
                     [DataManager saveContext];
-                    completion(nil, nil);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(nil, nil);
+                    });
                     break;
                 }
                 case 400: {

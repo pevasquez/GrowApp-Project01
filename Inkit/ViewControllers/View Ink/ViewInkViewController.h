@@ -11,5 +11,7 @@
 #import "ViewInksViewController.h"
 
 @interface ViewInkViewController : ViewInksViewController
+
 @property (strong, nonatomic) DBInk* ink;
+
 @end

@@ -34,6 +34,9 @@ NSString *const JSONUserSocialNetworks = @"social_networks";
 NSString *const JSONUserAccessToken = @"access_token";
 NSString *const JSONUserAccessTokenType = @"token_type";
 NSString *const JSONUserAccessTokenExpiresIn = @"expires_in";
+NSString *const JSONUserID = @"id";
+NSString *const JSONUser = @"user";
+
 
 @implementation DBUser (Management)
 + (DBUser *)newUser {
@@ -53,10 +56,10 @@ NSString *const JSONUserAccessTokenExpiresIn = @"expires_in";
 
 + (DBUser *)fromJson:(NSDictionary *)userData {
     NSString* userID = nil;
-    if ([userData objectForKey:kUserID]) {
-        userID = [NSString stringWithFormat:@"%@",userData[kUserID]];
-    } else if ([userData objectForKey:kAccessToken]) {
-        userID = [NSString stringWithFormat:@"%@",userData[kAccessToken]];
+    if ([userData objectForKey:JSONUserID]) {
+        userID = [NSString stringWithFormat:@"%@",userData[JSONUserID]];
+    } else if ([userData objectForKey:JSONUser]) {
+        userID = [NSString stringWithFormat:@"%@",userData[JSONUser]];
     } else {
         return nil;
     }
@@ -141,13 +144,15 @@ NSString *const JSONUserAccessTokenExpiresIn = @"expires_in";
         }
         else if ([key isEqualToString:JSONUserAccessToken]) {
             self.token = [NSString stringWithFormat:@"%@",value];
-            self.userID = [NSString stringWithFormat:@"%@",value];
         }
         else if ([key isEqualToString:JSONUserAccessTokenType]) {
             self.tokenType = value;
         }
         else if ([key isEqualToString:JSONUserAccessTokenExpiresIn]) {
             self.expiresIn = value;
+        }
+        else if ([key isEqualToString:JSONUser] || [key isEqualToString:JSONUserID]) {
+            self.userID = [NSString stringWithFormat:@"%@",value];
         }
     }];
     

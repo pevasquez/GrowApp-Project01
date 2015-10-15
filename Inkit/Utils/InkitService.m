@@ -125,4 +125,8 @@
 + (void)getRelatedInksForInk:(DBInk*)ink andPage:(NSUInteger)page withCompletion:(ServiceResponse)completion {
     [InkService getRelatedInksForInk:ink andPage:page withCompletion:completion];
 }
+
++ (void)reportInk:(DBInk *)ink withReason:(DBReportReason *)reportReason completion:(ServiceResponse)completion {
+    [InkService reportInk:ink withReason:reportReason completion:completion];
+}
 @end

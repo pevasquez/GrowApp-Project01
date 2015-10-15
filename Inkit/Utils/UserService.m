@@ -29,25 +29,17 @@
     // Create and configure URLRequest
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
     
-//    NSString *boundary = @"14737809831466499882746641449";
-//    NSData* body = [NSData fromDictionary:userDictionary andBoundary:boundary];
+    NSString *boundary = @"14737809831466499882746641449";
+    NSData* body = [NSData fromDictionary:userDictionary andBoundary:boundary];
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
-//    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPBody:body];
-    
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
     
     // Setup the session
-    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    sessionConfiguration.timeoutIntervalForRequest = 10;
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    NSURLSession* session = [NSURLSession sharedSession];
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if (!error) {
@@ -95,6 +87,9 @@
 }
 
 + (void)registerArtistDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    
+    userDictionary = [UserService addPasswordCredentialsToDictionary:userDictionary];
+
     // Create String URL
     NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceAuthorization,kWebServiceRegister,kWebServiceArtist];
     
@@ -104,15 +99,14 @@
     // Create and configure URLRequest
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
     
-    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    NSString *boundary = @"14737809831466499882746641449";
+    NSData* body = [NSData fromDictionary:userDictionary andBoundary:boundary];
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
     
     NSURLSession* session = [NSURLSession sharedSession];
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -168,6 +162,9 @@
 }
 
 + (void)registerShopDictionary:(NSDictionary *)userDictionary withCompletion:(ServiceResponse)completion {
+    
+    userDictionary = [UserService addPasswordCredentialsToDictionary:userDictionary];
+    
     // Create String URL
     NSString* stringURL = [NSString stringWithFormat:@"%@%@%@%@",kWebServiceBase,kWebServiceAuthorization,kWebServiceRegister,kWebServiceShop];
     
@@ -177,15 +174,14 @@
     // Create and configure URLRequest
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:registerUserURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120.0];
     
-    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    NSString *boundary = @"14737809831466499882746641449";
+    NSData* body = [NSData fromDictionary:userDictionary andBoundary:boundary];
     
     // Specify that it will be a POST request
     [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSError *error = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    [request setHTTPBody: jsonData];
+    [request setValue:@"application/vnd.InkIt.v1+json" forHTTPHeaderField:@"Accept"];
+    [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
     
     NSURLSession* session = [NSURLSession sharedSession];
     NSURLSessionTask* task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
