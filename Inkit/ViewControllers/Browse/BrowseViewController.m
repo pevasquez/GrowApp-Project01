@@ -13,8 +13,6 @@
 #import "ViewInkViewController.h"
 #import "AppDelegate.h"
 
-@import GoogleMobileAds;
-
 static NSString * const InkCollectionViewCellIdentifier = @"InkCollectionViewCell";
 static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionViewCell";
 

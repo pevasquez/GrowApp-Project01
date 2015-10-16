@@ -131,7 +131,6 @@
 		FBD2FEEB1ADB550F005D1AAE /* DBBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEEA1ADB550F005D1AAE /* DBBodyPart.m */; };
 		FBD2FEEE1ADB550F005D1AAE /* DBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEED1ADB550F005D1AAE /* DBComment.m */; };
 		FBD2FEF11ADB55ED005D1AAE /* DBShop.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD2FEF01ADB55ED005D1AAE /* DBShop.m */; };
-		FBD73CD41B29A5E1005AFCBD /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CD31B29A5E1005AFCBD /* GoogleMobileAds.framework */; };
 		FBD73CDA1B29A675005AFCBD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CD91B29A675005AFCBD /* CoreMedia.framework */; };
 		FBD73CDC1B29A694005AFCBD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CDB1B29A694005AFCBD /* CoreTelephony.framework */; };
 		FBD73CDF1B29A6BB005AFCBD /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD73CDD1B29A6BB005AFCBD /* EventKit.framework */; };
@@ -372,7 +371,6 @@
 		FBD2FEED1ADB550F005D1AAE /* DBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBComment.m; path = "Data Base/DB Subclasses/DBComment.m"; sourceTree = "<group>"; };
 		FBD2FEEF1ADB55ED005D1AAE /* DBShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBShop.h; path = "Data Base/DB Subclasses/DBShop.h"; sourceTree = "<group>"; };
 		FBD2FEF01ADB55ED005D1AAE /* DBShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBShop.m; path = "Data Base/DB Subclasses/DBShop.m"; sourceTree = "<group>"; };
-		FBD73CD31B29A5E1005AFCBD /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		FBD73CD91B29A675005AFCBD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		FBD73CDB1B29A694005AFCBD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		FBD73CDD1B29A6BB005AFCBD /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -438,7 +436,6 @@
 				FBD73CDA1B29A675005AFCBD /* CoreMedia.framework in Frameworks */,
 				86EE2E4F1B14C0FE00DC64BC /* QuartzCore.framework in Frameworks */,
 				86EE2E321B14A9F100DC64BC /* MessageUI.framework in Frameworks */,
-				FBD73CD41B29A5E1005AFCBD /* GoogleMobileAds.framework in Frameworks */,
 				86EE2E301B14A9DA00DC64BC /* AudioToolbox.framework in Frameworks */,
 				86EE2E2E1B14A9CB00DC64BC /* AdSupport.framework in Frameworks */,
 				86EE2DD61B14A06900DC64BC /* Accounts.framework in Frameworks */,
@@ -896,7 +893,6 @@
 		FBD73CD51B29A5EA005AFCBD /* Google */ = {
 			isa = PBXGroup;
 			children = (
-				FBD73CD31B29A5E1005AFCBD /* GoogleMobileAds.framework */,
 				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
 				8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */,
 				8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */,
@@ -1522,6 +1518,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"Proyectos/Frameworks/**",
@@ -1558,6 +1555,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"Proyectos/Frameworks/**",

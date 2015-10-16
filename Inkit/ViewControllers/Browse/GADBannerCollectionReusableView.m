@@ -7,11 +7,8 @@
 //
 
 #import "GADBannerCollectionReusableView.h"
-@import GoogleMobileAds;
 
 @interface GADBannerCollectionReusableView()
-
-@property (weak, nonatomic) IBOutlet GADBannerView *bannerView;
 
 @end
 
