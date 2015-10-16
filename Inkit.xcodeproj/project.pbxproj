@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */; };
 		86647CBA1AF403830013658A /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86647CB91AF403830013658A /* FacebookManager.m */; };
-		8673CB191AFA6F7A00179FA2 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */; };
-		8673CB1B1AFA6F8700179FA2 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */; };
-		8673CB1D1AFA6F9100179FA2 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */; };
 		8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8673CBA81AFBFAD200179FA2 /* Tutorial.storyboard */; };
 		8673CBB01AFBFAD200179FA2 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAA1AFBFAD200179FA2 /* TutorialViewController.m */; };
 		8673CBB11AFBFAD200179FA2 /* TutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8673CBAC1AFBFAD200179FA2 /* TutorialPage.m */; };
@@ -167,9 +164,6 @@
 		8647F6E01ACD6FA500BD93E7 /* SelectRemoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRemoteTableViewController.m; sourceTree = "<group>"; };
 		86647CB81AF403830013658A /* FacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookManager.h; path = Utils/Managers/FacebookManager.h; sourceTree = "<group>"; };
 		86647CB91AF403830013658A /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookManager.m; path = Utils/Managers/FacebookManager.m; sourceTree = "<group>"; };
-		8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
-		8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
-		8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
 		8673CBA81AFBFAD200179FA2 /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tutorial.storyboard; path = ViewControllers/Tutorial/Tutorial.storyboard; sourceTree = "<group>"; };
 		8673CBA91AFBFAD200179FA2 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialViewController.h; path = ViewControllers/Tutorial/TutorialViewController.h; sourceTree = "<group>"; };
 		8673CBAA1AFBFAD200179FA2 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialViewController.m; path = ViewControllers/Tutorial/TutorialViewController.m; sourceTree = "<group>"; };
@@ -441,7 +435,6 @@
 				86EE2DD61B14A06900DC64BC /* Accounts.framework in Frameworks */,
 				86EE2DD41B149EB500DC64BC /* Social.framework in Frameworks */,
 				86DFBC7A1AF5689A000EAF62 /* UIKit.framework in Frameworks */,
-				8673CB1B1AFA6F8700179FA2 /* GooglePlus.framework in Frameworks */,
 				FB8826501B2628AD00CE0DFF /* Crashlytics.framework in Frameworks */,
 				86DFBC781AF5688A000EAF62 /* MediaPlayer.framework in Frameworks */,
 				86DFBC761AF56881000EAF62 /* CoreText.framework in Frameworks */,
@@ -452,7 +445,6 @@
 				86DFBC6C1AF5607C000EAF62 /* SystemConfiguration.framework in Frameworks */,
 				86DFBC6A1AF56071000EAF62 /* Security.framework in Frameworks */,
 				86DFBC681AF554F1000EAF62 /* CoreMotion.framework in Frameworks */,
-				8673CB191AFA6F7A00179FA2 /* GoogleOpenSource.framework in Frameworks */,
 				FB8F5D411B44B340008E92C8 /* FBSDKCoreKit.framework in Frameworks */,
 				FB8826511B2628AD00CE0DFF /* Fabric.framework in Frameworks */,
 				86DFBC661AF554DF000EAF62 /* AddressBook.framework in Frameworks */,
@@ -839,7 +831,6 @@
 		FBC433111A8556B200EFAA24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FBD73CD51B29A5EA005AFCBD /* Google */,
 				FBD73CD81B29A611005AFCBD /* Crashlytics */,
 				FBD73CD61B29A5F2005AFCBD /* Facebook */,
 				FBD73CD71B29A608005AFCBD /* Apple */,
@@ -888,16 +879,6 @@
 				FBCCAF971A8CF5D60052DCB9 /* Create Board */,
 			);
 			name = Boards;
-			sourceTree = "<group>";
-		};
-		FBD73CD51B29A5EA005AFCBD /* Google */ = {
-			isa = PBXGroup;
-			children = (
-				8673CB1C1AFA6F9100179FA2 /* GooglePlus.bundle */,
-				8673CB1A1AFA6F8700179FA2 /* GooglePlus.framework */,
-				8673CB181AFA6F7A00179FA2 /* GoogleOpenSource.framework */,
-			);
-			name = Google;
 			sourceTree = "<group>";
 		};
 		FBD73CD61B29A5F2005AFCBD /* Facebook */ = {
@@ -1180,6 +1161,7 @@
 				FBDCB1901A83EB1800E05053 /* Resources */,
 				FB8826521B262A5B00CE0DFF /* ShellScript */,
 				F3B8592DF19E41FC8A9D8FBF /* Copy Pods Resources */,
+				B2775AF376A9251826B7306C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1248,7 +1230,6 @@
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
 				FB0A938B1B4ED78100717A0F /* InkActionsTableViewCell.xib in Resources */,
 				FBF9F9E61B060F1900357F5B /* TextFieldTableViewCell.xib in Resources */,
-				8673CB1D1AFA6F9100179FA2 /* GooglePlus.bundle in Resources */,
 				FBC4330A1A85472200EFAA24 /* PermanentMarker.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1269,6 +1250,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B2775AF376A9251826B7306C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F3B8592DF19E41FC8A9D8FBF /* Copy Pods Resources */ = {
