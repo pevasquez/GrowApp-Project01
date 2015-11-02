@@ -1,98 +1,103 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InkActionsTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0dZ-gE-qaP" customClass="ProfileImageView">
-                    <rect key="frame" x="8" y="8" width="44" height="44"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="ESV-06-vTL"/>
-                        <constraint firstAttribute="width" constant="44" id="KbE-Ev-K3f"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Oscar White" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bt-gQ-NIz">
-                    <rect key="frame" x="60" y="20" width="100" height="21"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcz-M6-IxQ">
-                    <rect key="frame" x="550" y="13" width="34" height="34"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="34" id="CY6-oq-p6S"/>
-                        <constraint firstAttribute="height" constant="34" id="MYi-wO-3iI"/>
-                    </constraints>
-                    <state key="normal" image="ViewInk-ReInk">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="reInkButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="lna-Mp-LCR"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzt-aj-GfQ">
-                    <rect key="frame" x="508" y="13" width="34" height="34"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="34" id="1m6-lt-VUF"/>
-                        <constraint firstAttribute="width" constant="34" id="yxE-Ee-Ipc"/>
-                    </constraints>
-                    <state key="normal" image="ViewInk-Share">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="shareButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Q5W-Zo-VcR"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtG-n0-ppu">
-                    <rect key="frame" x="466" y="13" width="34" height="34"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="34" id="PAW-Rv-Crc"/>
-                        <constraint firstAttribute="width" constant="34" id="ZFu-HD-z5D"/>
-                    </constraints>
-                    <state key="normal" image="ViewInk-Liked"/>
-                    <state key="highlighted" image="ViewInk-Liked"/>
-                    <connections>
-                        <action selector="likeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="QZb-vL-XfW"/>
-                    </connections>
-                </button>
-            </subviews>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="InkActionsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8jM-2Q-FnD" customClass="ProfileImageView">
+                        <rect key="frame" x="8" y="8" width="44" height="44"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.85490196080000003" green="0.12941176469999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="2pS-Au-cwE"/>
+                            <constraint firstAttribute="width" constant="44" id="Aob-zO-sZN"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2T-Gf-jnh">
+                        <rect key="frame" x="325" y="13" width="34" height="34"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="LyK-WR-YhV"/>
+                            <constraint firstAttribute="height" constant="34" id="ndZ-F1-gob"/>
+                        </constraints>
+                        <state key="normal" image="ViewInk-ReInk">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="reInkButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yFy-Ar-s6s"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTS-Bx-13O">
+                        <rect key="frame" x="283" y="13" width="34" height="34"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="3vZ-G1-TOZ"/>
+                            <constraint firstAttribute="width" constant="34" id="Ebm-Ey-nDV"/>
+                        </constraints>
+                        <state key="normal" image="ViewInk-Share">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="shareButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="e0F-t2-MYX"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Oscar White" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dl-Jz-UKq">
+                        <rect key="frame" x="60" y="19.5" width="99.5" height="20.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Us-vQ-fLx">
+                        <rect key="frame" x="241" y="13" width="34" height="34"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="6Xx-cH-fIZ"/>
+                            <constraint firstAttribute="height" constant="34" id="LpP-ez-oxT"/>
+                        </constraints>
+                        <state key="normal" image="ViewInk-Liked"/>
+                        <state key="highlighted" image="ViewInk-Liked"/>
+                        <connections>
+                            <action selector="likeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mjN-72-92s"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="4Dl-Jz-UKq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GPt-WG-FhV"/>
+                    <constraint firstItem="8jM-2Q-FnD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PbJ-pq-lCs"/>
+                    <constraint firstItem="4Dl-Jz-UKq" firstAttribute="leading" secondItem="8jM-2Q-FnD" secondAttribute="trailing" constant="8" id="Q4Q-PV-7Z0"/>
+                    <constraint firstItem="l2T-Gf-jnh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WRS-ha-Tlh"/>
+                    <constraint firstItem="aTS-Bx-13O" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WmB-0q-Fr7"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="8jM-2Q-FnD" secondAttribute="leading" id="ikv-jq-yg1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="l2T-Gf-jnh" secondAttribute="trailing" constant="8" id="kp8-2n-UVh"/>
+                    <constraint firstItem="l2T-Gf-jnh" firstAttribute="leading" secondItem="aTS-Bx-13O" secondAttribute="trailing" constant="8" id="oAr-sd-lfg"/>
+                    <constraint firstItem="3Us-vQ-fLx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rfl-cK-3hV"/>
+                    <constraint firstItem="3Us-vQ-fLx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Dl-Jz-UKq" secondAttribute="trailing" constant="8" id="wGB-h2-1T9"/>
+                    <constraint firstItem="aTS-Bx-13O" firstAttribute="leading" secondItem="3Us-vQ-fLx" secondAttribute="trailing" constant="8" id="wbe-1c-mcd"/>
+                </constraints>
+            </tableViewCellContentView>
             <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="centerY" secondItem="5bt-gQ-NIz" secondAttribute="centerY" constant="0.25" id="2bv-cA-R1P"/>
-                <constraint firstItem="0dZ-gE-qaP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="J1G-wP-rsI"/>
-                <constraint firstAttribute="centerY" secondItem="0dZ-gE-qaP" secondAttribute="centerY" id="KBS-io-267"/>
-                <constraint firstItem="XtG-n0-ppu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5bt-gQ-NIz" secondAttribute="trailing" constant="8" id="Q1Q-RK-BxC"/>
-                <constraint firstItem="Rzt-aj-GfQ" firstAttribute="leading" secondItem="XtG-n0-ppu" secondAttribute="trailing" constant="8" id="hi9-85-vum"/>
-                <constraint firstAttribute="centerY" secondItem="Rzt-aj-GfQ" secondAttribute="centerY" id="mOV-oW-TCv"/>
-                <constraint firstItem="Vcz-M6-IxQ" firstAttribute="leading" secondItem="Rzt-aj-GfQ" secondAttribute="trailing" constant="8" id="rZv-n5-G8Z"/>
-                <constraint firstItem="5bt-gQ-NIz" firstAttribute="leading" secondItem="0dZ-gE-qaP" secondAttribute="trailing" constant="8" id="vLB-3O-z23"/>
-                <constraint firstAttribute="centerY" secondItem="Vcz-M6-IxQ" secondAttribute="centerY" id="vZH-me-evi"/>
-                <constraint firstAttribute="trailing" secondItem="Vcz-M6-IxQ" secondAttribute="trailing" constant="16" id="vaZ-qJ-wlc"/>
-                <constraint firstAttribute="centerY" secondItem="XtG-n0-ppu" secondAttribute="centerY" id="wNU-98-ZaE"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="likeButton" destination="XtG-n0-ppu" id="da8-DP-47K"/>
-                <outlet property="reInkButton" destination="Vcz-M6-IxQ" id="JCg-ER-iPw"/>
-                <outlet property="shareButton" destination="Rzt-aj-GfQ" id="2fD-vb-iSb"/>
-                <outlet property="userImageView" destination="0dZ-gE-qaP" id="jhS-QG-Kyo"/>
-                <outlet property="userNameLabel" destination="5bt-gQ-NIz" id="TAf-x8-b3e"/>
+                <outlet property="likeButton" destination="3Us-vQ-fLx" id="BSM-bC-chf"/>
+                <outlet property="reInkButton" destination="l2T-Gf-jnh" id="Ess-ph-6OC"/>
+                <outlet property="shareButton" destination="aTS-Bx-13O" id="l6Q-uz-hjp"/>
+                <outlet property="userImageView" destination="8jM-2Q-FnD" id="SnW-Mw-x3X"/>
+                <outlet property="userNameLabel" destination="4Dl-Jz-UKq" id="Heh-vp-utD"/>
             </connections>
-        </view>
+            <point key="canvasLocation" x="139" y="265"/>
+        </tableViewCell>
     </objects>
     <resources>
         <image name="ViewInk-Liked" width="23" height="27"/>

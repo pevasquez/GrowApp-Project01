@@ -55,14 +55,16 @@
 		FB0A93831B4EB0CC00717A0F /* InkImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A93821B4EB0CC00717A0F /* InkImageTableViewCell.xib */; };
 		FB0A93851B4EB44300717A0F /* InkDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A93841B4EB44300717A0F /* InkDescriptionTableViewCell.xib */; };
 		FB0A93871B4ED5B200717A0F /* InkCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A93861B4ED5B200717A0F /* InkCommentTableViewCell.xib */; };
-		FB0A938B1B4ED78100717A0F /* InkActionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0A938A1B4ED78100717A0F /* InkActionsTableViewCell.xib */; };
+		FB0BB9591BE6DA15001E1E07 /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0BB9571BE6DA15001E1E07 /* TextFieldTableViewCell.m */; };
+		FB0BB95A1BE6DA15001E1E07 /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0BB9581BE6DA15001E1E07 /* TextFieldTableViewCell.xib */; };
+		FB0BB95F1BE6DCE4001E1E07 /* InkActionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0BB95D1BE6DCE4001E1E07 /* InkActionsTableViewCell.xib */; };
 		FB1FF59E1B3DA633007572F7 /* GADBannerCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */; };
 		FB1FF5A11B3DACCE007572F7 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */; };
 		FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB249C311B11077400AE29F2 /* UIImage+Extension.m */; };
 		FB29890B1AA868A0005D7327 /* CropView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29890A1AA868A0005D7327 /* CropView.m */; };
-		FB3266621BC7343600D74A7E /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3266611BC7343600D74A7E /* ReportViewController.m */; settings = {ASSET_TAGS = (); }; };
-		FB3266681BC7379A00D74A7E /* DBReportReason.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3266661BC7379A00D74A7E /* DBReportReason.m */; settings = {ASSET_TAGS = (); }; };
-		FB32666B1BC7389A00D74A7E /* DBReportReason+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FB32666A1BC7389A00D74A7E /* DBReportReason+Management.m */; settings = {ASSET_TAGS = (); }; };
+		FB3266621BC7343600D74A7E /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3266611BC7343600D74A7E /* ReportViewController.m */; };
+		FB3266681BC7379A00D74A7E /* DBReportReason.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3266661BC7379A00D74A7E /* DBReportReason.m */; };
+		FB32666B1BC7389A00D74A7E /* DBReportReason+Management.m in Sources */ = {isa = PBXBuildFile; fileRef = FB32666A1BC7389A00D74A7E /* DBReportReason+Management.m */; };
 		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
 		FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */; };
 		FB422CA01B4BE62500AA2D6A /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FB422C9F1B4BE62400AA2D6A /* NSString+Extensions.m */; };
@@ -153,8 +155,6 @@
 		FBE5F2EF1B3C4B8100811C4F /* CommentBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE5F2EE1B3C4B8100811C4F /* CommentBarView.xib */; };
 		FBE704631AF6CFB80041DD0E /* DBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE704621AF6CFB80041DD0E /* DBImage.m */; };
 		FBF2F8621B037A3F00057A71 /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF2F8611B037A3F00057A71 /* NSData+Extension.m */; };
-		FBF9F9E41B060F0100357F5B /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF9F9E31B060F0100357F5B /* TextFieldTableViewCell.m */; };
-		FBF9F9E61B060F1900357F5B /* TextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBF9F9E51B060F1900357F5B /* TextFieldTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -233,7 +233,10 @@
 		FB0A93821B4EB0CC00717A0F /* InkImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkImageTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkImageTableViewCell.xib"; sourceTree = "<group>"; };
 		FB0A93841B4EB44300717A0F /* InkDescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkDescriptionTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkDescriptionTableViewCell.xib"; sourceTree = "<group>"; };
 		FB0A93861B4ED5B200717A0F /* InkCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkCommentTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkCommentTableViewCell.xib"; sourceTree = "<group>"; };
-		FB0A938A1B4ED78100717A0F /* InkActionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkActionsTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkActionsTableViewCell.xib"; sourceTree = "<group>"; };
+		FB0BB9561BE6DA15001E1E07 /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldTableViewCell.h; path = "Custom Classes/TextFieldTableViewCell.h"; sourceTree = "<group>"; };
+		FB0BB9571BE6DA15001E1E07 /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldTableViewCell.m; path = "Custom Classes/TextFieldTableViewCell.m"; sourceTree = "<group>"; };
+		FB0BB9581BE6DA15001E1E07 /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFieldTableViewCell.xib; path = "Custom Classes/TextFieldTableViewCell.xib"; sourceTree = "<group>"; };
+		FB0BB95D1BE6DCE4001E1E07 /* InkActionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InkActionsTableViewCell.xib; path = "Inkit/ViewControllers/View Ink/InkActionsTableViewCell.xib"; sourceTree = "<group>"; };
 		FB1FF59D1B3DA633007572F7 /* GADBannerCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GADBannerCollectionReusableView.xib; path = ViewControllers/Browse/GADBannerCollectionReusableView.xib; sourceTree = "<group>"; };
 		FB1FF59F1B3DACCE007572F7 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extension.h"; path = "Utils/UIView+Extension.h"; sourceTree = "<group>"; };
 		FB1FF5A01B3DACCE007572F7 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extension.m"; path = "Utils/UIView+Extension.m"; sourceTree = "<group>"; };
@@ -413,9 +416,6 @@
 		FBE704621AF6CFB80041DD0E /* DBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBImage.m; path = "Data Base/DB Subclasses/DBImage.m"; sourceTree = "<group>"; };
 		FBF2F8601B037A3F00057A71 /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Extension.h"; path = "Utils/NSData+Extension.h"; sourceTree = "<group>"; };
 		FBF2F8611B037A3F00057A71 /* NSData+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Extension.m"; path = "Utils/NSData+Extension.m"; sourceTree = "<group>"; };
-		FBF9F9E21B060F0100357F5B /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldTableViewCell.h; path = "Custom Classes/TextFieldTableViewCell.h"; sourceTree = "<group>"; };
-		FBF9F9E31B060F0100357F5B /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextFieldTableViewCell.m; path = "Custom Classes/TextFieldTableViewCell.m"; sourceTree = "<group>"; };
-		FBF9F9E51B060F1900357F5B /* TextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextFieldTableViewCell.xib; path = "Custom Classes/TextFieldTableViewCell.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -606,9 +606,9 @@
 				FBA038EE1B122E5300700D93 /* ImageTableViewCell.h */,
 				FBA038EF1B122E5300700D93 /* ImageTableViewCell.m */,
 				FBA038F11B122E6500700D93 /* ImageTableViewCell.xib */,
-				FBF9F9E21B060F0100357F5B /* TextFieldTableViewCell.h */,
-				FBF9F9E31B060F0100357F5B /* TextFieldTableViewCell.m */,
-				FBF9F9E51B060F1900357F5B /* TextFieldTableViewCell.xib */,
+				FB0BB9561BE6DA15001E1E07 /* TextFieldTableViewCell.h */,
+				FB0BB9571BE6DA15001E1E07 /* TextFieldTableViewCell.m */,
+				FB0BB9581BE6DA15001E1E07 /* TextFieldTableViewCell.xib */,
 				FB4AB2551B76572800F7ACB6 /* ViewControllers */,
 				86C5A6C81AFF9BC900449FA7 /* RoundedCornerButton.h */,
 				86C5A6C91AFF9BC900449FA7 /* RoundedCornerButton.m */,
@@ -725,7 +725,7 @@
 				FB0A93841B4EB44300717A0F /* InkDescriptionTableViewCell.xib */,
 				FBB384221A893102004C440A /* InkActionsTableViewCell.h */,
 				FBB384231A893102004C440A /* InkActionsTableViewCell.m */,
-				FB0A938A1B4ED78100717A0F /* InkActionsTableViewCell.xib */,
+				FB0BB95D1BE6DCE4001E1E07 /* InkActionsTableViewCell.xib */,
 				FBB384251A893128004C440A /* InkCommentTableViewCell.h */,
 				FBB384261A893128004C440A /* InkCommentTableViewCell.m */,
 				FB0A93861B4ED5B200717A0F /* InkCommentTableViewCell.xib */,
@@ -1212,6 +1212,7 @@
 			files = (
 				FB56E22F1B50240700FD39CF /* InkCollectionViewCell.xib in Resources */,
 				86F8A44F1B00FFB4007955C6 /* Main.storyboard in Resources */,
+				FB0BB95A1BE6DA15001E1E07 /* TextFieldTableViewCell.xib in Resources */,
 				86C5A6CF1AFFE69900449FA7 /* OnBoarding.storyboard in Resources */,
 				FB56E23F1B5042CB00FD39CF /* ViewInkCollectionReusableView.xib in Resources */,
 				FBB696E11AABA68F0071D96B /* Cristian con clase.jpg in Resources */,
@@ -1220,6 +1221,7 @@
 				FBC517101A9F37F200110CC9 /* Localizable.strings in Resources */,
 				FB56E2391B5027D800FD39CF /* InkInfoTableViewCell.xib in Resources */,
 				FBE5F2EF1B3C4B8100811C4F /* CommentBarView.xib in Resources */,
+				FB0BB95F1BE6DCE4001E1E07 /* InkActionsTableViewCell.xib in Resources */,
 				FBA038F21B122E6500700D93 /* ImageTableViewCell.xib in Resources */,
 				FB1FF59E1B3DA633007572F7 /* GADBannerCollectionReusableView.xib in Resources */,
 				FBBC573D1AB2300200FF2219 /* Images.xcassets in Resources */,
@@ -1228,8 +1230,6 @@
 				8673CBAF1AFBFAD200179FA2 /* Tutorial.storyboard in Resources */,
 				FBE51D271B3D6F790059EB72 /* InkBoardTableViewCell.xib in Resources */,
 				FBC433091A85472200EFAA24 /* HelveticaNeue-Roman.otf in Resources */,
-				FB0A938B1B4ED78100717A0F /* InkActionsTableViewCell.xib in Resources */,
-				FBF9F9E61B060F1900357F5B /* TextFieldTableViewCell.xib in Resources */,
 				FBC4330A1A85472200EFAA24 /* PermanentMarker.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1317,6 +1317,7 @@
 				FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */,
 				86E14A1A1B44289300D3B432 /* CenteredScrollView.m in Sources */,
 				FBB3843E1A89522B004C440A /* DynamicSizeLabel.m in Sources */,
+				FB0BB9591BE6DA15001E1E07 /* TextFieldTableViewCell.m in Sources */,
 				FBCCAF961A8CF5CC0052DCB9 /* CreateBoardViewController.m in Sources */,
 				86C5A6CD1AFFAC8400449FA7 /* FormTextField.m in Sources */,
 				8647F6E11ACD6FA500BD93E7 /* SelectRemoteTableViewController.m in Sources */,
@@ -1352,7 +1353,6 @@
 				86C411CD1ACC85DC00463622 /* DBImage+Management.m in Sources */,
 				FBDCB19E1A83EB1800E05053 /* Inkit.xcdatamodeld in Sources */,
 				FBDCB1E11A84095200E05053 /* DBUser+Management.m in Sources */,
-				FBF9F9E41B060F0100357F5B /* TextFieldTableViewCell.m in Sources */,
 				FB3266681BC7379A00D74A7E /* DBReportReason.m in Sources */,
 				FBDCB1C41A83F06A00E05053 /* InkitService.m in Sources */,
 				FBB384211A8930AD004C440A /* InkDescriptionTableViewCell.m in Sources */,

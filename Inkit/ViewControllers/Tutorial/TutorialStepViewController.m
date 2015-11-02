@@ -12,8 +12,6 @@
 @interface TutorialStepViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 
 @end
@@ -35,19 +33,12 @@
     
     self.bgImageView.image = self.page.bgImage;
     self.bgImageView.clipsToBounds = true;
-    self.iconImageView.image = self.page.iconImage;
     
     
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc]init];
     [style setLineSpacing:10.f];
     [style setAlignment:NSTextAlignmentCenter];
-    
-    NSDictionary *attrs = @{
-    NSFontAttributeName: font,
-    NSParagraphStyleAttributeName: style};
-    
-    self.textLabel.attributedText = [[NSAttributedString alloc] initWithString:self.page.text attributes:attrs];
 }
 
 - (IBAction)actionButtonPressed:(UIButton *)sender {

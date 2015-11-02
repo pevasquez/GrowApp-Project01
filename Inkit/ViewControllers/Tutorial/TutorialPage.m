@@ -21,7 +21,7 @@
 }
 
 - (UIImage *)bgImage {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"image%d.jpg", self.index +1]];
+    return [UIImage imageNamed:[NSString stringWithFormat:@"tutorial%d.jpg", self.index +1]];
 }
 
 - (UIImage *)iconImage {

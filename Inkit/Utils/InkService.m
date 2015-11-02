@@ -79,7 +79,7 @@
                     NSDictionary* inkDictionary = responseDictionary[@"data"];
                     // Acá va a ir el código para el caso de éxito
                     DBInk* ink = [DBInk fromJson:inkDictionary];
-                    [DataManager saveContext];
+//                    [DataManager saveContext];
                     [target performSelectorOnMainThread:completeAction withObject:ink waitUntilDone:NO];
                     break;
                 }
@@ -201,7 +201,7 @@
                     for (NSDictionary* inkDictionary in dataDictionary) {
                         [inksArray addObject:[DBInk fromJson:inkDictionary]];
                     }
-                    [DataManager saveContext];
+//                    [DataManager saveContext];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completion(inksArray, nil);
                     });
@@ -265,7 +265,7 @@
                     for (NSDictionary* inkDictionary in dataDictionary) {
                         [inksArray addObject:[DBInk fromJson:inkDictionary]];
                     }
-                    [DataManager saveContext];
+//                    [DataManager saveContext];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completion(inksArray, nil);
                     });
@@ -576,7 +576,7 @@
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             // Check Response's StatusCode
             switch (httpResponse.statusCode) {
-                case 201: {
+                case 200: {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completion(nil, nil);
                     });
@@ -634,7 +634,7 @@
             switch (httpResponse.statusCode) {
                 case kHTTPResponseCodeOK: {
                     [ink updateCommentsWithJson:responseDictionary[@"data"]];
-                    [DataManager saveContext];
+//                    [DataManager saveContext];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completion(nil, nil);
                     });

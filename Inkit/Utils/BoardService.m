@@ -62,7 +62,7 @@
                      if ([responseDictionary objectForKey:@"data"]) {
                          DBBoard* board = [[DataManager sharedInstance].activeUser createBoardFromJson:responseDictionary[@"data"]];
                          [board updateWithJson:boardDictionary];
-                         [DataManager saveContext];
+//                         [DataManager saveContext];
                          [target performSelectorOnMainThread:completeAction withObject:board waitUntilDone:NO];
                      }
                      break;
@@ -138,7 +138,7 @@
                  case kHTTPResponseCodeOKNoResponse:
                  {
                      [board updateWithJson:boardDictionary];
-                     [DataManager saveContext];
+//                     [DataManager saveContext];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
@@ -216,7 +216,7 @@
                  {
                      // Acá va a ir el código para el caso de éxito
                      [board deleteBoard];
-                     [DataManager saveContext];
+//                     [DataManager saveContext];
                      [target performSelectorOnMainThread:completeAction withObject:nil waitUntilDone:NO];
                      break;
                  }
@@ -286,7 +286,7 @@
                              [boardsArray addObject:board];
                          }
                      }
-                     [DataManager saveContext];
+//                     [DataManager saveContext];
                      dispatch_async(dispatch_get_main_queue(), ^{
                          completion(boardsArray, nil);
                      });
@@ -344,7 +344,7 @@
             switch (httpResponse.statusCode) {
                 case kHTTPResponseCodeOK: {
                     [board updateInksWithJson:responseDictionary[@"data"]];
-                    [DataManager saveContext];
+//                    [DataManager saveContext];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completion(nil, nil);
                     });

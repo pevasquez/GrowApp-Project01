@@ -49,31 +49,31 @@ NSString *const JSONBoardExtraData = @"extra_data";
 
 - (void)addInkToBoard:(DBInk *)ink {
     [self addInksObject:ink];
-    [DataManager saveContext];
+//    [DataManager saveContext];
 }
 
 - (void)addInksToBoard:(NSArray *)inksArray {
     for (DBInk* ink in inksArray) {
         [self addInkToBoard:ink];
     }
-    [DataManager saveContext];
+//    [DataManager saveContext];
 }
 
 - (void)removeInkFromBoard:(DBInk *)ink {
     [self removeInksObject:ink];
-    [DataManager saveContext];
+//    [DataManager saveContext];
 }
 
 - (void)removeInksFromBoard:(NSArray *)inksArray {
     for (DBInk* ink in inksArray) {
         [self removeInkFromBoard:ink];
     }
-    [DataManager saveContext];
+//    [DataManager saveContext];
 }
 
 - (void)deleteBoard {
     [[DataManager sharedInstance] deleteObject:self];
-    [DataManager saveContext];
+//    [DataManager saveContext];
 }
 
 + (DBBoard *)newBoard {
