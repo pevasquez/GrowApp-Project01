@@ -68,6 +68,9 @@
 		FB37D06B1B00BDCB00F8DFF7 /* GoogleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06A1B00BDCB00F8DFF7 /* GoogleManager.m */; };
 		FB37D06E1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */; };
 		FB422CA01B4BE62500AA2D6A /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FB422C9F1B4BE62400AA2D6A /* NSString+Extensions.m */; };
+		FB429A561C00E8F600B98DCF /* IKInk.m in Sources */ = {isa = PBXBuildFile; fileRef = FB429A551C00E8F600B98DCF /* IKInk.m */; };
+		FB429A5A1C00E9E900B98DCF /* IKBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB429A591C00E9E900B98DCF /* IKBoard.m */; };
+		FB429A5D1C00EA1C00B98DCF /* IKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FB429A5C1C00EA1C00B98DCF /* IKImage.m */; };
 		FB4A23C41AD9630C002EE49B /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4A23C31AD9630C002EE49B /* NSDictionary+Extensions.m */; };
 		FB4A23C81AD9AC5D002EE49B /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4A23C71AD9AC5D002EE49B /* CommonService.m */; };
 		FB4AB25A1B765FFC00F7ACB6 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4AB2591B765FFC00F7ACB6 /* UIColor+Extension.m */; };
@@ -256,6 +259,12 @@
 		FB37D06D1B00C88B00F8DFF7 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
 		FB422C9E1B4BE62400AA2D6A /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Extensions.h"; path = "Utils/NSString+Extensions.h"; sourceTree = "<group>"; };
 		FB422C9F1B4BE62400AA2D6A /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Extensions.m"; path = "Utils/NSString+Extensions.m"; sourceTree = "<group>"; };
+		FB429A541C00E8F600B98DCF /* IKInk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IKInk.h; path = Model/IKInk.h; sourceTree = "<group>"; };
+		FB429A551C00E8F600B98DCF /* IKInk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IKInk.m; path = Model/IKInk.m; sourceTree = "<group>"; };
+		FB429A581C00E9E900B98DCF /* IKBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IKBoard.h; path = Model/IKBoard.h; sourceTree = "<group>"; };
+		FB429A591C00E9E900B98DCF /* IKBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IKBoard.m; path = Model/IKBoard.m; sourceTree = "<group>"; };
+		FB429A5B1C00EA1C00B98DCF /* IKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IKImage.h; path = Model/IKImage.h; sourceTree = "<group>"; };
+		FB429A5C1C00EA1C00B98DCF /* IKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IKImage.m; path = Model/IKImage.m; sourceTree = "<group>"; };
 		FB4A23BA1AD95546002EE49B /* InksServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InksServiceTests.m; sourceTree = "<group>"; };
 		FB4A23BC1AD95560002EE49B /* BoardsServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardsServiceTests.m; sourceTree = "<group>"; };
 		FB4A23C21AD9630C002EE49B /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Extensions.h"; path = "Utils/NSDictionary+Extensions.h"; sourceTree = "<group>"; };
@@ -587,6 +596,19 @@
 				FB3266611BC7343600D74A7E /* ReportViewController.m */,
 			);
 			name = Report;
+			sourceTree = "<group>";
+		};
+		FB429A571C00E90500B98DCF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB429A541C00E8F600B98DCF /* IKInk.h */,
+				FB429A551C00E8F600B98DCF /* IKInk.m */,
+				FB429A581C00E9E900B98DCF /* IKBoard.h */,
+				FB429A591C00E9E900B98DCF /* IKBoard.m */,
+				FB429A5B1C00EA1C00B98DCF /* IKImage.h */,
+				FB429A5C1C00EA1C00B98DCF /* IKImage.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		FB4AB2541B76570600F7ACB6 /* Common */ = {
@@ -1032,6 +1054,7 @@
 				868A5CA21AA626D6006DD52D /* Service */,
 				FBB696E31AABA7890071D96B /* Theme */,
 				FBC4330B1A85472E00EFAA24 /* Custom Fonts */,
+				FB429A571C00E90500B98DCF /* Model */,
 				FBC433061A85458500EFAA24 /* Categories */,
 			);
 			name = Utils;
@@ -1308,11 +1331,13 @@
 				FBD91E291A9668C100B00724 /* SelectBoardTableViewController.m in Sources */,
 				86C5A6CA1AFF9BC900449FA7 /* RoundedCornerButton.m in Sources */,
 				FB4AB25A1B765FFC00F7ACB6 /* UIColor+Extension.m in Sources */,
+				FB429A561C00E8F600B98DCF /* IKInk.m in Sources */,
 				FB29890B1AA868A0005D7327 /* CropView.m in Sources */,
 				FBDCB19B1A83EB1800E05053 /* AppDelegate.m in Sources */,
 				FB4A23C81AD9AC5D002EE49B /* CommonService.m in Sources */,
 				FB07118B1AAF077C004EBBD1 /* BoardService.m in Sources */,
 				FBDCB1CC1A83F48A00E05053 /* InkitTheme.m in Sources */,
+				FB429A5A1C00E9E900B98DCF /* IKBoard.m in Sources */,
 				FBCCAF861A8CE8390052DCB9 /* ViewBoardsViewController.m in Sources */,
 				FBC433011A8540CE00EFAA24 /* DashboardViewController.m in Sources */,
 				86E14A1A1B44289300D3B432 /* CenteredScrollView.m in Sources */,
@@ -1375,6 +1400,7 @@
 				FBDCB1D41A83F81500E05053 /* DBBodyPart+Management.m in Sources */,
 				FB4AB25D1B769FA000F7ACB6 /* InksManager.m in Sources */,
 				FB4A23C41AD9630C002EE49B /* NSDictionary+Extensions.m in Sources */,
+				FB429A5D1C00EA1C00B98DCF /* IKImage.m in Sources */,
 				FBB384241A893102004C440A /* InkActionsTableViewCell.m in Sources */,
 				FB249C321B11077400AE29F2 /* UIImage+Extension.m in Sources */,
 				FBD91E141A96181600B00724 /* BoardCollectionViewCell.m in Sources */,

@@ -150,7 +150,7 @@ NSString *const JSONInkLoggedUserReInked = @"logged_user_reinked";
         }
     }];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationInkUpdate object:nil userInfo:@{kDBInk:self}];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:DBNotificationInkUpdate object:nil userInfo:@{kDBInk:self}];
 }
 
 - (UIImage *)getInkImage {
