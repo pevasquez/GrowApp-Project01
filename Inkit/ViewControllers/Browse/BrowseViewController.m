@@ -65,7 +65,9 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     if (self.isSearching) {
         [InkitService getInksForSearchString:self.searchBar.text andPage:currentPage withCompletion:^(id response, NSError *error) {
             [self hideActivityIndicator];
-            [self.refreshControl endRefreshing];
+            if(self.refreshControl.isRefreshing){
+                [self.refreshControl endRefreshing];
+            }
             if (!error) {
                 [self getInksComplete:response];
             } else {
@@ -75,7 +77,9 @@ static NSString * const BannerCollectionViewCellIdentifier = @"BannerCollectionV
     } else {
         [InkitService getDashboardInksForPage:currentPage withCompletion:^(id response, NSError *error) {
             [self hideActivityIndicator];
-            [self.refreshControl endRefreshing];
+            if(self.refreshControl.isRefreshing){
+                [self.refreshControl endRefreshing];
+            }
             if (!error) {
                 [self getInksComplete:response];
             } else {
