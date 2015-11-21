@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBInk+Management.h"
 #import "ViewInksViewController.h"
+#import "IKInk.h"
 
 @interface ViewInkViewController : ViewInksViewController
 
-@property (strong, nonatomic) DBInk* ink;
+@property (strong, nonatomic) IKInk* ink;
 
 @end

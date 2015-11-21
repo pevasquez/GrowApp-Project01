@@ -8,7 +8,7 @@
 
 #import "InkTableView.h"
 #import "ViewInkTableViewCell.h"
-#import "DBInk+Management.h"
+#import "IKInk.h"
 #import "InkActionsTableViewCell.h"
 
 static NSString * const InkImageTableViewCellIdentifier = @"InkImageTableViewCell";

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewInkTableViewCell.h"
-#import "DBBoard+Management.h"
+#import "IKBoard.h"
 
 @interface InkBoardTableViewCell : ViewInkTableViewCell
 @end

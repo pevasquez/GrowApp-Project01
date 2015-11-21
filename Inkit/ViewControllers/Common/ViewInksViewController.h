@@ -11,8 +11,11 @@
 @class ViewInksViewController;
 
 @protocol ViewInksDelegate <NSObject>
+
 @optional
+
 - (void)viewInksViewController:(ViewInksViewController *)viewInksViewController didScrollToIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @interface ViewInksViewController : UIViewController  <UICollectionViewDataSource, UICollectionViewDelegate> {

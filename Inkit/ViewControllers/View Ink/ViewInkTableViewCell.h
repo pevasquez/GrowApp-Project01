@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBInk+Management.h"
+#import "IKInk.h"
 
 @interface ViewInkTableViewCell : UITableViewCell
 
 @property (nonatomic)double cellHeight;
-@property (strong, nonatomic) DBInk* ink;
+@property (strong, nonatomic) IKInk* ink;
 @property (strong, nonatomic) NSIndexPath *indexPath;
 
 @end

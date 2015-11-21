@@ -13,6 +13,8 @@
 #import "DBBodyPart+Management.h"
 #import "DBReportReason+Management.h"
 
+#import "IKInk.h"
+
 @implementation InkService
 
 + (NSError *)createInk:(NSDictionary *)inkDictionary withTarget:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
@@ -199,7 +201,7 @@
                     NSDictionary* dataDictionary = responseDictionary[@"data"];
                     
                     for (NSDictionary* inkDictionary in dataDictionary) {
-                        [inksArray addObject:[DBInk fromJson:inkDictionary]];
+                        [inksArray addObject:[IKInk fromJson:inkDictionary]];
                     }
 //                    [DataManager saveContext];
                     dispatch_async(dispatch_get_main_queue(), ^{

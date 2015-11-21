@@ -9,9 +9,11 @@
 #import "InkBoardTableViewCell.h"
 
 @interface InkBoardTableViewCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *boardTitleLabel;
 
 @end
+
 @implementation InkBoardTableViewCell
 
 - (void)configureForInk {

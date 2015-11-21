@@ -10,16 +10,16 @@
 #import "DBInk+Management.h"
 
 #define kDBBoard     @"DBBoard"
-NSString *const JSONBoardID = @"id";
-NSString *const JSONBoardName = @"name";
-NSString *const JSONBoardDescription = @"description";
-NSString *const JSONBoardCreatedAt = @"created_at";
-NSString *const JSONBoardUpdatedAt = @"updated_at";
-NSString *const JSONBoardUser = @"owner";
-NSString *const JSONBoardInksCount = @"inks_count";
-NSString *const JSONBoardFollowersCount = @"followers_count";
-NSString *const JSONBoardPreviewInks = @"preview_inks";
-NSString *const JSONBoardExtraData = @"extra_data";
+//NSString *const JSONBoardID = @"id";
+//NSString *const JSONBoardName = @"name";
+//NSString *const JSONBoardDescription = @"description";
+//NSString *const JSONBoardCreatedAt = @"created_at";
+//NSString *const JSONBoardUpdatedAt = @"updated_at";
+//NSString *const JSONBoardUser = @"owner";
+//NSString *const JSONBoardInksCount = @"inks_count";
+//NSString *const JSONBoardFollowersCount = @"followers_count";
+//NSString *const JSONBoardPreviewInks = @"preview_inks";
+//NSString *const JSONBoardExtraData = @"extra_data";
 
 @implementation DBBoard (Management)
 - (void)updateWithDictionary:(NSDictionary *)boardDictionary Target:(id)target completeAction:(SEL)completeAction completeError:(SEL)completeError {
@@ -87,14 +87,14 @@ NSString *const JSONBoardExtraData = @"extra_data";
 }
 
 + (DBBoard *)fromJson:(NSDictionary *)boardData {
-    NSString* boardID = [NSString stringWithFormat:@"%@",boardData[JSONBoardID]];
-    DBBoard* obj = [DBBoard withID:boardID];
+//    NSString* boardID = [NSString stringWithFormat:@"%@",boardData[JSONBoardID]];
+//    DBBoard* obj = [DBBoard withID:boardID];
     DBBoard* board = nil;
-    if (!obj) {
-        board = [DBBoard newBoard];
-    } else {
-        board = obj;
-    }
+//    if (!obj) {
+//        board = [DBBoard newBoard];
+//    } else {
+//        board = obj;
+//    }
     [board updateWithJson:boardData];
     return board;
 }
@@ -106,39 +106,39 @@ NSString *const JSONBoardExtraData = @"extra_data";
             return;
         }
         
-        if ([key isEqualToString:JSONBoardID]) {
-            self.boardID = [NSString stringWithFormat:@"%@",boardData[JSONBoardID]];
-        }
-        else if ([key isEqualToString:JSONBoardName]) {
-            self.boardTitle = value;
-        }
-        else if ([key isEqualToString:JSONBoardDescription]) {
-            self.boardDescription = value;
-        }
-        else if ([key isEqualToString:JSONBoardCreatedAt]) {
-            self.createdAt = [NSDate fromUnixTimeStamp:value];
-        }
-        else if ([key isEqualToString:JSONBoardUpdatedAt]) {
-            self.updatedAt = [NSDate fromUnixTimeStamp:value];
-        }
-        else if ([key isEqualToString:JSONBoardUser]) {
-            self.user = [DBUser fromJson:value[@"data"]];
-        }
-        else if ([key isEqualToString:JSONBoardInksCount]) {
-            
-        }
-        else if ([key isEqualToString:JSONBoardFollowersCount]) {
-            
-        }
-        else if ([key isEqualToString:JSONBoardPreviewInks]) {
-            NSDictionary* inksDictionary = value[@"data"];
-            for (NSDictionary* inkDictionary in inksDictionary) {
-                [self addInksObject:[DBInk fromJson:inkDictionary]];
-            }
-        }
-        else if ([key isEqualToString:JSONBoardExtraData]) {
-            
-        }
+//        if ([key isEqualToString:JSONBoardID]) {
+//            self.boardID = [NSString stringWithFormat:@"%@",boardData[JSONBoardID]];
+//        }
+//        else if ([key isEqualToString:JSONBoardName]) {
+//            self.boardTitle = value;
+//        }
+//        else if ([key isEqualToString:JSONBoardDescription]) {
+//            self.boardDescription = value;
+//        }
+//        else if ([key isEqualToString:JSONBoardCreatedAt]) {
+//            self.createdAt = [NSDate fromUnixTimeStamp:value];
+//        }
+//        else if ([key isEqualToString:JSONBoardUpdatedAt]) {
+//            self.updatedAt = [NSDate fromUnixTimeStamp:value];
+//        }
+//        else if ([key isEqualToString:JSONBoardUser]) {
+//            self.user = [DBUser fromJson:value[@"data"]];
+//        }
+//        else if ([key isEqualToString:JSONBoardInksCount]) {
+//            
+//        }
+//        else if ([key isEqualToString:JSONBoardFollowersCount]) {
+//            
+//        }
+//        else if ([key isEqualToString:JSONBoardPreviewInks]) {
+//            NSDictionary* inksDictionary = value[@"data"];
+//            for (NSDictionary* inkDictionary in inksDictionary) {
+//                [self addInksObject:[DBInk fromJson:inkDictionary]];
+//            }
+//        }
+//        else if ([key isEqualToString:JSONBoardExtraData]) {
+//            
+//        }
     }];
 }
 

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class DBInk,InkTableView;
+@class IKInk,InkTableView;
 
 @interface ViewInkCollectionReusableView : UICollectionReusableView
-@property (strong, nonatomic) DBInk* ink;
+
+@property (strong, nonatomic) IKInk* ink;
 @property (weak, nonatomic) IBOutlet InkTableView *inkTableView;
 @property (nonatomic) CGFloat height;
+
 @end

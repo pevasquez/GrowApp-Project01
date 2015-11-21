@@ -27,7 +27,7 @@
 //    self.inkTableView.ink = self.ink;
 }
 
-- (void)setInk:(DBInk *)ink {
+- (void)setInk:(IKInk *)ink {
     _ink = ink;
     self.inkTableView.ink = self.ink;
 }

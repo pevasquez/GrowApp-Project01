@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class DBInk, InkTableView;
+@class IKInk, InkTableView;
 
 @protocol InkTableViewDelegate <NSObject>
 
@@ -22,7 +22,7 @@
 
 @interface InkTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) DBInk* ink;
+@property (strong, nonatomic) IKInk* ink;
 @property (weak, nonatomic) id <InkTableViewDelegate> inkTableViewDelegate;
 
 - (void)setLike:(BOOL)selected;
